@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtDoradoObject">
+      <Property name="creationType">com.bstek.dorado.console.web.DoradoObject</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+        <Property name="label">Name</Property>
+      </PropertyDef>
+      <PropertyDef name="beanName">
+        <Property name="dataType">String</Property>
+        <Property name="label">Bean Name</Property>
+      </PropertyDef>
+      <PropertyDef name="method">
+        <Property name="dataType">String</Property>
+        <Property name="label">Method</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <TabControl>
+      <ControlTab>
+        <Property name="caption">DataProvider</Property>
+        <DataGrid>
+          <Property name="dataSet">dsDataProvider</Property>
+          <Property name="showFilterBar">true</Property>
+          <Property name="showHeader">true</Property>
+          <RowNumColumn/>
+          <DataColumn name="name">
+            <Property name="property">name</Property>
+          </DataColumn>
+        </DataGrid>
+      </ControlTab>
+      <ControlTab>
+        <Property name="caption">DataType</Property>
+        <DataGrid>
+          <Property name="dataSet">dsDataType</Property>
+          <Property name="showFilterBar">true</Property>
+          <Property name="showHeader">true</Property>
+          <RowNumColumn/>
+          <DataColumn name="name">
+            <Property name="property">name</Property>
+          </DataColumn>
+        </DataGrid>
+      </ControlTab>
+      <ControlTab>
+        <Property name="caption">DataResolver</Property>
+        <DataGrid>
+          <Property name="dataSet">dsDataResolver</Property>
+          <Property name="showFilterBar">true</Property>
+          <Property name="showHeader">true</Property>
+          <RowNumColumn/>
+          <DataColumn name="name">
+            <Property name="property">name</Property>
+          </DataColumn>
+        </DataGrid>
+      </ControlTab>
+    </TabControl>
+    <DataSet id="dsDataType">
+      <Property name="dataProvider">dorado.console.doradoObjectController#getDataTypeList</Property>
+      <Property name="dataType">[dtDoradoObject]</Property>
+      <Property name="readOnly">true</Property>
+    </DataSet>
+    <DataSet id="dsDataProvider">
+      <Property name="dataProvider">dorado.console.doradoObjectController#getDataProviderList</Property>
+      <Property name="dataType">[dtDoradoObject]</Property>
+      <Property name="readOnly">true</Property>
+    </DataSet>
+    <DataSet id="dsDataResolver">
+      <Property name="dataProvider">dorado.console.doradoObjectController#getDataResolverList</Property>
+      <Property name="dataType">[dtDoradoObject]</Property>
+      <Property name="readOnly">true</Property>
+    </DataSet>
+  </View>
+</ViewConfig>

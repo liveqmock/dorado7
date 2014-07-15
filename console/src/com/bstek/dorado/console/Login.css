@@ -1,0 +1,24 @@
+.btn-close {
+	color: #fff;
+	background-color: #f78d1d;
+	border-radius: 2px;
+	font-size: 15px;
+	cursor: pointer;
+	text-align: center;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-family: Arial, Helvetica, simsun;
+	line-height: 23px;
+}
+
+.btn-close:hover,.btn-close:focus {
+	color: #fff;
+	background-color: #ff7e51;
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11),
+		to(#f06015));
+	background: -moz-linear-gradient(top, #f88e11, #f06015);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11',
+		endColorstr='#f06015');
+}
+

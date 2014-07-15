@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>TabControl Test Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <script type="text/javascript">
+        var view = new dorado.widget.View({ layout: "Anchor" });
+
+        var count = 1;
+
+        var toolbar = new dorado.widget.ToolBar({
+            items: [{
+                caption: "Change Path",
+                listener: {
+                    onClick: function(self) {
+                        this.id("iframe").set({
+                            path: "msgbox-test.html"
+                        });
+                    }
+                }
+            }, {
+                caption: "Change Path 2",
+                listener: {
+                    onClick: function(self) {
+                        this.id("iframe").set({
+                            path: "../tree/tree-test.html"
+                        });
+                    }
+                }
+            }]
+        });
+
+        view.addChild(toolbar);
+
+        var iframe = new dorado.widget.IFrame("iframe");
+        iframe.set({
+            width: 600,
+            height: 400,
+            path: "button-test.html"
+        });
+
+        view.addChild(iframe);
+
+        var iframe2 = new dorado.widget.IFrame("iframe2");
+        iframe2.set({
+            width: 600,
+            height: 400,
+            path: "button-test.html"
+        });
+
+        view.addChild(iframe2);
+
+        $(document).ready(function() {
+            view.render(document.body);
+        });
+    </script>
+</head>
+<body style="margin: 0;padding: 0;overflow: hidden;">
+</body>
+</html>

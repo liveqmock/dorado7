@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Test Page</title>
+		<script type="text/javascript" src="../include-all.js"></script>
+		<script>
+function test1() {
+	var dataContainer = document.getElementById("dataContainer");
+	
+	var s = new Date();
+	// document.body.removeChild(dataContainer); no effect
+	for (var i = 0; i < 100; i++) {
+		var row = document.createElement("DIV");
+		row.className = "row";
+		for (var j = 0; j < 10; j++) {
+			var cell = document.createElement("DIV");
+			cell.className = "cell";
+			cell.innerText = [i, j];
+			row.appendChild(cell);
+		}		
+		dataContainer.appendChild(row);
+	}
+	// document.body.appendChild(dataContainer);
+	alert(new Date() - s);
+}
+
+function test2() {
+	var dataContainer = document.getElementById("dataContainer");
+	
+	var s = new Date();
+	for (var i = 0; i < 100; i++) {
+		var row = document.createElement("TR");
+		for (var j = 0; j < 10; j++) {			
+			var cell = document.createElement("TD");
+			cell.className = "table_cell";
+			cell.innerText = [i, j];
+			row.appendChild(cell);
+		}		
+		var tbody = document.createElement("TBODY");
+		tbody.appendChild(row);
+		var table = document.createElement("TABLE");
+		table.appendChild(tbody);
+		var div = document.createElement("DIV");
+		div.className = "table_row";
+		div.appendChild(table);
+		dataContainer.appendChild(div);
+	}
+	alert(new Date() - s);
+}
+
+function test3() {
+	var dataContainer = document.getElementById("dataContainer");
+	
+	var s = new Date();
+	var tbody = document.createElement("TBODY");
+	for (var i = 0; i < 100; i++) {
+		var row = document.createElement("TR");
+		for (var j = 0; j < 10; j++) {
+			var cell = document.createElement("TD");
+			cell.className = "table_cell";
+			cell.innerText = [i, j];
+			row.appendChild(cell);
+		}	
+		tbody.appendChild(row);	
+	}
+	var table = document.createElement("TABLE");
+	table.border = 1;
+	table.appendChild(tbody);
+	dataContainer.appendChild(table);
+	
+	alert(new Date() - s);
+}
+
+function test4() {
+	var dataContainer = document.getElementById("dataContainer");
+	
+	var s = new Date();
+	var tbody = document.createElement("TBODY");
+	for (var i = 0; i < 100; i++) {
+		var row = document.createElement("TR");
+		for (var j = 0; j < 10; j++) {
+			var cell = document.createElement("TD");
+			cell.className = "table_cell";
+			cell.innerText = [i, j];
+			row.appendChild(cell);
+		}
+		tbody.appendChild(row);	
+		
+		if (i % 6 === 0) {
+			var row = document.createElement("TR");
+			row.style.height = "30px";
+			var cell = document.createElement("TD");
+			cell.colSpan = 10;
+			cell.innerText = "group";
+			row.appendChild(cell);
+			tbody.appendChild(row);	
+		}
+	}
+	var table = document.createElement("TABLE");
+	table.border = 1;
+	table.appendChild(tbody);
+	dataContainer.appendChild(table);
+	
+	alert(new Date() - s);
+}
+
+function test5() {
+	var dataContainer = document.getElementById("dataContainer");
+	
+	var s = new Date();	
+	var table = dorado.util.Dom.xCreateElement({
+		tagName: "table",
+		border: 1,
+		style: {
+			tableLayout: "fixed"
+		},
+		content: [
+			{ tagName: "caption", content: "Title" },
+			{
+				tagName: "colgroup",
+				content: [
+					{ tagName: "col", id: "col1", width: 80 },
+					{ tagName: "col", id: "col2", width: 80 },
+					{ tagName: "col", id: "col3", width: 80 },
+					{ tagName: "col", id: "col4", width: 80 },
+					{ tagName: "col", id: "col5", width: 80 },
+					{ tagName: "col", id: "col6", width: 80 }
+				]
+			},
+			{
+				tagName: "tr",
+				content: [
+					{ tagName: "td", content: "aaa" },
+					{
+						tagName: "td",
+						colSpan: 4,
+						content: "aaa"
+					},
+					{ tagName: "td", content: "aaa" }
+				]
+			},
+			{
+				tagName: "tr",
+				content: [
+					{ tagName: "td", content: "aaa" },
+					{ tagName: "td", content: "aaa" },
+					{ tagName: "td", content: "aaa" },
+					{
+						tagName: "td",
+						colSpan: 2,
+						content: "aaa"
+					},
+					{ tagName: "td", content: "aaa" }
+				]
+			},
+			{
+				tagName: "tr",
+				content: [
+					{ tagName: "td", content: "aaa" },
+					{ tagName: "td", content: "aaa" },
+					{ tagName: "td", content: "aaa" },
+					{ tagName: "td", id: "cell1", content: "aaa" },
+					{ tagName: "td", content: "aaa" },
+					{ tagName: "td", content: "aaa" }
+				]
+			}
+		]
+	});
+	dataContainer.appendChild(table);
+	
+	alert(new Date() - s);
+	
+	$element("col4").width = "10px";
+	$element("col5").align = "right";
+	
+	alert("A");
+	
+	var tbody = table.tBodies[0];
+	table.removeChild(tbody);
+	table.appendChild(tbody);
+}
+
+function test6() {
+	var dataContainer = document.getElementById("dataContainer");
+	
+	dataContainer.style.position = "relative";
+	var divScroll = dorado.util.Dom.xCreateElement({
+		tagName: "div",
+		style: {
+			width: "100%",
+			height: "100%",
+			backgroundColor: "yellow",
+			overflow: "auto"
+		},
+		content: {
+			tagName: "div",
+			style: {
+				width: 1000,
+				height: 1000,
+				backgroundColor: "blue"
+			}
+		}
+	});
+	dataContainer.appendChild(divScroll);
+	
+	var divContent = dorado.util.Dom.xCreateElement({
+		tagName: "div",
+		style: {
+			width: divScroll.clientWidth,
+			height: divScroll.clientHeight,
+			backgroundColor: "gray",
+			position: "absolute",
+			top: 0,
+			left: 0,
+			overflow: "hidden"
+		}
+	});	
+	dataContainer.appendChild(divContent);
+}
+
+	</script>
+	<style>
+		.data-container {
+			width: 850px;
+			height: 550px;
+			border: 1px black solid;
+			overflow: auto;
+		}
+		
+		.row {
+			width: 100%;
+		}
+	
+		.cell {
+			float: left;
+			margin: 0;
+			padding: 0;
+			width: 80px;
+			height: 20px;
+			border-right: 1px gray solid;
+			border-bottom: 1px gray solid;
+			overflow: hidden;
+			text-align: right;
+		}
+		
+		.table_row {			
+			border-bottom: 1px gray solid;
+		}
+		
+		.table_cell {
+			width: 80px;
+		}
+	</style>
+	</head>
+	<body>
+		<button onclick="test1()">Test 1</button>
+		<button onclick="test2()">Test 2</button>
+		<button onclick="test3()">Test 3</button>
+		<button onclick="test4()">Test 4</button>
+		<button onclick="test5()">Test 5</button>
+		<button onclick="test6()">Test 6</button>
+		<div id="dataContainer" class="data-container"></div>
+	</body>
+</html>

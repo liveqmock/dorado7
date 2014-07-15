@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View layout="anchor">
+    <HtmlContainer layoutConstraint="left:0;top:0">
+      <ClientEvent name="onCreate">var dom=$DomUtils.xCreate({&#xD;
+	tagName: &quot;img&quot;,&#xD;
+	src:$url(&quot;>dorado/console/images/background.png&quot;)&#xD;
+&#xD;
+});&#xD;
+self.set('content',dom);&#xD;
+</ClientEvent>
+      <Property name="contentOverflow">hidden</Property>
+      <Property name="height">270</Property>
+      <Property name="width">640</Property>
+    </HtmlContainer>
+    <HtmlContainer layoutConstraint="left:40;top:300">
+      <Property name="content">
+&lt;h1>产品简介&lt;/h1>
+&lt;p>
+Dorado Management Console 基于Dorado架构的管理控制台,为管理员和系统开发者提供管理与监视功能。
+&lt;/p>
+&lt;p>
+主要功能有运行环境监视、运行日志查看、Parser Tree、性能监控、Dorado日志强化、资源文件查看……等。
+&lt;/p>
+</Property>
+    </HtmlContainer>
+  </View>
+</ViewConfig>

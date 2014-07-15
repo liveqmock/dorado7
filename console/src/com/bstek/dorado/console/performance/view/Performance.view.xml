@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtProcess">
+      <Property name="creationType">com.bstek.dorado.console.performance.view.ProcessVO</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="type">
+        <Property name="dataType">String</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="time">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="spendTime">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="freeMemory">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="status">
+        <Property name="dataType">boolean</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="operation">
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="select"/>
+    </DataType>
+    <DataType name="dtMonitoredTarget">
+      <Property name="creationType">com.bstek.dorado.console.performance.view.MonitoredTargetVO</Property>
+      <PropertyDef name="time">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+        <Property name="label">${res.Time}</Property>
+      </PropertyDef>
+      <PropertyDef name="spendTime">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+        <Property name="label">${res.spendTime}</Property>
+      </PropertyDef>
+      <PropertyDef name="freeMemory">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+        <Property name="label">${res.freeMemory}</Property>
+      </PropertyDef>
+      <PropertyDef name="avgTime">
+        <Property name="dataType">double</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="count">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="frequency">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="minTime">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="maxTime">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="id">
+        <Property name="dataType">String</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="monitoringTime">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="cancelTime">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="status">
+        <Property name="dataType">boolean</Property>
+        <Property name="readOnly">true</Property>
+        <Property name="label">${res.status}</Property>
+      </PropertyDef>
+      <PropertyDef name="settingTime">
+        <Property name="dataType">long</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="description">
+        <Property name="dataType">String</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="type">
+        <Property name="dataType">String</Property>
+        <Property name="readOnly">true</Property>
+      </PropertyDef>
+      <PropertyDef name="select"/>
+      <PropertyDef name="operation">
+        <Property name="readOnly">true</Property>
+        <Property name="label">${res.operation}</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View listener="spring:dorado.console.performanceController#onReady">
+    <Property name="packages">console-utils-js</Property>
+    <DataSet id="dsLastProcess">
+      <Property name="dataProvider">dorado.console.performanceController#getLastProcessList</Property>
+      <Property name="dataType">[dtProcess]</Property>
+    </DataSet>
+    <DataSet id="dsMonitoredTarget">
+      <Property name="dataType">[dtMonitoredTarget]</Property>
+      <Property name="dataProvider">dorado.console.performanceController#getTargetList</Property>
+    </DataSet>
+    <TabControl id="dataTabControl">
+      <ControlTab>
+        <Property name="name">lastProcessTab</Property>
+        <Property name="caption">${res.recentRequest}</Property>
+        <Container>
+          <DataGrid id="gridLastProcess" layoutConstraint="center">
+            <Property name="dataSet">dsLastProcess</Property>
+            <Property name="selectionMode">multiRows</Property>
+            <Property name="headerRowHeight">30</Property>
+            <Property name="rowHeight">23</Property>
+            <Property name="showFilterBar">true</Property>
+            <RowSelectorColumn>
+              <Property name="name">select</Property>
+            </RowSelectorColumn>
+            <RowNumColumn/>
+            <DataColumn name="name">
+              <Property name="property">name</Property>
+              <Property name="width">*</Property>
+              <Property name="caption">${res.key}</Property>
+            </DataColumn>
+            <DataColumn name="type">
+              <Property name="property">type</Property>
+              <Property name="width">200</Property>
+              <Property name="caption">${res.timeLine}</Property>
+              <Property name="filterable">false</Property>
+            </DataColumn>
+            <DataColumn name="time">
+              <Property name="property">time</Property>
+              <Property name="width">150</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.time}</Property>
+            </DataColumn>
+            <DataColumn name="spendTime">
+              <Property name="property">spendTime</Property>
+              <Property name="width">70</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.spendTime}</Property>
+            </DataColumn>
+            <DataColumn name="freeMemory">
+              <Property name="property">freeMemory</Property>
+              <Property name="width">80</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.freeMemory}</Property>
+            </DataColumn>
+            <DataColumn name="status">
+              <Property name="property">status</Property>
+              <Property name="width">60</Property>
+              <Property name="align">center</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.status}</Property>
+            </DataColumn>
+            <DataColumn name="operation">
+              <Property name="property">operation</Property>
+              <Property name="width">60</Property>
+              <Property name="align">center</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.operation}</Property>
+            </DataColumn>
+          </DataGrid>
+          <ToolBar layoutConstraint="bottom">
+            <ToolBarLabel>
+              <Property name="width">10</Property>
+            </ToolBarLabel>
+            <Button id="buttonAddTarget">
+              <Property name="action">addTargetsAction</Property>
+              <Property name="caption">${res.monitoringSelected}</Property>
+              <Property name="icon">url(>skin>common/icons.gif) -120px 0px
+</Property>
+            </Button>
+            <Separator/>
+            <Button id="flushDsLastProcess">
+              <Property name="icon">url(>skin>common/icons.gif) -282px -219px</Property>
+              <Property name="caption">${res.flushDataset}</Property>
+            </Button>
+          </ToolBar>
+        </Container>
+      </ControlTab>
+      <ControlTab>
+        <Property name="caption">${res.monitoredResquest}</Property>
+        <Property name="name">targetTab</Property>
+        <Container>
+          <DataGrid id="gridTarget">
+            <Property name="dataSet">dsMonitoredTarget</Property>
+            <Property name="headerRowHeight">30</Property>
+            <Property name="rowHeight">23</Property>
+            <Property name="selectionMode">multiRows</Property>
+            <Property name="showFilterBar">true</Property>
+            <RowSelectorColumn/>
+            <RowNumColumn/>
+            <DataColumn name="name">
+              <Property name="property">name</Property>
+              <Property name="width">*</Property>
+              <Property name="caption">${res.key}</Property>
+            </DataColumn>
+            <DataColumn name="type">
+              <Property name="property">type</Property>
+              <Property name="width">200</Property>
+              <Property name="caption">${res.timeLine}</Property>
+              <Property name="filterable">false</Property>
+            </DataColumn>
+            <DataColumn name="avgTime">
+              <Property name="width">60</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.avgSpendTime}</Property>
+            </DataColumn>
+            <DataColumn name="count">
+              <Property name="property">count</Property>
+              <Property name="width">60</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.count}</Property>
+            </DataColumn>
+            <DataColumn name="frequency">
+              <Property name="property">frequency</Property>
+              <Property name="width">80</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.frequency}</Property>
+            </DataColumn>
+            <DataColumn name="minTime">
+              <Property name="property">minTime</Property>
+              <Property name="width">60</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.minSpendTime}</Property>
+            </DataColumn>
+            <DataColumn name="maxTime">
+              <Property name="property">maxTime</Property>
+              <Property name="width">60</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.maxSpendTime}</Property>
+            </DataColumn>
+            <DataColumn name="operation">
+              <Property name="property">operation</Property>
+              <Property name="width">60</Property>
+              <Property name="align">center</Property>
+              <Property name="filterable">false</Property>
+              <Property name="caption">${res.operation}</Property>
+            </DataColumn>
+          </DataGrid>
+          <ToolBar layoutConstraint="bottom">
+            <ToolBarLabel>
+              <Property name="width">10</Property>
+            </ToolBarLabel>
+            <Button id="buttonRemoveTarget">
+              <Property name="caption">${res.deleteSelected}</Property>
+              <Property name="action">removeTargetsAction</Property>
+              <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
+            </Button>
+            <Separator/>
+            <Button id="flushDsMonitoredTarget">
+              <Property name="caption">${res.flushDataset}</Property>
+              <Property name="icon">url(>skin>common/icons.gif) -282px -219px</Property>
+            </Button>
+          </ToolBar>
+        </Container>
+      </ControlTab>
+    </TabControl>
+    <UpdateAction id="addTargetsAction">
+      <Property name="dataResolver">dorado.console.performanceController#addMonitoredTargets</Property>
+      <Property name="successMessage">${res.addTargetsSuccessMessage}</Property>
+      <Property name="confirmMessage">${res.addTargetsConfirmMessage}</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsLastProcess</Property>
+        <Property name="dataPath">!DIRTY_TREE</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <UpdateAction id="removeTargetsAction">
+      <Property name="dataResolver">dorado.console.performanceController#removeMonitoredTargets</Property>
+      <Property name="successMessage">监听取消成功！</Property>
+      <Property name="confirmMessage">${res.removeTargetsConfirmMessage}</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsMonitoredTarget</Property>
+        <Property name="dataPath">!DIRTY_TREE</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <Dialog id="processDetailDialog" layout="native">
+      <Property name="width">100%</Property>
+      <Property name="height">100%</Property>
+      <Property name="caption">${res.detail}</Property>
+      <Property name="icon">url(>skin>common/icons.gif) -40px -120px</Property>
+      <Buttons/>
+      <Children>
+        <Container layout="anchor">
+          <Property name="width">100%</Property>
+          <Property name="height">35</Property>
+          <Property name="contentOverflow">hidden</Property>
+          <Label id="processNameLabel" layoutConstraint="left:0;top:0">
+            
+            <Property name="style">
+              <Property name="margin-left">20px</Property>
+              <Property name="margin-top&#xA;">10px</Property>
+            </Property>
+          </Label>
+          <Button id="changeALGBtn" layoutConstraint="left:820;top:5">
+            <Property name="caption">不包含首次访问</Property>
+            <Property name="userData">true</Property>
+          </Button>
+        </Container>
+        <HtmlContainer id="timeLengthContainer">
+          <Property name="width">100%</Property>
+          <Property name="height">20</Property>
+        </HtmlContainer>
+        <Panel id="panelRecentRequest">
+          <Property name="height">65</Property>
+          <Property name="style">
+            <Property name="margin-left">20px</Property>
+            <Property name="margin-top">5px</Property>
+          </Property>
+          <Property name="width">900</Property>
+          <Buttons/>
+          <Children>
+            <HtmlContainer id="lastTimeProcessContainer"/>
+          </Children>
+          <Tools/>
+        </Panel>
+        <Panel id="panelMostTimeConsumingRequest">
+          <Property name="height">65</Property>
+          <Property name="style">
+            <Property name="margin-left">20px</Property>
+            <Property name="margin-top">5px</Property>
+          </Property>
+          <Property name="width">900</Property>
+          <Buttons/>
+          <Children>
+            <HtmlContainer id="maxTimeProcessContainer"/>
+          </Children>
+          <Tools/>
+        </Panel>
+        <Panel id="panelShortestTimeConsumingRequest">
+          <Property name="height">65</Property>
+          <Property name="style">
+            <Property name="margin-left">20px</Property>
+            <Property name="margin-top">5px</Property>
+          </Property>
+          <Property name="width">900</Property>
+          <Buttons/>
+          <Children>
+            <HtmlContainer id="minTimeProcessContainer"/>
+          </Children>
+          <Tools/>
+        </Panel>
+        <Panel id="panelFirstAccessRequest">
+          <Property name="height">65</Property>
+          <Property name="style">
+            <Property name="margin-left">20px</Property>
+            <Property name="margin-top">5px</Property>
+          </Property>
+          <Property name="width">900</Property>
+          <Buttons/>
+          <Children>
+            <HtmlContainer id="firstTimeProcessContainer"/>
+          </Children>
+          <Tools/>
+        </Panel>
+        <Container id="historyProcessListContainer">
+          <Property name="hideMode">visibility</Property>
+          <Panel>
+            <Property name="width">900</Property>
+            <Property name="caption">${res.requestDetails}</Property>
+            <Property name="style">
+              <Property name="margin-left">20px</Property>
+              <Property name="margin-top">5px</Property>
+            </Property>
+            <Buttons/>
+            <Children>
+              <DataGrid id="gridHistory">
+                <Property name="dataSet">dsHistoryProcess</Property>
+                <Property name="height">240</Property>
+                <RowNumColumn/>
+                <DataColumn>
+                  <Property name="property">time</Property>
+                  <Property name="width">140</Property>
+                  <Property name="name">time</Property>
+                  <Property name="caption">${res.time}</Property>
+                </DataColumn>
+                <DataColumn>
+                  <Property name="property">spendTime</Property>
+                  <Property name="width">60</Property>
+                  <Property name="name">spendTime</Property>
+                  <Property name="caption">${res.spendTime}</Property>
+                </DataColumn>
+                <DataColumn>
+                  <Property name="property">freeMemory</Property>
+                  <Property name="width">100</Property>
+                  <Property name="name">freeMemory</Property>
+                  <Property name="caption">${res.freeMemory}</Property>
+                </DataColumn>
+                <DataColumn name="operation">
+                  <Property name="property">operation</Property>
+                  <Property name="caption">${res.timeLine}</Property>
+                </DataColumn>
+              </DataGrid>
+              <DataPilot>
+                <Property name="dataSet">dsHistoryProcess</Property>
+              </DataPilot>
+            </Children>
+            <Tools/>
+          </Panel>
+        </Container>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <AjaxAction id="getCategoryAction">
+      <Property name="service">dorado.console.performanceController#getCategory</Property>
+    </AjaxAction>
+    <DataSet id="dsHistoryProcess">
+      <Property name="dataType">[dtProcess]</Property>
+      <Property name="dataProvider">dorado.console.performanceController#getProcessList</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">10</Property>
+    </DataSet>
+    <AutoMappingDropDown id="autoMappingDropDown1"/>
+  </View>
+</ViewConfig>

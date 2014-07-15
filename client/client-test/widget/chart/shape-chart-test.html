@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Shape Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypeShapeData = new dorado.EntityDataType({
+			name: "ShapeData",
+			propertyDefs: [
+				{ name: "x", label: "x" },
+				{ name: "y", label: "y" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeShapeData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data:  [
+				{"x":2,"y":2},
+				{"x":4,"y":2},
+				{"x":4,"y":4},
+				{"x":3,"y":5},
+				{"x":2,"y":4}
+			],
+			dataType: "ShapeData"
+		});
+
+		var scatterChart = new dorado.widget.ofc.OpenFlashChart({
+			backgroundColor: "#FFFFFF",
+			title: {
+				"text": "X Y Distribution",
+				"style": "font-size: 14px; font-family: Verdana; text-align: center;"
+			},
+			yAxis:{
+    			max: 10
+  			},
+			xAxis: {
+				max: 10
+			},
+			elements: [{
+				$type: "ofc.Shape",
+				dataSet: dataSet,
+				color: "#FF0000",
+				alpha: 0.2,
+				bindingConfig: {
+					xProperty: "x",
+					yProperty: "y"
+				}
+			}, {
+				$type: "ofc.Arrow",
+				start: [2, 5],
+				end: [4, 7],
+				barbLength:	20,
+				color:	"#ff00ff"
+			}]
+		});
+        view.addChild(scatterChart);
+
+		view.addChild(new dorado.widget.Button({
+			caption: "reloadData",
+			onClick: function() {
+				scatterChart.reload();
+			}
+		}));
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

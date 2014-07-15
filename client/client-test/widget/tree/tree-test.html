@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+		
+		var NODES = [{
+			label: "node1",
+			icon: "../base/del.gif",
+			hasChild: true
+		}, {
+			label: "node2",
+			icon: "../base/del.gif",
+			nodes: [{
+				label: "node21",
+				icon: "../base/del.gif"
+			}, {
+				label: "node22"
+			}, {
+				label: "node23"
+			}]
+		}, {
+			label: "node3",
+			icon: "../base/del.gif"
+		}, {
+			label: "node4",
+			nodes: [{
+				label: "node41"
+			}, {
+				label: "node42"
+			}, {
+				label: "node43"
+			}]
+		}, {
+			label: "node5",
+			nodes: [{
+				label: "node51"
+			}, {
+				label: "node52",
+				expanded: true,
+				nodes: [{
+					label: "node521",
+					nodes: [{
+						label: "node5211"
+					}, {
+						label: "node5212"
+					}, {
+						label: "node5213"
+					}]
+				}, {
+					label: "node522"
+				}, {
+					label: "node523",
+					nodes: [{
+						label: "node5231"
+					}, {
+						label: "node5232"
+					}, {
+						label: "node5233"
+					}]
+				}]
+			}, {
+				label: "node53"
+			}]
+		}, {
+			label: "node6",
+			nodes: [{
+				label: "node61"
+			}, {
+				label: "node62",
+				nodes: [{
+					label: "node621",
+					nodes: [{
+						label: "node6211"
+					}, {
+						label: "node6212"
+					}, {
+						label: "node6213"
+					}]
+				}, {
+					label: "node622"
+				}, {
+					label: "node623",
+					nodes: [{
+						label: "node6231"
+					}, {
+						label: "node6232"
+					}, {
+						label: "node6233"
+					}]
+				}]
+			}, {
+				label: "node63"
+			}]
+		}, {
+			label: "node7",
+			nodes: [{
+				label: "node71"
+			}, {
+				label: "node72",
+				nodes: [{
+					label: "node721",
+					nodes: [{
+						label: "node7211"
+					}, {
+						label: "node7212"
+					}, {
+						label: "node7213"
+					}]
+				}, {
+					label: "node722"
+				}, {
+					label: "node723",
+					nodes: [{
+						label: "node7231"
+					}, {
+						label: "node7232"
+					}, {
+						label: "node7233"
+					}]
+				}]
+			}, {
+				label: "node73"
+			}]
+		}, {
+			label: "node8",
+			nodes: [{
+				label: "node81"
+			}, {
+				label: "node82",
+				nodes: [{
+					label: "node821",
+					nodes: [{
+						label: "node8211"
+					}, {
+						label: "node8212"
+					}, {
+						label: "node8213"
+					}]
+				}, {
+					label: "node822"
+				}, {
+					label: "node823",
+					nodes: [{
+						label: "node8231"
+					}, {
+						label: "node8232"
+					}, {
+						label: "node8233"
+					}]
+				}]
+			}, {
+				label: "node83"
+			}]
+		}];
+		var view = new dorado.widget.View({
+			layout: "Anchor"
+		});
+		
+		view.addChild(new dorado.widget.HtmlContainer({
+			content: "<p>tree1</p>"
+		}));
+		
+		var tree1 = new dorado.widget.Tree({
+			id: "tree1",
+			//scrollMode: "lazyRender",
+			scrollMode: "simple",
+			width: 200,
+			height: 250,
+            rowHeight: 30,
+			nodes: NODES,
+			draggable: true,
+			dragTags: "node",
+			droppable: true,
+			droppableTags: "node",
+			dropMode: "onOrInsertItems",
+			onNodeAttached: function(tree, arg) {
+				arg.node.set({
+					checkable: true,
+					icon: "../base/del.gif"
+				});
+			},
+			beforeExpand: function(tree, arg) {
+				var node = arg.node;
+				if (arg.async) {
+					if (node.childrenPrepared) {
+						arg.callback(true);
+					} else {
+						setTimeout(function() {
+							node.childrenPrepared = true;
+							node.set("nodes", [{
+								label: "Dyna Node (Async)"
+							}]);
+							arg.callDefault(true);
+						}, 500);
+					}
+				} else {
+					if (node.childrenPrepared) return;
+					node.childrenPrepared = true;
+					node.set("nodes", [{
+						label: "Dyna Node"
+					}]);
+				}
+			}
+		});
+		view.addChild(tree1);
+		
+		view.addChild(new dorado.widget.HtmlContainer({
+			content: "<br>"
+		}));
+		
+		var panel1 = new dorado.widget.Container({
+			layout: new dorado.widget.layout.DockLayout(),
+			height: 25
+		});
+		
+		panel1.addChild(new dorado.widget.Button({
+			caption: "Add child",
+			onClick: function() {
+				var tree1 = this.id("tree1"), currentNode = tree1.get("currentNode");
+				if (!currentNode) throw new dorado.Exception("No current node selected.");
+				currentNode.expand();
+				currentNode.addNode({
+					label: "#New#"
+				}).highlight();
+			},
+			layoutConstraint: "left"
+		}));
+		
+		panel1.addChild(new dorado.widget.Button({
+			caption: "Remove current",
+			onClick: function() {
+				var tree1 = this.id("tree1");
+				var currentNode = tree1.get("currentNode");
+				var dom = tree1._itemDomMap[currentNode._id];
+				currentNode.remove();
+			},
+			layoutConstraint: "left"
+		}));
+		
+		view.addChild(panel1);
+		
+		view.addChild(new dorado.widget.HtmlContainer({
+			content: "<p>tree2</p>"
+		}));
+		
+		var tree2 = new dorado.widget.Tree({
+			id: "tree2",
+			scrollMode: "viewport",
+			width: 200,
+			height: 150,
+			nodes: NODES,
+			draggable: true,
+			dragTags: "node",
+			droppable: true,
+			droppableTags: "node"
+		});
+		view.addChild(tree2);
+		
+		view.addChild(new dorado.widget.HtmlContainer({
+			content: "<br>"
+		}));
+		
+		var panel2 = new dorado.widget.Container({
+			layout: new dorado.widget.layout.DockLayout(),
+			height: 25
+		});
+		
+		panel2.addChild(new dorado.widget.Button({
+			caption: "Expand or collapse current",
+			onClick: function() {
+				var currentNode = this.id("tree2").get("currentNode");
+				if (currentNode) currentNode.get("expanded") ? currentNode.collapse() : currentNode.expand();
+			},
+			layoutConstraint: "left"
+		}));
+		
+		panel2.addChild(new dorado.widget.Button({
+			caption: "Change label",
+			onClick: function() {
+				var currentNode = this.id("tree2").get("currentNode");
+				if (currentNode) currentNode.set("label", "#changed#");
+			},
+			layoutConstraint: "left"
+		}));
+		
+		panel2.addChild(new dorado.widget.Button({
+			caption: "Add child",
+			onClick: function() {
+				var currentNode = this.id("tree2").get("currentNode");
+				currentNode.addNode({
+					label: "#New#"
+				});
+			},
+			layoutConstraint: "left"
+		}));
+		
+		panel2.addChild(new dorado.widget.Button({
+			caption: "Remove current",
+			onClick: function() {
+				var currentNode = this.id("tree2").get("currentNode");
+				currentNode.remove();
+			},
+			layoutConstraint: "left"
+		}));
+		
+		view.addChild(panel2);
+		
+		$(document).ready(function() {
+			var s = new Date();
+			view.render(document.body);
+			document.title = new Date() - s;
+		});
+		</script>
+	</head>
+	<body></body>
+</html>

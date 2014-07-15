@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Image Canvas Test</title>
+		<script type="text/javascript">
+			var view = new dorado.widget.View({
+				layout: {
+					$type: "Dock",
+					padding: 0
+				}
+			});
+
+			var toolbar = new dorado.widget.ToolBar({
+				layoutConstraint: "top",
+				items: [{
+					caption: "放大",
+					icon: "image_icons/zoom_in.png",
+					listener: {
+						onClick: function() {
+							canvas.zoomIn();
+						}
+					}
+				}, {
+					caption: "缩小",
+					icon: "image_icons/zoom_out.png",
+					listener: {
+						onClick: function() {
+							canvas.zoomOut();
+						}
+					}
+				}, {
+					caption: "选择放大",
+					icon: "image_icons/zoom_selection.png",
+					toggleable: true,
+					listener: {
+						onClick: function() {
+							canvas.set("selection", !canvas.get("selection"));
+							canvas.set("selectionOperation", "zoomSelect");
+						}
+					}
+				},
+				{
+					caption: "放大镜",
+					toggleable: true,
+					icon: "image_icons/zoom.png",
+					listener: {
+						onClick: function() {
+							canvas.set("zoomMagnifier", !canvas.get("zoomMagnifier"));
+						}
+					}
+				},
+				{
+					caption: "选择坐标",
+					icon: "image_icons/select_rect.png",
+					toggleable: true,
+					listener: {
+						onClick: function() {
+							canvas.set("selection", !canvas.get("selection"));
+							canvas.set("selectionOperation", "getCoordinate");
+						}
+					}
+				},
+				{
+					caption: "原始大小",
+					icon: "image_icons/zoom_original.png",
+					listener: {
+						onClick: function() {
+							canvas.zoom(1.0);
+						}
+					}
+				},
+				{
+					caption: "宽度适应",
+					icon: "image_icons/zoom_fit_width.png",
+					listener: {
+						onClick: function() {
+							canvas.set("zoomMode", "fitWidth");
+						}
+					}
+				},
+				{
+					caption: "高度适应",
+					icon: "image_icons/zoom_fit_height.png",
+					listener: {
+						onClick: function() {
+							canvas.set("zoomMode", "fitHeight");
+						}
+					}
+				},
+				{
+					caption: "窗口适应",
+					icon: "image_icons/zoom_best_fit.png",
+					listener: {
+						onClick: function() {
+							canvas.set("zoomMode", "fitWindow");
+						}
+					}
+				},
+				{
+					caption: "左旋转",
+					icon: "image_icons/rotate_anticlockwise.png",
+					listener: {
+						onClick: function() {
+							canvas.rotateLeft();
+						}
+					}
+				},
+				{
+					caption: "右旋转",
+					icon: "image_icons/rotate_clockwise.png",
+					listener: {
+						onClick: function() {
+							canvas.rotateRight();
+						}
+					}
+				},
+				{
+					caption: "旋转180度",
+					icon: "image_icons/rotate_half.png",
+					listener: {
+						onClick: function() {
+							canvas.rotateHalfCircle();
+						}
+					}
+				},
+				{
+					caption: "镜像",
+					icon: "image_icons/flip_horizontal.png",
+					listener: {
+						onClick: function() {
+							canvas.flipHorizental();
+						}
+					}
+				},
+				{
+					caption: "倒转",
+					icon: "image_icons/flip_vertical.png",
+					listener: {
+						onClick: function() {
+							canvas.flipVertical();
+						}
+					}
+				},
+				{
+					caption: "反色",
+					icon: "image_icons/negative.png",
+					listener: {
+						onClick: function() {
+							canvas.invertColor();
+						}
+					}
+				},
+				{
+					caption: "添加强调区域",
+					listener: {
+						onClick: function() {
+							if(!window.index){
+								window.index = 0;
+							}
+							var index = window.index++;
+							canvas.addHighlightArea({
+								style: {
+									border: "1px solid red",
+									backgroundColor: "yellow"
+								},
+								width: 200,
+								height: 30,
+								left: 20 + index * 20,
+								top: 20 + index * 20
+							});
+						}
+					}
+				}]
+			});
+
+			var canvas = new dorado.widget.ImageCanvas({
+				image: "wallpapers/Sea Mist.jpg",
+				zoomMode: "fitWidth"
+			});
+
+			view.addChild(toolbar);
+			view.addChild(canvas);
+
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body style="padding: 0; margin: 0;"></body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Spinner Test Page</title>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({ layout: "Anchor" });
+            
+            var spinner1 = new dorado.widget.NumberSpinner({
+            	value: 30,
+            	width: 130,
+            	step: 5,
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(spinner1);
+            
+            var spinner2 = new dorado.widget.DateTimeSpinner({
+				id: "AAA",
+				type: "time",
+            	hours: 14,
+            	minutes: 23,
+            	seconds: 52,
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(spinner2);
+            
+            var spinner3 = new dorado.widget.DateTimeSpinner({
+				type: "date",
+            	year: 1998,
+            	month: 3,
+            	date: 30,
+				trigger: view.id("defaultDateDropDown"),
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(spinner3);
+            
+            var spinner4 = new dorado.widget.DateTimeSpinner({
+				type: "dateTime",
+				trigger: view.id("defaultDateDropDown"),
+            	width: 200,
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(spinner4);
+			
+			 var spinner5 = new dorado.widget.DateTimeSpinner({
+				type: "dateMinutes",
+            	width: 200,
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(spinner5);
+            
+            var spinner14 = new dorado.widget.CustomSpinner({
+            	pattern: "[0,255].[0,255].[0,255].[0,255]",
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(spinner14);
+            
+            var spinner15 = new dorado.widget.CustomSpinner({
+            	pattern: "[0,*|].[0,999|3]",
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(spinner15);
+            
+            var spinner16 = new dorado.widget.CustomSpinner({
+            	pattern: "￥[*].[0,99|2]/kg",
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(spinner16);
+            
+            $(document).ready(function() {
+            	view.render(document.body);
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

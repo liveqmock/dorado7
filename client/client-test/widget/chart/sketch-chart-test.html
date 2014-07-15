@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Sketch Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypeSketchData = new dorado.EntityDataType({
+			name: "SketchData",
+			propertyDefs: [
+				{ name: "value", label: "Value" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeSketchData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [{
+				value: 4
+			}, {
+				value: 2
+			}, {
+				value: 1
+			}, {
+				value: 5
+			}, {
+				value: 2
+			}],
+			dataType: "SketchData"
+		});
+
+		var sketchChart = new dorado.widget.ofc.OpenFlashChart({
+			title: {
+				"text": "How many pies were eaten?",
+				"style": "font-size: 14px; font-family: Verdana; text-align: center;"
+			},
+			xAxis: {
+				labels: {
+					labels: ["John","Frank","Mary","Andy","Mike"]
+				}
+			},
+			elements: [{
+				$type: "ofc.SketchColumn",
+				dataSet: dataSet,
+				toolTip: "#val# pies",
+				outlineColor: "#009900",
+				offset: 6,
+				color: "#00aa00",
+				bindingConfig: {
+					valueProperty: "value"
+				}
+			}]
+		});
+        view.addChild(sketchChart);
+
+		view.addChild(new dorado.widget.Button({
+			caption: "reloadData",
+			onClick: function() {
+				sketchChart.reload();
+			}
+		}));
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

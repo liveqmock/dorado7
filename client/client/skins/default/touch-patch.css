@@ -1,0 +1,57 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.vscroll-wrap {
+  position: absolute;
+  z-index: 100;
+  width: 7px;
+  bottom: 1px;
+  top: 1px;
+  right: 1px;
+  overflow: hidden;
+}
+.vscroll-wrap .scrollbar {
+  position: absolute;
+  top: 0;
+  right: 1px;
+  width: 7px;
+  min-height: 7px;
+  z-index: 2147483647;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  background: #808080;
+}
+.hscroll-wrap {
+  position: absolute;
+  z-index: 100;
+  height: 7px;
+  bottom: 1px;
+  left: 1px;
+  right: 1px;
+  overflow: hidden;
+}
+.hscroll-wrap .scrollbar {
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  height: 7px;
+  min-width: 7px;
+  z-index: 2147483647;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  background: #808080;
+}

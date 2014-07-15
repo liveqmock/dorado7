@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View listener="spring:dorado.console.fileReaderController#onReady">
+    <ToolBar id="fileToolBar">
+      <FormElement id="fileName">
+        <Property name="width">300</Property>
+        <Property name="labelAlign">right</Property>
+        <Property name="trigger">fileNameDropDown</Property>
+        <Property name="showLabel">false</Property>
+        <Property name="labelWidth">1</Property>
+        <Property name="showHintMessage">true</Property>
+        <Editor>
+          <TextEditor>
+            <Property name="blankText">${res.selectFile}</Property>
+            <Property name="required">true</Property>
+          </TextEditor>
+        </Editor>
+      </FormElement>
+      <FormElement id="charsetName">
+        <Property name="width">140</Property>
+        <Property name="labelWidth">40</Property>
+        <Property name="trigger">charsetDorpDown</Property>
+        <Property name="labelAlign">center</Property>
+        <Property name="showHint">false</Property>
+        <Editor/>
+      </FormElement>
+      <FormElement id="lineSize">
+        <Property name="labelAlign">right</Property>
+        <Property name="width">130</Property>
+        <Property name="labelWidth">60</Property>
+        <Editor>
+          <TextEditor>
+            <Property name="text">1000</Property>
+          </TextEditor>
+        </Editor>
+      </FormElement>
+      <Button id="prevContentBtn">
+        <Property name="icon">url(>skin>common/icons.gif) -40px -219px
+</Property>
+      </Button>
+      <Button id="nextContent">
+        <Property name="icon">url(>skin>common/icons.gif) -60px -219px
+</Property>
+      </Button>
+      <Button id="flushBtn">
+        <Property name="caption">监听</Property>
+        <Property name="width">80</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -220px -80px
+</Property>
+        <Property name="hideMode">display</Property>
+        <Property name="visible">false</Property>
+      </Button>
+    </ToolBar>
+    <Panel>
+      <Buttons/>
+      <Children>
+        <HtmlContainer id="logBox">
+          <Property name="contentOverflow">scroll</Property>
+        </HtmlContainer>
+      </Children>
+      <Tools/>
+    </Panel>
+    <ListDropDown id="fileNameDropDown"/>
+    <AjaxAction id="getFileContentAction">
+      <Property name="service">dorado.console.fileReaderController#getFileContent</Property>
+    </AjaxAction>
+    <ListDropDown id="charsetDorpDown">
+      <Property name="items">UTF-8,GBK,GB2312,UTF-16,ISO8859-1,EUC_CN,US-ASCII</Property>
+      <Property name="width">120</Property>
+    </ListDropDown>
+    <AjaxAction id="getFileNameListAction">
+      <Property name="service">dorado.console.fileReaderController#getFileNameList</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

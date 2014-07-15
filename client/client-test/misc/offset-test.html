@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Test Page</title>
+		<script type="text/javascript" src="../include-all.js"></script>
+		<script>
+function test1() {
+	var div = document.getElementById("div1");
+	alert(div.offsetWidth);
+	alert($(div).innerWidth());
+	alert($(div).outerWidth());
+}
+
+function test2() {
+	var div = document.getElementById("div2");
+	$(div).width(30);
+	$(div).height(30);
+	
+	alert(div.offsetWidth);
+	alert($(div).innerWidth());
+	alert($(div).outerWidth());
+}
+
+function test3() {
+	var div = document.getElementById("div3");
+	$(div).width(30);
+	$(div).height(30);
+	
+	alert(div.offsetWidth);
+	alert($(div).innerWidth());
+	alert($(div).outerWidth());
+}
+
+function test4() {
+	var div = document.getElementById("div4");
+	$(div).width(30);
+	$(div).height(30);
+	
+	alert(div.offsetWidth);
+	alert($(div).innerWidth());
+	alert($(div).outerWidth());
+}
+
+function test5() {
+	var div = document.createElement("DIV");
+	div.style.border = "8px blue solid";
+	div.style.width = 300;
+	//div.style.height = 30;
+	//$(div).addClass("div_a");
+	//$(div).width(30);
+	//$(div).height(30);
+	div.style.position = "relative";
+	div.style.whiteSpace = "nowrap";
+	
+	var input = document.createElement("INPUT");
+	input.style.borderWidth = 0;
+	input.style.width = 282;
+	div.appendChild(input);
+	
+	var img = document.createElement("IMG");
+	img.src = "/brich7/js/css/skins/nature/dropdown-trigger1.gif";
+	img.style.position = "absolute";
+	img.style.top = 0;
+	img.style.width = 18;
+	img.style.height = 18;
+	div.appendChild(img);
+	
+	document.body.appendChild(div);
+	
+	alert(div.offsetWidth);
+	//alert($(div).innerWidth());
+	//alert($(div).outerWidth());
+}
+
+function test6() {
+	var div = document.getElementById("div5");
+	
+	alert(div.offsetWidth);
+	alert($(div).innerWidth());
+	alert($(div).outerWidth());
+}
+</script>
+		<style>
+.div_a {
+	border: 8px red solid;
+}
+</style>
+	</head>
+	<body>
+		<div>
+			<div>
+				<button onclick="test1()">
+					Test getOffset
+				</button>
+				<button onclick="test2()">
+					Test setOuterWidth 1
+				</button>
+				<button onclick="test3()">
+					Test setOuterWidth 2
+				</button>
+				<button onclick="test4()">
+					Test setOuterWidth 3
+				</button>
+				<button onclick="test5()">
+					Test createElement
+				</button>
+				<button onclick="test6()">
+					Test prepended DIV
+				</button>
+				<hr>
+				<div id="div1"
+					style="width: 30px; height: 30px; border: 8px red solid">
+					&nbsp;
+				</div>
+				<div id="div2"
+					style="width: 30px; height: 30px; border: 8px red solid">
+					&nbsp;
+				</div>
+				<div id="div3" class="div_a" style="width: 0px; height: 0px;">
+					&nbsp;
+				</div>
+				<hr>
+				<img id="div4" class="div_a"
+					src="/brich7/js/css/skins/nature/dropdown-trigger1.gif" />
+				<hr>
+				<DIV id="div5" class="d-text-editor-divwrapper d-text-editor"
+					style="WIDTH: 600px; HEIGHT: 20px">
+					<INPUT class=d-text-editor-input style="WIDTH: 580px; HEIGHT: 20px">
+					<IMG class=d-text-editor-trigger
+						style="POSITION: absolute; TOP: 0px; HEIGHT: 20px" height=16
+						src="/brich7/js/css/skins/nature/dropdown-trigger1.gif" width=17>
+				</DIV>
+			</div>
+		</div>
+	</body>
+</html>

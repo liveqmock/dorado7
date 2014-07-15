@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtDoradoObject">
+      <Property name="creationType">com.bstek.dorado.console.web.DoradoObject</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+        <Property name="label">Name</Property>
+      </PropertyDef>
+      <PropertyDef name="beanName">
+        <Property name="dataType">String</Property>
+        <Property name="label">Bean Name</Property>
+      </PropertyDef>
+      <PropertyDef name="method">
+        <Property name="dataType">String</Property>
+        <Property name="label">Method</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsExposedService">
+      <Property name="dataProvider">dorado.console.doradoObjectController#getExposedServiceList</Property>
+      <Property name="dataType">[dtDoradoObject]</Property>
+      <Property name="readOnly">true</Property>
+    </DataSet>
+    <DataGrid>
+      <Property name="dataSet">dsExposedService</Property>
+      <Property name="showFilterBar">true</Property>
+      <RowNumColumn/>
+      <DataColumn name="name">
+        <Property name="property">name</Property>
+      </DataColumn>
+      <DataColumn name="beanName">
+        <Property name="property">beanName</Property>
+      </DataColumn>
+      <DataColumn name="method">
+        <Property name="property">method</Property>
+      </DataColumn>
+    </DataGrid>
+  </View>
+</ViewConfig>

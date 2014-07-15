@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>MenuBar Test Page</title>
+    <script type="text/javascript" src="../../include-all.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        var view = new dorado.widget.View({ layout: "Anchor" });
+
+        view.addChild(new dorado.widget.Container({
+            height: 180
+        }));
+
+        var toolbar = new dorado.widget.ToolBar({
+            fixRight: true,
+            items: [{
+                caption: "Button1",
+                disabled: true
+            }, {
+                caption: "Button2",
+                showMenuOnHover: true,
+                hideMenuOnMouseLeave: true,
+                items: [{
+                    caption: "test",
+                    items: [{caption: "test11"}, {caption: "test22"}]
+                }, {
+                    caption: "test2"
+                }]
+            }, "-", {
+                caption: "菜单栏1",
+                toggleable: true
+            }, {
+                caption: "菜单栏",
+                icon: "del.gif"
+            }, "-", {
+                caption: "菜单栏3"
+            }, {
+                caption: "菜单栏4"
+            }, {
+                caption: "菜单栏5"
+            }, "-", {
+                caption: "菜单栏6"
+            }],
+			layoutConstraint: {width: "100%"}
+        });
+
+        view.addChild(toolbar);
+        var toolbar2 = new dorado.widget.ToolBar({
+            layoutConstraint: {width: "100%"}
+        });
+        view.addChild(toolbar2);
+        var toolbar3 = new dorado.widget.ToolBar({
+            layoutConstraint: {width: "100%"}
+        });
+        view.addChild(toolbar3);
+
+        $(document).ready(function() {
+            view.render(document.body);
+        });
+    </script>
+</head>
+<body style="">
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Candle Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypeCandleData = new dorado.EntityDataType({
+			name: "CandleData",
+			propertyDefs: [
+				{ name: "high", label: "Color" },
+				{ name: "top", label: "Value" },
+				{ name: "bottom", label: "Label" },
+				{ name: "low", label: "Text" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeCandleData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [{"high":19, "top":14, "bottom":11, "low":10, "tip":"LOOK<br>#top#,#bottom# = #val#"},
+					{"high":15, "top":10, "bottom":5, "low":0},
+					{"high":7, "top":7, "bottom":4, "low":3},
+					{"high":7, "top":3, "bottom":6, "low":2},
+					{"high":7, "top":4, "bottom":4, "low":2}],
+			dataType: "CandleData"
+		});
+
+		var candleChart = new dorado.widget.ofc.OpenFlashChart({
+			"title":{
+				"text":  "Candle"
+			},
+
+			backgroundColor: "#ffffff",
+
+			xAxis: {
+				"labels": ["January","February","March"]
+		   	},
+
+		  	yAxis: {
+				"max": 20
+		  	},
+			elements: [{
+				$type: "ofc.Candle",
+				dataSet: dataSet,
+				alpha: 0.5,
+      			color: "#40d040",
+      			negativeColor: "#d04040",
+      			text: "Burn baby, burn",
+				toolTip: "#x_label#<br>High: #high#<br>Open: #open#<br>Close: #close#<br>Low: #low#",
+      			fontSize: 10,
+				bindingConfig: {
+					highProperty: "high",
+					lowProperty: "low",
+					topProperty: "top",
+					bottomProperty: "bottom"
+				}
+			}]
+		});
+        view.addChild(candleChart);
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+	<View layout="XYLayout">
+		<DataSet id="ds1">
+			<DataProvider parent="testProvider1">
+				<ResultDataType parent="[Map]">
+					<PropertyDef name="key1" label="Key 1" />
+					<PropertyDef name="key2" label="Key 2" />
+					<PropertyDef name="key3" label="Key 3" />
+					<PropertyDef name="key4" label="Key 4" />
+					<PropertyDef name="key5" label="Key 5" />
+					<ClientEvent name="onInsert"><![CDATA[alert('onInsert');]]></ClientEvent>
+					<ClientEvent name="onCurrentChange"><![CDATA[alert('onCurrentChange');]]></ClientEvent>
+				</ResultDataType>
+			</DataProvider>
+			<ClientEvent name="onReady"><![CDATA[alert('ds1 ready.');]]></ClientEvent>
+		</DataSet>
+		<HtmlContainer id="html1" layoutConstraint="left: 100; top: 50">
+			<Property name="content">Content by HtmlContainer.</Property>
+		</HtmlContainer>
+	</View>
+</ViewConfig>

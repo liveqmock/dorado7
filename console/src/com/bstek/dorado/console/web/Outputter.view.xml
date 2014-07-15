@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCategory">
+      <Property name="creationType">com.bstek.dorado.console.web.outputter.Category</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="nodes">
+        <Property name="dataType">[dtNode]</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtNode">
+      <Property name="creationType">com.bstek.dorado.console.web.outputter.Node</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="beanName">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="shortTypeName">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="prototype">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtPropertyConfig">
+      <Property name="creationType">com.bstek.dorado.console.web.outputter.PropertyConfig</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="outputterName">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsCategory">
+      <Property name="dataProvider">dorado.console.outputterController#getCategoryList</Property>
+      <Property name="dataType">[dtCategory]</Property>
+    </DataSet>
+    <DataSet id="dsPropertyConfig">
+      <Property name="dataType">[dtPropertyConfig]</Property>
+      <Property name="dataProvider">dorado.console.outputterController#getPropertyConfigs</Property>
+    </DataSet>
+    <SplitPanel id="splitPanel1">
+      <Property name="height">100%</Property>
+      <Property name="width">100%</Property>
+      <Property name="position">250</Property>
+      <MainControl>
+        <Container id="container1">
+          <AutoForm id="nodeAutoForm">
+            <Property name="cols">*</Property>
+            <Property name="labelWidth">120</Property>
+            <Property name="readOnly">true</Property>
+            <Property name="createPrivateDataSet">true</Property>
+            <Property name="dataType">dtNode</Property>
+            <Property name="showHint">false</Property>
+            <AutoFormElement>
+              <Property name="name">name</Property>
+              <Property name="property">name</Property>
+              <Editor>
+                <TextEditor>
+                  <Property name="className">i-data-label d-data-label</Property>
+                </TextEditor>
+              </Editor>
+            </AutoFormElement>
+            <AutoFormElement>
+              <Property name="name">beanName</Property>
+              <Property name="property">beanName</Property>
+              <Editor>
+                <TextEditor>
+                  <Property name="className">i-data-label d-data-label</Property>
+                </TextEditor>
+              </Editor>
+            </AutoFormElement>
+            <AutoFormElement>
+              <Property name="name">shortTypeName</Property>
+              <Property name="property">shortTypeName</Property>
+              <Editor>
+                <TextEditor>
+                  <Property name="className">i-data-label d-data-label</Property>
+                </TextEditor>
+              </Editor>
+            </AutoFormElement>
+            <AutoFormElement>
+              <Property name="name">prototype</Property>
+              <Property name="property">prototype</Property>
+              <Editor>
+                <TextEditor>
+                  <Property name="className">i-data-label d-data-label</Property>
+                </TextEditor>
+              </Editor>
+            </AutoFormElement>
+          </AutoForm>
+          <DataGrid id="dataGridPropertyConfig">
+            <Property name="dataSet">dsPropertyConfig</Property>
+            <Property name="autoCreateColumns">false</Property>
+            <Property name="stretchColumnsMode">stretchableColumns</Property>
+            <Property name="readOnly">true</Property>
+            <DataColumn name="name">
+              <Property name="property">name</Property>
+              <Property name="width">200</Property>
+            </DataColumn>
+            <DataColumn name="outputterName">
+              <Property name="property">outputterName</Property>
+              <Property name="width">*</Property>
+            </DataColumn>
+          </DataGrid>
+        </Container>
+      </MainControl>
+      <SideControl>
+        <DataTree>
+          <ClientEvent name="onDataRowClick">var beanName,shortTypeName,prototype,node = self.get(&quot;currentNode&quot;),level = node.get('level'),data = node.get('data'),name = data.get('name');
+var dataset = view.get('#dsPropertyConfig');
+if (level == 2) {
+    beanName = data.get('beanName');
+    prototype = data.get('prototype');
+    shortTypeName = data.get('shortTypeName');
+    dataset.set('parameter',{
+        beanName: beanName
+    });
+    dataset.flush();
+}else {
+    dataset.clear();
+};
+view.get('#nodeAutoForm').get(&quot;entity&quot;).set({
+    name: name,
+    beanName: beanName,
+    prototype: prototype,
+    shortTypeName: shortTypeName
+});
+
+</ClientEvent>
+          <Property name="dataSet">dsCategory</Property>
+          <BindingConfigs>
+            <BindingConfig>
+              <Property name="labelProperty">name</Property>
+              <BindingConfig>
+                <Property name="childrenProperty">nodes</Property>
+                <Property name="labelProperty">name</Property>
+              </BindingConfig>
+            </BindingConfig>
+          </BindingConfigs>
+        </DataTree>
+      </SideControl>
+    </SplitPanel>
+    <AutoForm/>
+  </View>
+</ViewConfig>

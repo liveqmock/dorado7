@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>FormSubmitAction Test Page</title>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({ layout: "Anchor" });
+
+			var formSubmitAction = new dorado.widget.FormSubmitAction({
+                parameter: {
+                    test1: 123,
+                    test2: "abc",
+                    test3: false,
+                    test4: new Date()
+                },
+                //target: "_blank",
+                method: "get",
+                action: "/dorado7/form-action.html"
+            });
+            var button1 = new dorado.widget.Button({
+            	width: 150,
+            	caption: "FormSubmit",
+            	listener: {
+            		onClick: function(self) {
+                        formSubmitAction.execute();
+            		}
+            	}
+            });
+            view.addChild(button1);
+
+            $(document).ready(function() {
+            	view.render(document.body);
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

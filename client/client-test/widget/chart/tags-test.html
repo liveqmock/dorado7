@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Tags Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypeBarData = new dorado.EntityDataType({
+			name: "BarData",
+			propertyDefs: [
+				{ name: "value", label: "Value" },
+				{ name: "top", label: "top" },
+				{ name: "bottom", label: "bottom" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeBarData);
+
+		var dataTypeTagData = new dorado.EntityDataType({
+			name: "TagData",
+			propertyDefs: [
+				{ name: "x", label: "x" },
+				{ name: "y", label: "y" },
+				{ name: "backgroundColor", label: "backgroundColor" },
+				{ name: "color", label: "color" },
+				{ name: "axis", label: "axis" },
+				{ name: "alignX", label: "alignX" },
+				{ name: "alignY", label: "alignY" },
+				{ name: "padX", label: "padX" },
+				{ name: "padY", label: "padY" },
+				{ name: "font", label: "font" },
+				{ name: "bold", label: "bold" },
+				{ name: "rotate", label: "rotate" },
+				{ name: "text", label: "text" },
+				{ name: "fontSize", label: "fontSize" },
+				{ name: "border", label: "border" },
+				{ name: "underline", label: "underline" },
+				{ name: "alpha", label: "alpha" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeTagData);
+
+		var dataSet2 = new dorado.widget.DataSet(
+		{
+			data: [
+				{"x":0,"y":9},
+	            {"x":1,"y":6, "alignY":"below"},
+	            {"x":2,"y":7},
+	            {"x":3,"y":9},
+	            {"x":4,"y":5},
+				{"x":5,"y":7, "font": "Arial", "bold":true},
+	            {"x":6,"y":6},
+	            {"x":7,"y":9},
+				{
+					"x":5,"y":13, "color":"#0000F0", "underline": true,
+					"text":"<a href=\"http://moo.com\">Test</a>"
+				},
+				{
+					"x":1,"y":12.2, "color":"#0000F0", "underline": true,
+					"text":"<a href=\"#\">Call JS</a>", "on-click":"alert('123')"
+				},
+				/* And one using the right axis just because we can */
+	            {
+					"x":2, "y":78, "axis": "right", "padY":16, "fontSize":20,
+				 	"color": "#00BB00", "font": "Arial Black", "rotate":0,
+				 	"text":"Click Tag to\nGoogle!!", "on-click":"http://www.google.com"
+				}
+			],
+			dataType: "TagData"
+		});
+
+		var dataSet3 = new dorado.widget.DataSet(
+		{
+			data: [
+				{"x":8,"y":0.5, "rotate":270, "fontSize":12,
+	            "text":"click bar to\ngo to google" },
+
+	            {"x":6, "y":80, "rotate":45, "fontSize":14,
+	            "text":"45 degrees\n(not aligned yet)",
+	            "axis":"right", "backgroundColor":"#AA99", "border":true }
+			],
+			dataType: "TagData"
+		});
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [{top: 9}, {top: 6}, {top: 7}, {top: 9}, {top: 5}, { "top": 7, "colour": "#FF0000", "tip": "Mooo<br>#val#"},
+				{top: 6}, {top: 9}, {"top":7, "tip":"click to google<br>#val#", "on-click":"http://www.google.com"}],
+			dataType: "BarData"
+		});
+
+		var barChart = new dorado.widget.ofc.OpenFlashChart({
+			backgroundColor: "-1",
+			title: {
+				"text": "Sales by Month 2006",
+				"style": "font-size: 16px; font-weight: bold; font-family: Verdana; color:#ff9900; text-align: center;"
+			},
+			xAxis: {
+				"stroke": 1,
+    			"tickHeight": 10,
+    			"color": "#d000d0",
+    			"gridColor": "#00ff00",
+    			"labels": {
+                    "labels": [
+                        "January\n2008","February\n2008","March\n2008","April\n2008",
+                        "May\n2008","June\n2008","July\n2008","August\n2008","September\n2008"]
+				}
+			},
+			yAxis: {
+				"stroke": 4,
+				"tick_length": 3,
+				"color": "#d000d0",
+				"gridColor": "#00ff00",
+				"offset": 0,
+				"max": 20,
+				"steps": 4
+			},
+			"yAxisRight":{
+				"stroke": 4,
+				"tickLength": 3,
+				"color": "#d000d0",
+				"gridColor": "#00ff00",
+				"gridVisible": true,
+				"offset": 0,
+				"steps": 20,
+				"max": 100,
+				"min": 0
+			},
+			elements: [{
+				$type: "ofc.Column",
+				dataSet: dataSet,
+				toolTip: "$#val#",
+				bindingConfig: {
+					topProperty: "top"
+				}
+			}, {
+				$type: "ofc.Tags",
+				dataSet: dataSet2,
+				font: "Verdana",
+				fontSize: 10,
+				color: "#000000",
+				padX: 0,
+				padY: 0,
+				rotate: 0,
+				alignX: "center",
+				alignY: "below",
+				text: "$#y#",
+				bindingConfig: {
+					xProperty: "x",
+					yProperty: "y",
+					colorProperty: "color",
+					axisProperty: "axis",
+					alignXProperty: "alignX",
+					alignYProperty: "alignY",
+					padXProperty: "padX",
+					padYProperty: "padY",
+					fontProperty: "font",
+					boldProperty: "bold",
+					rotateProperty: "rotate",
+					textProperty: "text",
+					fontSizeProperty: "fontSize",
+					borderProperty: "border",
+					underlineProperty: "underline",
+					alphaProperty: "alpha"
+				}
+			}, {
+				$type: "ofc.Tags",
+				dataSet: dataSet3,
+				"font": "Verdana",
+				"fontSize": 10,
+				"color": "#000000",
+				"padX": 0,
+				"padY": 0,
+				"rotate": 0,
+				"alignX": "center",
+				"alignY": "above",
+				"text": "$#y#",
+				bindingConfig: {
+					xProperty: "x",
+					yProperty: "y",
+					backgroundColorProperty: "backgroundColor",
+					colorProperty: "color",
+					axisProperty: "axis",
+					alignXProperty: "alignX",
+					alignYProperty: "alignY",
+					padXProperty: "padX",
+					padYProperty: "padY",
+					fontProperty: "font",
+					boldProperty: "bold",
+					rotateProperty: "rotate",
+					textProperty: "text",
+					fontSizeProperty: "fontSize",
+					borderProperty: "border",
+					underlineProperty: "underline",
+					alphaProperty: "alpha"
+				}
+			}]
+		});
+
+		view.addChild(barChart);
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+	</body>
+</html>

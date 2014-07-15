@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Accordion Test Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Dock" });
+
+        var sections = [{
+            caption: "文件",
+            icon: "del.gif"
+        },{
+            caption: "打开",
+            icon: "del.gif",
+            //expandable: false,
+            listener: {
+                onClick: function(){
+                    //alert(123);
+                }
+            }
+        }, {
+            caption: "关闭",
+            control: {
+                $type: "Panel",
+                children: [new dorado.widget.Button({
+                    width: 150,
+                    caption: "测试子组件",
+                    listener: {
+                        onClick: function() {
+                            alert(123);
+                        }
+                    },
+                    style: {
+                        marginTop: 4
+                    }
+                })]
+                ,buttons: [new dorado.widget.Button({
+                    caption: "确定",
+                    width: 80,
+                    listener: {
+                        onClick: function(){
+                        }
+                    }
+                }), new dorado.widget.Button({
+                    caption: "取消",
+                    width: 80,
+                    listener: {
+                        onClick: function(){
+                        }
+                    }
+                })]
+            }
+        },
+        {
+            caption: "保存",
+            listener: {
+                onClick: function(self){
+                    //alert("你刚刚点击了：" + self["_caption"]);
+                }
+            },
+            control: {
+                $type: "Menu",
+                id: "test3",
+                items: [{
+                    caption: "点我试试1",
+                    listener: {
+                        onClick: function(self){
+                            alert("你刚刚点击了：" + self["_caption"]);
+                        }
+                    },
+                    submenu: {
+                        id: "test4",
+                        items:[{
+                            caption: "第三层测试(点击无事件)"
+                        },{
+                            caption: "CheckItem测试(有事件)",
+                            $type: "Checkable",
+                            checked: false,
+                            hideOnClick: false,
+                            listener: {
+                                onCheckedChange: function(self){
+                                    alert(self.get("checked"));
+                                }
+                            }
+                        },{
+                            caption: "CheckItem测试(无事件)",
+                            $type: "Checkable",
+                            checked: true
+                        }]
+                    }
+                }, {
+                    caption: "点我试试2",
+                    submenu: {
+                        id: "test5",
+                        items:[{
+                            caption: "第三层测试(点击有事件)",
+                            listener: {
+                                onClick: function(){
+                                    alert("123");
+                                }
+                            }
+                        },{
+                            caption: "第三层测试"
+                        },{
+                            caption: "第三层测试"
+                        }]
+                    }
+                }]
+            }
+        }];
+
+        var accordion = new dorado.widget.Accordion({
+            width: 200,
+            listener: {
+                onCurrentSectionChange: function(self, arg) {
+                    var section = self.get("currentSection");
+                    if (section.get("control") == null) {
+                        section.set("control", new dorado.widget.Tree());
+                        accordion.refresh();
+                    }
+                },
+                onReady: function(self, arg) {
+                },
+                onCreate: function(self, arg) {
+                    self.set("sections", sections);
+                }
+            }
+        });
+
+        var sp1 = new dorado.widget.SplitPanel({
+            sideControl: accordion,
+            mainControl: {
+                "$type":"TabControl",
+			    "height":"100%",
+			    "id":"tabControlWorkspace",
+			    "showMenuButton":true,
+			    "width":"100%"
+            },
+            position: 200
+        });
+        view.addChild(sp1);
+
+        view.addChild(new dorado.widget.HtmlContainer({
+            height: 50,
+            content: "DDD",
+            layoutConstraint: "top"
+        }));
+
+        view.addChild(new dorado.widget.HtmlContainer({
+            height: 20,
+            content: "DDD",
+            layoutConstraint: "bottom"
+        }));
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});		
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;overflow: hidden;">
+	</body>
+</html>

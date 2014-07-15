@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Split Panel Test Page</title>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({ layout: "Anchor" });
+            
+            var splitPanel = new dorado.widget.SplitPanel({
+            	collapsed: true,
+            	position: "20%",
+            	previewable: true,
+                resizeable: false,
+            	sideControl: {
+                    $type: "Panel",
+            		border: "normal",
+            		caption: "左侧左侧左侧左侧左侧",
+            		icon: "del.gif",
+            		collapseable: true
+            	},
+            	mainControl: {
+                    $type: "TabControl",
+            		tabs: [{
+            			$type: "IFrame",
+            			caption: "测试1",
+            			icon: "del.gif",
+            			closeable: true,
+            			path: "button-test.html"
+            		}, {
+            			$type: "Control",
+            			caption: "测试3",
+            			closeable: true,
+            			//disabled: true,
+            			control: new dorado.widget.Panel({
+            				id: "panel3",
+            				style: {
+            					border: "2px red dotted"
+            				}
+            			})
+            		}, {
+            			$type: "IFrame",
+            			caption: "测试4",
+            			closeable: true,
+            			path: "http://www.163.com"
+            		}],
+            		tabMinWidth: 100
+            	},
+                beforeCollapsedChange: function(self, arg) {
+                    console.log("beforeCollapsedChange");
+                    arg.processDefault = Math.random() > 0.5;
+                },
+                onCollapsedChange: function(self, arg) {
+                    console.log("onCollapsedChange")
+                },
+            	width: 800,
+            	height: 400,
+            	//maxPosition: 400,
+            	//minPosition: 50,
+            	direction: "left"
+            });
+
+            var splitPanel2 = new dorado.widget.SplitPanel({
+            	previewable: true,
+            	sideControl: new dorado.widget.Panel({
+            		style: {
+            			border: "1px #000000 solid"
+            		}
+            	}),
+            	mainControl: new dorado.widget.Panel({
+            		style: {
+            			border: "1px #000000 solid"
+            		}
+            	}),
+            	width: 800,
+            	height: 400,
+            	//maxPosition: 300,
+            	collpaseable: false,
+            	direction: "bottom"
+            });
+            
+            var splitPanel3 = new dorado.widget.SplitPanel({
+            	sideControl: new dorado.widget.Panel({
+            		style: {
+            			border: "1px #000000 solid"
+            		}
+            	}),
+            	mainControl: new dorado.widget.SplitPanel({
+                    position: "50%",
+            		sideControl: new dorado.widget.Panel({
+            			style: {
+            				border: "1px #000000 solid"
+            			}
+            		}),
+            		mainControl: new dorado.widget.SplitPanel({
+            			sideControl: new dorado.widget.Panel({
+            				style: {
+            					border: "1px #000000 solid"
+            				}
+            			}),
+            			mainControl: new dorado.widget.Panel({
+            				style: {
+            					border: "1px #000000 solid"
+            				}
+            			}),
+            			previewable: true,
+            			maxPosition: 200,
+            			minPosition: 50,
+            			direction: "right",
+                        position: "50%"
+            		}),
+            		previewable: true,
+            		direction: "bottom",
+            		maxPosition: 300
+            	}),
+            	width: 800,
+            	height: 500,
+            	maxPosition: 400,
+            	minPosition: 50,
+            	direction: "left"
+            });
+
+			view.addChild(new dorado.widget.ToolBar({
+				items: [{
+					caption: "left",
+					onClick: function() {
+						splitPanel.set("direction", "left");
+					}
+				}, {
+					caption: "right",
+					onClick: function() {
+						splitPanel.set("direction", "right");
+					}
+				}, {
+					caption: "top",
+					onClick: function() {
+						splitPanel.set("direction", "top");
+					}
+				}, {
+					caption: "bottom",
+					onClick: function() {
+						splitPanel.set("direction", "bottom");
+					}
+				}]
+			}));
+
+            view.addChild(splitPanel);
+            
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<p></p>"
+            }));
+            view.addChild(splitPanel2);
+
+            var dialog = new dorado.widget.Dialog({
+                width: 500,
+                height: 400,
+                children: [new dorado.widget.SplitPanel({
+                    sideControl: new dorado.widget.Panel({
+                        style: {
+                            border: "1px #000000 solid"
+                        }
+                    }),
+                    mainControl: new dorado.widget.Panel({
+                        style: {
+                            border: "1px #000000 solid"
+                        }
+                    }),
+                    //maxPosition: 300,
+                    collpaseable: false,
+                    direction: "left"
+                })],
+                center: true,
+                visible: true
+            });
+
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<p></p>"
+            }));
+
+            view.addChild(splitPanel3);
+            
+            $(document).ready(function() {
+            	view.render(document.body);
+            });
+        </script>
+    </head>
+    <body style="overflow:auto;height:1500px;">
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.bstek.com/dorado/schema"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.bstek.com/dorado/schema http://www.bstek.com/dorado/schema/spring-dorado-7.0.xsd">
+	<import resource="common-context.xml" />
+
+	<bean id="dorado.idesupport.ruleTemplateBuilder" class="com.bstek.dorado.idesupport.RuleTemplateBuilder">
+		<property name="initializerMap">
+			<map>
+				<entry key="*">
+					<bean class="com.bstek.dorado.idesupport.initializer.CommonRuleTemplateInitializer">
+						<property name="robotRegistry" ref="dorado.idesupport.robotRegistry" />
+					</bean>
+				</entry>
+				<entry key="Model">
+					<bean class="com.bstek.dorado.idesupport.initializer.ModelRuleTemplateInitializer">
+						<property name="validatorTypeRegistry" ref="dorado.validatorTypeRegistry" />
+						<property name="dataProviderTypeRegistry" ref="dorado.dataProviderTypeRegistry" />
+						<property name="dataResolverTypeRegistry" ref="dorado.dataResolverTypeRegistry" />
+					</bean>
+				</entry>
+				<entry key="ViewConfig">
+					<bean class="com.bstek.dorado.idesupport.initializer.ViewConfigRuleTemplateInitializer">
+						<property name="layoutTypeRegistry" ref="dorado.layoutTypeRegistry" />
+						<property name="componentTypeRegistry" ref="dorado.componentTypeRegistry" />
+					</bean>
+				</entry>
+				<entry key="classType:com.bstek.dorado.view.widget.FloatControl">
+					<bean class="com.bstek.dorado.idesupport.initializer.FloatControlRuleTemplateInitializer" />
+				</entry>
+			</map>
+		</property>
+		<property name="xmlDocumentBuilder" ref="dorado.xmlDocumentBuilder" />
+		<property name="preloadParser">
+			<bean class="com.bstek.dorado.idesupport.parse.PreloadParser" />
+		</property>
+		<property name="ruleTemplateParser" ref="dorado.idesupport.globalRuleTemplateParser" />
+		<property name="configTemplateFiles">
+			<list>
+				<value>com/bstek/dorado/idesupport/base-config-rules.xml</value>
+				<value>com/bstek/dorado/idesupport/data-config-rules.xml</value>
+				<value>com/bstek/dorado/idesupport/view-config-rules.xml</value>
+				<value>com/bstek/dorado/idesupport/user-config-rules.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="dorado.idesupport.ruleConfigLoader" abstract="true" class="com.bstek.dorado.idesupport.RuleConfigLoader">
+		<property name="ruleTemplateBuilder" ref="dorado.idesupport.ruleTemplateBuilder" />
+	</bean>
+
+	<bean id="dorado.idesupport.robotRegistry" class="com.bstek.dorado.idesupport.robot.RobotRegistry" />
+	<bean id="dorado.idesupport.robotRegister" abstract="true" class="com.bstek.dorado.idesupport.robot.RobotRegister">
+		<property name="robotRegistry" ref="dorado.idesupport.robotRegistry" />
+	</bean>
+
+	<bean parent="dorado.idesupport.robotRegister">
+		<property name="name" value="datatype-reflection" />
+		<property name="label" value="自动创建PropertyDefs" />
+		<property name="viewObject" value="DataType" />
+		<property name="robot">
+			<bean class="com.bstek.dorado.idesupport.robot.EntityDataTypeReflectionRobot" />
+		</property>
+	</bean>
+
+	<bean id="dorado.idesupport.ruleSetOutputter" class="com.bstek.dorado.idesupport.output.RuleSetOutputter" />
+</beans>

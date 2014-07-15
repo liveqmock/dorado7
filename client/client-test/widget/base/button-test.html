@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Button Test Page</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+		<style>
+			.my-button .button-left{
+				text-align: left;
+			}
+		</style>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({ layout: "Anchor" });
+
+            var testPanel = new dorado.widget.FloatPanel({
+                caption: "test",
+                children: [
+                    new dorado.widget.TextEditor()
+                ],
+                height: 300,
+                onBlur: function(self) {
+                    self.hide()
+                }
+            });
+
+            var testMenu = new dorado.widget.Menu({
+            	style: {
+            		left: 500
+            	},
+            	items: [{
+            		caption: "文件",
+            		listener: {
+            			onClick: function() {
+            				alert("123");
+            			}
+            		},
+            		items: [{
+            			caption: "测试",
+            			items: [{
+            				caption: "测试2"
+            			}]
+            		}]
+            	}, {
+            		caption: "打开(Ctrl+O)",
+            		listener: {
+            			onClick: function() {
+            				alert(123);
+            			}
+            		},
+            		disabled: true
+            	}, "-", {
+            		caption: "保存",
+                    $type: "Checkable",
+            		checked: false,
+            		listener: {
+            			onClick: function(self) {
+            				alert("你刚刚点击了：" + self["_caption"]);
+            			}
+            		},
+            		items: [{
+            			caption: "点我试试",
+            			listener: {
+            				onClick: function(self) {
+            					alert("你刚刚点击了：" + self["_caption"]);
+            				}
+            			},
+            			submenu: {
+            				items: [{
+            					caption: "第三层测试(点击无事件)"
+            				}, {
+            					caption: "CheckItem测试(有事件)",
+                                $type: "Checkable",
+            					checked: false,
+            					hideOnClick: false,
+            					listener: {
+            						onCheckedChange: function(self) {
+            							alert(self.get("checked"));
+            						}
+            					}
+            				}, {
+            					caption: "CheckItem测试(无事件)",
+                                $type: "Checkable",
+            					checked: true
+            				}]
+            			}
+            		}, {
+            			caption: "点我试试",
+            			items: [{
+            				caption: "第三层测试(点击有事件)",
+            				listener: {
+            					onClick: function() {
+            						alert("123");
+            					}
+            				}
+            			}, {
+            				caption: "第三层测试"
+            			}, {
+            				caption: "第三层测试"
+            			}]
+            		}]
+            	}]
+            });
+            
+            var buttonWidth = new dorado.widget.Button("buttonWidth");
+            buttonWidth.set("icon", "del.gif");
+            buttonWidth.set("menu", testPanel);
+            buttonWidth.set("caption", "teststs");
+            buttonWidth.addListener("onClick", function(self) {
+            	self.set("disabled", true);
+				var options = {
+					url: "/web-test/client/src-test/resource/ajax-response1.xml"
+				};
+
+				//$ajax.request(options, function(result) {});
+            });
+            
+            view.addChild(buttonWidth);
+            
+            var buttonToggle = new dorado.widget.Button("buttonToggle");
+            buttonToggle.set("toggleable", true);
+            buttonToggle.set("caption", "可以按下的按钮");
+            buttonToggle.addListener("onClick", function(self) {
+                var tip = new dorado.widget.Tip({
+                    text: "测试测试测试测试<br />测试测试测试测试<br />测试测试测试测试<br />",
+                    /**
+                     anchorTarget: "#tip-target6",
+                     arrowDirection: "left",
+                     align: "right",
+                     vAlign: "center",
+                     */
+                    closeable: true,
+                    offsetTop: 10,
+                    offsetLeft: 50,
+                    onBlur: function(self) {
+                        self.hide();
+                    },
+                    focusAfterShow: true
+                });
+                tip.show();
+            });
+            
+            view.addChild(buttonToggle);
+            
+            var buttonHaveClick = new dorado.widget.Button("buttonHaveClick");
+            buttonHaveClick.set("caption", "按钮（我有事件）");
+            buttonHaveClick.set("menu", testMenu);
+            buttonHaveClick.set("icon", "del.gif");
+            buttonHaveClick.set("toggleOnShowMenu", false);
+
+            buttonHaveClick.addListener("onClick", function(self) {
+            	buttonHaveClick.set("icon", buttonHaveClick._icon ? "" : "del.gif");
+            });
+            view.addChild(buttonHaveClick);
+            
+            var buttonHaveNoClick = new dorado.widget.Button("buttonHaveNoClick");
+            buttonHaveNoClick.set("caption", "Button(No onClick)");
+            buttonHaveNoClick.set("menu", testMenu);
+            buttonHaveNoClick.set("icon", "url(>skin>common/icons.gif) -40px -0px");
+			buttonHaveNoClick.set("width", 300);
+			buttonHaveNoClick.set("exClassName", "text-align-left");
+            //buttonHaveNoClick.set("toggleOnShowMenu", false);
+            buttonHaveNoClick.set("showTrigger", false);
+
+            view.addChild(buttonHaveNoClick);
+            
+            var button6 = new dorado.widget.Button("button6");
+            button6.set("caption", "Button(Have onClick && ToggleOnShowMenu)");
+            button6.set("menu", testMenu);
+            button6.set("icon", "del.gif");
+            button6.set("toggleable", true);
+
+            button6.addListener("onClick", function(self) {
+            	alert(self + "clicked");
+            });
+            
+            view.addChild(button6);
+            
+            var button7 = new dorado.widget.Button("button7");
+            button7.set("caption", "Button(No onClick && ToggleOnShowMenu)");
+            button7.set("menu", testMenu);
+            button7.set("icon", "del.gif");
+            
+            view.addChild(button7);
+            
+            var buttonDynaMenu = new dorado.widget.Button({
+            	id: "buttonDynaMenu",
+            	caption: "Button ThreeButton ThreeButton ThreeButton ThreeButton Three",
+            	width: 300
+            });
+            
+            buttonDynaMenu.addListener("onClick", function(self) {
+            	self.set("menu", self._menu ? null : testMenu);
+            	buttonSetMenu.set("disabled", false);
+            });
+            
+            view.addChild(buttonDynaMenu);
+            
+            var buttonDisabled = new dorado.widget.Button({
+            	id: "buttonDisabled",
+            	caption: "Button Four",
+            	width: "300",
+            	menu: testMenu,
+            	disabled: true,
+            	listener: {
+            		onClick: function(self) {
+            			alert("Button [" + self.get("caption") + "] Clicked.");
+            		}
+            	}
+            });
+            view.addChild(buttonDisabled);
+
+            var buttonTrigger = new dorado.widget.Button({
+            	caption: "buttonTrigger",
+                showTrigger: true,
+                splitButton: true,
+                triggerToggled: true,
+                listener: {
+                    onTriggerClick: function() {
+                        alert(123);
+                    }
+                }
+            });
+
+            view.addChild(buttonTrigger);
+
+            var buttonCommand = new dorado.widget.Button({
+            	id: "buttonCommand",
+            	width: "300",
+            	action: new dorado.widget.UpdateAction({
+					caption: "Action Binded",
+            		listener: {
+            			onSuccess: function() {
+            				alert("execute success");
+            			}
+            		}
+            	}),
+            	listener: {
+            	}
+            });
+            view.addChild(buttonCommand);
+            
+            var buttonSetMenu = new dorado.widget.Button({
+            	id: "buttonSetMenu",
+            	caption: "SetMenu.items",
+            	width: "300",
+            	listener: {
+            		onClick: function(self) {
+            			testMenu.set("items", [{
+            				caption: "文件1",
+            				listener: {
+            					onClick: function() {
+            						alert("123");
+            					}
+            				},
+            				items: [{
+            					caption: "测试",
+            					items: [{
+            						caption: "测试3"
+            					}]
+            				}]
+            			}, {
+            				caption: "打开(Ctrl+O)1",
+            				listener: {
+            					onClick: function() {
+            						alert(123);
+            					}
+            				},
+            				disabled: true
+            			}]);
+            		}
+            	}
+            });
+            //view.addChild(buttonSetMenu);
+            
+            var buttonSetMenu2 = new dorado.widget.Button({
+            	id: "buttonSetMenu2",
+            	caption: "SetMenu KeyedArray",
+            	width: "300",
+            	listener: {
+            		onClick: function(self) {
+            			var array = new dorado.util.KeyedArray(function(value) {
+            				return value._name;
+            			});
+            			array.insert({
+            				caption: "文件2",
+            				listener: {
+            					onClick: function() {
+            						alert("123");
+            					}
+            				},
+            				items: [{
+            					caption: "测试",
+            					items: [{
+            						caption: "测试3"
+            					}]
+            				}]
+            			});
+            			array.insert({
+            				caption: "打开(Ctrl+O)2",
+            				listener: {
+            					onClick: function() {
+            						alert(123);
+            					}
+            				},
+            				disabled: true
+            			});
+            			testMenu.set("items", array);
+            		}
+            	}
+            });
+            //view.addChild(buttonSetMenu2);
+
+            var iconButton = new dorado.widget.SimpleIconButton({
+                icon: "url(>skin>common/icons.gif) -20px -60px",
+                //menu: testMenu
+                onClick: function(self, arg) {
+                    self.set("disabled", true);
+                }
+            });
+            view.addChild(iconButton);
+
+            var iconButton2 = new dorado.widget.SimpleIconButton({
+                icon: "url(>skin>common/icons.gif) -20px -60px",
+                menu: testMenu
+
+            });
+            view.addChild(iconButton2);
+
+            var testButton = new dorado.widget.Button({ caption: "changchangchangchang" });
+
+            $(document).ready(function() {
+            	view.render(document.body);
+                testButton.render(document.getElementById("test"));
+            });
+        </script>
+    </head>
+    <body>
+        <div id="test" style="width: 100px;"></div>
+    </body>
+</html>

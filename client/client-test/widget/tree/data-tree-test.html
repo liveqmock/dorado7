@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			var departmentsDataType = getDepartmentsDataType();
+			
+			var json = Test.getJSON(Test.ROOT + "resource/hr-data.js");
+			var departments = new dorado.EntityList(json, view.dataTypeRepository, departmentsDataType);
+			var dataSet1 = new dorado.widget.DataSet({
+				id: "dataSet1",
+				data: departments
+			});
+			view.addChild(dataSet1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>tree1</p>"
+			}));
+			
+			var tree1 = new dorado.widget.DataTree({
+				id: "tree1",
+				scrollMode: "simple",
+				width: 200,
+				height: 150,
+				dataSet: view.getComponentReference("dataSet1"),
+				bindingConfigs: [{
+					name: "department",
+					childrenProperty: "departments",
+					labelProperty: "name",
+					recursive: true,
+					hasChild: true,
+					checkable: true,
+					defaultExpanded: true,
+					childBindingConfigs: [{
+						name: "employee",
+						childrenProperty: "employees",
+						checkable: true,
+						labelProperty: "name",
+						hasChild: false
+					}]
+				}],
+				draggable: true,
+				dragTags: "node",
+				droppable: true,
+				droppableTags: "node",
+				dropMode: "onOrInsertItems",
+				onCurrentChange: function(self) {
+					self.get("dataSet").notifyObservers();
+				}
+			});
+			view.addChild(tree1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var panel1 = new dorado.widget.Panel({
+				layout: new dorado.widget.layout.DockLayout(),
+				width: 600
+			});
+			
+			panel1.addChild(new dorado.widget.Button({
+				caption: "Change Entity",
+				onClick: function() {
+					var currentNode = this.id("tree1").get("currentNode");
+					var entity = currentNode.get("data");
+					entity.set("name", "#Changed#");
+				}
+			}), "left");
+			
+			panel1.addChild(new dorado.widget.Button({
+				caption: "Add Employee",
+				onClick: function() {
+					var currentNode = this.id("tree1").get("currentNode");
+					var currentEntity = currentNode.get("data");
+					if (currentEntity.dataType.get("name") == "DepartmentDataType") {
+						currentEntity.createChild("employees", {
+							name: "#new employee#"
+						});
+					}
+				},
+				layoutConstraint: "left"
+			}));
+			
+			panel1.addChild(new dorado.widget.Button({
+				caption: "Remove Entity",
+				onClick: function() {
+					var currentNode = this.id("tree1").get("currentNode");
+					var entity = currentNode.get("data");
+					entity.remove();
+				},
+				layoutConstraint: "left"
+			}));
+			
+			view.addChild(panel1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>tree2</p>"
+			}));
+			
+			var tree2 = new dorado.widget.DataTree({
+				id: "tree2",
+				scrollMode: "viewport",
+				width: 200,
+				height: 150,
+				dataSet: view.getComponentReference("dataSet1"),
+				bindingConfigs: [{
+					childrenProperty: "departments",
+					labelProperty: "name",
+					recursive: true,
+					hasChild: true,
+					defaultExpanded: true,
+					childBindingConfigs: [{
+						childrenProperty: "employees",
+						labelProperty: "name",
+						hasChild: false
+					}]
+				}],
+				draggable: true,
+				dragTags: "node",
+				droppable: true,
+				droppableTags: "node",
+				dropMode: "onOrInsertItems"
+			});
+			view.addChild(tree2);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>employees</p>"
+			}));
+			
+			var grid1 = new dorado.widget.DataGrid({
+				id: "grid1",
+				scrollMode: "simple",
+				width: "40%",
+				height: 100,
+				dataSet: view.getComponentReference("dataSet1"),
+				onGetBindingDataType: function(self, arg) {
+					arg.dataType = departmentsDataType.get("elementDataType").getPropertyDef("employees").get("dataType.elementDataType");
+				},
+				onGetBindingData: function(self, arg) {
+					var tree1 = this.id("tree1");
+					var node = tree1.get("currentNode");
+					if (node) {
+						if (node.get("bindingConfig").name == "employee") node = node.get("parent");
+						var dept = node.get("data");
+						arg.data = dept.get("employees");
+					}
+				}
+			});
+			view.addChild(grid1);
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+				document.title = new Date() - s;
+			});
+		</script>
+	</head>
+	<body></body>
+</html>

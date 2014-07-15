@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<!-- Reference -->
+	<DataType name="test.Master" parent="Map" scope="instant">
+		<PropertyDef name="referenceKey" dataType="String" />
+		<Reference name="reference1" dataProvider="providerReference" cacheMode="noCache" />
+		<Reference name="reference2">
+			<DataProvider parent="providerReturnParameter" />
+			<Property name="parameter">
+				<Entity>
+					<Property name="key1" value="${this.referenceKey}" />
+					<Property name="key2" value="abc" />
+					<Property name="key3" value="${3*8}" />
+					<Property name="key4" value="${3*8}abc${this.referenceKey}" />
+				</Entity>
+			</Property>
+		</Reference>
+	</DataType>
+
+	<!-- Lookup -->
+	<DataType name="test.Lookup" parent="Map">
+		<PropertyDef name="lookupKey" dataType="String" />
+		<Lookup name="lookup1" dataProvider="providerLookupData">
+			<Constraint lookupKeyProperty="key" keyProperty="lookupKey" />
+		</Lookup>
+		<Lookup name="lookup2" dataProvider="providerLookupData" lookupProperty="value">
+			<Property name="cacheTimeToLiveSeconds" value="168" />
+			<Property name="cacheTimeToIdleSeconds" value="158" />
+			<Constraint lookupKeyProperty="key" keyValue="$${this.lookupKey}" />
+		</Lookup>
+	</DataType>
+
+	<!-- 可共享的数据提供器 -->
+	<DataProvider name="testProvider1" type="direct" scope="instant">
+		<ResultDataType parent="List">
+			<ElementDataType parent="Map">
+				<PropertyDef name="key1" />
+				<PropertyDef name="key2" dataType="String" />
+				<PropertyDef name="key3" dataType="String" />
+			</ElementDataType>
+		</ResultDataType>
+		<Property name="result">
+			<List>
+				<Entity>
+					<Property name="key1" value="A1" />
+					<Property name="key2" value="A2" />
+					<Property name="key3" value="A3" />
+				</Entity>
+				<Entity>
+					<Property name="key1" value="B1" />
+					<Property name="key2" value="B2" />
+					<Property name="key3" value="B3" />
+				</Entity>
+				<Entity>
+					<Property name="key1" value="${3*5}" />
+					<Property name="key2" value="${dataProvider.testProvider3}" />
+					<Property name="key3" value="C3" />
+				</Entity>
+			</List>
+		</Property>
+	</DataProvider>
+
+	<DataProvider name="testProvider2" type="direct" scope="singleton">
+		<ResultDataType parent="List">
+			<ElementDataType parent="Map">
+				<PropertyDef name="key1" dataType="String" />
+				<PropertyDef name="key2" dataType="String" />
+				<PropertyDef name="key3" dataType="String" />
+			</ElementDataType>
+		</ResultDataType>
+		<Property name="result">
+			<List>
+				<Entity>
+					<Property name="key1" value="A1" />
+					<Property name="key2" value="A2" />
+					<Property name="key3" value="A3" />
+				</Entity>
+			</List>
+		</Property>
+	</DataProvider>
+
+	<DataProvider name="testProvider3" type="direct">
+		<Result dataType="String" value="12345667" />
+	</DataProvider>
+
+	<DataProvider name="providerCustom" impl="com.bstek.dorado.data.provider.MockDirectDataProvider" />
+
+	<!-- Master/Reference -->
+	<DataProvider name="providerMaster" resultDataType="[test.Master]">
+		<Property name="result">
+			<List>
+				<Entity>
+					<Property name="referenceKey" value="key1" />
+				</Entity>
+			</List>
+		</Property>
+	</DataProvider>
+	<DataProvider name="providerReference" result="54321" />
+
+	<!-- Lookup -->
+	<DataProvider name="providerLookupData">
+		<Property name="result">
+			<List>
+				<Entity>
+					<Property name="key" value="key1" />
+					<Property name="value" value="value1" />
+				</Entity>
+				<Entity>
+					<Property name="key" value="key2" />
+					<Property name="value" value="value2" />
+				</Entity>
+				<Entity>
+					<Property name="key" value="key3" />
+					<Property name="value" value="value3" />
+				</Entity>
+				<Entity>
+					<Property name="key" value="key4" />
+					<Property name="value" value="value4" />
+				</Entity>
+				<Entity>
+					<Property name="key" value="key5" />
+					<Property name="value" value="value5" />
+				</Entity>
+			</List>
+		</Property>
+	</DataProvider>
+	<DataProvider name="providerLookup" resultDataType="[test.Lookup]">
+		<Property name="result">
+			<List>
+				<Entity>
+					<Property name="lookupKey" value="key5" />
+				</Entity>
+				<Entity>
+					<Property name="lookupKey" value="key4" />
+				</Entity>
+				<Entity>
+					<Property name="lookupKey" value="key3" />
+				</Entity>
+				<Entity>
+					<Property name="lookupKey" value="key2" />
+				</Entity>
+				<Entity>
+					<Property name="lookupKey" value="key1" />
+				</Entity>
+			</List>
+		</Property>
+	</DataProvider>
+
+	<!-- Interceptor -->
+	<DataProvider name="abstractProviderWithInterceptor" interceptor="com.bstek.dorado.data.provider.manager.TestDataProviderInterceptor" />
+
+	<DataProvider name="providerReturnParameter" parent="abstractProviderWithInterceptor" interceptor="com.bstek.dorado.data.provider.manager.TestDataProviderInterceptor#returnParameter" />
+	<DataProvider name="providerWithInterceptor1" parent="abstractProviderWithInterceptor" interceptor="com.bstek.dorado.data.provider.manager.TestDataProviderInterceptor#method1" />
+	<DataProvider name="providerWithInterceptor2" parent="abstractProviderWithInterceptor" interceptor="com.bstek.dorado.data.provider.manager.TestDataProviderInterceptor#method2"
+		result="oooops" />
+	<DataProvider name="providerWithInterceptor3" parent="abstractProviderWithInterceptor" interceptor="com.bstek.dorado.data.provider.manager.TestDataProviderInterceptor#method3" />
+	<DataProvider name="providerWithInterceptor4" parent="abstractProviderWithInterceptor" interceptor="com.bstek.dorado.data.provider.manager.TestDataProviderInterceptor#method4" />
+	<DataProvider name="providerPagingData1" parent="abstractProviderWithInterceptor" interceptor="com.bstek.dorado.data.provider.manager.TestDataProviderInterceptor#getPagingData1" />
+
+	<DataProvider name="testHRDomainObjectProvider1" interceptor="com.bstek.dorado.data.provider.TestHRDomainObjectProvider1" />
+	<DataProvider name="testHRMapObjectProvider1" resultDataType="[map.Department]" interceptor="com.bstek.dorado.data.provider.TestHRMapObjectProvider1" />
+
+	<DataProvider name="testHRDomainObjectProvider2" interceptor="com.bstek.dorado.data.provider.TestHRDomainObjectProvider2" />
+	<DataProvider name="testHRDomainObjectProvider3" interceptor="com.bstek.dorado.data.provider.TestHRDomainObjectProvider3" />
+</Model>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Packages>
+		<!-- google code prettify -->
+		<Package name="console-utils-js" pattern="res-js"
+			baseUri=">dorado/client/skins/console">
+			classpath:dorado/console/scripts/console-utils
+		</Package>
+	</Packages>
+</config>

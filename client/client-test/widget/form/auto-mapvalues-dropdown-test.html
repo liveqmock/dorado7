@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html style="height: 100%">
+	<head>
+		<script type="text/javascript" src="../../include-all.js">
+	
+</script>
+		<script type="text/javascript">
+	var view = new dorado.widget.View( {
+		layout: new dorado.widget.layout.FormLayout( {
+			cols: "*",
+			stretchWidth: true
+		})
+	});
+
+	var ds1 = new dorado.widget.DataSet("ds1");
+	var json = Test.getJSON(Test.ROOT + "resource/hr-data.js");
+	var departments = new dorado.EntityList(json, view.dataTypeRepository, getDepartmentsDataType());
+	ds1.setData(departments);
+	view.addChild(ds1);
+
+	var dropdown1 = new dorado.widget.AutoMapValuesDropDown( {
+		useEmptyItem: true,
+		autoOpen: true
+	});
+	view.addChild(dropdown1);
+
+	var editor1 = new dorado.widget.DataTextEditor( {
+		id: "editor1",
+		dataSet: ds1,
+		dataPath: "#departments(L).#employees",
+		property: "sex",
+		dropDown: dropdown1
+	});
+	view.addChild(editor1);
+
+	var editor2 = new dorado.widget.DataTextEditor( {
+		id: "editor2",
+		dataSet: ds1,
+		dataPath: "#departments(L).#employees",
+		property: "sex",
+		dropDown: view.getComponentReference("autoMapValuesDropDown1")
+	});
+	view.addChild(editor2);
+
+	$(document).ready( function() {
+		view.render(document.body);
+	});
+</script>
+	</head>
+	<body style="height: 100%">
+	</body>
+</html>

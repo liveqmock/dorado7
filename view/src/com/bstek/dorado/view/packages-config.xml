@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Patterns>
+		<Pattern name="dorado-js" contentType="text/javascript"
+			charset="UTF-8" mergeRequests='${configure["view.mergeJavaScript"]}'
+			baseUri=">dorado/client" resourceSuffix=".js" />
+		<Pattern name="dorado-css" contentType="text/css" charset="UTF-8"
+			mergeRequests='${configure["view.mergeStyleSheet"]}' baseUri='>dorado/client/skins/~current'
+			resourceSuffix=".css" />
+		<Pattern name="res-js" contentType="text/javascript" charset="UTF-8"
+			mergeRequests='${configure["view.mergeJavaScript"]}' resourceSuffix=".js" />
+		<Pattern name="res-css" contentType="text/css" charset="UTF-8"
+			mergeRequests="false" resourceSuffix=".css" />
+	</Patterns>
+
+	<Packages>
+		<Package name="common" pattern="res-js" />
+
+		<Package name="silk" pattern="res-css"
+			baseUri=">dorado/client/resources/icons/silk">
+			classpath:dorado/resources/icons/silk/silk
+		</Package>
+
+		<Package name="font-awesome-support" pattern="res-css"
+			baseUri=">dorado/client/resources/icons/font-awesome">
+			font-awesome:font-face
+		</Package>
+		<Package name="font-awesome" pattern="res-css" mergeRequests="false"
+			baseUri=">dorado/client/resources/icons/font-awesome" cacheable="false"
+			depends="font-awesome-support">
+			font-awesome:font-awesome
+		</Package>
+
+		<Package name="entypo-support" pattern="res-css"
+			baseUri=">dorado/client/resources/icons/entypo">
+			classpath:dorado/resources/icons/entypo/font-face
+		</Package>
+		<Package name="entypo" pattern="res-css" depends="entypo-support">
+			classpath:dorado/resources/icons/entypo/entypo
+		</Package>
+
+		<Package name="nprogress-skin" pattern="dorado-css">
+			skins/~current/nprogress
+		</Package>
+		<Package name="nprogress" pattern="dorado-js" depends="nprogress-skin">
+			scripts/nprogress/nprogress
+		</Package>
+
+		<Package name="jquery" pattern="dorado-js">
+			scripts/jquery/jquery-1.11.0
+		</Package>
+
+		<Package name="jquery-ui" pattern="dorado-js" depends="jquery">
+			scripts/jquery/jquery-ui-1.10.4.custom
+		</Package>
+
+		<Package name="jquery-plugins" pattern="dorado-js" depends="jquery"
+			clientType="desktop">
+			scripts/jquery/jquery.easing.1.3,
+			scripts/jquery/jquery.mousewheel,
+			scripts/jquery/jquery.hotkeys,
+			scripts/jquery/jquery.swfobject.1-1-1,
+			scripts/jquery/jquery.textarea
+		</Package>
+
+		<Package name="json2" pattern="dorado-js">
+			scripts/json/json2
+		</Package>
+
+		<Package name="underscore" pattern="dorado-js">
+			scripts/underscore/underscore
+		</Package>
+
+		<Package name="core-skin" pattern="dorado-css">
+			skins/~current/core
+		</Package>
+		<Package name="core" pattern="dorado-js"
+			depends="jquery,jquery-ui,json2,underscore,core-skin">
+			scripts/dorado/core,
+			resources/i18n/core
+		</Package>
+
+		<Package name="touch-patch" pattern="dorado-js" depends="core">
+			scripts/dorado/touch-patch
+		</Package>
+
+		<Package name="desktop-support-skin" pattern="dorado-css"
+			clientType="desktop">
+			skins/~current/desktop-support
+		</Package>
+		<Package name="desktop-support" pattern="dorado-js"
+			depends="jquery-plugins,core,desktop-support-skin" clientType="desktop">
+			scripts/dorado/desktop-support
+		</Package>
+
+		<Package name="data" pattern="dorado-js" depends="core">
+			scripts/dorado/data,
+			resources/i18n/data
+		</Package>
+
+		<Package name="widget-support-skin" pattern="dorado-css">
+			skins/~current/widget-support,
+			skins/~current/layout
+		</Package>
+		<Package name="widget-support" pattern="dorado-js"
+			depends="touch-patch,data,widget-support-skin">
+			scripts/dorado/widget-support,
+			skins/~current/support,
+			scripts/dorado/layout,
+			resources/i18n/widget
+		</Package>
+
+		<Package name="widget" pattern="dorado-js" depends="widget-support" />
+
+		<Package name="base-widget-skin" pattern="dorado-css">
+			skins/~current/base-widget,
+			skins/~current/form
+		</Package>
+		<Package name="base-widget" pattern="dorado-js" depends="widget,base-widget-skin">
+			scripts/dorado/base-widget,
+			resources/i18n/base-widget,
+			scripts/dorado/list-support,
+			scripts/dorado/form,
+			resources/i18n/form
+		</Package>
+
+		<Package name="base-widget-desktop-skin" pattern="dorado-css"
+			clientType="desktop">
+			skins/~current/base-widget-desktop,
+			skins/~current/form-desktop,
+			skins/~current/list
+		</Package>
+		<Package name="base-widget-desktop" pattern="dorado-js"
+			depends="desktop-support,base-widget,base-widget-desktop-skin"
+			clientType="desktop">
+			scripts/dorado/base-widget-desktop,
+			resources/i18n/base-widget-desktop,
+			scripts/dorado/form-desktop,
+			scripts/dorado/list,
+			resources/i18n/list
+		</Package>
+
+		<Package name="grid-skin" pattern="dorado-css" clientType="desktop">
+			skins/~current/grid
+		</Package>
+		<Package name="grid" pattern="dorado-js" depends="base-widget-desktop,grid-skin"
+			clientType="desktop">
+			scripts/dorado/grid,
+			resources/i18n/grid
+		</Package>
+
+		<Package name="tree-skin" pattern="dorado-css" clientType="desktop">
+			skins/~current/tree
+		</Package>
+		<Package name="tree" pattern="dorado-js" depends="base-widget-desktop,tree-skin"
+			clientType="desktop">
+			scripts/dorado/tree,
+			resources/i18n/tree
+		</Package>
+
+		<Package name="block-view-skin" pattern="dorado-css">
+			skins/~current/block-view
+		</Package>
+		<Package name="block-view" pattern="dorado-js"
+			depends="base-widget-desktop,block-view-skin">
+			scripts/dorado/block-view
+		</Package>
+
+		<Package name="tree-grid" pattern="dorado-js" depends="grid,tree"
+			clientType="desktop">
+			scripts/dorado/tree-grid
+		</Package>
+
+		<Package name="debugger-skin" pattern="dorado-css" clientType="desktop">
+			skins/~current/debugger
+		</Package>
+		<Package name="debugger" pattern="dorado-js" depends="base-widget,debugger-skin"
+			clientType="desktop">
+			scripts/dorado/debugger,
+			resources/i18n/debugger
+		</Package>
+
+		<Package name="tag-editor-skin" pattern="dorado-css">
+			skins/~current/tag-editor
+		</Package>
+		<Package name="tag-editor" pattern="dorado-js"
+			depends="base-widget-desktop,list,tag-editor-skin">
+			scripts/dorado/tag-editor
+		</Package>
+
+		<Package name="color-picker-skin" pattern="dorado-css">
+			skins/~current/color-picker
+		</Package>
+		<Package name="color-picker" pattern="dorado-js"
+			depends="base-widget-desktop,color-picker-skin">
+			scripts/dorado/color-picker
+		</Package>
+
+		<!-- Deprecated -->
+		<Package name="list" pattern="dorado-js" depends="base-widget-desktop" />
+	</Packages>
+</config>

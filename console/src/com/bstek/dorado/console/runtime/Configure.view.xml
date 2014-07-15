@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View>
+    <TabControl>
+      <IFrameTab>
+        <Property name="caption">${res.globalConfig}</Property>
+        <Property name="path">com.bstek.dorado.console.runtime.DoradoConfig.d?type=Configure</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -200px -120px
+</Property>
+      </IFrameTab>
+      <IFrameTab>
+        <Property name="caption">${res.webConfig}</Property>
+        <Property name="path">com.bstek.dorado.console.runtime.DoradoConfig.d?type=WebConfigure</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -100px -100px
+</Property>
+      </IFrameTab>
+    </TabControl>
+  </View>
+</ViewConfig>

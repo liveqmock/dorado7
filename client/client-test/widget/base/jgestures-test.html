@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0040)http://cubiq.org/dropbox/clickdelay.html -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click delay on webkit for iPhone/iPod touch</title>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <script type="text/javascript">
+        function loaded() {
+            var theClick = document.getElementById('theClick');
+            var theTap = document.getElementById('theTap');
+            var result = document.getElementById('result');
+
+            /*  Benchmarking */
+            jQuery(theClick).bind('mousedown', function(e){
+                console.log("mousedown");
+                this.timeStart = e.timeStamp;
+                jQuery(this).css("color", "red");
+            }/*, false**/);//第三个参数不能为false
+
+            jQuery(theClick).bind('click', function(e){
+                jQuery(this).css("color", "");
+                result.innerHTML = 'Delay: ' + (e.timeStamp-this.timeStart) + 'ms';
+            }/*, false**/);
+
+            jQuery("#theTap").bind("touchstart", function(e) {
+                console.log("touchstart");
+                jQuery(this).css("color", "red");
+                this.timeStart = e.timeStamp;
+            }).bind("tapone", function(e) {
+                console.log("tapone");
+                jQuery(this).css("color", "");
+                result.innerHTML = 'Delay: ' + (e.timeStamp-this.timeStart) + 'ms';
+            });
+        }
+
+        window.addEventListener('load', function(){ setTimeout(function(){ loaded(); }, 100) }, true);
+
+    </script>
+
+    <style type="text/css" media="all">
+
+        button {
+            width:290px;
+            font-size:18px;
+            margin-bottom:10px;
+        }
+
+        #result {
+            padding:10px;
+            background:#ddd;
+            -webkit-border-radius:8px;
+            margin:10px;
+            text-align:center;
+            background:#bdf;
+        }
+
+        .test {
+              -webkit-tap-highlight-color: transparent;
+          }
+    </style>
+
+</head>
+
+<body>
+<p>Please note that this example works only on iPhone, iPod touch and the simulator, not on any browser.</p>
+
+<div style="text-align:center">
+    <div id="theClick">onClick event</div>
+    <div id="theTap">touchStart/End events</div>
+</div>
+
+<div id="result">Tap on the buttons above</div>
+
+<p>The first button triggers the standard <em>onClick</em> event with about 300ms delay.</p>
+<p>The second button ovverrides the <em>onClick</em> event, the "click" is triggered on touchEnd thus eliminating the 300ms delay.</p>
+<p><a href="http://cubiq.org/remove-onclick-delay-on-webkit-for-iphone/9">Read more about this on cubiq.org</a></p>
+
+</body>
+</html>

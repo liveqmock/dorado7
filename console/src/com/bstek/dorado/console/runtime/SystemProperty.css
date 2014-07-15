@@ -1,0 +1,27 @@
+.container {
+	padding: 15px;
+}
+
+.container table {
+	
+}
+
+.container tr {
+	height: 35px;
+}
+
+.container td {
+	border-bottom: 1px dashed gray;
+}
+
+.container .label {
+	font-size: 12px;
+	width: 110px;
+}
+
+.container .content {
+	font-size: 11px;
+	white-space: nowrap;
+	white-space: normal;
+	word-break: break-all
+}

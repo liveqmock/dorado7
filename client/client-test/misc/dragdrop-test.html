@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Test Page</title>
+		<script type="text/javascript" src="../include-all.js"></script>
+		<script>
+function test1() {
+	var div = document.getElementById("div1");
+	$(div).draggable();
+}
+</script>
+		<style>
+.div_a {
+	border: 8px red solid;
+}
+</style>
+	</head>
+	<body>
+		<button onclick="test1()">
+			Test 1
+		</button>
+		<hr>
+		<div id="div1"
+			style="width: 100px; height: 100px; background-color: blue">
+			<div id="div2"
+				style="width: 50px; height: 50px; background-color: red">
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dataTypeLog">
+      <Property name="creationType">com.bstek.dorado.console.system.log.LogLine</Property>
+      <PropertyDef name="level">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="line">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View listener="spring:dorado.console.systemOutMonitor#onViewInit">
+    <ToolBar>
+      <ToolBarLabel>
+        <Property name="width">20</Property>
+      </ToolBarLabel>
+      <CheckBox id="outCheckBox">
+        <Property name="caption">OUT</Property>
+        <Property name="width">100</Property>
+      </CheckBox>
+      <CheckBox id="errCheckBox">
+        <Property name="caption">ERR</Property>
+      </CheckBox>
+      <Fill/>
+      <ToolBarLabel>
+        <Property name="text">${res.display}</Property>
+      </ToolBarLabel>
+      <TextEditor id="maxLineSize">
+        <Property name="text">1000</Property>
+        <Property name="width">50</Property>
+      </TextEditor>
+      <ToolBarLabel>
+        <Property name="text">${res.line}</Property>
+        <Property name="width">30</Property>
+      </ToolBarLabel>
+      <Separator/>
+      <Button id="flushBtn">
+        <Property name="caption">${res.refresh}</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -282px -219px
+</Property>
+      </Button>
+      <Separator/>
+      <Button id="autoFlushBtn">
+        <Property name="caption">${res.autoRefresh}</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -120px -40px</Property>
+      </Button>
+      <ToolBarLabel>
+        <Property name="width">20</Property>
+      </ToolBarLabel>
+    </ToolBar>
+    <Panel id="logPanel" layout="anchor">
+      <Buttons/>
+      <Children>
+        <HtmlContainer id="logBox">
+          <Property name="contentOverflow">scroll</Property>
+        </HtmlContainer>
+        <Tip id="listeneTip">
+          <Property name="closeable">true</Property>
+          <Property name="arrowDirection">left</Property>
+          <Property name="arrowAlign">bottom</Property>
+          <Property name="vAlign">innerbottom</Property>
+          <Property name="content">&lt;xmp>${res.tipContent}
+&lt;listener>
+	   &lt;listener-class>com.bstek.dorado.console.ConsoleLoaderListener&lt;/listener-class>
+&lt;/listener>&lt;/xmp></Property>
+          <Property name="caption">${res.prompt}</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -102px 0px</Property>
+        </Tip>
+      </Children>
+      <Tools/>
+    </Panel>
+    <AjaxAction id="retrieveLogAction">
+      <Property name="service">dorado.console.systemOutMonitor#last</Property>
+      <Property name="async">true</Property>
+      <Property name="modal">false</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

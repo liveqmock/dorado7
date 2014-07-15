@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Food description="Nothing to say...">
+	<Category name="category11" />
+	<Category>
+		<Property name="name">category12</Property>
+		<Category name="category121" />
+		<Category name="category122" />
+	</Category>
+	<Water />
+	<Wine />
+	<Fruits>
+		<Orange />
+		<Bananer />
+	</Fruits>
+</Food>

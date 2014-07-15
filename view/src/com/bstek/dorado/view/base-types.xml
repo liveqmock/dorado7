@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<DataType name="DataPreloadConfig" parent="Bean"
+		matchType="com.bstek.dorado.view.service.DataPreloadConfig">
+		<PropertyDef name="childPreloadConfigs" dataType="[DataPreloadConfig]" />
+	</DataType>
+</Model>

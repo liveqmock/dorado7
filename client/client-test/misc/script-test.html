@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Test Page</title>
+		
+		<script>		
+		if (document.readyState != "loading") {
+			function onLoad(){
+				document.$readyState = "loaded";
+				document.removeEventListener("DOMContentLoaded", onLoad, false);
+			}		
+			document.$readyState = "loading";
+			document.addEventListener("DOMContentLoaded", onLoad, false);
+			
+			alert(document.getEventListeners("DOMContentLoaded"))
+		}
+		</script>
+		
+		<script src="../lib/jquery/jquery-1.2.6.js"></script>
+		<script src="../lib/jquery/jquery.mousewheel.js"></script>
+		<script src="../lib/jquery/aop.js"></script>
+		<script src="../lib/jquery/ui.core.js"></script>
+		<script src="../lib/jquery/ui.draggable.js"></script>
+		<script src="../lib/jquery/ui.droppable.js"></script>
+		
+		<script>		
+		function test1() {
+			var xmlHttp = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+			//xmlHttp.open("GET", "../../client/js/brich/dorado-all.js?" + new Date().getTime(), false);
+			//xmlHttp.send(null);
+			
+			var s = new Date();
+			
+			var readyState = "loading";
+			
+			//var script1 = document.getElementById("script1");
+			var script1 = document.createElement("SCRIPT");
+			document.getElementsByTagName("head")[0].appendChild(script1);
+
+			//script1.text = xmlHttp.responseText;			
+			script1.src = "../../client/js/brich/dorado-all.js?" + new Date().getTime();
+			
+			//script1.parentNode.removeChild(script1);
+			
+			//jQuery.globalEval(xmlHttp.responseText);
+			alert(new Date() - s);
+			
+			return;
+			var html = new dorado.widget.HtmlContainer();
+			var div = $create("DIV");
+			div.innerHTML = "Hello Script1.";
+			html.setContent(div);
+			html.render(document.body);
+		}
+		
+		//alert("1:" + (document.$readyState || document.readyState));
+		
+		function test2() {
+			//alert("2:" + (document.$readyState || document.readyState));
+		}
+		
+		$(document).ready(function(){
+			//alert("2:" + (document.$readyState || document.readyState));
+		});
+		</script>
+		<script id="script1"></script>
+		<script id="script2"></script>
+	</head>
+	<body>
+		<button onclick="test1()">
+			Test 1
+		</button>
+		<button onclick="test2()">
+			Test 2
+		</button>
+		<script>
+			//alert("3:" + document.readyState);
+			//document.write("<script src=\"../../client/js/brich/dorado-all.js\"></" + "script>");
+		</script>
+		<script>
+			//var html = new dorado.widget.HtmlContainer();
+			//var div = $create("DIV");
+			//div.innerHTML = "Hello Script1.";
+			//html.setContent(div);
+			//html.render(document.body);
+		</script>
+	</body>
+	<script>
+		//alert("4:" + document.readyState);
+	</script>
+</html>

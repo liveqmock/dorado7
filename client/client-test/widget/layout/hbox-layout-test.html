@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html style="height:100%">
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({
+				layout: {
+					$type: "Anchor",
+					padding: 10
+				}
+			});
+			
+			var container = new dorado.widget.Container({
+				width: 1000,
+				style: {
+					background: "lightgray"
+				},
+				layout: {
+					$type: "HBox",
+					pack: "center",
+					align: "bottom"
+				}
+			});
+			view.addChild(container);
+			
+			c = new dorado.widget.Button({
+				caption: "Button1"
+			});
+			container.addChild(c);
+			
+			c = new dorado.widget.Button({
+				caption: "Button2",
+				hideMode: "layout"
+			});
+			container.addChild(c);
+			
+			c = new dorado.widget.Control({
+				width: 50,
+				style: {
+					background: "blue"
+				}
+			});
+			container.addChild(c);
+			
+			c = new dorado.widget.Control({
+				width: 30,
+				height: 100,
+				style: {
+					background: "red"
+				}
+			});
+			container.addChild(c);
+			
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body scroll="no" style="height:100%;margin:0px;overflow:hidden"></body>
+</html>

@@ -1,0 +1,15 @@
+<script type="text/javascript" src="lib/jsunit/app/jsUnitCore.js"></script>
+<script type="text/javascript" src="all-tests.js"></script>
+<script type="text/javascript">
+
+function suite() { 	
+	var loc = location + "";
+	var root = loc.substring(0, loc.indexOf("brich-client/test-support/all-cases.html"));
+	var result = new top.jsUnitTestSuite();	
+	for (var i = 0; i < ALL_JS_CASES.length; i++) {
+		result.addTestPage(root + ALL_JS_CASES[i]);
+	}
+	return result;
+}
+
+</script>

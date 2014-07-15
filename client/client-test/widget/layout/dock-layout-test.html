@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html style="height:100%">
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({ layout: "Anchor" });
+			view.set("layout", new dorado.widget.layout.DockLayout());
+			
+			var c = new dorado.widget.Control({
+				width: "50px",
+				height: "100%",
+				style: {
+					background: "navy"
+				},
+				layoutConstraint: "right"
+			});
+			view.addChild(c);
+			
+			c = new dorado.widget.Control({
+				width: "100%",
+				height: "70px",
+				style: {
+					background: "yellow"
+				},
+				layoutConstraint: "top"
+			});
+			view.addChild(c);
+			
+			c = new dorado.widget.Control({
+				layoutConstraint: {
+					type: "center",
+					background: "black"
+				}
+			});
+			view.addChild(c);
+			
+			c = new dorado.widget.Control({
+				width: "50px",
+				height: "100%",
+				style: {
+					background: "red"
+				},
+				layoutConstraint: "left"
+			});
+			view.addChild(c);
+			
+			c = new dorado.widget.Control({
+				layoutConstraint: {
+					type: "bottom",
+					height: "10%",
+					background: "orange"
+				}
+			});
+			view.addChild(c);
+			
+			c = new dorado.widget.Control({
+				width: "100%",
+				height: "50px",
+				style: {
+					background: "green"
+				},
+				layoutConstraint: "top"
+			});
+			view.addChild(c);
+			
+			c = new dorado.widget.Control({
+				layoutConstraint: {
+					type: "left",
+					width: "10%",
+					background: "gray"
+				}
+			});
+			view.addChild(c);
+			
+			c = new dorado.widget.Control({
+				layoutConstraint: {
+					type: "bottom",
+					height: 30,
+					background: "maroon"
+				}
+			});
+			view.addChild(c);
+			
+			
+			c = new dorado.widget.Control({
+				layoutConstraint: {
+					type: "right",
+					width: 80,
+					background: "purple"
+				}
+			});
+			view.addChild(c);
+			
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+			
+		</script>
+	</head>
+	<body scroll="no" style="height: 100%; margin: 0px; overflow: hidden"></body>
+</html>

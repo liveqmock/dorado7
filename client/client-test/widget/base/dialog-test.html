@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Dialog Test Page</title>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0;"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script type="text/javascript">
+        var view = new dorado.widget.View({ layout: "Anchor" });
+
+        var dialog = new dorado.widget.Dialog({
+            id: "dialog1",
+
+            //visible: true,
+            //showCaptionBar: false,
+            //maximized: true,
+            //collapsed: true,
+            caption: "test222",
+            contentOverflowX: "scroll",
+            contentOverflowY: "scroll",
+            //showAnimateType: "zoom",
+            //hideAnimateType: "zoom",
+            width: 400,
+            minWidth: 150,
+            maxHeight: 600,
+            maxWidth: 600,
+            height: "60%"
+            //,left: 200
+            //,top: 50
+            //,modal: true
+            //,closeable: false
+            //,minimized: true
+            , minimizeable: true, maximizeable: true, collapseable: true, center: true, icon: "del.gif", buttonAlign: "right", onShow: function (self) {
+                self.set("caption", "modified caption.");
+            },
+            beforeMinimize: function (self, arg) {
+                arg.processDefault = false;
+            },
+            tools: [
+                {
+                    $type: "SimpleIconButton",
+                    icon: "url(>skin>common/icons.gif) -20px -60px",
+                    listener: {
+                        onClick: function () {
+                        }
+                    }
+                }
+            ],
+            children: [
+            ], buttons: [new dorado.widget.Button({
+                id: "button1",
+                caption: "确定",
+                width: 80,
+                listener: {
+                    onClick: function () {
+                        dialog2.show();
+                    }
+                }
+            }), new dorado.widget.Button({
+                caption: "取消",
+                width: 80,
+                listener: {
+                    onClick: function () {
+                        var taskId = dorado.util.TaskIndicator.showTaskIndicator("保存所有数据", "main");
+                        setTimeout(function () {
+                            dorado.util.TaskIndicator.hideTaskIndicator(taskId);
+                        }, 2000);
+                    }
+                }
+            })]
+        });
+
+        dialog.addChild(new dorado.widget.Container({
+            height: 1000,
+            style: {
+                "background-color": "#ddd",
+                margin: 20
+            }
+        }));
+
+        var dialog2 = new dorado.widget.Dialog({
+            caption: "test", width: "30%", height: 100, left: 200, top: 50, modal: true, icon: "del.gif", maximizeTarget: "parent", buttons: [new dorado.widget.Button({
+                caption: "确定",
+                width: 80,
+                onClick: function () {
+                    dialog2.hide();
+                }
+            }), new dorado.widget.Button({
+                caption: "取消",
+                width: 80,
+                onClick: function () {
+                    dialog2.set("resizeable", !dialog2._resizeable);
+                }
+            })]
+        });
+
+        var toolbar = new dorado.widget.ToolBar({
+            id: "toolbar1",
+            items: [
+                {
+                    caption: "显示Dialog",
+                    listener: {
+                        onClick: function (self) {
+                            dialog.show({animateTarget: self});
+                            //this.id("button1").set("visible", false);
+                        }
+                    }
+                },
+                {
+                    caption: "隐藏Dialog",
+                    listener: {
+                        onClick: function (self) {
+                            dialog.hide({animateTarget: self});
+                        }
+                    }
+                },
+                {
+                    caption: "Set Icon",
+                    listener: {
+                        onClick: function () {
+                            var result = dialog._captionBar.get("icon") ? "" : "del.gif";
+                            dialog.set("icon", result);
+                        }
+                    }
+                },
+                {
+                    caption: "minimizeable",
+                    listener: {
+                        onClick: function () {
+                            dialog.set("minimizeable", !dialog._minimizeable);
+                        }
+                    }
+                },
+                {
+                    caption: "maximizeable",
+                    listener: {
+                        onClick: function () {
+                            dialog.set("maximizeable", !dialog._maximizeable);
+                        }
+                    }
+                },
+                {
+                    caption: "closeable",
+                    listener: {
+                        onClick: function () {
+                            dialog.set("closeable", !dialog._closeable);
+                        }
+                    }
+                },
+                {
+                    caption: "alert",
+                    onClick: function() {
+                        dorado.MessageBox.confirm("teststst");
+                    }
+                }
+            ]
+        });
+
+        view.addChild(toolbar);
+
+        view.addChild(dialog);
+
+        $(document).ready(function () {
+            view.render(document.body);
+            dorado.useObjectShim = false;
+        });
+    </script>
+</head>
+<body style="margin:0;padding:0;">
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Test Index</title>
+		<style>
+		body {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 0.8em;
+		}
+		
+		.container {
+			position: raletive;
+			overflow: auto;
+			padding: 8px;
+			border-bottom: 1px black dotted;
+		}
+		
+		.cell {
+			float: left;
+			width: 180px;
+		}
+		</style>
+		<script language="JavaScript" type="text/javascript"
+			src="all-tests.js"></script>
+	</head>
+	<body>
+		<script language="JavaScript" type="text/javascript">	
+			
+		function indexOfLastDelim(path) {
+			for (var i = path.length - 1; i >= 0; i--) {
+				var c = path.charAt(i);
+				if (c == '/' || c == '\\') return i;
+			}
+			return -1;
+		}
+		
+		function writeJsUnitHyperlink(testPage, title) {
+			document.writeln("<div class=\"cell\">");
+			document.writeln("<a href=\"lib/jsunit/test-runer.html?testPage=" + testPage + "\">" + title + "<" + "/a>");
+			document.writeln("<" + "/div>");
+		}
+		
+		function writePageHyperlink(testPage, title) {
+			document.writeln("<div class=\"cell\">");
+			document.writeln("<a href=\"" + testPage + "\">" + title + "<" + "/a>");
+			document.writeln("<" + "/div>");
+		}
+		
+		var root = "/client-test/workspace/";
+		
+		document.writeln("<div class=\"container\">");
+		writeJsUnitHyperlink(root + "brich-client/test-support/all-cases.html", "all-case");
+		document.writeln("</div>");
+		
+		document.writeln("<div class=\"container\">");
+		for (var i = 0; i < ALL_JS_CASES.length; i++) {
+			var testPage = root + ALL_JS_CASES[i];
+			var title = testPage.match(/\/[\w|-]*test\./) + '';
+			title = title.substring(1, title.length - 6);
+			writeJsUnitHyperlink(testPage, title);
+		}
+		document.writeln("</div>");
+		
+		document.writeln("<div class=\"container\">");
+		for (var i = 0; i < ALL_JS_PAGES.length; i++) {
+			var testPage = root + ALL_JS_PAGES[i];
+			var title = testPage.match(/\/[\w|-]*test\./) + '';
+			title = title.substring(1, title.length - 6);
+			writePageHyperlink(testPage, title);
+		}
+		document.writeln("</div>");
+		</script>
+	</body>
+</html>

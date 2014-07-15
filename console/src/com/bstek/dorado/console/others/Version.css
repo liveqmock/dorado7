@@ -1,0 +1,11 @@
+.label {
+	font-size: 14pt;
+	color: #02559F;
+	border-bottom: 1px #77BDFD solid;
+}
+
+.content {
+	color: gray;
+	font-size: 12pt;
+	padding-left: 10px;
+}

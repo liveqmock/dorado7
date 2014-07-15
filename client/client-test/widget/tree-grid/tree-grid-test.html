@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var NODES = [{
+				label: "node1",
+				icon: "../base/del.gif",
+				data: {
+					id: "id1",
+					name: "name1"
+				},
+				nodes: [{
+					label: "node11",
+					data: {
+						id: "id11",
+						name: "name11"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node12",
+					data: {
+						id: "id12",
+						name: "name12"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node13",
+					data: {
+						id: "id13",
+						name: "name13"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node14",
+					data: {
+						id: "id14",
+						name: "name14"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node15",
+					data: {
+						id: "id15",
+						name: "name15"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node16",
+					data: {
+						id: "id16",
+						name: "name16"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node17",
+					data: {
+						id: "id17",
+						name: "name17"
+					},
+					icon: "../base/del.gif"
+				}]
+			}, {
+				label: "node2",
+				icon: "../base/del.gif",
+				data: {
+					id: "id1",
+					name: "name1"
+				},
+				nodes: [{
+					label: "node11",
+					data: {
+						id: "id11",
+						name: "name11"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node12",
+					data: {
+						id: "id12",
+						name: "name12"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node13",
+					data: {
+						id: "id13",
+						name: "name13"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node14",
+					data: {
+						id: "id14",
+						name: "name14"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node15",
+					data: {
+						id: "id15",
+						name: "name15"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node16",
+					data: {
+						id: "id16",
+						name: "name16"
+					},
+					icon: "../base/del.gif"
+				}, {
+					label: "node17",
+					data: {
+						id: "id17",
+						name: "name17"
+					},
+					icon: "../base/del.gif"
+				}]
+			}];
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>treegrid1</p>"
+			}));
+			
+			var panel1 = new dorado.widget.Container({
+				layout: new dorado.widget.layout.DockLayout(),
+				height: 25
+			});
+			view.addChild(panel1);
+			
+			panel1.addChild(new dorado.widget.Button({
+				caption: "Add child",
+				onClick: function() {
+					var treegrid1 = this.id("treegrid1");
+					var currentNode = treegrid1.get("currentNode");
+					currentNode.expand();
+					currentNode.addNode({
+						data: {
+							id: "#New#",
+							name: "#New#"
+						}
+					}).highlight();
+				},
+				layoutConstraint: "left"
+			}));
+			
+			var treegrid1 = new dorado.widget.TreeGrid({
+				id: "treegrid1",
+				scrollMode: "simple",
+				showFooter: true,
+				width: 600,
+				height: 260,
+				nodes: NODES,
+				fixedColumnCount: 1,
+				treeColumn: "id",
+				draggable: true,
+				dragTags: "node",
+				droppable: true,
+				droppableTags: "node",
+				dropMode: "onOrInsertItems",
+				columns: [{
+					name: "id",
+					property: "id",
+					width: 200
+				}, {
+					property: "name",
+					width: 120,
+					summaryType: "count"
+				}],
+				onNodeAttached: function(tree, arg) {
+					arg.node.set({
+						checkable: true,
+						icon: "../base/del.gif"
+					});
+				},
+				beforeExpand: function(tree, arg) {
+					var node = arg.node;
+					if (arg.async) {
+						setTimeout(function() {
+							arg.callDefault();
+						}, 1000);
+					}
+				}
+			});
+			view.addChild(treegrid1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>treegrid2</p>"
+			}));
+			
+			var panel2 = new dorado.widget.Container({
+				layout: new dorado.widget.layout.DockLayout(),
+				height: 25
+			});
+			view.addChild(panel2);
+			
+			panel2.addChild(new dorado.widget.Button({
+				caption: "Add child",
+				listener: {
+					onClick: function() {
+						var currentNode = this.id("treegrid2").get("currentNode");
+						currentNode.addNode({
+							data: {
+								id: "#New#",
+								name: "#New#"
+							}
+						});
+					}
+				},
+				layoutConstraint: "left"
+			}));
+			
+			var treegrid2 = new dorado.widget.TreeGrid({
+				id: "treegrid2",
+				scrollMode: "viewport",
+				showFooter: true,
+				width: 600,
+				height: 200,
+				nodes: NODES,
+				fixedColumnCount: 1,
+				treeColumn: "id",
+				draggable: true,
+				dragTags: "node",
+				droppable: true,
+				droppableTags: "node",
+				dropMode: "onOrInsertItems",
+				columns: [{
+					name: "id",
+					property: "id",
+					width: 200
+				}, {
+					property: "name",
+					width: 120,
+					summaryType: "count"
+				}]
+			});
+			view.addChild(treegrid2);
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+				document.title = new Date() - s;
+			});
+		</script>
+	</head>
+	<body></body>
+</html>

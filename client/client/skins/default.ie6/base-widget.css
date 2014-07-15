@@ -1,0 +1,414 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-icon {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+/* simple-button */
+.d-simple-button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.d-icon-button {
+  width: 20px;
+  height: 20px;
+  line-height: 1px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  cursor: pointer;
+}
+.d-icon-button .d-icon {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.d-icon-button-hover {
+  background-position: -20px 0;
+}
+.d-icon-button-focus {
+  background-position: -40px 0;
+}
+.d-icon-button-click {
+  background-position: -60px 0;
+}
+.d-icon-button-toggled {
+  background-position: -80px 0;
+}
+.d-icon-button-disabled {
+  cursor: default;
+}
+.d-icon-button-disabled .d-icon {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+.d-icon-button-trigger-hover {
+  background-position: -108px 0;
+}
+.d-icon-button-trigger-focus {
+  background-position: -136px 0;
+}
+.d-icon-button-trigger-click {
+  background-position: -164px 0;
+}
+.d-icon-button-trigger-toggled {
+  background-position: -192px 0;
+}
+.d-icon-button {
+  color: rgba(0, 0, 0, 0.7);
+  background-image: url(base/tool-button-bg.png);
+}
+/* .html-container */
+.d-html-container {
+  margin: 0;
+}
+/* iframe */
+.d-iframe {
+  position: relative;
+  overflow: hidden;
+}
+.d-iframe .iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.d-iframe .iframe.hidden {
+  z-index: -1;
+}
+.d-iframe .frame-loading-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+  background: #ffffff;
+}
+.d-iframe .frame-loading-cover .frame-loading-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -16px;
+  margin-top: -16px;
+  width: 32px;
+  height: 32px;
+  background: url(common/loading.gif) center center no-repeat;
+}
+.d-iframe {
+  border: 1px solid #a1a1a1;
+  background-color: #ffffff;
+}
+/* cardbook */
+.d-cardbook {
+  background-color: #ffffff;
+  overflow: hidden;
+  position: relative;
+}
+.d-cardbook .items-wrap {
+  position: relative;
+  height: 100%;
+}
+.d-cardbook .items-wrap .card-item {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+}
+.d-cardbook .card-item-active {
+  visibility: visible;
+  z-index: 1050;
+}
+/* tip */
+.d-tip {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  overflow: visible;
+  padding: 5px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.d-tip .tip-cm {
+  margin: 0;
+  padding: 0;
+}
+.d-tip .tip-cm .caption {
+  padding-bottom: 3px;
+  font-weight: bold;
+}
+.d-tip .close {
+  position: absolute;
+  cursor: pointer;
+  right: 1px;
+  top: 1px;
+  width: 16px;
+  height: 16px;
+}
+.d-tip .close-hover {
+  background-position: -16px 0;
+}
+.d-tip .close-click {
+  background-position: -32px 0;
+}
+.d-tip .tip-content {
+  position: relative;
+  word-break: break-all;
+}
+.d-tip .tip-content-hasicon {
+  min-height: 16px;
+  padding-left: 24px;
+}
+.d-tip .tip-content .tip-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0 12px 0 2px;
+  background: transparent none no-repeat center center;
+}
+.d-tip .tip-content .error-icon {
+  background-image: url(../../resources/icons/silk/exclamation.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-tip .tip-content .info-icon {
+  background-image: url(../../resources/icons/silk/information.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-tip .tip-content .warning-icon {
+  background-image: url(../../resources/icons/silk/error.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-tip .tip-content .question-icon {
+  background-image: url(../../resources/icons/silk/help.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-tip .arrow {
+  position: absolute;
+}
+.d-tip-arrow-top .arrow,
+.d-tip-arrow-bottom .arrow {
+  width: 21px;
+  height: 12px;
+}
+.d-tip-arrow-left .arrow,
+.d-tip-arrow-right .arrow {
+  width: 12px;
+  height: 21px;
+}
+.d-tip-arrow-top .arrow {
+  left: 10.5px;
+  top: -12px;
+}
+.d-tip-arrow-bottom .arrow {
+  left: 10.5px;
+  bottom: -12px;
+  background-position: -21px 0;
+}
+.d-tip-arrow-left .arrow {
+  left: -12px;
+  top: 10.5px;
+  background-position: -42px 0;
+}
+.d-tip-arrow-right .arrow {
+  right: -12px;
+  top: 10.5px;
+  background-position: -54px 0;
+}
+.d-ie6 .d-tip .tip-content .tip-icon {
+  left: -24px;
+}
+.d-ie6 .d-tip-arrow-bottom .arrow {
+  bottom: -24px;
+}
+.d-tip {
+  color: #000000;
+  border: 1px solid #d3a608;
+  background-color: #fdfcc2;
+}
+.d-tip .error-icon,
+.d-tip .info-icon,
+.d-tip .warning-icon,
+.d-tip .question-icon {
+  line-height: 18px;
+}
+.d-tip .close {
+  background-image: url(base/tip-close.png);
+}
+.d-tip .arrow {
+  background-image: url(base/tip-anchor-sprite.png);
+}
+/* slider */
+.d-slider {
+  position: relative;
+  display: inline-block;
+}
+.d-slider .slider-thumb {
+  position: absolute;
+  font-size: 1pt;
+}
+.d-slider .slider-start,
+.d-slider .slider-end {
+  position: absolute;
+  font-size: 1pt;
+}
+.d-slider .slider-current {
+  position: absolute;
+}
+.d-slider-horizontal {
+  height: 20px;
+}
+.d-slider-horizontal .slider-thumb {
+  left: 0;
+  top: 0;
+  width: 11px;
+  height: 20px;
+}
+.d-slider-horizontal .slider-thumb-hover {
+  background-position: -11px 0;
+}
+.d-slider-horizontal .slider-thumb-click {
+  background-position: -22px 0;
+}
+.d-slider-horizontal .slider-start {
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: 0 -20px;
+}
+.d-slider-horizontal .slider-end {
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: right -40px;
+}
+.d-slider-horizontal .slider-body {
+  margin: 0 5px;
+  height: 20px;
+  background-repeat: repeat-x;
+  background-position: 0 0;
+}
+.d-slider-vertical {
+  width: 20px;
+}
+.d-slider-vertical .slider-thumb {
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 11px;
+}
+.d-slider-vertical .slider-thumb-hover {
+  background-position: 0 -11px;
+}
+.d-slider-vertical .slider-thumb-click {
+  background-position: 0 -22px;
+}
+.d-slider-vertical .slider-start {
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 5px;
+  background-repeat: no-repeat;
+  background-position: 0 bottom;
+}
+.d-slider-vertical .slider-end {
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  height: 5px;
+  background-repeat: no-repeat;
+  background-position: -40px 0;
+}
+.d-slider-vertical .slider-body {
+  position: absolute;
+  left: 0px;
+  margin: 5px 0;
+  width: 20px;
+  background-repeat: repeat-y;
+  background-position: -20px 0;
+}
+.d-slider.d-slider-horizontal .slider-start,
+.d-slider.d-slider-horizontal .slider-end,
+.d-slider.d-slider-horizontal .slider-body {
+  background-image: url(base/slider-hori-bg.png);
+}
+.d-slider.d-slider-horizontal .slider-thumb {
+  background-image: url(base/slider-hori-thumb.png);
+}
+.d-slider.d-slider-vertical .slider-start,
+.d-slider.d-slider-vertical .slider-end,
+.d-slider.d-slider-vertical .slider-body {
+  background-image: url(base/slider-vert-bg.png);
+}
+.d-slider.d-slider-vertical .slider-thumb {
+  background-image: url(base/slider-vert-thumb.png);
+}
+/* progress-bar */
+.d-progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+.d-progress-bar .bar {
+  position: absolute;
+  overflow: hidden;
+  left: 0px;
+  top: 0px;
+}
+.d-progress-bar .msg {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
+.d-progress-bar .bar-msg {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
+.d-progress-bar {
+  height: 18px;
+  border: 1px #a1a1a1 solid;
+  background: url(base/progress-bar.png) repeat-x 0 bottom;
+}
+.d-progress-bar .bar {
+  height: 18px;
+  background: url(base/progress-bar.png) repeat-x 0 0 scroll;
+}
+.d-progress-bar .msg {
+  line-height: 18px;
+}
+.d-progress-bar .bar-msg {
+  line-height: 18px;
+  color: #000000;
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			
+			var json = Test.getJSON(Test.ROOT + "resource/hr-data.js");
+			var departments = new dorado.EntityList(json, view.dataTypeRepository, getDepartmentsDataType());
+			var ds1 = new dorado.widget.DataSet({
+				data: departments
+			});
+			view.addChild(ds1);
+			
+			var listbox1 = new dorado.widget.DataListBox({
+				width: "25%",
+				height: 100,
+				dataSet: ds1,
+				dataPath: "#departments(L).employees",
+				property: "name",
+				draggable: true,
+				dragTags: "item",
+				droppable: true,
+				droppableTags: "item"
+			});
+			view.addChild(listbox1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<hr>"
+			}));
+			
+			var listbox2 = new dorado.widget.DataListBox({
+				scrollMode: "simple",
+				width: "25%",
+				dataSet: ds1,
+				dataPath: "#departments(L).employees",
+				property: "name",
+				draggable: true,
+				dragTags: "item",
+				droppable: true,
+				droppableTags: "item"
+			});
+			view.addChild(listbox2);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<div>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>",
+				layoutConstraint: { anchorTop: "previous", top: 20 }
+			}));
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<hr>"
+			}));
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: ["<button onclick=\"buttonSetCurrent_onclick()\">setCurrent</button>", "<button onclick=\"buttonDeleteEntityAt50_onclick()\">Delete 50th</button>", "<button onclick=\"buttonInsertEntityAt50_onclick()\">Insert 50th</button>", "<div>&nbsp;</div>"]
+			}));
+			
+			var rowData2 = [];
+			for (var i = 0; i < 100; i++) {
+				rowData2.push({
+					property1: "Row " + i
+				});
+			}
+			var ds2 = new dorado.widget.DataSet({
+				data: new dorado.EntityList(rowData2)
+			});
+			view.addChild(ds2);
+			
+			var listbox3 = new dorado.widget.DataListBox({
+				width: "25%",
+				height: 250,
+				dataSet: ds2,
+				property: "property1",
+				draggable: true,
+				dragTags: "item",
+				droppable: true,
+				droppableTags: "item"
+			});
+			view.addChild(listbox3);
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+				document.title = new Date() - s;
+			});
+			
+			function buttonPreviousDepartment_onclick() {
+				var departments = ds1.getData();
+				departments.previous();
+			}
+			
+			function buttonNextDepartment_onclick() {
+				var departments = ds1.getData();
+				departments.next();
+			}
+			
+			function buttonPreviousEmployee_onclick() {
+				var employees = ds1.getData("#departments(L).employees");
+				employees.previous();
+			}
+			
+			function buttonNextEmployee_onclick() {
+				var employees = ds1.getData("#departments(L).employees");
+				employees.next();
+			}
+			
+			function buttonChangeName_onclick() {
+				var employee = ds1.getData("#departments(L).#employees");
+				employee.set("name", "#changed#");
+			}
+			
+			function buttonDeleteEmployee_onclick() {
+				var employees = ds1.getData("#departments(L)").get("employees");
+				employees.remove(employees.current);
+			}
+			
+			function buttonInsertEmployee_onclick() {
+				var dept = ds1.getData("#departments(L)");
+				var employee = dept.createChild("employees", {
+					name: "#new employee#"
+				});
+			}
+			
+			function buttonSetCurrent_onclick() {
+				var itemModel = listbox3.get("itemModel");
+				var items = itemModel.getItems();
+				items.setCurrent(itemModel.getItemAt(50));
+			}
+			
+			function buttonDeleteEntityAt50_onclick() {
+				var itemModel = listbox3.get("itemModel");
+				var items = itemModel.getItems();
+				items.remove(itemModel.getItemAt(50));
+			}
+			
+			var insertCounter = 0;
+			function buttonInsertEntityAt50_onclick() {
+				var itemModel = listbox3.get("itemModel");
+				var items = itemModel.getItems();
+				var refitem = itemModel.getItemAt(50);
+				var item = items.insert(null, "before", refitem);
+				item.set("property1", "#new item " + (++insertCounter) + "#");
+				items.setCurrent(item);
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="buttonPreviousDepartment_onclick()">Prev Dept.</button>
+		<button onclick="buttonNextDepartment_onclick()">Next Dept.</button>
+		&nbsp;
+		<button onclick="buttonPreviousEmployee_onclick()">Prev Emp.</button>
+		<button onclick="buttonNextEmployee_onclick()">Next Emp.</button>
+		&nbsp;
+		<button onclick="buttonChangeName_onclick()">Change Name</button>
+		&nbsp;
+		<button onclick="buttonDeleteEmployee_onclick()">Delete Emp.</button>
+		<button onclick="buttonInsertEmployee_onclick()">Insert Emp.</button>
+		<hr></body>
+</html>

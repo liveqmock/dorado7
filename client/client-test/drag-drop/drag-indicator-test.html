@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../include-all.js">
+        </script>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <script type="text/javascript">
+            $(document).ready(function() {
+	            var indicator = new dorado.DraggingIndicator({
+					style: "top:250px"
+				});
+				indicator.render(document.body);
+				
+				var indicator = new dorado.DraggingIndicator({
+					accept: true,
+					style: "left:50px;top:250px"
+				});
+				indicator.render(document.body);
+				
+				var indicator = new dorado.DraggingIndicator({
+					accept: true,
+					style: "left:100px;top:250px",
+					content: $DomUtils.xCreateElement({
+						tagName: "div",
+						content: "Some Dragging Text.......",
+						style: "white-space: noWrap"
+					})
+				});
+				indicator.render(document.body);
+				
+				var button = new dorado.widget.Button({
+					caption: "Button1",
+					draggable: true,
+					dragTags: "onControl"
+				});
+				button.render(document.body);
+				
+				var bar = new dorado.widget.ProgressBar({
+					value: 20,
+					width: 300,
+					draggable: true,
+					dragTags: "onControl"
+				});
+				bar.render(document.body);
+				
+				var panel = new dorado.widget.Panel({
+            		caption: "<undefined>",
+					droppable: true,
+					width: 500,
+					height: 100,
+					border: "curve",
+					droppableTags: "onControl",
+					onDraggingSourceDrop: function(self, arg) {
+						self.set("caption", arg.draggingInfo.get("object").constructor.className);
+					}
+				});
+				panel.render(document.body);
+            });
+        </script>
+    </head>
+    <body style="margin: 10">
+    </body>
+</html>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<DataResolver name="testResolver1" impl="com.bstek.dorado.data.resolver.TestDataResolver" />
+
+	<!-- Interceptor -->
+	<DataResolver name="resolverWithInterceptor1" interceptor="com.bstek.dorado.data.resolver.manager.TestDataResolverInterceptor#method1" />
+	<DataResolver name="resolverWithInterceptor2" interceptor="com.bstek.dorado.data.resolver.manager.TestDataResolverInterceptor#method2" />
+	<DataResolver name="resolverWithInterceptor3" interceptor="com.bstek.dorado.data.resolver.manager.TestDataResolverInterceptor#method3" />
+	<DataResolver name="resolverWithInterceptor4" interceptor="com.bstek.dorado.data.resolver.manager.TestDataResolverInterceptor#method4" />
+	<DataResolver name="resolverWithInterceptor5" interceptor="com.bstek.dorado.data.resolver.manager.TestDataResolverInterceptor#method5" />
+
+	<DataResolver name="testHRDomainObjectResolver1" interceptor="com.bstek.dorado.data.resolver.TestHRDomainDataResolver1" />
+	<DataResolver name="testHRDomainObjectResolver2" interceptor="com.bstek.dorado.data.resolver.TestHRDomainDataResolver2" />
+</Model>

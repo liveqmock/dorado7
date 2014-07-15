@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RuleSet>
+	<Rule name="ViewConfig" type="com.bstek.dorado.view.manager.ViewConfig">
+		<Children>
+			<Child>
+				<Rule nodeName="Arguments" icon="/com/bstek/dorado/view/manager/Arguments.png">
+					<Children>
+						<Child aggregated="true">
+							<Rule nodeName="Argument" icon="/com/bstek/dorado/view/manager/Argument.png">
+								<PrimitiveProps>
+									<Prop name="name" />
+								</PrimitiveProps>
+								<Props>
+									<Prop name="value" type="java.lang.Object" />
+								</Props>
+							</Rule>
+						</Child>
+					</Children>
+				</Rule>
+			</Child>
+			<Child>
+				<Rule nodeName="Context" icon="/com/bstek/dorado/view/manager/ViewContext.png">
+					<Children>
+						<Child aggregated="true">
+							<Rule nodeName="Attribute" icon="/com/bstek/dorado/view/manager/Attribute.png">
+								<PrimitiveProps>
+									<Prop name="name" />
+								</PrimitiveProps>
+								<Props>
+									<Prop name="value" type="java.lang.Object" />
+								</Props>
+							</Rule>
+						</Child>
+					</Children>
+				</Rule>
+			</Child>
+			<Child rule="Model" />
+		</Children>
+	</Rule>
+	<Rule name="LayoutHolder" />
+	<Rule name="View" type="com.bstek.dorado.view.View" scope="private" />
+</RuleSet>

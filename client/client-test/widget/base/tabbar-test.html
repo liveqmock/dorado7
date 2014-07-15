@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>TabBar Test Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <script type="text/javascript">
+        var view = new dorado.widget.View({
+			layout: "Anchor"
+		});
+ 
+        var menu = new dorado.widget.Menu({
+            items: [{
+                name: "close",
+                caption: "Close",
+                listener: {
+                    onClick: function() {
+                        var tabbar = this.id("tabbar1");
+                        if (tabbar) {
+                            var tab = tabbar.get("contextMenuTab");
+                            tabbar.closeTab(tab);
+                        }
+                    }
+                }
+            }, "-", {
+                name: "closeAll",
+                caption: "Close All",
+                listener: {
+                    onClick: function() {
+                        var tabbar = this.id("tabbar1");
+                        if (tabbar) {
+                            tabbar.closeAllTabs();
+                        }
+                    }
+                }
+            }, {
+                name: "closeOthers",
+                caption: "Close Others",
+                listener: {
+                    onClick: function() {
+                        var tabbar = this.id("tabbar1");
+                        if (tabbar) {
+                            var contextMenuTab = tabbar.get("contextMenuTab");
+                            tabbar.closeOtherTabs(contextMenuTab);
+                        }
+                    }
+                }
+            }]
+        });
+ 
+        view.addChild(menu);
+ 
+        var tabbar1 = new dorado.widget.TabBar({
+            id: "tabbar1",
+            tabs: [
+                {
+                    caption: "测试1测试1测试1测试1测试1",
+                    icon: "del.gif",
+                    exClassName: "test",
+                    width: 100,
+                    closeable: true,
+                    onClick: function() {
+                        alert(2);
+                    }
+                },
+                {
+                    caption: "测试2",
+                    visible: true
+                },
+                {
+                    caption: "测试3",
+                    closeable: true,
+                    disabled: true,
+                    onClick: function() {
+                        alert(3);
+                    }
+                }
+            ],
+			width: 500,
+            tabMinWidth: 100
+            ,showMenuButton: true
+            //,alwaysShowNavButtons: true
+            ,listener: {
+                beforeTabChange: function(self, config){
+                    //console.log("beforeTabChange-newTab:" + config.newTab);
+                    var newTab = config.newTab;
+                    if(newTab){
+                        var index = self._tabs.indexOf(newTab);
+                        if(index == 3){
+                            //return false;
+                        }
+                    }
+                },
+                onTabChange: function(self, tab){
+					console.log("onTabChange");
+                },
+                onTabContextMenu: function(self, arg) {
+                    var tab = arg.tab;
+                    menu.getItem("close").set("disabled", tab._disabled || !tab._closeable);
+                    menu.show({event: arg.event});
+                }
+            }
+        });
+ 
+        var count = 3;
+        var buttonAddTab = new dorado.widget.toolbar.Button({
+            caption: "addTab",
+            listener: {
+                onClick: function(){
+                    tabbar1.addTab({
+                        caption: "我觉得我会超过100px" + ++count,
+                        closeable: true,
+                        onClose: function() {
+                            console.log("onClose");
+                        },
+                        beforeClose: function(self, arg) {
+                            console.log("beforeClose");
+                            arg.processDefault = Math.random() > 0.5;
+                        }
+                    }, null, true);
+                }
+            }
+        });
+ 
+        var buttonInsertTab = new dorado.widget.toolbar.Button({
+            caption: "InsertTab",
+            listener: {
+                onClick: function(){
+                    tabbar1.addTab({
+                        caption: "我觉得我会超过100px" + ++count,
+                        closeable: true
+                    }, 1, true);
+                }
+            }
+        });
+ 
+        var buttonEnableTab = new dorado.widget.toolbar.Button({
+            caption: "EnableTab",
+            listener: {
+                onClick: function(){
+                    var tab = tabbar1.getTab(2);
+                    tab.set("disabled", !tab._disabled);
+                }
+            }
+        });
+ 
+        var buttonSetIcon = new dorado.widget.toolbar.Button({
+            caption: "SetIcon",
+            listener: {
+                onClick: function(){
+                    var tab = tabbar1.getTab(0);
+                    tab.set("icon", tab.get("icon") ? "" : "del.gif");
+                }
+            }
+        });
+ 
+        var buttonShowMenuButton = new dorado.widget.toolbar.Button({
+            caption: "showMenuButton",
+            listener: {
+                onClick: function(){
+                    tabbar1.set("showMenuButton", !tabbar1._showMenuButton);
+                }
+            }
+        });
+ 
+        var buttonAlwaysShowNavButtons = new dorado.widget.toolbar.Button({
+            caption: "alwaysShowNavButtons",
+            listener: {
+                onClick: function(){
+                    tabbar1.set("alwaysShowNavButtons", !tabbar1._alwaysShowNavButtons);
+                }
+            }
+        });
+ 
+        var buttonChangeTabPlacement = new dorado.widget.toolbar.Button({
+            caption: "ChangeTabPlacement",
+            listener: {
+                onClick: function(){
+                    tabbar1.set("tabPlacement", tabbar1._tabPlacement == "top" ? "bottom" : "top");
+                }
+            }
+        });
+ 
+        var buttonSetTabVisible = new dorado.widget.toolbar.Button({
+            caption: "SetTabVisible",
+            listener: {
+                onClick: function(){
+                    var tab = tabbar1.getTab(1);
+                    if(tab){
+                        tab.set("visible", !tab._visible);
+                    }
+                }
+            }
+        });
+ 
+        var toolbar = new dorado.widget.ToolBar({
+            items: [buttonAddTab, buttonEnableTab, buttonSetIcon,
+                buttonShowMenuButton, buttonAlwaysShowNavButtons,
+                buttonChangeTabPlacement, buttonSetTabVisible, {
+                    caption: "set Tabs",
+                    onClick: function(self, arg) {
+                        tabbar1.set("tabs", [{
+                            caption: "111"
+                        }, {
+                            caption: "222"
+                        }]);
+                    }
+                }],
+            style: {
+                "margin-bottom": "10px"
+            }
+        });
+        tabbar1.addRightToolButton(new dorado.widget.SimpleIconButton({
+            icon: "del.gif"
+        }));
+        view.addChild(toolbar);
+ 
+        view.addChild(tabbar1);
+ 
+        $(document).ready(function() {
+            view.render(document.body);
+            tabbar1.addRightToolButton(new dorado.widget.SimpleButton({
+                className: "menu-button",
+                menu: new dorado.widget.Menu({
+                    items: [ { caption: "test" }, { caption: "test" }]
+                })
+            }));
+        });
+    </script>
+</head>
+<body style="margin:0;padding:0;"></body>
+</html>

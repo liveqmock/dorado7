@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>	
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+		
+		var view = new dorado.widget.View({
+			layout: new dorado.widget.layout.FormLayout({
+				cols: "*",
+				stretchWidth: true
+			})
+		});
+		
+		var ds1 = new dorado.widget.DataSet("ds1");
+		var json = Test.getJSON(Test.ROOT + "resource/hr-data.js");
+		var departments = new dorado.EntityList(json, view.dataTypeRepository, getDepartmentsDataType());
+		ds1.setData(departments);
+		view.addChild(ds1);
+		
+		var editor1 = new dorado.widget.DataTextEditor("editor1");
+		editor1.set("dataSet", ds1);
+		editor1.set("property", "name");
+		view.addChild(editor1);
+		
+		var editor2 = new dorado.widget.DataTextEditor({
+			id: "editor2",
+			dataSet: ds1,
+			property: "name"
+		});
+		view.addChild(editor2);
+		
+		var editor3 = new dorado.widget.DataTextEditor({
+			id: "editor3",
+			dataSet: ds1,
+			dataPath: "#departments(L).#employees",
+			property: "id"
+		});
+		view.addChild(editor3);
+		
+		var editor4 = new dorado.widget.DataTextEditor({
+			id: "editor4",
+			dataSet: ds1,
+			dataPath: "#departments(L).#employees",
+			property: "name"
+		});
+		view.addChild(editor4);
+		
+		var editor5 = new dorado.widget.DataTextEditor({
+			id: "editor5",
+			dataSet: ds1,
+			dataPath: "#departments(L).#employees",
+			property: "salary"
+		});
+		view.addChild(editor5);
+		
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		
+		function buttonPreviousDepartment_onclick() {
+			ds1.getData().previous();
+		}
+		
+		function buttonNextDepartment_onclick() {
+			ds1.getData().next();
+		}
+		
+		function buttonPreviousEmployee_onclick() {
+			var employees = ds1.getData("#departments(L)").get("employees");
+			employees.previous();
+		}
+		
+		function buttonNextEmployee_onclick() {
+			var employees = ds1.getData("#departments(L)").get("employees");
+			employees.next();
+		}
+		
+		</script>
+	</head>
+	<body>
+		<button onclick="buttonPreviousDepartment_onclick()">Prev Dept.</button>
+		<button onclick="buttonNextDepartment_onclick()">Next Dept.</button>
+		&nbsp;
+		<button onclick="buttonPreviousEmployee_onclick()">Prev Emp.</button>
+		<button onclick="buttonNextEmployee_onclick()">Next Emp.</button>
+		<hr>
+	</body>
+</html>

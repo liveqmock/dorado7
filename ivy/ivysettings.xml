@@ -1,0 +1,10 @@
+<ivysettings>
+	<properties file="${ivy.settings.dir}/ivysettings.properties" />
+	<settings defaultResolver="default" />
+	<resolvers>
+		<ibiblio name="bsdn" m2compatible="true" root="${bsdn.nexusPublic}"/>
+		<chain name="default" returnFirst="true">
+			<resolver ref="bsdn" />
+		</chain>
+	</resolvers>
+</ivysettings>

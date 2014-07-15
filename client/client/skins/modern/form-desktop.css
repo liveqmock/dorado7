@@ -1,0 +1,432 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+/* Spinner */
+.d-text-box .slots-container .text {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 24px;
+  height: 24px;
+}
+.d-text-box .slots-container .slot {
+  display: inline-block;
+  line-height: 24px;
+  height: 24px;
+  cursor: pointer;
+  padding: 0 1px;
+}
+.d-text-box .d-spinner-trigger {
+  width: 22px;
+  height: 24px;
+}
+.d-text-box .up-button {
+  width: 22px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 1%;
+  cursor: pointer;
+}
+.d-text-box .up-button .icon {
+  width: 100%;
+  height: 100%;
+  line-height: 12px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-text-box .up-button .icon:before {
+  content: "\e602";
+}
+.d-text-box .down-button {
+  width: 22px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 1%;
+  cursor: pointer;
+}
+.d-text-box .down-button .icon {
+  width: 100%;
+  height: 100%;
+  line-height: 12px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-text-box .down-button .icon:before {
+  content: "\e601";
+}
+.d-text-box .slots-container .slot-selected {
+  background-color: #328efd;
+  background-image: url(form/spinner-selected-slot-bg.gif);
+  background-repeat: repeat-x;
+  background-position: 0 2px;
+  color: #ffffff;
+}
+.d-text-box .d-spinner-trigger .up-button .icon,
+.d-text-box .d-spinner-trigger .down-button .icon {
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  color: #000000;
+  background-color: rgba(0, 0, 0, 0);
+}
+.d-text-box .d-spinner-trigger .up-button .icon:hover,
+.d-text-box .d-spinner-trigger .down-button .icon:hover {
+  color: #ffffff;
+  background-color: #15a4fa;
+}
+.d-text-box .d-spinner-trigger .up-button .icon:active,
+.d-text-box .d-spinner-trigger .down-button .icon:active {
+  -webkit-transition-duration: 0;
+  -moz-transition-duration: 0;
+  -ms-transition-duration: 0;
+  -o-transition-duration: 0;
+  transition-duration: 0;
+  color: #ffffff;
+  background-color: #058fe1;
+}
+/* drop-down */
+.d-drop-down-box {
+  border: 4px #ffffff solid;
+  background-color: #ffffff;
+}
+/* month-picker */
+.d-month-picker {
+  table-layout: fixed;
+  color: #000000;
+  background-color: #ffffff;
+}
+.d-month-picker .number-row td {
+  text-align: center;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 1px;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}
+.d-month-picker .number-row td:hover {
+  background-color: #c5e8fe;
+}
+.d-month-picker .number-row td.selected {
+  color: #ffffff;
+  background-color: #15a4fa;
+}
+/* year-picker */
+.d-year-picker {
+  table-layout: fixed;
+  color: #000000;
+  background-color: #ffffff;
+}
+.d-year-picker .btn-row {
+  height: 20px;
+}
+.d-year-picker .prev-year-button {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-year-picker .prev-year-button:before {
+  content: "\e6a3";
+}
+.d-year-picker .next-year-button {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-year-picker .next-year-button:before {
+  content: "\e6a6";
+}
+.d-year-picker .number-row td {
+  text-align: center;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 1px;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}
+.d-year-picker .number-row td:hover {
+  background-color: #c5e8fe;
+}
+.d-year-picker .number-row td.selected {
+  color: #ffffff;
+  background-color: #15a4fa;
+}
+/* year-month-picker */
+.d-year-month-picker td {
+  height: 20px;
+}
+.d-year-month-picker .month-table {
+  width: 49%;
+  table-layout: fixed;
+}
+.d-year-month-picker .month-table .number-row td {
+  text-align: center;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 1px;
+}
+.d-year-month-picker .year-table {
+  width: 49%;
+  float: right;
+  table-layout: fixed;
+}
+.d-year-month-picker .year-table .btn-row {
+  height: 20px;
+}
+.d-year-month-picker .year-table .number-row td {
+  text-align: center;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 1px;
+}
+.d-year-month-picker .btns-pane {
+  float: left;
+  clear: left;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+.d-year-month-picker .btns-pane .d-button {
+  margin: 4px 5px 4px 0;
+}
+.d-year-month-picker {
+  color: #000000;
+  background-color: #ffffff;
+}
+.d-year-month-picker .year-table {
+  border-left: 1px solid #ededed;
+}
+/* date-picker */
+.d-date-picker {
+  position: relative;
+  border-collapse: collapse;
+}
+.d-date-picker .year-month-block {
+  text-align: center;
+  width: 100%;
+  height: 26px;
+  padding-top: 3px;
+}
+.d-date-picker .year-month-block .pre-button-div {
+  float: left;
+  padding-left: 4px;
+  margin-right: -40px;
+}
+.d-date-picker .year-month-block .next-button-div {
+  float: right;
+  padding-right: 4px;
+  margin-left: -40px;
+}
+.d-date-picker .year-month-block .pre-year-button,
+.d-date-picker .year-month-block .next-year-button {
+  position: relative;
+  left: -5px;
+  letter-spacing: -10px;
+}
+.d-date-picker .year-month-block .pre-year-button {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-date-picker .year-month-block .pre-year-button:before {
+  content: "\e6a3\e6a3";
+}
+.d-date-picker .year-month-block .pre-month-button {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-date-picker .year-month-block .pre-month-button:before {
+  content: "\e6a3";
+}
+.d-date-picker .year-month-block .next-month-button {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-date-picker .year-month-block .next-month-button:before {
+  content: "\e6a6";
+}
+.d-date-picker .year-month-block .next-year-button {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-date-picker .year-month-block .next-year-button:before {
+  content: "\e6a6\e6a6";
+}
+.d-date-picker .year-month-block .year-month-label {
+  width: auto;
+  cursor: pointer;
+  text-align: center;
+  height: 26px;
+  line-height: 26px;
+  margin: 0 44px;
+}
+.d-date-picker .date-header {
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  height: 18px;
+}
+.d-date-picker .date-header td {
+  height: 18px;
+  text-align: center;
+}
+.d-date-picker .date-block {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 108px;
+  border-width: 0;
+}
+.d-date-picker .date-block .date-table {
+  position: absolute;
+  left: 0;
+  top: 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  cursor: pointer;
+  width: 200%;
+}
+.d-date-picker .date-block .date-table td {
+  height: 18px;
+  text-align: center;
+}
+.d-date-picker .date-block .date-table td.unselectable {
+  cursor: default;
+}
+.d-date-picker .spinner-block {
+  position: absolute;
+  height: 30px;
+  left: 5px;
+  bottom: 0;
+}
+.d-date-picker .spinner-block .d-text-box {
+  margin-top: 5px;
+}
+.d-date-picker .button-block {
+  float: right;
+  height: 30px;
+}
+.d-date-picker .button-block .d-button {
+  cursor: pointer;
+  margin: 4px 5px 4px 0;
+}
+.d-date-picker .d-year-month-picker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+}
+.d-date-picker .year-month-block {
+  background-color: #ffffff;
+}
+.d-date-picker .year-month-block .year-month-label {
+  font-size: 110%;
+  color: #000000;
+  font-weight: bold;
+}
+.d-date-picker .date-header {
+  color: #000000;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(1, 100, 158, 0.5);
+}
+.d-date-picker .date-block .date-table td {
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}
+.d-date-picker .date-block .date-table td:hover {
+  background-color: #c5e8fe;
+}
+.d-date-picker .date-block .date-table td.selected-date {
+  color: #ffffff;
+  background-color: #15a4fa;
+}
+.d-date-picker .date-block .date-table td.pre-month,
+.d-date-picker .date-block .date-table td.next-month {
+  color: #919191;
+}
+.d-date-picker .date-block .date-table td.unselectable {
+  color: #919191;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View layout="anchor">
+    <HtmlContainer layoutConstraint="left:0;top:0">
+      <ClientEvent name="onCreate">var dom=$DomUtils.xCreate({&#xD;
+	tagName: &quot;img&quot;,&#xD;
+	src:$url(&quot;>dorado/console/images/background.png&quot;)&#xD;
+&#xD;
+});&#xD;
+self.set('content',dom);&#xD;
+</ClientEvent>
+      <Property name="width">640</Property>
+      <Property name="height">250</Property>
+      <Property name="contentOverflow">hidden</Property>
+    </HtmlContainer>
+    <Label layoutConstraint="left:40;top:90;anchorTop:previous">
+      <Property name="className">label</Property>
+      <Property name="text">Dorado Core </Property>
+      <Property name="width">800</Property>
+      <Property name="height">30</Property>
+    </Label>
+    <Container layout="hbox" layoutConstraint="left:40;anchorTop:previous">
+      <Property name="height">30</Property>
+      <Label>
+        <Property name="width">100</Property>
+        <Property name="text">${res.version}</Property>
+        <Property name="height">100%</Property>
+        <Property name="className">content</Property>
+      </Label>
+      <Label id="core_version">
+        <Property name="height">100%</Property>
+        <Property name="className">content</Property>
+      </Label>
+    </Container>
+  </View>
+</ViewConfig>

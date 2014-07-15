@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build" default="build">
+	<property name="skinNames" value="default,default.ie6,modern" />
+	
+	<target name="copySkin">
+		<property name="dist" value="${dist}/skins/${skinName}" />
+		<property name="src" value="${src}/skins/${skinName}" />
+
+		<mkdir dir="${dist}" />
+
+		<echo message="copy ${src} --> ${dist}" />
+		<copy todir="${dist}">
+			<fileset dir="${src}">
+				<exclude name="**/*.less" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copySkins">
+		<foreach list="${skinNames}" param="skinName" target="copySkin" inheritall="true" />
+	</target>
+
+	<target name="copyJavaScript">
+		<mkdir dir="${dist}/scripts/dorado" />
+
+		<copy file="${src}/scripts/dorado/core/boot.js" todir="${dist}/scripts/dorado" />
+
+		<concat destfile="${dist}/scripts/dorado/core.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado">
+				<file name="core/lang.js" />
+				<file name="core/jquery-redefine.js" />
+				<file name="core/core.js" />
+				<file name="core/object.js" />
+				<file name="core/setting.js" />
+				<file name="core/exception.js" />
+				<file name="core/attribute.js" />
+				<file name="core/event.js" />
+				<file name="util/util.js" />
+				<file name="util/resource.js" />
+				<file name="util/date.js" />
+				<file name="util/common.js" />
+				<file name="util/iterator.js" />
+				<file name="util/keyed-array.js" />
+				<file name="util/keyed-list.js" />
+				<file name="util/object-pool.js" />
+				<file name="util/json.js" />
+				<file name="util/ajax.js" />
+				<file name="util/map.js" />
+				<file name="dom/dom.js" />
+				<file name="dom/shadow.js" />
+				<file name="dom/jquery-dom.js" />
+				<file name="dom/jquery-x-create.js" />
+				<file name="dom/jquery-slide.js" />
+				<file name="dom/jquery-dragdrop.js" />
+				<file name="sys/renderer.js" />
+				<file name="sys/renderable-element.js" />
+				<file name="sys/tag-manager.js" />
+				<file name="sys/toolkits.js" />
+				<file name="sys/dragging-indicator.js" />
+				<file name="sys/drag-drop.js" />
+				<file name="sys/modal-manager.js" />
+				<file name="sys/task-indicator.js" />
+				<file name="sys/scroller.js" />
+				<file name="sys/socket.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/desktop-support.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado">
+				<file name="sys/exception-dialog.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/touch-patch.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado">
+				<file name="dom/iscroll.js" />
+				<file name="dom/jquery-gestures.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/data.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/data">
+				<file name="data-pipe.js" />
+				<file name="data-provider.js" />
+				<file name="data-resolver.js" />
+				<file name="data-type.js" />
+				<file name="data-type-repository.js" />
+				<file name="property-def.js" />
+				<file name="entity.js" />
+				<file name="entity-list.js" />
+				<file name="data-path.js" />
+				<file name="data-util.js" />
+				<file name="validator.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/widget-support.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget">
+				<file name="view-element.js" />
+				<file name="component.js" />
+				<file name="data-set.js" />
+				<file name="data-control.js" />
+				<file name="property-data-control.js" />
+				<file name="control.js" />
+				<file name="float-control.js" />
+				<file name="container.js" />
+				<file name="html-container.js" />
+				<file name="view.js" />
+				<file name="controller.js" />
+				<file name="sub-view-holder.js" />
+				<file name="layout/layout.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/layout.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/layout">
+				<file name="anchor-layout.js" />
+				<file name="dock-layout.js" />
+				<file name="box-layout.js" />
+				<file name="form-layout.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/form.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/form">
+				<file name="label.js" />
+				<file name="abstract-editor.js" />
+				<file name="check-box.js" />
+				<file name="radio-button.js" />
+				<file name="text-editor.js" />
+				<file name="text-area.js" />
+				<file name="trigger.js" />
+				<file name="dropdown.js" />
+				<file name="data-message.js" />
+				<file name="form-element.js" />
+				<file name="autoform.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/form-desktop.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/form">
+				<file name="dropdown-box.js" />
+				<file name="list-dropdown.js" />
+				<file name="dataset-dropdown.js" />
+				<file name="custom-dropdown.js" />
+				<file name="year-month-dropdown.js" />
+				<file name="date-dropdown.js" />
+				<file name="custom-dropdown.js" />
+				<file name="spinner.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/base-widget.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget">
+				<file name="action/action.js" />
+				<file name="action/rpc-action.js" />
+				<file name="action/form-action.js" />
+				<file name="action/long-task.js" />
+				<file name="base/abstract-button.js" />
+				<file name="base/simple-button.js" />
+				<file name="base/iframe.js" />
+				<file name="base/card-book.js" />
+				<file name="base/progress-bar.js" />
+				<file name="base/tip.js" />
+				<file name="base/float-container.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/base-widget-desktop.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget">
+				<file name="action/rpc-action-plus.js" />
+				<file name="base/button.js" />
+				<file name="base/menu-item.js" />
+				<file name="base/menu.js" />
+				<file name="base/slider.js" />
+				<file name="base/tab.js" />
+				<file name="base/tab-bar.js" />
+				<file name="base/panel.js" />
+				<file name="base/group-box.js" />
+				<file name="base/tab-control.js" />
+				<file name="base/caption-bar.js" />
+				<file name="base/msgbox.js" />
+				<file name="base/split-panel.js" />
+				<file name="base/tooltip.js" />
+				<file name="base/accordion.js" />
+				<file name="base/toolbar.js" />
+				<file name="base/float-panel.js" />
+				<file name="base/dialog.js" />
+				<file name="data-control/data-pilot.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/list-support.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/list">
+				<file name="abstract-list.js" />
+				<file name="item-model.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/list.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/list">
+				<file name="row-list.js" />
+				<file name="list-box.js" />
+				<file name="data-list-box.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/grid.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/grid">
+				<file name="column-model.js" />
+				<file name="abstract-grid.js" />
+				<file name="filter-criterion.js" />
+				<file name="grid.js" />
+				<file name="data-grid.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/tree.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/tree">
+				<file name="tree-model.js" />
+				<file name="abstract-tree.js" />
+				<file name="tree.js" />
+				<file name="data-tree.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/block-view.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/block-view">
+				<file name="abstract-block-view.js" />
+				<file name="block-view.js" />
+				<file name="data-block-view.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/tree-grid.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/tree-grid">
+				<file name="tree-grid.js" />
+				<file name="data-tree-grid.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/debugger.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/debugger">
+				<file name="debugger.js" />
+				<file name="console.js" />
+				<file name="script.js" />
+				<file name="view.js" />
+				<file name="hotkeys.js" />
+				<file name="ajax.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/tag-editor.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/advance">
+				<file name="tag-editor.js" />
+			</filelist>
+		</concat>
+
+		<concat destfile="${dist}/scripts/dorado/color-picker.js" fixlastline="true" encoding="utf-8">
+			<filelist dir="${src}/scripts/dorado/widget/advance">
+				<file name="spectrum.js" />
+				<file name="color-picker.js" />
+			</filelist>
+		</concat>
+	</target>
+
+	<target name="copyLibs">
+		<mkdir dir="${dist}/scripts/jquery" />
+		<copy todir="${dist}/scripts/jquery">
+			<fileset dir="${src}/scripts/jquery">
+				<include name="jquery-1.11.0.js" />
+				<include name="jquery.easing.1.3.js" />
+				<include name="jquery.mousewheel.js" />
+				<include name="jquery.hotkeys.js" />
+				<include name="jquery-ui-1.10.4.custom.js" />
+				<include name="jquery.swfobject.1-1-1.js" />
+				<include name="jquery.textarea.js" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${dist}/scripts/json" />
+		<copy todir="${dist}/scripts/json">
+			<fileset dir="${src}/scripts/json">
+				<include name="json2.js" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${dist}/scripts/underscore" />
+		<copy todir="${dist}/scripts/underscore">
+			<fileset dir="${src}/scripts/underscore">
+				<include name="underscore.js" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copyResources">
+		<copy todir="${dist}/resources">
+			<fileset dir="${src}/resources" />
+		</copy>
+	</target>
+
+	<target name="build" depends="copySkins,copyJavaScript,copyLibs,copyResources" />
+</project>

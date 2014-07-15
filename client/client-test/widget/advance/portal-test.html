@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html style="overflow: hidden;">
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Portal Test</title>
+		<script type="text/javascript">
+			var view = new dorado.widget.View({ layout: "Dock" });
+
+			var fullScreen = false;
+
+			var panel1 = new dorado.widget.Portlet("panel1");
+			panel1.set({
+				width: 300,
+				column: 1,
+				caption: "Portlet1",
+				collapseable: true,
+				maximizeable: true,
+				children: [new dorado.widget.IFrame({
+					path: "http://www.bsdn.org"
+				})]
+			});
+			
+			var panel2 = new dorado.widget.Portlet("panel2");
+			panel2.set({
+				width: 300,
+				column: 1,
+				caption: "Portlet2",
+				collapseable: true,
+				children: [new dorado.widget.IFrame({
+					path: "http://www.bsdn.org"
+				})]
+			});
+			
+			var panel3 = new dorado.widget.Portlet("panel3");
+			panel3.set({
+				width: 300,
+				height: 150,
+				column: 1,
+				caption: "Portlet3",
+				collapseable: true,
+				children: [new dorado.widget.IFrame({
+					path: "http://www.bsdn.org"
+				})]
+			});
+
+			var panel4 = new dorado.widget.Portlet("panel4");
+			panel4.set({
+				width: 300,
+				height: 150,
+				caption: "Portlet4",
+				collapseable: true,
+				children: [new dorado.widget.IFrame({
+					path: "http://www.bsdn.org"
+				})]
+			});
+
+			var panel5 = new dorado.widget.Portlet("panel5");
+			panel5.set({
+				width: 300,
+				height: 300,
+				caption: "Portlet5",
+				collapseable: true,
+				children: [new dorado.widget.IFrame({
+					path: "http://www.bsdn.org"
+				})]
+			});
+
+			var panel6 = new dorado.widget.Portlet("panel6");
+			panel6.set({
+				width: 300,
+				height: 300,
+				column: 2,
+				caption: "Portlet6",
+				collapseable: true,
+				children: [new dorado.widget.IFrame({
+					path: "http://www.bsdn.org"
+				})]
+			});
+
+			var portal = new dorado.widget.Portal({
+				columns: [{
+					width: "25%"
+				}, {
+					width: "*"
+				}, {
+					width: "30%"
+				}],
+				portletPadding: 10,
+				portlets: [panel1, panel2, panel3, panel4, panel5],
+				layoutConstraint: "center",
+                listener: {
+                    onPortletAdd: function(self, arg) {
+                        var portlet = arg.portlet;
+                        //console.log("onPortletAdd:" + portlet._caption);
+                    },
+                    onPortletRemove: function(self, arg) {
+                        var portlet = arg.portlet;
+                        //console.log("onPortletRemove:" + portlet._caption);
+                    },
+                    onPortletMove: function(self, arg) {
+                        var portlet = arg.portlet;
+                        //console.log("onPortletMove:" + portlet._column);
+                    }
+                }
+			});
+			
+			var changeColumnDialog = new dorado.widget.Dialog({
+				width: 500,
+				height: 400,
+				modal: true,
+				center: true,
+				caption: "Change Column Setting",
+				children: [{
+					$type: "BlockView",
+					id: "frameSelectView",
+					blockHeight: 72,
+					lineSize: 4,
+					fillLine: true,
+					renderer: new dorado.widget.blockview.ImageBlockRenderer({
+						captionProperty: "label"
+					}),
+					items: [{
+						label: "版式1",
+						image: "portal-images/frame-1.gif"
+					}, {
+						label: "版式2",
+						image: "portal-images/frame-2.gif"
+					}, {
+						label: "版式3",
+						image: "portal-images/frame-3.gif"
+					}, {
+						label: "版式4",
+						image: "portal-images/frame-4.gif"
+					}]
+				}],
+				buttons: [{
+					caption: "OK",
+					onClick: function(self, arg) {
+						var view = this, frameSelectView = view.id("frameSelectView");
+						var data = frameSelectView.getCurrentItem();
+						if (data && data.label) {
+							var index = parseInt(data.label.replace("版式", ""), 10), setting;
+							switch (index) {
+								case 1:
+									setting = [{
+										name: "c1"
+									}, {
+										name: "c2"
+									}, {
+										name: "c3"
+									}];
+									break;
+								case 2:
+									setting = [{
+										name: "c1"
+									}, {
+										name: "c2",
+										width: "30%"
+									}];
+									break;
+								case 3:
+									setting = [{
+										name: "c1",
+										width: "30%"
+									}, {
+										name: "c2"
+									}];
+									break;
+								case 4:
+									setting = [{
+										name: "c1"
+									}, {
+										name: "c2"
+									}];
+									break;
+							}
+							portal.set("columns", setting);
+							changeColumnDialog.hide();
+						} else {
+							dorado.MessageBox.alert("请选择一个版式!");
+						}
+					}
+				}, {
+					caption: "Cancel",
+					onClick: function() {
+						changeColumnDialog.hide();
+					}
+				}]
+			});
+			
+			var toolbar = new dorado.widget.ToolBar({
+				items: [{
+					caption: "添加模块",
+					onClick: function() {
+                    portal.addPortlet({
+                        "caption": "Test",
+                        "height": 300,
+                        "id": "id",
+                        "collapseable":true,
+                        "maximizeable":true,
+                        "closeable":true,
+                        tools: [{
+                            onClick: function(self, arg) {
+                                var portal = self.get("parent.parent");
+                                //portal.get("children").getFirst().getIFrameWindow().location.reload();
+                                portal.get("children").getFirst().reload();
+                            }
+                        }],
+                        "children":[
+                            {
+                                "$type":"IFrame",
+                                "path": "http://www.baidu.com"
+                            }
+                        ]
+                    });
+					}
+				}, {
+					caption: "更改版式",
+					onClick: function() {
+						changeColumnDialog.show();
+					}
+				}]
+			});
+			
+			view.addChild(toolbar);
+			
+			view.addChild(portal);
+			
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body style="padding: 0; margin: 0; overflow: hidden;"></body>
+</html>

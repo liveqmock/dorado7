@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" charset="UTF-8" src="/dorado7/brich-test/js/core/boot.js"></script>
+		<script type="text/javascript">
+			$packagesConfig.contextPath = "/dorado7/brich-test";
+			$packagesConfig.defaultContentType = "text/css";
+		
+			$packagesConfig.patterns = {
+				"lib": {
+					url: ">/js-test/lib/jquery/$.js",
+					mergeRequests: false
+				},
+				"skin": {
+					url: ">/js/css/skin/nature/$"
+				}
+			};
+			
+			$packagesConfig.packages = {
+				"common.css": {
+					pattern: "skin"
+				},
+				"jquery": {
+					contentType: "text/javascript",
+					fileName: "jquery-1.2.6",
+					pattern: "lib"
+				},
+				"jquery.ui": {	
+					contentType: "text/javascript",
+					fileName: "ui.core",		
+					pattern: "lib",	
+					depends: "jquery,common.css"
+				}
+			};
+		</script>
+	</head>
+	<body>		
+		<script type="text/javascript">
+			$import("jquery,jquery.ui", function() {
+				$(document.body).text("Package loaded.");
+			});
+		</script>
+	</body>
+</html>

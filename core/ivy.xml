@@ -1,0 +1,51 @@
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+	<info organisation="com.bstek.dorado" module="dorado-core" status="integration" />
+
+	<configurations>
+		<include file="../ivy/ivy-configurations.xml" />
+	</configurations>
+
+	<dependencies>
+		<!-- COMPILE -->
+		<dependency org="cglib" name="cglib" rev="2.2.2" conf="compile" />
+		<dependency org="javassist" name="javassist" rev="3.12.1.GA" conf="compile" />
+
+		<dependency org="net.sf.ehcache" name="ehcache-core" rev="2.6.3" conf="compile" />
+
+		<dependency org="org.codehaus.jackson" name="jackson-mapper-asl" rev="1.9.11" conf="compile" />
+		<dependency org="org.codehaus.jackson" name="jackson-core-asl" rev="1.9.11" conf="compile" />
+
+		<dependency org="com.thoughtworks.paranamer" name="paranamer" rev="2.3" conf="compile" />
+
+		<dependency org="org.apache.velocity" name="velocity" rev="1.7" conf="compile" />
+
+		<dependency org="commons-lang" name="commons-lang" rev="2.6" conf="compile" />
+		<dependency org="commons-digester" name="commons-digester" rev="2.1" conf="compile" />
+		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.8.3" conf="compile" />
+		<dependency org="commons-codec" name="commons-codec" rev="1.7" conf="compile" />
+		
+		<dependency org="org.apache.commons" name="commons-jexl" rev="2.1.1" conf="compile" />
+
+		<dependency org="log4j" name="log4j" rev="1.2.17" conf="compile" />
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.2" conf="compile" />
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.2" conf="compile" />
+
+		<dependency org="org.springframework" name="spring-core" rev="3.2.0.RELEASE" conf="compile" />
+		<dependency org="org.springframework" name="spring-beans" rev="3.2.0.RELEASE" conf="compile" />
+		<dependency org="org.springframework" name="spring-context" rev="3.2.0.RELEASE" conf="compile" />
+		<dependency org="org.springframework" name="spring-context-support" rev="3.2.0.RELEASE" conf="compile" />
+		<dependency org="org.springframework" name="spring-expression" rev="3.2.0.RELEASE" conf="compile" />
+		<dependency org="org.springframework" name="spring-web" rev="3.2.0.RELEASE" conf="compile" />
+		<dependency org="org.springframework" name="spring-webmvc" rev="3.2.0.RELEASE" conf="compile" />
+
+		<dependency org="dom4j" name="dom4j" rev="1.6.1" conf="compile">
+			<exclude org="xml-apis" />
+		</dependency>
+
+		<dependency org="com.h2database" name="h2" rev="1.3.168" conf="compile" />
+		<dependency org="commons-dbcp" name="commons-dbcp" rev="1.4" conf="compile" />
+
+		<!-- TEST -->
+		<dependency org="junit" name="junit" rev="4.8.2" conf="test" />
+	</dependencies>
+</ivy-module>

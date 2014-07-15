@@ -1,0 +1,10 @@
+<configurations defaultconfmapping="compile->compile(*),master(*);runtime->master(*),compile(*),runtime(*);test->default(*)">
+	<conf name="default" visibility="public" extends="runtime,master" />
+	<conf name="master" visibility="public" />
+	<conf name="compile" visibility="public" />
+	<conf name="provided" visibility="public" />
+	<conf name="runtime" visibility="public" />
+	<conf name="test" visibility="private" extends="runtime" />
+	
+	<conf name="sources" visibility="public" />
+</configurations>

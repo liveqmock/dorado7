@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View layout="anchor" listener="spring:dorado.console.systemPropertyController#onReady">
+    <Property name="packages">console-utils-js</Property>
+    <FieldSet layoutConstraint="left:10;top:10">
+      <Property name="width">460</Property>
+      <Property name="height">180</Property>
+      <Property name="caption">${res.operatingSystem}</Property>
+      <Property name="collapseable">false</Property>
+      <Buttons/>
+      <Children>
+        <HtmlContainer>
+          <Property name="width">100%</Property>
+          <Property name="content">
+&lt;div class=&quot;container&quot;>
+&lt;table>
+&lt;tr>
+&lt;td style=&quot;width: 110px;&quot;>&lt;span class=&quot;label&quot; >${res.osName}:&lt;/span>&lt;/td>
+&lt;td style=&quot;width: 130px;&quot;>&lt;span class=&quot;content&quot;  id=&quot;os_name&quot;>&lt;/span>&lt;/td>
+&lt;td style=&quot;width: 120px;&quot;>&lt;span  class=&quot;label&quot; >${res.osVersion}:&lt;/span>&lt;/td>
+&lt;td style=&quot;width: 130px;&quot;>&lt;span class=&quot;content&quot;  id=&quot;os_version&quot;>&lt;/span>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span class=&quot;label&quot;>${res.osArch}:&lt;/span>&lt;/td>
+&lt;td>&lt;span class=&quot;content&quot; id=&quot;os_arch&quot;>&lt;/span>&lt;/td>
+&lt;td>&lt;span>${res.userName}:&lt;/span>&lt;/td>
+&lt;td>&lt;span id=&quot;user_name&quot;>&lt;/span>&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td>&lt;span class=&quot;label&quot;>${res.fileEncoding}:&lt;/span>&lt;/td>
+&lt;td>&lt;span class=&quot;content&quot; id=&quot;file_encoding&quot;>&lt;/span>&lt;/td>
+&lt;td>&lt;span class=&quot;content&quot; >${res.CPU}:&lt;/span>&lt;/td>
+&lt;td>&lt;span class=&quot;content&quot; id=&quot;CPU&quot;>&lt;/span>&lt;/td>
+&lt;/tr>
+&lt;/table>
+&lt;/div>
+</Property>
+        </HtmlContainer>
+      </Children>
+    </FieldSet>
+    <FieldSet layout="anchor" layoutConstraint="top:10;left:480">
+      <Property name="width">350</Property>
+      <Property name="height">180</Property>
+      <Property name="caption">${res.memoryInfo}</Property>
+      <Property name="collapseable">false</Property>
+      <Buttons/>
+      <Children>
+        <HtmlContainer layoutConstraint="left:0;top:0">
+          <Property name="width">100%</Property>
+          <Property name="content">&lt;div class=&quot;container&quot;>
+&lt;table>
+&lt;tr>
+&lt;td style=&quot;width: 180px;&quot;>&lt;span class=&quot;label&quot; >${res.totalMemory}:&lt;/span>&lt;/td>
+&lt;td style=&quot;width: 130px;&quot;>&lt;span class=&quot;content&quot;  id=&quot;totalMemory&quot;>&lt;/span>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span class=&quot;label&quot;>${res.freeMemory}:&lt;/span>&lt;/td>
+&lt;td>&lt;span class=&quot;content&quot; id=&quot;freeMemory&quot;>&lt;/span>&lt;/td>
+
+&lt;/tr>
+
+&lt;tr>
+&lt;td>&lt;span class=&quot;label&quot;>${res.maxMemory}:&lt;/span>&lt;/td>
+&lt;td>&lt;span class=&quot;content&quot; id=&quot;maxMemory&quot;>&lt;/span>&lt;/td>
+
+&lt;/tr>
+&lt;/table>
+&lt;/div>
+</Property>
+        </HtmlContainer>
+        <Container layout="anchor" layoutConstraint="top:130;left:0">
+          <Property name="width">300</Property>
+          <Button id="forceGCBtn" layoutConstraint="left:70">
+            <Property name="icon">url(>skin>common/icons.gif) -160px -60px
+</Property>
+          </Button>
+          <Button id="reloadBtn" layoutConstraint="left:20;anchorLeft:previous">
+            <Property name="icon">url(>skin>common/icons.gif) -280px -220px
+</Property>
+          </Button>
+        </Container>
+      </Children>
+    </FieldSet>
+    <FieldSet layoutConstraint="left:10;top:5;anchorTop:previous">
+      <Property name="width">820</Property>
+      <Property name="caption">${res.javaInfo}</Property>
+      <Property name="collapseable">false</Property>
+      <Property name="height">380</Property>
+      <Buttons/>
+      <Children>
+        <HtmlContainer>
+          <Property name="content">&lt;div class=&quot;container&quot;>
+&lt;table>
+&lt;tr>
+&lt;td>&lt;div width=&quot;110px&quot;  class=&quot;label&quot; >${res.javaVersion}:&lt;/div>&lt;/td>
+&lt;td>&lt;div  width=&quot;260px&quot; class=&quot;content&quot; id=&quot;java_version&quot; >&lt;/div>&lt;/td>
+&lt;td >&lt;div  width=&quot;110px&quot;  class=&quot;label&quot;  >${res.javaVendor}:&lt;/div>&lt;/td>
+&lt;td >&lt;div width=&quot;270px&quot; class=&quot;content&quot; id=&quot;java_vendor&quot; >&lt;/div>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td >&lt;span class=&quot;label&quot; >${res.javaHome}:&lt;/span>&lt;/td>
+&lt;td colspan=&quot;3&quot;>&lt;span class=&quot;content&quot;  id=&quot;java_home&quot;>&lt;/span>&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td >&lt;span class=&quot;label&quot; >${res.javaVmVersion}:&lt;/span>&lt;/td>
+&lt;td >&lt;span class=&quot;content&quot; id=&quot;java_vm_version&quot; >&lt;/span>&lt;/td>
+&lt;td >&lt;span  class=&quot;label&quot; >${res.javaVmVendor}:&lt;/span>&lt;/td>
+&lt;td >&lt;span class=&quot;content&quot; id=&quot;java_vm_vendor&quot;  >10.7.5&lt;/span>&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td >&lt;span class=&quot;label&quot; >${res.javaVmName}:&lt;/span>&lt;/td>
+&lt;td  colspan=&quot;3&quot;>&lt;span class=&quot;content&quot; id=&quot;java_vm_name&quot; >&lt;/span>&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td >&lt;span class=&quot;label&quot; >${res.classPath}:&lt;/span>&lt;/td>
+&lt;td  colspan=&quot;3&quot;>&lt;span class=&quot;content&quot; style=&quot;width: 600px;&quot; id=&quot;class_path&quot; >&lt;/span>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td >&lt;span class=&quot;label&quot; >${res.libraryPath}:&lt;/span>&lt;/td>
+&lt;td colspan=&quot;3&quot;>&lt;span class=&quot;content&quot; style=&quot;width: 600px;&quot;  id=&quot;library_path&quot;>&lt;/span>&lt;/td>
+&lt;/tr>
+&lt;/table>
+&lt;/div></Property>
+          <Property name="contentOverflowY">hidden</Property>
+        </HtmlContainer>
+      </Children>
+    </FieldSet>
+    <AjaxAction id="forceGCAction">
+      <Property name="service">dorado.console.systemPropertyController#doForceGC</Property>
+      <Property name="confirmMessage">${res.gcConfirmMessage}</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

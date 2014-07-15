@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Sketch Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var data = [];
+		for (var i = 0; i < 40; i++) {
+			data.push({
+				x: Math.floor(Math.random() * 25 * (Math.random() > 0.5 ? 1 : -1)),
+				y: Math.floor(Math.random() * 25 * (Math.random() > 0.5 ? 1 : -1))
+			});
+		}
+
+		var dataTypeScatterData = new dorado.EntityDataType({
+			name: "ScatterData",
+			propertyDefs: [
+				{ name: "x", label: "x" },
+				{ name: "y", label: "y" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeScatterData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: data,
+			dataType: "ScatterData"
+		});
+
+		var scatterChart = new dorado.widget.ofc.OpenFlashChart({
+			backgroundColor: "#FFFFFF",
+			title: {
+				"text": "X Y Distribution",
+				"style": "font-size: 14px; font-family: Verdana; text-align: center;"
+			},
+			xAxis: {
+				steps: 5,
+				min: -25,
+				max: 25
+			},
+			yAxis: {
+				steps: 5,
+				min: -25,
+				max: 25
+			},
+			elements: [{
+				$type: "ofc.Scatter",
+				dataSet: dataSet,
+				color: "#FFB900",
+				text: "Avg",
+				type: "line",
+				dotStyle: {
+					type: "SolidDot",
+					"dot-size": 4,
+					"halo-size": 2,
+					tip: "#val#"
+				},
+				bindingConfig: {
+					xProperty: "x",
+					yProperty: "y"
+				}
+			}]
+		});
+        view.addChild(scatterChart);
+
+		view.addChild(new dorado.widget.Button({
+			caption: "reloadData",
+			onClick: function() {
+				scatterChart.reload();
+			}
+		}));
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+	</body>
+</html>

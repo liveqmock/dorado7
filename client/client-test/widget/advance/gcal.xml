@@ -1,0 +1,572 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/'
+      xmlns:gCal='http://schemas.google.com/gCal/2005' xmlns:gd='http://schemas.google.com/g/2005'>
+    <id>http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full</id>
+    <updated>2011-11-28T07:49:03.000Z</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+    <title type='text'>Test</title>
+    <subtitle type='text'/>
+    <link rel='alternate' type='text/html'
+          href='http://www.google.com/calendar/embed?src=talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'/>
+    <link rel='http://schemas.google.com/g/2005#feed' type='application/atom+xml'
+          href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full'/>
+    <link rel='http://schemas.google.com/g/2005#batch' type='application/atom+xml'
+          href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/batch'/>
+    <link rel='self' type='application/atom+xml'
+          href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full?max-results=25'/>
+    <author>
+        <name>beanchx@gmail.com</name>
+        <email>beanchx@gmail.com</email>
+    </author>
+    <generator version='1.0' uri='http://www.google.com/calendar'>Google Calendar</generator>
+    <openSearch:totalResults>16</openSearch:totalResults>
+    <openSearch:startIndex>1</openSearch:startIndex>
+    <openSearch:itemsPerPage>25</openSearch:itemsPerPage>
+    <gCal:timezone value='Asia/Shanghai'/>
+    <gCal:timesCleaned value='0'/>
+    <gd:where valueString='上海'/>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tn985bec8gu9qb903g8mq1afmg
+        </id>
+        <published>2011-11-24T20:22:15.000Z</published>
+        <updated>2011-11-28T07:49:03.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>2111</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=dG45ODViZWM4Z3U5cWI5MDNnOG1xMWFmbWcgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tn985bec8gu9qb903g8mq1afmg'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tn985bec8gu9qb903g8mq1afmg/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-05T07:00:00.000+08:00' startTime='2011-12-05T06:00:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='7'/>
+        <gCal:uid value='tn985bec8gu9qb903g8mq1afmg@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/vmbhejkgl602mq3495kupr3eq8
+        </id>
+        <published>2011-11-24T16:24:51.000Z</published>
+        <updated>2011-11-28T07:43:31.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭12.11</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=dm1iaGVqa2dsNjAybXEzNDk1a3VwcjNlcTggdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/vmbhejkgl602mq3495kupr3eq8'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/vmbhejkgl602mq3495kupr3eq8/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-05T09:00:00.000+08:00' startTime='2011-12-05T08:00:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='4'/>
+        <gCal:uid value='vmbhejkgl602mq3495kupr3eq8@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/59n6q1ng7s84ucab46qrg20bu4
+        </id>
+        <published>2011-11-24T16:24:49.000Z</published>
+        <updated>2011-11-28T07:41:52.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭12.8-2</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=NTluNnExbmc3czg0dWNhYjQ2cXJnMjBidTQgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/59n6q1ng7s84ucab46qrg20bu4'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/59n6q1ng7s84ucab46qrg20bu4/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-05T07:30:00.000+08:00' startTime='2011-12-05T06:30:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='10'/>
+        <gCal:uid value='59n6q1ng7s84ucab46qrg20bu4@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tmpdsu3o0c88cah968udf8jiqo
+        </id>
+        <published>2011-11-28T07:34:45.000Z</published>
+        <updated>2011-11-28T07:38:24.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>测试3</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=dG1wZHN1M28wYzg4Y2FoOTY4dWRmOGppcW8gdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tmpdsu3o0c88cah968udf8jiqo'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tmpdsu3o0c88cah968udf8jiqo/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-11T06:00:00.000+08:00' startTime='2011-12-11T05:00:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='21'/>
+        <gCal:uid value='tmpdsu3o0c88cah968udf8jiqo@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/r9m7jnlbo91a3o1n5us15na7ts
+        </id>
+        <published>2011-11-24T20:21:54.000Z</published>
+        <updated>2011-11-28T07:36:06.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>·111</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=cjltN2pubGJvOTFhM28xbjV1czE1bmE3dHMgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/r9m7jnlbo91a3o1n5us15na7ts'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/r9m7jnlbo91a3o1n5us15na7ts/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-05T06:49:00.000+08:00' startTime='2011-12-05T05:30:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='2'/>
+        <gCal:uid value='r9m7jnlbo91a3o1n5us15na7ts@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/76hl3089a7buo27nss0bivmjpo
+        </id>
+        <published>2011-11-28T07:27:05.000Z</published>
+        <updated>2011-11-28T07:27:05.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>233</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=NzZobDMwODlhN2J1bzI3bnNzMGJpdm1qcG8gdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/76hl3089a7buo27nss0bivmjpo'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/76hl3089a7buo27nss0bivmjpo/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-17T08:00:00.000+08:00' startTime='2011-12-15T07:00:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='76hl3089a7buo27nss0bivmjpo@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/ojri6cfqc9pn7i9f1t6ur8ha04
+        </id>
+        <published>2011-11-25T08:34:12.000Z</published>
+        <updated>2011-11-25T08:34:12.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>C饿时2</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=b2pyaTZjZnFjOXBuN2k5ZjF0NnVyOGhhMDQgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/ojri6cfqc9pn7i9f1t6ur8ha04'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/ojri6cfqc9pn7i9f1t6ur8ha04/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-11-29' startTime='2011-11-28'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.transparent'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='ojri6cfqc9pn7i9f1t6ur8ha04@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/81rteg0ulde6tlfvqcn34856ig
+        </id>
+        <published>2011-11-24T20:22:00.000Z</published>
+        <updated>2011-11-24T20:22:03.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>2222</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=ODFydGVnMHVsZGU2dGxmdnFjbjM0ODU2aWcgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/81rteg0ulde6tlfvqcn34856ig'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/81rteg0ulde6tlfvqcn34856ig/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-05T07:00:00.000+08:00' startTime='2011-12-05T06:00:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='2'/>
+        <gCal:uid value='81rteg0ulde6tlfvqcn34856ig@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/bsskkh56kve423ql5bcgu6saag
+        </id>
+        <published>2011-11-24T16:24:22.000Z</published>
+        <updated>2011-11-24T20:17:29.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭11-30</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=YnNza2toNTZrdmU0MjNxbDViY2d1NnNhYWcgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/bsskkh56kve423ql5bcgu6saag'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/bsskkh56kve423ql5bcgu6saag/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-13T04:00:00.000+08:00' startTime='2011-11-30T03:00:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='bsskkh56kve423ql5bcgu6saag@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/olpqqiitkl6i5soic2rknf6ofg
+        </id>
+        <published>2011-11-24T16:25:04.000Z</published>
+        <updated>2011-11-24T20:09:50.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭12.5-2</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=b2xwcXFpaXRrbDZpNXNvaWMycmtuZjZvZmcgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/olpqqiitkl6i5soic2rknf6ofg'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/olpqqiitkl6i5soic2rknf6ofg/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-05T06:00:00.000+08:00' startTime='2011-12-05T04:30:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='olpqqiitkl6i5soic2rknf6ofg@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/r8dnj8kr0cgarat05b3nujln58
+        </id>
+        <published>2011-11-24T16:24:25.000Z</published>
+        <updated>2011-11-24T19:15:29.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭12-2</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=cjhkbmo4a3IwY2dhcmF0MDViM251amxuNTggdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/r8dnj8kr0cgarat05b3nujln58'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/r8dnj8kr0cgarat05b3nujln58/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-02T03:30:00.000+08:00' startTime='2011-12-02T02:30:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='r8dnj8kr0cgarat05b3nujln58@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/qrsg13bhkb6qap9vcf1rtrhuoo
+        </id>
+        <published>2011-11-24T16:24:39.000Z</published>
+        <updated>2011-11-24T19:15:00.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭11.28</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=cXJzZzEzYmhrYjZxYXA5dmNmMXJ0cmh1b28gdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/qrsg13bhkb6qap9vcf1rtrhuoo'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/qrsg13bhkb6qap9vcf1rtrhuoo/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-11-29' startTime='2011-11-28'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.transparent'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='qrsg13bhkb6qap9vcf1rtrhuoo@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tr7ocuh0lkf5qipsgnqkllkrjk
+        </id>
+        <published>2011-11-24T16:24:59.000Z</published>
+        <updated>2011-11-24T19:14:52.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭12.8</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=dHI3b2N1aDBsa2Y1cWlwc2ducWtsbGtyamsgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tr7ocuh0lkf5qipsgnqkllkrjk'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/tr7ocuh0lkf5qipsgnqkllkrjk/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-09' startTime='2011-12-08'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.transparent'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='tr7ocuh0lkf5qipsgnqkllkrjk@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/t38aalbhpb5511dbup66lekv74
+        </id>
+        <published>2011-11-24T16:24:56.000Z</published>
+        <updated>2011-11-24T19:14:45.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭12.5</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=dDM4YWFsYmhwYjU1MTFkYnVwNjZsZWt2NzQgdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/t38aalbhpb5511dbup66lekv74'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/t38aalbhpb5511dbup66lekv74/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-06' startTime='2011-12-05'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.transparent'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='t38aalbhpb5511dbup66lekv74@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/8ov74grj5dnrbopvcpoepct30o
+        </id>
+        <published>2011-11-24T16:25:02.000Z</published>
+        <updated>2011-11-24T19:14:00.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭12.10</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=OG92NzRncmo1ZG5yYm9wdmNwb2VwY3QzMG8gdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/8ov74grj5dnrbopvcpoepct30o'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/8ov74grj5dnrbopvcpoepct30o/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-10T03:30:00.000+08:00' startTime='2011-12-10T02:30:00.000+08:00'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.opaque'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='8ov74grj5dnrbopvcpoepct30o@google.com'/>
+    </entry>
+    <entry>
+        <id>
+            http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/ekbonvblmkfm3hsrqec0t7e738
+        </id>
+        <published>2011-11-24T16:24:27.000Z</published>
+        <updated>2011-11-24T19:13:50.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event'/>
+        <title type='text'>去全聚德吃烤鸭12.1-12.2</title>
+        <content type='text'/>
+        <link rel='alternate' type='text/html'
+              href='http://www.google.com/calendar/event?eid=ZWtib252Ymxta2ZtM2hzcnFlYzB0N2U3MzggdGFsY21xNXVldmFlajBjOTNodHI4aGNpcGdAZw'
+              title='alternate'/>
+        <link rel='self' type='application/atom+xml'
+              href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/ekbonvblmkfm3hsrqec0t7e738'/>
+        <author>
+            <name>Test</name>
+        </author>
+        <gd:comments>
+            <gd:feedLink
+                    href='http://www.google.com/calendar/feeds/talcmq5uevaej0c93htr8hcipg%40group.calendar.google.com/public/full/ekbonvblmkfm3hsrqec0t7e738/comments'/>
+        </gd:comments>
+        <gd:eventStatus value='http://schemas.google.com/g/2005#event.confirmed'/>
+        <gd:where valueString=''/>
+        <gd:who email='talcmq5uevaej0c93htr8hcipg@group.calendar.google.com'
+                rel='http://schemas.google.com/g/2005#event.organizer' valueString='Test'/>
+        <gd:when endTime='2011-12-03' startTime='2011-12-01'/>
+        <gd:transparency value='http://schemas.google.com/g/2005#event.transparent'/>
+        <gCal:anyoneCanAddSelf value='false'/>
+        <gCal:guestsCanInviteOthers value='true'/>
+        <gCal:guestsCanModify value='false'/>
+        <gCal:guestsCanSeeGuests value='true'/>
+        <gCal:sequence value='0'/>
+        <gCal:uid value='ekbonvblmkfm3hsrqec0t7e738@google.com'/>
+    </entry>
+</feed>

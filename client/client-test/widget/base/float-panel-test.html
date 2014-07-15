@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>FloatPanel</title>
+    <script type="text/javascript" src="../../include-all.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Float Panel</title>
+    <script type="text/javascript">
+        var view = new dorado.widget.View({ layout: "Anchor" });
+
+        var toolbar = new dorado.widget.ToolBar({
+            items: [
+                {
+                    caption: "显示居中FloatPanel",
+                    listener: {
+                        onClick: function(self) {
+                            panel1.show();
+                        }
+                    }
+                },
+                {
+                    caption: "显示右下角消息框",
+                    listener: {
+                        onClick: function(self) {
+                            panel2.show({
+                                anchorTarget: "body",
+                                align: "innerright",
+                                vAlign: "innerbottom",
+                                direction: "b2t"
+                            });
+                        }
+                    }
+                },
+				{
+                    caption: "Widget",
+                    listener: {
+                        onClick: function(self) {
+                            widget.show();
+                        }
+                    }
+                },
+                {
+                    caption: "Zoom Test",
+                    listener: {
+                        onClick: function(self) {
+                            zoomControl.show();
+                        }
+                    }
+                }
+            ]
+        });
+
+        view.addChild(toolbar);
+
+        var panel1 = new dorado.widget.FloatPanel("panel1");
+        panel1.set({
+            width: 400,
+            height: 300,
+            animateTarget: "#target1",
+            center: true,
+			caption: "Test",
+            //modal: true,
+			maximizeable: true,
+            children: [new dorado.widget.IFrame({
+                path: "http://www.baidu.com",
+                caption: "测试子组件"
+            })],
+            buttons: [new dorado.widget.Button({
+                caption: "确定",
+                width: 80,
+                listener: {
+                    onClick: function(){
+                        panel1.hide();
+                    }
+                }
+            }), new dorado.widget.Button({
+                caption: "取消",
+                width: 80,
+                listener: {
+                    onClick: function(){
+                        panel1.hide();
+                    }
+                }
+            })]
+        });
+        view.addChild(panel1);
+
+        var panel2 = new dorado.widget.FloatPanel("panel2");
+        panel2.set({
+            height: 120,
+            border: "curve",
+            caption: "系统消息",
+			//maximizeable: true,
+            icon: "del.gif",
+            animateType: "safeSlide",
+            closeable: true,
+            children: [new dorado.widget.HtmlContainer({
+                content: "只需要设置FloatPanel的动画类型已经显示位置参数就可以轻松的实现右下角的消息框。"
+            })]
+        });
+        view.addChild(panel2);
+
+		var html3 = new dorado.widget.HtmlContainer("html3");
+		html3.set("content", {
+			tagName: "LABEL",
+			content: "World World<br/>Hello Hello<br/>Hello Hello<br/>Hello Hello"
+		});
+
+        view.addChild(html3);
+
+        var zoomControl = new dorado.widget.FloatContainer({
+            showAnimateType: "zoom",
+            width: 400,
+            height: 300,
+            left: 100,
+            top: 100,
+            style: {
+                background: "#ddd"
+            }
+        });
+
+        var container = new dorado.widget.Container({
+            width: 600,
+            height: 400,
+            style: {
+                background: "yellow"
+            },
+            children: [zoomControl]
+        });
+
+        zoomControl.set("renderTo", panel1);
+
+		var widget = new dorado.widget.desktop.Widget({
+			control: html3,
+			center: true
+		});
+
+        view.addChild(container);
+
+        $(document).ready(function() {
+            view.render(document.body);
+        });
+    </script>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+    </style>
+</head>
+<body style="margin: 0;padding: 0;overflow: hidden;">
+</body>
+</html>

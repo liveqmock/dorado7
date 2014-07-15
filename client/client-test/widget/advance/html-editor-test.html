@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Rich Editor Page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="../../include-all.js"></script>
+    <script type="text/javascript" src="common-types.js"></script>
+	<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Dock" });
+
+        var dataSet = new dorado.widget.DataSet({
+			//dataProvider: new dorado.AjaxDataProvider("phones.js"),
+            loadMode: "never",
+			dataType: "Phone",// Phone的声明实际位于data/common-types.js中，通过上面的$import("grid,common-types")引入。
+            data: [{
+                comment: "test"
+            }, {
+                comment: "test2"
+            }]
+		});
+
+        dorado.htmleditor.registerMode("custom", [
+            'Bold','Italic','Underline','StrikeThrough','Superscript','Subscript','RemoveFormat','|',
+            'JustifyLeft','JustifyCenter','JustifyRight','JustifyJustify',"Link","Unlink"
+        ]);
+
+		var richEditor = new dorado.widget.HtmlEditor({
+            dataSet: dataSet,
+            property: "comment",
+            height: 300,
+			style: {
+				border: "1px solid gray"
+			}
+            //,mode: 'custom'
+		});
+
+        var editor = new dorado.widget.TextEditor({
+            dataSet: dataSet,
+            property: "comment"
+        });
+
+        var dialog = new dorado.widget.FloatPanel({
+            caption: "test",
+            width: 600,
+            left: 200,
+            top: 50,
+            //modal: true,
+            children: [{
+                $type: "TabControl",
+                height: 500,
+                tabs: [{
+                    $type: "Control",
+                    caption: "test",
+                    control: {
+                        $type: "FieldSet",
+                        children: [{
+                            $type: "AutoForm",
+                            cols: "*",
+                            elements: [
+                                {
+                                    property: "alignment",
+                                    label: "对齐方式",
+                                    type: "text",
+                                    editor: richEditor
+                                },
+                                editor
+                            ]
+                        }]
+                    }
+                }]
+            }],
+            showAnimateType: "none",
+            buttons: [new dorado.widget.Button({
+                caption: "确定",
+                width: 80,
+                onClick: function() {
+                    dataSet.set("readOnly", true);
+                }
+            }), new dorado.widget.Button({
+                caption: "取消",
+                width: 80,
+                onClick: function() {
+                    dataSet.getData("#").cancel();
+                    richEditor.refresh();
+                    dialog.hide();
+                }
+            })]
+        });
+
+        view.addChild(new dorado.widget.Button({
+            caption: "show",
+            onClick: function() {
+                dialog.show();
+            }
+        }));
+
+		$(document).ready(function() {
+            view.render(document.body);
+		});
+	</script>
+</head>
+<body style="margin: 0;padding: 0;">
+</body>
+</html>

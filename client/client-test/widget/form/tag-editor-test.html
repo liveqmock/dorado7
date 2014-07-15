@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>TagEditor Test Page</title>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({ layout: "Anchor" });
+			
+			var dateType = new dorado.EntityDataType("Test");
+			dateType.addPropertyDef(new dorado.PropertyDef("tags"));
+			
+			var dataSet = new dorado.widget.DataSet({
+				data: { tags: ["Ruby"] },
+				dataType: dateType
+			});
+            view.addChild(dataSet);
+            
+            var editor = new dorado.widget.TagEditor({
+				dataSet: dataSet,
+				property: "tags", 
+				blankText: "blank text",
+				acceptUnknownTag: false,
+            	availableTags: ["Basic", "C", "C++", "Pascal", "PowerScript", "Java", "Javascript"],
+            	width: 260,
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(editor);
+			
+			var editor = new dorado.widget.TagEditor({
+				dataSet: dataSet,
+				property: "tags", 
+            	width: 260,
+            	style: {
+            		"margin-bottom": "5px"
+            	}
+            });
+            view.addChild(editor);
+            
+            $(document).ready(function() {
+            	view.render(document.getElementById("viewMain"));
+            });
+        </script>
+    </head>
+    <body margin="20px">
+    	<div style="width: 600px; height: 800px; overflow: scroll">
+			<div style="width: 600px; height: 100px;"></div>
+			<div id="viewMain"></div>
+			<div style="width: 600px; height: 100px;"></div>
+    	</div>
+    </body>
+</html>

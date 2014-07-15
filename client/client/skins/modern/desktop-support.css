@@ -1,0 +1,160 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.fa {
+  text-align: center;
+  font-size: 14px;
+}
+.d-modern-scroller .slider {
+  background: #000000;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.d-modern-scroller-expand .track {
+  background: #000000;
+  opacity: 0.05;
+  filter: alpha(opacity=5);
+}
+.d-modern-scroller-expand .slider {
+  opacity: 0.25;
+  filter: alpha(opacity=25);
+}
+.d-task-group {
+  position: absolute;
+}
+.d-task-group-icon.d-daemon-task-indicator .icon > .spinner {
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #15a4fa;
+  border-left-color: #15a4fa;
+  border-radius: 50%;
+  -webkit-animation: loading-icon 400ms linear infinite;
+  -moz-animation: loading-icon 400ms linear infinite;
+  -ms-animation: loading-icon 400ms linear infinite;
+  -o-animation: loading-icon 400ms linear infinite;
+}
+.d-task-group-icon.d-main-task-indicator .icon > .spinner {
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #15a4fa;
+  border-left-color: #15a4fa;
+  border-radius: 50%;
+  -webkit-animation: loading-icon 400ms linear infinite;
+  -moz-animation: loading-icon 400ms linear infinite;
+  -ms-animation: loading-icon 400ms linear infinite;
+  -o-animation: loading-icon 400ms linear infinite;
+}
+.d-task-group-panel .task-list {
+  padding: 3px 0 3px 10px;
+  margin: 0;
+  list-style: none;
+}
+.d-task-group-panel .task-list .task-item {
+  width: 100%;
+}
+.d-task-group-panel .task-list .task-item .interval-span {
+  float: right;
+}
+.d-task-group-panel.d-daemon-task-indicator {
+  color: #000000;
+  background-color: rgba(251, 251, 251, 0.8);
+  padding: 4px;
+  width: 200px;
+  margin: 0;
+  overflow: hidden;
+}
+.d-task-group-panel.d-daemon-task-indicator .icon {
+  display: none;
+}
+.d-task-group-panel.d-main-task-indicator {
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 8px 8px 8px 46px;
+  width: 300px;
+  margin: 0;
+  overflow: hidden;
+}
+.d-task-group-panel.d-main-task-indicator .icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  margin-top: -12px;
+}
+.d-task-group-panel.d-main-task-indicator .icon > .spinner {
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #15a4fa;
+  border-left-color: #15a4fa;
+  border-radius: 50%;
+  -webkit-animation: loading-icon 400ms linear infinite;
+  -moz-animation: loading-icon 400ms linear infinite;
+  -ms-animation: loading-icon 400ms linear infinite;
+  -o-animation: loading-icon 400ms linear infinite;
+}
+.d-dragging-indicator {
+  cursor: pointer;
+  position: absolute;
+}
+.d-dragging-indicator .icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.d-dragging-indicator .accept-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 200%;
+  color: #07c181;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.d-dragging-indicator .accept-icon:before {
+  content: "\f00c";
+}
+.d-dragging-indicator .denied-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 200%;
+  color: #ff4a4f;
+}
+.d-dragging-indicator .denied-icon:before {
+  content: "\f05e";
+}
+.d-dragging-indicator .content-container {
+  position: absolute;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.d-dragging-indicator .default-content {
+  width: 50px;
+  height: 28px;
+  background-color: #ff8040;
+}

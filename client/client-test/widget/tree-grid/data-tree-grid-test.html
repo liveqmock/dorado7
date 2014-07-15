@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			var departmentsDataType = getDepartmentsDataType();
+			
+			var json = Test.getJSON(Test.ROOT + "resource/hr-data.js");
+			var departments = new dorado.EntityList(json, view.dataTypeRepository, departmentsDataType);
+			var dataSet1 = new dorado.widget.DataSet({
+				id: "dataSet1",
+				data: departments
+			});
+			view.addChild(dataSet1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>treegrid1</p>"
+			}));
+			
+			var treegrid1 = new dorado.widget.DataTreeGrid({
+				id: "treegrid1",
+				width: 400,
+				height: 230,
+				dataSet: view.getComponentReference("dataSet1"),
+				treeColumn: "id",
+				draggable: true,
+				dragTags: "node",
+				droppable: true,
+				droppableTags: "node",
+				dropMode: "onOrInsertItems",
+				bindingConfigs: [{
+					name: "department",
+					childrenProperty: "departments",
+					labelProperty: "name",
+					recursive: true,
+					hasChild: true,
+					defaultExpanded: true,
+					childBindingConfigs: [{
+						name: "employee",
+						childrenProperty: "employees",
+						labelProperty: "name",
+						hasChild: false
+					}]
+				}],
+				columns: [{
+					name: "id",
+					property: "id",
+					width: 200
+				}, {
+					property: "name",
+					width: 120,
+					summaryType: "count"
+				}]
+			});
+			view.addChild(treegrid1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>treegrid2</p>"
+			}));
+			
+			var treegrid2 = new dorado.widget.DataTreeGrid({
+				id: "treegrid2",
+				scrollMode: "viewport",
+				width: 600,
+				height: 200,
+				dataSet: view.getComponentReference("dataSet1"),
+				treeColumn: "id",
+				draggable: true,
+				dragTags: "node",
+				droppable: true,
+				droppableTags: "node",
+				dropMode: "onOrInsertItems",
+				bindingConfigs: [{
+					name: "department",
+					childrenProperty: "departments",
+					labelProperty: "name",
+					recursive: true,
+					hasChild: true,
+					defaultExpanded: true,
+					childBindingConfigs: [{
+						name: "employee",
+						childrenProperty: "employees",
+						labelProperty: "name",
+						hasChild: false
+					}]
+				}],
+				columns: [{
+					name: "id",
+					property: "id",
+					width: 200
+				}, {
+					property: "name",
+					width: 120,
+					summaryType: "count"
+				}]
+			});
+			view.addChild(treegrid2);
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+				document.title = new Date() - s;
+			});
+		</script>
+	</head>
+	<body></body>
+</html>

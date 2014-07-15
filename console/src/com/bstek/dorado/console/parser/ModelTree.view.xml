@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Model>
+    <DataType name="Node" matchType="com.bstek.dorado.console.parser.Node">
+      <Property name="userData">
+        <Entity/>
+      </Property>
+      <Property name="creationType">com.bstek.dorado.console.parser.Node</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="type">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="parser">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="component">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="properties">
+        <Property name="dataType">[KeyValue]</Property>
+      </PropertyDef>
+      <PropertyDef name="children">
+        <Property name="dataType">[Node]</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="KeyValue" matchType="com.bstek.dorado.console.parser.Node$KeyValue">
+      <Property name="creationType">com.bstek.dorado.console.parser.Node$KeyValue</Property>
+      <PropertyDef name="key">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="value">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dataSetModel">
+      <Property name="dataType">[Node]</Property>
+      <Property name="dataProvider">dorado.console.parserTree#getModelNodes</Property>
+    </DataSet>
+    <SplitPanel id="splitPanel1">
+      <Property name="width">100%</Property>
+      <Property name="position">250</Property>
+      <MainControl>
+        <Container id="container1">
+          <AutoForm layoutConstraint="top">
+            <Property name="dataSet">dataSetModel</Property>
+            <Property name="dataPath">!CURRENT_NODE</Property>
+            <Property name="cols">*</Property>
+            <AutoFormElement>
+              <Property name="name">name</Property>
+              <Property name="property">name</Property>
+              <Editor>
+                <DataLabel/>
+              </Editor>
+            </AutoFormElement>
+            <AutoFormElement>
+              <Property name="name">component</Property>
+              <Property name="property">component</Property>
+              <Editor>
+                <DataLabel/>
+              </Editor>
+            </AutoFormElement>
+            <AutoFormElement layoutConstraint="colSpan:2">
+              <Property name="name">parser</Property>
+              <Property name="property">parser</Property>
+              <Editor>
+                <DataLabel/>
+              </Editor>
+            </AutoFormElement>
+          </AutoForm>
+          <DataGrid id="dataGridModel" layoutConstraint="center">
+            <Property name="dataSet">dataSetModel</Property>
+            <Property name="dataPath">!CURRENT_NODE.properties</Property>
+            <Property name="autoCreateColumns">false</Property>
+            <Property name="stretchColumnsMode">stretchableColumns</Property>
+            <Property name="readOnly">true</Property>
+            <DataColumn>
+              <Property name="name">key</Property>
+              <Property name="width">150</Property>
+              <Property name="readOnly">true</Property>
+              <Property name="sortState">asc</Property>
+              <Property name="property">key</Property>
+            </DataColumn>
+            <DataColumn>
+              <Property name="name">value</Property>
+              <Property name="width">*</Property>
+              <Property name="readOnly">true</Property>
+              <Property name="property">value</Property>
+            </DataColumn>
+          </DataGrid>
+        </Container>
+      </MainControl>
+      <SideControl>
+        <DataTree id="treeModel">
+          <Property name="height">100%</Property>
+          <Property name="width">100%</Property>
+          <Property name="dataSet">dataSetModel</Property>
+          <Property name="currentNodeDataPath">CURRENT_NODE</Property>
+          <BindingConfigs>
+            <BindingConfig>
+              <Property name="labelProperty">name</Property>
+              <Property name="recursive">true</Property>
+              <Property name="childrenProperty">children</Property>
+            </BindingConfig>
+          </BindingConfigs>
+        </DataTree>
+      </SideControl>
+    </SplitPanel>
+  </View>
+</ViewConfig>

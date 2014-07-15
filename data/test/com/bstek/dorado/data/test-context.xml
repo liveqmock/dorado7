@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<!-- DataConfig -->
+	<bean parent="dorado.dataConfigLoader">
+		<property name="configLocations">
+			<list merge="true">
+				<value>com/bstek/dorado/data/config/xml/test-types.xml</value>
+				<value>com/bstek/dorado/data/config/xml/hr-types.xml</value>
+				<value>com/bstek/dorado/data/config/xml/providers.xml</value>
+				<value>com/bstek/dorado/data/config/xml/resolvers.xml</value>
+			</list>
+		</property>
+	</bean>
+</beans>

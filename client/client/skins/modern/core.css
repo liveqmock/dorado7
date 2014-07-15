@@ -1,0 +1,138 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+*:focus {
+  outline: none;
+}
+.d-rendering *,
+.d-rendering *:before,
+.d-rendering *:after {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+html,
+body {
+  height: 100%;
+}
+body,
+input,
+textarea,
+button {
+  font-size: 9pt;
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  color: #000000;
+  background-color: #ffffff;
+}
+.d-shadow-drop {
+  -webkit-box-shadow: 8px 8px 15px 0 rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 8px 8px 15px 0 rgba(0, 0, 0, 0.8);
+  box-shadow: 8px 8px 15px 0 rgba(0, 0, 0, 0.8);
+}
+.d-shadow-sides {
+  -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
+}
+.d-shadow-frame {
+  -webkit-box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.8);
+}
+.d-modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  opacity: 0.1;
+  filter: alpha(opacity=10);
+  background: #000000;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}
+.d-modal-mask-transparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  background: #ffffff;
+}
+.d-animate-zoom-proxy {
+  position: absolute;
+  left: -99999px;
+  top: -99999px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  box-sizing: border-box;
+  background-color: #d9d9d9;
+}
+@-webkit-keyframes loading-icon {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes loading-icon {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes loading-icon {
+  0% {
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-ms-keyframes loading-icon {
+  0% {
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading-icon {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Pie Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypePieData = new dorado.EntityDataType({
+			name: "PieData",
+			propertyDefs: [
+				{ name: "color", label: "Color" },
+				{ name: "value", label: "Value" },
+				{ name: "label", label: "Label" },
+				{ name: "text", label: "Text" }
+			]
+		});
+		$dataTypeRepository.register(dataTypePieData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [{
+				value: 9000,
+				label: "AU",
+				text: "Australia"
+			}, {
+				value: 66000,
+				label: "USA",
+				text: "USA"
+			}, {
+				value: 39000,
+				label: "UK",
+				text: "United Kingdom"
+			}, {
+				value: 3000,
+				label: "JP",
+				text: "Japan"
+			}, {
+				value: 23000,
+				label: "EU",
+				text: "Europe"
+			}],
+			dataType: "PieData"
+		});
+
+		var pieChart = new dorado.widget.ofc.OpenFlashChart({
+			legend: {
+				visible: true,
+				border: true,
+				position: "right",
+				shadow: true,
+				backgroundColor: "#fefefe"
+			},
+			width: 600,
+			height: 400,
+			backgroundColor: "#ffffff",
+			title: {
+				"text": "Sales by Region",
+				"style": "font-size: 14px; font-family: Verdana; text-align: center;"
+			},
+			elements: [{
+				$type: "ofc.Pie",
+				dataSet: dataSet,
+				toolTip: "#label# $#val#<br>#percent#",
+				radius: 130,
+				highlight: "alpha",
+				//animate: true,
+				gradientFill: true,
+				alpha: 0.5,
+				noLabels: false,
+				bindingConfig: {
+					valueProperty: "value",
+					labelProperty: "label",
+					textProperty: "label"
+				},
+				colors: ["#ff0000","#00aa00","#0000ff","#ff9900","#ff00ff"],
+                listener: {
+                    onClick: function() {
+                        alert(456789);
+                    }
+                }
+			}]
+		});
+        view.addChild(pieChart);
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+	</body>
+</html>

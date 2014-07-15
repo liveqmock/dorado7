@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Line Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypeLineData = new dorado.EntityDataType({
+			name: "LineData",
+			propertyDefs: [
+				{ name: "value", label: "Value" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeLineData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [{ value: -0.10779426840599626 },
+				{ value: -0.38939261727500707 },
+				{ value: -0.38415059261024 },
+				{ value: -0.27390977879986167 },
+				{ value: -0.1327568219276145 },
+				{ value: -0.34341896092519164 },
+				{ value: -0.25838695210404694 },
+				{ value: -0.41786853468511254 },
+				{ value: -0.08375733660068363 },
+				{ value: -0.09254560817498714 },
+				{ value: -0.3269320297986269 },
+				{ value: -0.2233069846406579 },
+				{ value: -0.03767049254383892 },
+				{ value: -0.1121860935818404 },
+				{ value: -0.3004235193366185 },
+				{ value: -0.38891427440103143 },
+				{ value: -0.22359759453684092 },
+				{ value: -0.2905742225702852 },
+				{ value: -0.3238089760998264 },
+				{ value: -0.47612029558513314 },
+				{ value: -0.36275822785682976 },
+				{ value: -0.4515881381230429 },
+				{ value: -0.3084393839817494 },
+				{ value: -0.2340097192209214 },
+				{ value: -0.24491682136431336 },
+				{ value: -0.2539299026830122 },
+				{ value: -0.1444699332350865 },
+				{ value: -0.28056544659193605 },
+				{ value: -0.2281473783077672 },
+				{ value: -0.3319015878951177 }],
+			dataType: "LineData"
+		});
+
+		var dataSet2 = new dorado.widget.DataSet({
+			data: [{ value: 0.10779426840599626 },
+				{ value: 0.38939261727500707 },
+				{ value: 0.38415059261024 },
+				{ value: 0.27390977879986167 },
+				{ value: 0.1327568219276145 },
+				{ value: 0.34341896092519164 },
+				{ value: 0.25838695210404694 },
+				{ value: 0.41786853468511254 },
+				{ value: 0.08375733660068363 },
+				{ value: 0.09254560817498714 },
+				{ value: 0.3269320297986269 },
+				{ value: 0.2233069846406579 },
+				{ value: 0.03767049254383892 },
+				{ value: 0.1121860935818404 },
+				{ value: 0.3004235193366185 },
+				{ value: 0.38891427440103143 },
+				{ value: 0.22359759453684092 },
+				{ value: 0.2905742225702852 },
+				{ value: 0.3238089760998264 },
+				{ value: 0.47612029558513314 },
+				{ value: 0.36275822785682976 },
+				{ value: 0.4515881381230429 },
+				{ value: 0.3084393839817494 },
+				{ value: 0.2340097192209214 },
+				{ value: 0.24491682136431336 },
+				{ value: 0.2539299026830122 },
+				{ value: 0.1444699332350865 },
+				{ value: 0.28056544659193605 },
+				{ value: 0.2281473783077672 },
+				{ value: 0.3319015878951177 }],
+			dataType: "LineData"
+		});
+
+		var lineChart = new dorado.widget.ofc.OpenFlashChart({
+			title: {
+				"text": "Relative Performance",
+				"style": "font-size: 14px; font-family: Verdana; text-align: center;"
+			}
+		});
+        view.addChild(lineChart);
+
+		var area = new dorado.widget.TextArea({
+			id: "editor2",
+			blankText: "Blank Text 456",
+			width: 700,
+			height: 300
+		});
+
+		view.addChild(new dorado.widget.Button({
+			caption: "reloadData",
+			onClick: function() {
+				var text = area.get("text");
+				lineChart.reload(text);
+			}
+		}));
+
+		view.addChild(area);
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

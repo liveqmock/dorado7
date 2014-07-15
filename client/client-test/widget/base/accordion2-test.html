@@ -1,0 +1,1527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="../../include-all.js"></script>
+<script language="javascript" type="text/javascript">
+jQuery(document).ready(function() {
+    try {
+        var v = new dorado.widget.View({
+            "id":"viewMain",
+            "name":"main.MainAccordion",
+            "listener":{
+                "onCreate":(function(self, arg) {
+                    var view = self;
+                    var openTabMode = "M";
+                    self.$getOpenTabMode = function() {
+                        return openTabMode;
+                    }
+
+                    self.$openTab = function(config) {
+                        if (!config) {
+                            return;
+                        }
+                        var tabConfig = config.tab;
+                        if (!tabConfig) {
+                            dorado.MessageBox.alert("必须指定要打开标签的配置");
+                            return;
+                        }
+                        if (!tabConfig || "object" != (typeof tabConfig)) {
+                            dorado.MessageBox.alert("必须指定打开的Tab页的配置集");
+                            return;
+                        }
+                        tabConfig.$type = "IFrame";
+                        if (!tabConfig.name && !tabConfig.caption) {
+                            dorado.MessageBox.alert("必须指定标签的名称");
+                        }
+                        if (!tabConfig.caption) {
+                            tabConfig.caption = tabConfig.name;
+                        }
+                        if (!tabConfig.name) {
+                            tabConfig.name = tabConfig.caption;
+                        }
+                        if (!tabConfig.closeable) {
+                            tabConfig.closeable = true;
+                        }
+                        var index = config.index;
+
+                        var tabControlWorkspace = view.id("tabControlWorkspace");
+
+                        if ("S" == self.$getOpenTabMode()) {
+                            tabControlWorkspace.removeAllTabs();
+                        }
+
+                        if (!index) {
+                            index = tabControlWorkspace.get("tabs").size;
+                        }
+                        var removeOld = config.removeOld || "S" == self.$getOpenTabMode();
+                        var oldTab = tabControlWorkspace.getTab(tabConfig.name);
+                        if (!oldTab) {
+                            tabControlWorkspace.addTab(tabConfig, index);
+                            return;
+                        }
+                        if (removeOld) {
+                            tabControlWorkspace.removeTab(tab);
+                            tabControlWorkspace.addTab(tabConfig, index);
+                            return;
+                        }
+
+                        var refreshOld = config.refreshOld;
+                        if (refreshOld) {
+                            oldTab.set("path", tabConfig.path);
+                        }
+                        tabControlWorkspace.set("currentTab", oldTab);
+
+                    }
+                }),
+                "onReady":(function(self, arg) {
+                    var ds = this.id("dataSetMenuResource");
+                    ds.set("parameter", {parentId:0});
+                    ds.flush();
+                    var menuResources = ds.queryData();
+                    var accordionMenu = this.id("accordionMenu");
+                    accordionMenu.$addSections([{ name: "test" }, { name: "test" }]);
+                })
+            }
+        });
+
+        function f(v) {
+            v.set("children", [
+                {
+                    "$type":"DataSet",
+                    "dataProvider":dorado.DataProvider.create("bdf.main.menuProvider#loadMenus"),
+                    "dataType":"v:sTiPZxZaDR$[dataTypeMenuResource]",
+                    "id":"dataSetMenuResource"
+                },
+                {
+                    "$type":"HtmlContainer",
+                    "height":"42",
+                    "id":"htmlContainerHeader",
+                    "layout":{
+                        "$type":"Anchor"
+                    },
+                    "layoutConstraint":{
+                        "type":"top"
+                    },
+                    "style":"background:url(/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/page-banner-bg.gif)",
+                    "children":[
+                        {
+                            "$type":"HtmlContainer",
+                            "content":"<img src=\"dorado/res/com/bstek/bdf/d7/images/bdf-logo.png\">",
+                            "layoutConstraint":{
+                                "left":"8",
+                                "top":"8"
+                            }
+                        },
+                        {
+                            "$type":"HtmlContainer",
+                            "height":"25",
+                            "id":"htmlContainerInfo",
+                            "layoutConstraint":{
+                                "bottom":"3",
+                                "right":"200",
+                                "anchorRight":"container"
+                            },
+                            "width":"200"
+                        },
+                        {
+                            "$type":"Menu",
+                            "id":"menuSystem",
+                            "items":[
+                                {
+                                    "caption":"查看消息",
+                                    "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/email.png",
+                                    "listener":{
+                                        "onClick":(function(self, arg) {
+                                            this.$openTab({tab:{path : "message.ShowShortMessages.d",name : "查看短消息"},refreshOld : true});
+                                        })
+                                    }
+                                },
+                                {
+                                    "caption":"发送消息",
+                                    "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/email_go.png",
+                                    "listener":{
+                                        "onClick":(function(self, arg) {
+                                            this.id("$dialogWriteMessage").show();
+                                        })
+                                    }
+                                },
+                                {
+                                    "$type":"Separator"
+                                },
+                                {
+                                    "caption":"切换桌面",
+                                    "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/house_go.png",
+                                    "listener":{
+                                        "onClick":(function(self, arg) {
+                                            dorado.MessageBox.confirm("您真的要切换桌面吗?", function() {
+                                                window.location.href = '/bdf-dorado7/main.MainPageStyleSelector.d'
+                                            })
+                                        })
+                                    }
+                                },
+                                {
+                                    "caption":"退出系统",
+                                    "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/door_in.png",
+                                    "listener":{
+                                        "onClick":(function(self, arg) {
+                                            dorado.MessageBox.confirm("您真的要退出吗?", function() {
+                                                window.location.href = '/bdf-dorado7/logout'
+                                            })
+                                        })
+                                    }
+                                },
+                                {
+                                    "caption":"修改密码",
+                                    "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/cup.png",
+                                    "listener":{
+                                        "onClick":(function(self, arg) {
+                                            var view = this;
+                                            var dialogChangePassword = view.id("dialogChangePassword");
+                                            dialogChangePassword.show();
+                                        })
+                                    }
+                                }
+                            ],
+                            "modalType":"dark"
+                        },
+                        {
+                            "$type":"HtmlContainer",
+                            "id":"htmlContainerMenu",
+                            "layoutConstraint":{
+                                "bottom":"20",
+                                "right":"20"
+                            },
+                            "width":"500",
+                            "listener":{
+                                "onReady":(function(self, arg) {
+                                    var view = this;
+                                    var menuSystem = view.id("menuSystem");
+                                    var menuItems = menuSystem.get("items");
+                                    var iconsContainer = $create("DIV");
+                                    iconsContainer.align = "right";
+                                    menuItems.each(function(mi) {
+                                        if ("dorado.widget.menu.Separator" == mi.constructor.className) {
+                                            return;
+                                        }
+                                        var icon = $create("IMG");
+                                        icon.src = mi.get("icon");
+                                        icon.title = mi.get("caption");
+                                        icon.onclick = function() {
+                                            mi.onClick.call(mi, arguments);
+                                        }
+                                        icon.style.cursor = "pointer";
+                                        var separator = $create("SPAN");
+                                        separator.innerHTML = "&nbsp;&nbsp;";
+                                        iconsContainer.appendChild(icon);
+                                        iconsContainer.appendChild(separator);
+                                    });
+                                    self.getDom().appendChild(iconsContainer);
+                                })
+                            }
+                        }
+                    ]
+                },
+                {
+                    "$type":"SplitPanel",
+                    "id":"splitPanelMain",
+                    "layoutConstraint":{
+                        "type":"center"
+                    },
+                    "mainControl":{
+                        "$type":"TabControl",
+                        "height":"100%",
+                        "id":"tabControlWorkspace",
+                        "showMenuButton":true,
+                        "width":"100%"
+                    },
+                    "position":200,
+                    "sideControl":{
+                        "$type":"Accordion",
+                        "id":"accordionMenu",
+                        "listener":{
+                            "onCurrentSectionChange":(function(self, arg) {
+                                var activeSection = self.get("currentSection");
+
+                                var treeControl = activeSection.get("control");
+                                if (null != treeControl) {
+                                    return;
+                                }
+                                treeControl = new dorado.widget.Tree();
+                                activeSection.set("control", treeControl);
+                            }),
+                            "onCreate":(function(self, arg) {
+                                self.$addSections = function(menuResources, removeOld) {
+                                    if (true == removeOld) {
+                                        self.clearSections();
+                                    }
+                                    menuResources.each(function(menuResource) {
+                                        var name = menuResource.name;
+                                        var section = new dorado.widget.Section({
+                                            caption : name,
+                                            userData : menuResource
+                                        });
+                                        self.addSection(section);
+                                    });
+
+                                }
+
+                            })
+                        }
+                    }
+                },
+                {
+                    "$type":"Panel",
+                    "height":"22",
+                    "id":"panelStatus",
+                    "layoutConstraint":{
+                        "type":"bottom"
+                    },
+                    "showCaptionBar":false,
+                    "width":"100%",
+                    "children":[
+                        {
+                            "$type":"HtmlContainer",
+                            "layoutConstraint":{
+                                "type":"right"
+                            },
+                            "width":"10"
+                        },
+                        {
+                            "$type":"Label",
+                            "id":"$messageIndicator",
+                            "layoutConstraint":{
+                                "type":"right"
+                            },
+                            "style":"cursor:pointer",
+                            "text":"查询短消息",
+                            "listener":{
+                                "onClick":(function(self, arg) {
+                                    this.$openTab({tab:{path : "message.ShowShortMessages.d",name : "查看短消息"},refreshOld : true});
+                                }),
+                                "onCreate":(function(self, arg) {
+                                    self.$onUnreadMessageCountChanged = function(unreadMessageCount) {
+                                        if (0 < unreadMessageCount) {
+                                            self.set("text", "您有[" + unreadMessageCount + "]条短消息");
+                                        } else {
+                                            self.set("text", "暂无短消息");
+                                        }
+                                    };
+                                })
+                            }
+                        },
+                        {
+                            "$type":"Label",
+                            "layoutConstraint":{
+                                "type":"left"
+                            },
+                            "text":"当前登录人:[admin]"
+                        },
+                        {
+                            "$type":"HtmlContainer",
+                            "layoutConstraint":{
+                                "type":"right"
+                            },
+                            "width":"10"
+                        },
+                        {
+                            "$type":"HtmlContainer",
+                            "content":"查询代办任务",
+                            "id":"$taskCountIndicator",
+                            "layoutConstraint":{
+                                "type":"right"
+                            },
+                            "style":"cursor:pointer",
+                            "width":"120px",
+                            "listener":{
+                                "onClick":(function(self, arg) {
+                                    this.$openTab({tab:{path : "jbpm4.TaskList.d",name : "查看代办任务"},refreshOld : true});
+                                }),
+                                "onCreate":(function(self, arg) {
+                                    self.$onTaskCountChanged = function(taskCount) {
+                                        var tip = "<font color=\"red\">您有[" + taskCount + "]条待办任务</font>";
+                                        self.getDom().innerHTML = tip;
+                                        if (0 < taskCount) {
+                                            self.set("style", {cursor: "pointer"});
+                                        } else {
+                                            self.set("style", {cursor: "default"});
+                                        }
+                                    };
+                                })
+                            }
+                        }
+                    ]
+                },
+                {
+                    "$type":"DataSet",
+                    "dataProvider":dorado.DataProvider.create("bdf.deptManagerPR#findDepts"),
+                    "dataType":"v:DU4tsxFdxd$[dataTypeDept]",
+                    "id":"$dataSetDept"
+                },
+                {
+                    "$type":"DataSet",
+                    "dataProvider":dorado.DataProvider.create("bdf.shortMessagePR#getShortMessage"),
+                    "dataType":"v:DU4tsxFdxd$dataTypeShortMessage",
+                    "id":"dataSetShortMessage",
+                    "loadMode":"manual",
+                    "data":null
+                },
+                {
+                    "$type":"Dialog",
+                    "buttons":[
+                        {
+                            "$type":"Button",
+                            "caption":"上一步",
+                            "hideMode":"layout",
+                            "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/door_out.png",
+                            "id":"$buttonPrev",
+                            "listener":{
+                                "onClick":(function(self, arg) {
+
+//alert(this.id("$dataTreeDept").getCheckedNodes()[0].get("data").dataType.get("name"));
+                                    var view = this;
+                                    var $cardBookSendMessage = view.id("$cardBookSendMessage");
+                                    var currentControl = $cardBookSendMessage.get("currentControl");
+                                    var shouldGoOn = false;
+                                    if (currentControl.$beforeHide) {
+                                        shouldGoOn = currentControl.$beforeHide.call(view, "backward");
+                                    }
+                                    if (false == shouldGoOn) {
+                                        return;
+                                    }
+                                    var controls = $cardBookSendMessage.get("controls");
+                                    var currentControlIndex = controls.indexOf(currentControl);
+                                    var nextControlIndex = currentControlIndex - 1;
+                                    var nextControl = controls.get(nextControlIndex);
+
+                                    if (0 == nextControlIndex) {
+                                        self.set("visible", false);
+                                    }
+                                    $cardBookSendMessage.set("currentControl", nextControl);
+                                    if (nextControl.$onShow) {
+                                        nextControl.$onShow.call(view, "backward");
+                                    }
+
+
+                                })
+                            }
+                        },
+                        {
+                            "$type":"Button",
+                            "caption":"下一步",
+                            "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/door_in.png",
+                            "id":"$buttonNext",
+                            "listener":{
+                                "onClick":(function(self, arg) {
+
+//alert(this.id("$dataTreeDept").getCheckedNodes()[0].get("data").dataType.get("name"));
+                                    var view = this;
+                                    var $cardBookSendMessage = view.id("$cardBookSendMessage");
+                                    var currentControl = $cardBookSendMessage.get("currentControl");
+                                    var shouldGoOn = false;
+                                    if (currentControl.$beforeHide) {
+                                        shouldGoOn = currentControl.$beforeHide.call(view, "forward");
+                                    }
+                                    if (false == shouldGoOn) {
+                                        return;
+                                    }
+                                    var controls = $cardBookSendMessage.get("controls");
+                                    var currentControlIndex = controls.indexOf(currentControl);
+                                    var nextControlIndex = currentControlIndex + 1;
+                                    var nextControl = controls.get(nextControlIndex);
+                                    if (nextControlIndex == (controls.size - 1)) {
+                                        //最后一个book,隐藏“下一步”按钮
+                                        //暂不隐藏,因为业务开发人员可能需要使用“下一步”
+                                        //self.set("visible",false);
+                                    }
+                                    $cardBookSendMessage.set("currentControl", nextControl);
+                                    if (nextControl.$onShow) {
+                                        nextControl.$onShow.call(view, "forward");
+                                    }
+
+
+                                })
+                            }
+                        }
+                    ],
+                    "caption":"编写短消息",
+                    "center":true,
+                    "height":"400",
+                    "id":"$dialogWriteMessage",
+                    "modalType":"dark",
+                    "width":"600",
+                    "listener":{
+                        "onCreate":(function(self, arg) {
+                            self.$show = function(config) {
+                                var view = self.get("view");
+                                config = config || {};
+                                var $cardBookSendMessage = view.id("$cardBookSendMessage");
+                                var sendMessageConfig = $cardBookSendMessage.get("userData");
+
+                                self.show();
+
+                                //如果指定了消息内容
+                                var messageData = config.messageData;
+                                sendMessageConfig.messageData = messageData;
+                                //如果指定了接收人
+                                var receiversListSpecified = config.receiversList;
+                                if (null != receiversListSpecified && 0 < receiversListSpecified.length) {
+                                    var receiversList = sendMessageConfig.receiversList;
+                                    receiversList.clear();
+                                    for (var i = 0; i < receiversListSpecified.length; i++) {
+                                        var receiver = receiversListSpecified[i];
+                                        receiversList.append(new dorado.Entity(receiver));
+                                    }
+                                    var $panelWriteMessage = $cardBookSendMessage.getControl("$panelWriteMessage");
+                                    $cardBookSendMessage.set("currentControl", $panelWriteMessage);
+                                    $panelWriteMessage.$onShow.call(view, arguments);
+                                    return;
+                                }
+
+                            }
+
+                        }),
+                        "onShow":(function(self, arg) {
+                            var $buttonPrev = this.id("$buttonPrev");
+                            $buttonPrev.set("visible", false);
+
+                            var $cardBookSendMessage = this.id("$cardBookSendMessage");
+                            $cardBookSendMessage.set("currentControl", $cardBookSendMessage.get("controls").get(0));
+
+                            var $dataTreeDept = this.id("$dataTreeDept");
+                            var checkedNodes = $dataTreeDept.getCheckedNodes();
+                            for (var i = 0; i < checkedNodes.length; i++) {
+                                var checkedNode = checkedNodes[i];
+                                checkedNode.set("checked", false);
+                            }
+
+                        })
+                    },
+                    "children":[
+                        {
+                            "$type":"CardBook",
+                            "controls":[
+                                {
+                                    "$type":"Panel",
+                                    "id":"$panelSelectUsers",
+                                    "showCaptionBar":false,
+                                    "listener":{
+                                        "onCreate":(function(self, arg) {
+
+                                            self.$onShow = function(direction) {
+
+                                            };
+                                            self.$beforeHide = function(direction) {
+                                                //因为是从$buttonPrev或$buttonNext的onClick事件中调用的,
+                                                //且调用方式为:
+                                                //var view = this;
+                                                //$beforeHide.call(view,direction)
+                                                //所以这里的this就是view
+                                                var view = this;
+                                                if ("backward" == direction) {
+                                                    dorado.MessageBox.alert("页面错误");
+                                                    return;
+                                                }
+                                                this.id("$buttonPrev").set("visible", true);
+                                                var view = self.get("view");
+                                                var $dataTreeDept = view.id("$dataTreeDept");
+                                                var checkedNodes = $dataTreeDept.getCheckedNodes();
+
+                                                var sendMessageConfig = this.id("$cardBookSendMessage").get("userData");
+                                                var receiversList = sendMessageConfig.receiversList;
+                                                //添加数据前先清除原有,否则会重复
+                                                //重复一般发生在人员选择完毕,进入下一book后又返回的情况
+                                                receiversList.clear();
+                                                checkedNodes.each(function(node) {
+                                                    var entity = node.get("data");
+                                                    if ("dataTypeUser" != entity.dataType.get("name")) {
+                                                        return;
+                                                    }
+                                                    receiversList.append(entity);
+                                                });
+                                                if (0 == receiversList.size) {
+                                                    dorado.MessageBox.alert("请至少选择一位接收人");
+                                                    return false;
+                                                }
+                                                return true;
+                                            };
+
+                                        })
+                                    },
+                                    "children":[
+                                        {
+                                            "$type":"DataTree",
+                                            "bindingConfigs":[
+                                                {
+                                                    "checkable":true,
+                                                    "childBindingConfigs":[
+                                                        {
+                                                            "checkable":true,
+                                                            "childrenProperty":"users",
+                                                            "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/user.png",
+                                                            "labelProperty":"username",
+                                                            "name":"usersBinding"
+                                                        }
+                                                    ],
+                                                    "childrenProperty":"childDepts",
+                                                    "expandLevel":1,
+                                                    "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/chart_organisation.png",
+                                                    "labelProperty":"name",
+                                                    "name":"deptBinding",
+                                                    "recursive":true
+                                                }
+                                            ],
+                                            "dataSet":v.getComponentReference("$dataSetDept"),
+                                            "id":"$dataTreeDept",
+                                            "scrollMode":"lazyRender"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "$type":"Panel",
+                                    "id":"$panelWriteMessage",
+                                    "showCaptionBar":false,
+                                    "listener":{
+                                        "onCreate":(function(self, arg) {
+
+                                            self.$onShow = function(direction) {
+                                                var view = this;
+                                                var sendMessageConfig = this.id("$cardBookSendMessage").get("userData");
+                                                var receiversList = sendMessageConfig.receiversList;
+                                                var firstUserEntity = receiversList.get(0);
+                                                var userEntitiesCount = receiversList.size;
+                                                var receiverNames = firstUserEntity.get("cname") + "[" + firstUserEntity.get("username") + "]";
+                                                if (1 < userEntitiesCount) {
+                                                    receiverNames += "等" + userEntitiesCount + "位接收人";
+                                                }
+                                                var dataSetShortMessage = view.id("dataSetShortMessage");
+                                                var data = sendMessageConfig.messageData || {};
+                                                if (!data.sender) {
+                                                    data.sender = "admin";
+                                                }
+                                                if (!data.sendTime) {
+                                                    data.sendTime = new Date();
+                                                }
+                                                if (!data.level) {
+                                                    data.level = "N";
+                                                }
+                                                data.receivers = receiverNames;
+
+                                                dataSetShortMessage.set("data", data);
+                                                view.id("$buttonNext").set("caption", "发 送");
+                                                return true;
+
+                                            };
+                                            self.$beforeHide = function(direction) {
+                                                var view = this;
+                                                if ("forward" == direction) {
+                                                    var sendMessageConfig = this.id("$cardBookSendMessage").get("userData");
+                                                    var receiversList = sendMessageConfig.receiversList;
+                                                    var shortMessage = view.id("dataSetShortMessage").getData("#");
+                                                    var validateResult = shortMessage.validate();
+                                                    if ("ok" != validateResult) {
+                                                        dorado.MessageBox.alert("请填写消息");
+                                                        return false;
+                                                    }
+                                                    var receiverIds = new Array();
+                                                    receiversList.each(function(receiver) {
+                                                        var username = receiver.get("username");
+                                                        receiverIds.push(username);
+                                                    });
+                                                    //shortMessage.set("receivers",receiverIds);
+                                                    var $ajaxActionSendMessage = view.id("$ajaxActionSendMessage");
+                                                    $ajaxActionSendMessage.set("parameter", {
+                                                        shortMessage: shortMessage,
+                                                        receivers: receiverIds
+                                                    });
+                                                    $ajaxActionSendMessage.execute(function(result) {
+                                                        dorado.MessageBox.alert("发送成功");
+                                                        view.id("$buttonNext").set("caption", "下一步");
+                                                        view.id("$dialogWriteMessage").hide();
+                                                    });
+                                                    return false;
+                                                } else {
+                                                    view.id("$buttonNext").set("caption", "下一步");
+                                                    return true;
+                                                }
+
+
+                                            }
+
+                                        })
+                                    },
+                                    "children":[
+                                        {
+                                            "$type":"AutoForm",
+                                            "cols":"*,*",
+                                            "dataSet":v.getComponentReference("dataSetShortMessage"),
+                                            "elements":[
+                                                {
+                                                    "label":"标题",
+                                                    "labelAlign":"right",
+                                                    "layoutConstraint":{
+                                                        "colSpan":"2"
+                                                    },
+                                                    "name":"title",
+                                                    "property":"title"
+                                                },
+                                                {
+                                                    "height":"150",
+                                                    "label":"内容",
+                                                    "labelAlign":"right",
+                                                    "layoutConstraint":{
+                                                        "colSpan":"2"
+                                                    },
+                                                    "name":"content",
+                                                    "property":"content",
+                                                    "type":"textArea"
+                                                },
+                                                {
+                                                    "label":"优先级",
+                                                    "labelAlign":"right",
+                                                    "layoutConstraint":{
+                                                        "colSpan":"2"
+                                                    },
+                                                    "name":"level",
+                                                    "property":"level"
+                                                },
+                                                {
+                                                    "editor":{
+                                                        "$type":"DataLabel",
+                                                        "id":"dataLabelSender"
+                                                    },
+                                                    "label":"发送人",
+                                                    "labelAlign":"right",
+                                                    "name":"sender",
+                                                    "property":"sender",
+                                                    "readOnly":true
+                                                },
+                                                {
+                                                    "editor":{
+                                                        "$type":"DataLabel",
+                                                        "id":"dataLabelSendTime"
+                                                    },
+                                                    "label":"发送时间",
+                                                    "labelAlign":"right",
+                                                    "name":"sendTime",
+                                                    "property":"sendTime"
+                                                },
+                                                {
+                                                    "editor":{
+                                                        "$type":"DataLabel",
+                                                        "id":"dataLabelReceivers"
+                                                    },
+                                                    "label":"接收人",
+                                                    "labelAlign":"right",
+                                                    "layoutConstraint":{
+                                                        "colSpan":"2"
+                                                    },
+                                                    "name":"receivers",
+                                                    "readOnly":true
+                                                }
+                                            ],
+                                            "id":"$autoFormShortMessage"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "id":"$cardBookSendMessage",
+                            "listener":{
+                                "onCreate":(function(self, arg) {
+                                    var receiversList = new dorado.util.KeyedArray(function(object) {
+                                        var username = object.get("username");
+                                        return username;
+                                    });
+                                    var sendMessageConfig = {receiversList : receiversList};
+                                    self.set("userData", sendMessageConfig);
+                                })
+                            }
+                        }
+                    ]
+                },
+                {
+                    "$type":"Menu",
+                    "id":"$menuOperations",
+                    "items":[
+                        {
+                            "caption":"立即收取",
+                            "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/arrow_rotate_clockwise.png",
+                            "listener":{
+                                "onClick":(function(self, arg) {
+
+                                    this.id("$ajaxActionQueryUnreadShortMessageCount").execute();
+
+                                })
+                            }
+                        },
+                        {
+                            "caption":"编写短消息",
+                            "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/comment_edit.png",
+                            "listener":{
+                                "onClick":(function(self, arg) {
+
+                                    this.id("$dialogWriteMessage").show();
+
+                                })
+                            }
+                        }
+                    ],
+                    "modalType":"dark"
+                },
+                {
+                    "$type":"AjaxAction",
+                    "id":"$ajaxActionQueryUnreadShortMessageCount",
+                    "service":"gkhZWVpX0a",
+                    "listener":{
+                        "onCreate":(function(self, arg) {
+                            var checkInterval = "60000";
+                            checkInterval = parseInt(checkInterval);
+                            if (checkInterval != checkInterval) {
+                                checkInterval = 60000;
+                            }
+                            self.$checkInterval = checkInterval;
+                            window.setTimeout(function() {
+                                self.execute();
+                            }, 500);
+
+                        }),
+                        "onSuccess":(function(self, arg) {
+                            var view = this;
+                            var unreadMessageCount = arg.result;
+                            var $messageIndicator = view.id("$messageIndicator");
+                            $messageIndicator.$onUnreadMessageCountChanged.call(view, unreadMessageCount);
+                            window.setTimeout(function() {
+                                self.execute();
+                            }, self.$checkInterval);
+
+                        })
+                    }
+                },
+                {
+                    "$type":"AjaxAction",
+                    "id":"$ajaxActionSendMessage",
+                    "service":"jKDZPK4acr"
+                },
+                {
+                    "$type":"DataSet",
+                    "dataType":"v:JLyhaTB2dg$dataTypeChangePassword",
+                    "id":"dataSetChangePassword"
+                },
+                {
+                    "$type":"Dialog",
+                    "buttons":[
+                        {
+                            "$type":"Button",
+                            "caption":"确定",
+                            "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/tick.png",
+                            "id":"buttonConfirm",
+                            "listener":{
+                                "onClick":(function(self, arg) {
+                                    var view = this;
+                                    var dataSetChangePassword = view.id("dataSetChangePassword");
+                                    var entity = dataSetChangePassword.getData();
+                                    var oldPassword = entity.get("oldPassword");
+                                    var newPassword = entity.get("newPassword");
+                                    var confirmPassword = entity.get("confirmPassword");
+
+                                    function hasText(str, trim) {
+                                        var tmp = str;
+                                        if (null == tmp) {
+                                            return false;
+                                        }
+                                        if (trim) {
+                                            tmp = tmp.replace(/\s*/g, "");
+                                        }
+                                        if (0 == str.length) {
+                                            return false;
+                                        }
+                                        return true;
+                                    }
+
+                                    if (!hasText(oldPassword)) {
+                                        dorado.MessageBox.alert("原密码不能为空");
+                                        return;
+                                    }
+                                    if (!hasText(newPassword)) {
+                                        dorado.MessageBox.alert("新密码不能为空");
+                                        return;
+                                    }
+                                    if (!hasText(confirmPassword)) {
+                                        dorado.MessageBox.alert("确认密码不能为空");
+                                        return;
+                                    }
+                                    if (confirmPassword != newPassword) {
+                                        dorado.MessageBox.alert("确认密码和原密码不一致");
+                                        return;
+                                    }
+                                    var ajaxActionChangePassword = view.id("ajaxActionChangePassword");
+                                    ajaxActionChangePassword.set("parameter", {
+                                        oldPassword : oldPassword,
+                                        newPassword : newPassword,
+                                        confirmPassword : confirmPassword
+                                    });
+                                    ajaxActionChangePassword.execute(function(result) {
+                                        if ("OK" == result) {
+                                            dorado.MessageBox.alert("修改成功,请记好新密码");
+                                            view.id("dialogChangePassword").hide();
+                                        } else {
+                                            dorado.MessageBox.alert(result);
+                                        }
+
+                                    });
+                                })
+                            }
+                        },
+                        {
+                            "$type":"Button",
+                            "caption":"取消",
+                            "icon":"/bdf-dorado7/dorado/res/com/bstek/bdf/d7/icons/cross.png",
+                            "id":"buttonCancel",
+                            "listener":{
+                                "onClick":(function(self, arg) {
+                                    var view = this;
+                                    var dialogChangePassword = view.id("dialogChangePassword");
+                                    dialogChangePassword.hide();
+                                })
+                            }
+                        }
+                    ],
+                    "caption":"修改密码",
+                    "center":true,
+                    "height":"200",
+                    "id":"dialogChangePassword",
+                    "modal":true,
+                    "modalType":"dark",
+                    "width":"400",
+                    "listener":{
+                        "beforeShow":(function(self, arg) {
+                            var view = this;
+                            var dataSetChangePassword = view.id("dataSetChangePassword");
+                            dataSetChangePassword.set("data", {});
+                        })
+                    },
+                    "children":[
+                        {
+                            "$type":"AutoForm",
+                            "cols":"*",
+                            "dataSet":v.getComponentReference("dataSetChangePassword"),
+                            "elements":[
+                                {
+                                    "label":"原密码",
+                                    "name":"oldPassword",
+                                    "property":"oldPassword",
+                                    "type":"password"
+                                },
+                                {
+                                    "label":"新密码",
+                                    "name":"newPassword",
+                                    "property":"newPassword",
+                                    "type":"password"
+                                },
+                                {
+                                    "label":"确认密码",
+                                    "name":"confirmPassword",
+                                    "property":"confirmPassword",
+                                    "type":"password"
+                                }
+                            ],
+                            "id":"autoFormChangePassword"
+                        }
+                    ]
+                },
+                {
+                    "$type":"AjaxAction",
+                    "id":"ajaxActionChangePassword",
+                    "service":"vkJvNhahJN"
+                },
+                {
+                    "$type":"AjaxAction",
+                    "id":"$ajaxActionFindWorkflowTaskCount",
+                    "service":"rcB9CkW2Ph",
+                    "listener":{
+                        "onCreate":(function(self, arg) {
+                            var checkInterval = "60000";
+                            checkInterval = parseInt(checkInterval);
+
+                            self.$checkInterval = checkInterval;
+                            window.setTimeout(function() {
+                                self.execute();
+                            }, 500);
+                        }),
+                        "onSuccess":(function(self, arg) {
+
+                            var unreadMessageCount = arg.result;
+
+                            var $taskCountIndicator = this.id("$taskCountIndicator");
+                            if ($taskCountIndicator["$onTaskCountChanged"]) {
+                                $taskCountIndicator.$onTaskCountChanged.call(this, unreadMessageCount);
+                            }
+                            window.setTimeout(function() {
+                                self.execute();
+                            }, self.$checkInterval);
+
+                        })
+                    }
+                }
+            ]);
+        }
+
+        v.get("dataTypeRepository").parseJsonData([
+            {
+                "id":"v:DU4tsxFdxd$dataTypeDept",
+                "name":"dataTypeDept",
+                "propertyDefs":[
+                    {
+                        "name":"id"
+                    },
+                    {
+                        "label":"部门名称",
+                        "name":"name",
+                        "required":true
+                    },
+                    {
+                        "label":"描述",
+                        "name":"desc"
+                    },
+                    {
+                        "name":"parentDeptId"
+                    },
+                    {
+                        "label":"部门负责人",
+                        "name":"adminUsername"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"创建日期",
+                        "name":"createDate"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"最后一次更新日期",
+                        "name":"updateDate"
+                    },
+                    {
+                        "label":"创建人",
+                        "name":"createUser"
+                    },
+                    {
+                        "label":"最后一次更新人",
+                        "name":"updateUser"
+                    },
+                    {
+                        "dataType":"dataTypeCompany",
+                        "label":"所属公司",
+                        "name":"company"
+                    },
+                    {
+                        "$type":"Reference",
+                        "activeAtClient":true,
+                        "cacheMode":"bothSides",
+                        "dataProvider":dorado.DataProvider.create("bdf.deptManagerPR#findDepts"),
+                        "dataType":"v:DU4tsxFdxd$[dataTypeDept]",
+                        "label":"name",
+                        "name":"childDepts",
+                        "parameter":function() {
+                            return dorado.DataPath.create("id").evaluate(this, true);
+                        },
+                        "submitable":true,
+                        "visible":true,
+                        "cacheable":true
+                    },
+                    {
+                        "$type":"Reference",
+                        "activeAtClient":true,
+                        "cacheMode":"bothSides",
+                        "dataProvider":dorado.DataProvider.create("bdf.userManagerPR#findUsers"),
+                        "dataType":"v:DU4tsxFdxd$[dataTypeUser]",
+                        "name":"users",
+                        "parameter":function() {
+                            return dorado.DataPath.create("id").evaluate(this, true);
+                        },
+                        "submitable":true,
+                        "visible":true,
+                        "cacheable":true
+                    }
+                ]
+            },
+            {
+                "id":"v:sTiPZxZaDR$dataTypeMenuResource",
+                "name":"dataTypeMenuResource",
+                "propertyDefs":[
+                    {
+                        "label":"菜单名称",
+                        "name":"name",
+                        "required":true
+                    },
+                    {
+                        "label":"资源路径",
+                        "name":"url"
+                    },
+                    {
+                        "dataType":"dataTypeModuleResource",
+                        "label":"模块",
+                        "name":"moduleResource"
+                    },
+                    {
+                        "label":"模块id",
+                        "name":"moduleResourceId"
+                    },
+                    {
+                        "dataType":"boolean",
+                        "label":"叶子节点",
+                        "name":"leaf"
+                    },
+                    {
+                        "label":"上级菜单",
+                        "name":"parentMenuResource"
+                    },
+                    {
+                        "label":"上级菜单id",
+                        "name":"parentMenuResourceId"
+                    },
+                    {
+                        "dataType":"boolean",
+                        "label":"是否用于导航",
+                        "mapping":[
+                            {
+                                "key":"true",
+                                "value":"是"
+                            },
+                            {
+                                "key":"false",
+                                "value":"否"
+                            }
+                        ],
+                        "name":"forNavigator"
+                    },
+                    {
+                        "label":"角色id",
+                        "name":"roleId"
+                    },
+                    {
+                        "label":"唯一编号",
+                        "name":"id"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"创建日期",
+                        "name":"createDate"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"最后一次更新日期",
+                        "name":"updateDate"
+                    },
+                    {
+                        "label":"创建人",
+                        "name":"createUser"
+                    },
+                    {
+                        "label":"最后一次更新人",
+                        "name":"updateUser"
+                    },
+                    {
+                        "dataType":"dataTypeCompany",
+                        "label":"所属公司",
+                        "name":"company"
+                    },
+                    {
+                        "label":"图标",
+                        "name":"icon"
+                    },
+                    {
+                        "label":"使用方式",
+                        "name":"useType"
+                    },
+                    {
+                        "dataType":"Integer",
+                        "label":"序号",
+                        "name":"order"
+                    },
+                    {
+                        "label":"大图标",
+                        "name":"bigIcon"
+                    }
+                ]
+            },
+            {
+                "id":"v:JLyhaTB2dg$dataTypeChangePassword",
+                "name":"dataTypeChangePassword",
+                "propertyDefs":[
+                    {
+                        "label":"原密码",
+                        "name":"oldPassword",
+                        "required":true
+                    },
+                    {
+                        "label":"新密码",
+                        "name":"newPassword",
+                        "required":true
+                    },
+                    {
+                        "label":"确认密码",
+                        "name":"confirmPassword",
+                        "required":true
+                    }
+                ]
+            },
+            {
+                "id":"v:DU4tsxFdxd$dataTypeShortMessage",
+                "name":"dataTypeShortMessage",
+                "propertyDefs":[
+                    {
+                        "label":"主键",
+                        "name":"id"
+                    },
+                    {
+                        "label":"标题",
+                        "name":"title",
+                        "required":true
+                    },
+                    {
+                        "label":"内容",
+                        "name":"content",
+                        "required":true
+                    },
+                    {
+                        "label":"发送人",
+                        "name":"sender"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"发送时间",
+                        "name":"sendTime"
+                    },
+                    {
+                        "label":"类型",
+                        "name":"type"
+                    },
+                    {
+                        "label":"公司",
+                        "name":"companyId"
+                    },
+                    {
+                        "label":"接收人",
+                        "name":"receivers"
+                    },
+                    {
+                        "label":"标记已读",
+                        "name":"markRead"
+                    },
+                    {
+                        "label":"优先级",
+                        "mapping":[
+                            {
+                                "key":"H",
+                                "value":"高"
+                            },
+                            {
+                                "key":"L",
+                                "value":"低"
+                            },
+                            {
+                                "key":"N",
+                                "value":"中"
+                            }
+                        ],
+                        "name":"level"
+                    },
+                    {
+                        "name":"meta1"
+                    },
+                    {
+                        "name":"meta2"
+                    },
+                    {
+                        "name":"meta3"
+                    },
+                    {
+                        "name":"meta4"
+                    },
+                    {
+                        "name":"meta5"
+                    },
+                    {
+                        "name":"replyOf"
+                    }
+                ]
+            },
+            {
+                "id":"dataTypeUser",
+                "name":"dataTypeUser",
+                "propertyDefs":[
+                    {
+                        "label":"用户名",
+                        "name":"username",
+                        "required":true
+                    },
+                    {
+                        "label":"密码",
+                        "name":"password",
+                        "required":true
+                    },
+                    {
+                        "label":"中文名",
+                        "name":"cname",
+                        "required":true
+                    },
+                    {
+                        "label":"英文名",
+                        "name":"ename"
+                    },
+                    {
+                        "dataType":"boolean",
+                        "defaultValue":"true",
+                        "label":"是否可用",
+                        "name":"enabled"
+                    },
+                    {
+                        "dataType":"boolean",
+                        "defaultValue":"true",
+                        "label":"是否未锁定",
+                        "name":"accountNonLocked"
+                    },
+                    {
+                        "label":"办公室电话",
+                        "name":"officeTel"
+                    },
+                    {
+                        "label":"办公室传真",
+                        "name":"officeFax"
+                    },
+                    {
+                        "label":"家里电话",
+                        "name":"homeTel"
+                    },
+                    {
+                        "label":"家里传真",
+                        "name":"homeFax"
+                    },
+                    {
+                        "label":"手机",
+                        "name":"mobile"
+                    },
+                    {
+                        "dataType":"boolean",
+                        "label":"性别",
+                        "name":"gender"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"出生日期",
+                        "name":"birthday"
+                    },
+                    {
+                        "label":"学历",
+                        "name":"degree"
+                    },
+                    {
+                        "label":"邮编",
+                        "name":"postNo"
+                    },
+                    {
+                        "label":"职位",
+                        "name":"position"
+                    },
+                    {
+                        "label":"Email",
+                        "name":"email"
+                    },
+                    {
+                        "label":"家庭地址",
+                        "name":"address"
+                    },
+                    {
+                        "label":"QQ号",
+                        "name":"qq"
+                    },
+                    {
+                        "label":"MSN地址",
+                        "name":"msn"
+                    },
+                    {
+                        "label":"备注",
+                        "name":"cmnt"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"创建日期",
+                        "name":"createDate"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"最后一次更新日期",
+                        "name":"updateDate"
+                    },
+                    {
+                        "label":"创建人",
+                        "name":"createUser"
+                    },
+                    {
+                        "label":"最后一次更新人",
+                        "name":"updateUser"
+                    },
+                    {
+                        "dataType":"dataTypeCompany",
+                        "label":"所属公司",
+                        "name":"company"
+                    },
+                    {
+                        "dataType":"boolean",
+                        "name":"credentialsNonExpired"
+                    },
+                    {
+                        "name":"salt"
+                    },
+                    {
+                        "label":"员工照片",
+                        "name":"photo"
+                    }
+                ]
+            },
+            {
+                "defaultDisplayProperty":"name",
+                "id":"dataTypeCompany",
+                "name":"dataTypeCompany",
+                "propertyDefs":[
+                    {
+                        "name":"id"
+                    },
+                    {
+                        "label":"公司名称",
+                        "name":"name",
+                        "required":true
+                    },
+                    {
+                        "label":"描述",
+                        "name":"desc"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"创建日期",
+                        "name":"createDate"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"最后一次更新日期",
+                        "name":"updateDate"
+                    },
+                    {
+                        "label":"创建人",
+                        "name":"createUser"
+                    },
+                    {
+                        "label":"最后一次更新人",
+                        "name":"updateUser"
+                    }
+                ]
+            },
+            {
+                "defaultDisplayProperty":"name",
+                "id":"dataTypeModuleResource",
+                "name":"dataTypeModuleResource",
+                "propertyDefs":[
+                    {
+                        "label":"模块标识(MID)",
+                        "name":"mid",
+                        "required":true
+                    },
+                    {
+                        "label":"模块主页面",
+                        "name":"url",
+                        "required":true
+                    },
+                    {
+                        "label":"模块名称",
+                        "name":"name",
+                        "required":true
+                    },
+                    {
+                        "label":"模块描述",
+                        "name":"desc"
+                    },
+                    {
+                        "label":"模块开发负责人",
+                        "name":"adminUsername",
+                        "required":true
+                    },
+                    {
+                        "dataType":"boolean",
+                        "label":"是否可访问",
+                        "mapping":[
+                            {
+                                "key":"是",
+                                "value":"Y"
+                            },
+                            {
+                                "key":"是",
+                                "value":"yes"
+                            },
+                            {
+                                "key":"否",
+                                "value":"N"
+                            },
+                            {
+                                "key":"否",
+                                "value":"no"
+                            },
+                            {
+                                "key":"是",
+                                "value":"true"
+                            },
+                            {
+                                "key":"否",
+                                "value":"false"
+                            }
+                        ],
+                        "name":"accessible",
+                        "required":true
+                    },
+                    {
+                        "label":"不能访问的原因描述",
+                        "name":"reasonDesc"
+                    },
+                    {
+                        "label":"角色id",
+                        "name":"roleId"
+                    },
+                    {
+                        "label":"唯一编号",
+                        "name":"id"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"创建日期",
+                        "name":"createDate"
+                    },
+                    {
+                        "dataType":"Date",
+                        "label":"最后一次更新日期",
+                        "name":"updateDate"
+                    },
+                    {
+                        "label":"创建人",
+                        "name":"createUser"
+                    },
+                    {
+                        "label":"最后一次更新人",
+                        "name":"updateUser"
+                    }
+                ]
+            }
+        ]);
+        f(v);
+        var doradoView = document.getElementById("doradoView");
+        if (doradoView) v.replace(doradoView);
+        v.render(document.body);
+    }
+    catch(e) {
+        dorado.Exception.processException(e);
+    }
+});
+</script>
+</head>
+
+<body scroll="no" style="margin:0px; overflow:hidden" class="d-chrome d-chrome13">
+</body>
+</html>

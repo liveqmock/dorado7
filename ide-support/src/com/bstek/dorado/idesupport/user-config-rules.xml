@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RuleSet>
+	<!-- 
+	<Rule name="CompositeProperty.style">
+		<Props>
+			<Prop name="background" />
+			<Prop name="border" />
+			<Prop name="font" />
+			<Prop name="color" />
+		</Props>
+	</Rule>
+	-->
+	
+	<!-- 
+	<Rule name="CompositeProperty.metaData">
+		<Props>
+			<Prop name="property1" type="java.lang.Boolean" />
+		</Props>
+	</Rule>
+	-->
+</RuleSet>

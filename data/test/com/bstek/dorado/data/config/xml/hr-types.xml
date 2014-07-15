@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<DataType name="domain.Department" parent="Bean" matchType="com.bstek.dorado.data.model.Department">
+		<PropertyDef name="id" dataType="String" label="编码" />
+		<PropertyDef name="name" dataType="String" label="部门名称" />
+		<PropertyDef name="departments" dataType="[domain.Department]" />
+		<PropertyDef name="employees" dataType="[domain.Employee]" />
+	</DataType>
+
+	<DataType name="domain.Employee" parent="Bean" matchType="com.bstek.dorado.data.model.Employee">
+		<PropertyDef name="id" dataType="String" label="编码" />
+		<PropertyDef name="name" dataType="String" label="姓名" />
+		<PropertyDef name="sex" dataType="Boolean" label="性别" />
+		<PropertyDef name="birthday" dataType="Date" label="出生日期" />
+		<PropertyDef name="salary" dataType="float" label="薪金" />
+		<PropertyDef name="comment" dataType="String" label="备注" />
+		<PropertyDef name="department" dataType="domain.Department" />
+	</DataType>
+
+	<DataType name="domain.AutoEmployee" parent="Bean" matchType="com.bstek.dorado.data.model.EmployeeForTest"
+		autoCreatePropertyDefs="true">
+		<PropertyDef name="name" dataType="String" label="姓名" />
+	</DataType>
+</Model>

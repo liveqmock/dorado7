@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RuleSet>
+	<Rule name="Model" icon="/com/bstek/dorado/view/manager/Model.png">
+		<Children>
+			<Child name="DataType" rule="AbstractDataType" aggregated="true" />
+			<Child name="DataProvider" rule="AbstractDataProvider" aggregated="true" />
+			<Child name="DataResolver" rule="AbstractDataResolver" aggregated="true" />
+		</Children>
+	</Rule>
+
+	<Rule name="AbstractDataType" type="com.bstek.dorado.data.type.AbstractDataType" />
+	<Rule name="AbstractDataProvider" type="com.bstek.dorado.data.provider.AbstractDataProvider" />
+	<Rule name="AbstractDataResolver" type="com.bstek.dorado.data.resolver.AbstractDataResolver" />
+</RuleSet>

@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Error Page</title>
+<style>
+h1,li { font-family:"Microsoft YaHei"; }
+</style>
+</head>
+<body>
+<h1 style="font-size:12pt; color:red">$esc.html($message)</h1>
+<ul style="font-size:10pt">
+#if ($exception)
+#foreach( $stackTrace in $exception.stackTrace )
+	<li>at $esc.html($stackTrace.toString())</li>
+#end
+#end
+</ul>
+</body>
+</html>

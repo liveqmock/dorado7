@@ -1,0 +1,121 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-list-scrolling-indicator {
+  position: absolute;
+  width: 100px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  color: #000000;
+  background-color: #f7f7f7;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.d-list-dragging-item {
+  white-space: nowrap;
+  padding: 2px 4px;
+  background: #ffffff;
+}
+.d-list-dragging-insert-indicator {
+  position: absolute;
+  height: 1px;
+  background: #ff8040;
+}
+.d-list-loading .mask {
+  opacity: 0.1;
+  filter: alpha(opacity=10);
+  background: #000000;
+}
+.d-list-loading .tip {
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  color: #000000;
+  background: #ededed;
+  padding: 4px 8px;
+}
+.d-list-loading .icon {
+  float: left;
+  margin: 6px;
+}
+.d-list-loading .icon > .spinner {
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #15a4fa;
+  border-left-color: #15a4fa;
+  border-radius: 50%;
+  -webkit-animation: loading-icon 400ms linear infinite;
+  -moz-animation: loading-icon 400ms linear infinite;
+  -ms-animation: loading-icon 400ms linear infinite;
+  -o-animation: loading-icon 400ms linear infinite;
+}
+.d-list-loading .label {
+  text-align: left;
+  margin-left: 42px;
+  height: 36px;
+}
+.d-list-box {
+  position: relative;
+}
+.d-list-box .data-table {
+  width: 100%;
+}
+.d-list-box .data-table .row td {
+  white-space: nowrap;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.d-list-box .data-table .highlighting-row td {
+  background: none;
+}
+.d-list-box .preparing-area {
+  background-color: #efefef;
+}
+.d-list-box {
+  background-color: #f7f7f7;
+}
+.d-list-box .data-table .row {
+  background: #ffffff;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}
+.d-list-box .data-table .hover-row {
+  background: #c5e8fe;
+}
+.d-list-box .data-table .hover-row td {
+  border-top-color: rgba(0, 0, 0, 0);
+}
+.d-list-box .data-table .selected-row {
+  color: #ffffff;
+  background: #33b0fb;
+}
+.d-list-box .data-table .current-row {
+  color: #ffffff;
+  background-color: #15a4fa;
+}
+.d-list-box .data-table .drag-over-row {
+  background: #c5e8fe;
+}
+.d-list-box .data-table .drag-over-row td {
+  border-top-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+}

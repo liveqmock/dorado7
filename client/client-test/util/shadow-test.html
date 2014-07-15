@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Test Page</title>
+		<script type="text/javascript" src="../include-all.js"></script>
+		<script>
+function test1() {
+	var div = document.getElementById("div1");
+	var shadow = new dorado.util.Shadow({
+		mode: "sides",
+		offset: 4
+	});
+	shadow.show(div);
+}
+</script>
+		<style>
+.div_a {
+	border: 8px red solid;
+}
+</style>
+	</head>
+	<body>
+		<button onclick="test1()">
+			Test Shadow 1
+		</button>
+		<hr>
+		<div id="div1"
+			style="width: 200px; height: 200px; padding: 20px; border: 1px gray solid; background-color: white;">
+			This is an extension of the core height method to enable it for the
+			window and document objects as well as elements. When used on an
+			element a value can be passed in to set the height. This method works
+			for both visible and hidden elements. Returns: A number in pixels
+			Arguments: value A positive number representing the desired height.
+			If just a number, 'px' will be added for you.
+		</div>
+	</body>
+</html>

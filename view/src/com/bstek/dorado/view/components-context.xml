@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.bstek.com/dorado/schema"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.bstek.com/dorado/schema http://www.bstek.com/dorado/schema/spring-dorado-7.0.xsd">
+	<bean parent="dorado.packagesConfigLoader">
+		<property name="configLocation" value="com/bstek/dorado/view/packages-config.xml" />
+	</bean>
+
+	<bean parent="dorado.validatorTypeRegister">
+		<property name="type" value="required" />
+		<property name="classType" value="com.bstek.dorado.view.type.property.validator.RequiredValidator" />
+	</bean>
+	<bean parent="dorado.validatorTypeRegister">
+		<property name="type" value="length" />
+		<property name="classType" value="com.bstek.dorado.view.type.property.validator.LengthValidator" />
+	</bean>
+	<bean parent="dorado.validatorTypeRegister">
+		<property name="type" value="charLength" />
+		<property name="classType" value="com.bstek.dorado.view.type.property.validator.CharLengthValidator" />
+	</bean>
+	<bean parent="dorado.validatorTypeRegister">
+		<property name="type" value="range" />
+		<property name="classType" value="com.bstek.dorado.view.type.property.validator.RangeValidator" />
+	</bean>
+	<bean parent="dorado.validatorTypeRegister">
+		<property name="type" value="enum" />
+		<property name="classType" value="com.bstek.dorado.view.type.property.validator.EnumValidator" />
+	</bean>
+	<bean parent="dorado.validatorTypeRegister">
+		<property name="type" value="regExp" />
+		<property name="classType" value="com.bstek.dorado.view.type.property.validator.RegExpValidator" />
+	</bean>
+	<bean parent="dorado.validatorTypeRegister">
+		<property name="type" value="ajax" />
+		<property name="classType" value="com.bstek.dorado.view.type.property.validator.AjaxValidator" />
+	</bean>
+	<bean parent="dorado.validatorTypeRegister">
+		<property name="type" value="custom" />
+		<property name="classType" value="com.bstek.dorado.view.type.property.validator.CustomValidator" />
+	</bean>
+
+	<bean parent="dorado.layoutTypeRegister">
+		<property name="type" value="anchor" />
+		<property name="classType" value="com.bstek.dorado.view.widget.layout.AnchorLayout" />
+		<property name="constraintClassType" value="com.bstek.dorado.view.widget.layout.AnchorLayoutConstraint" />
+	</bean>
+	<bean parent="dorado.layoutTypeRegister">
+		<property name="type" value="dock" />
+		<property name="classType" value="com.bstek.dorado.view.widget.layout.DockLayout" />
+		<property name="constraintClassType" value="com.bstek.dorado.view.widget.layout.DockLayoutConstraint" />
+	</bean>
+	<bean parent="dorado.layoutTypeRegister">
+		<property name="type" value="hbox" />
+		<property name="classType" value="com.bstek.dorado.view.widget.layout.HBoxLayout" />
+		<property name="constraintClassType" value="com.bstek.dorado.view.widget.layout.HBoxLayoutConstraintSupport" />
+	</bean>
+	<bean parent="dorado.layoutTypeRegister">
+		<property name="type" value="vbox" />
+		<property name="classType" value="com.bstek.dorado.view.widget.layout.VBoxLayout" />
+		<property name="constraintClassType" value="com.bstek.dorado.view.widget.layout.VBoxLayoutConstraintSupport" />
+	</bean>
+	<bean parent="dorado.layoutTypeRegister">
+		<property name="type" value="form" />
+		<property name="classType" value="com.bstek.dorado.view.widget.layout.FormLayout" />
+		<property name="constraintClassType" value="com.bstek.dorado.view.widget.layout.FormLayoutConstraint" />
+	</bean>
+	<bean parent="dorado.layoutTypeRegister">
+		<property name="type" value="native" />
+		<property name="classType" value="com.bstek.dorado.view.widget.layout.NativeLayout" />
+		<property name="constraintClassType" value="com.bstek.dorado.view.widget.layout.CommonLayoutConstraint" />
+	</bean>
+
+	<bean id="com.bstek.dorado.view.widget.data.DataSet" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.DefaultControl" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.Container" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.HtmlContainer" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.SubViewHolder" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.action.Action" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.action.AjaxAction" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.action.UpdateAction" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.action.FormSubmitAction" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.action.LongTask" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.base.Button" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.SimpleButton" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.SimpleIconButton" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.Panel" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.GroupBox" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.FieldSet" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.IFrame" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.CardBook" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.tab.TabControl" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.tab.VerticalTabControl" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.tab.TabBar" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.tab.TabColumn" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.base.toolbar.ToolBar" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.SplitPanel" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.accordion.Accordion" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.Slider" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.ProgressBar" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.Tip" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.base.FloatContainer" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.FloatPanel" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.Dialog" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.menu.Menu" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.DatePicker" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.base.YearMonthPicker" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.form.Label" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.DataLabel" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.Link" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.Image" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.TemplateField" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.TextEditor" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.PasswordEditor" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.TextArea" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.CheckBox" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.RadioGroup" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.DataMessage" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.form.FormProfile" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.FormElement" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.autoform.AutoForm" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.form.NumberSpinner" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.DateTimeSpinner" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.CustomSpinner" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.form.trigger.Trigger" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.trigger.ListDropDown" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.trigger.DataSetDropDown" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.trigger.AutoMappingDropDown" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.trigger.DateDropDown" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.trigger.YearMonthDropDown" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.trigger.YearDropDown" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.trigger.MonthDropDown" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.form.trigger.CustomDropDown" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.datacontrol.DataPilot" parent="dorado.defaultComponentTypeRegister" />
+
+	<bean id="com.bstek.dorado.view.widget.list.ListBox" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.list.DataListBox" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.grid.Grid" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.grid.DataGrid" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.tree.Tree" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.tree.DataTree" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.blockview.BlockView" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.blockview.DataBlockView" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.treegrid.TreeGrid" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.treegrid.DataTreeGrid" parent="dorado.defaultComponentTypeRegister" />
+	
+	<bean id="com.bstek.dorado.view.widget.advance.TagEditor" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.advance.ColorPicker" parent="dorado.defaultComponentTypeRegister" />
+	<bean id="com.bstek.dorado.view.widget.advance.ColorEditor" parent="dorado.defaultComponentTypeRegister" />
+</beans>

@@ -1,0 +1,335 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-grid {
+  position: relative;
+}
+.d-grid .header-table .header {
+  white-space: nowrap;
+}
+.d-grid .header-table .header .caption {
+  margin-left: 4px;
+}
+.d-grid .header-table .header .caption-required {
+  padding-left: 8px;
+  background: url(base/field-required.png) 0px 4px no-repeat;
+}
+.d-grid .header-table .sorted-header .sort-state {
+  display: inline-block;
+  margin-top: -2px;
+  margin-left: 4px;
+  width: 7px;
+  height: 4px;
+  vertical-align: middle;
+}
+.d-grid .header-table .sorted-header .sort-state-asc {
+  background: url(grid/sort-states.png);
+}
+.d-grid .header-table .sorted-header .sort-state-desc {
+  background: url(grid/sort-states.png) -7px;
+}
+.d-grid .header-table .header-option-button {
+  cursor: pointer;
+  width: 14px;
+}
+.d-grid .header-table .indicator .cell {
+  height: 16px;
+  background: url(grid/column-headers.png) center 0px no-repeat;
+}
+.d-grid .header-table .row-num .cell {
+  height: 16px;
+  background: url(grid/column-headers.png) center -16px no-repeat;
+}
+.d-grid .header-table .row-selector .cell {
+  height: 16px;
+  background: url(grid/column-headers.png) center -32px no-repeat;
+}
+.d-grid .filter-bar .filter-bar-cell {
+  height: 24px;
+}
+.d-grid .data-table {
+  width: 100%;
+}
+.d-grid .data-table .dummy-row {
+  background: #f0f0f0;
+}
+.d-grid .data-table .group-header-row .cell {
+  font-size: 10pt;
+  font-weight: bold;
+  line-height: 32px;
+  padding-left: 6px;
+}
+.d-grid .data-table .cell.wrappable {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: normal;
+}
+.d-grid .data-table .cell-flag-dirty {
+  background: url(base/dirty-flag.png) no-repeat right top;
+}
+.d-grid .data-table .cell-flag-warn {
+  background-image: url(../../resources/icons/silk/bullet-warn.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-position: right top;
+}
+.d-grid .data-table .cell-flag-error {
+  background-image: url(../../resources/icons/silk/bullet-error.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-position: right top;
+}
+.d-grid .data-table .indicator {
+  height: 16px;
+}
+.d-grid .data-table .indicator-new {
+  background-image: url(../../resources/icons/silk/bullet-add.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid .data-table .indicator-modified {
+  background-image: url(../../resources/icons/silk/bullet.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid .data-table .indicator-warn {
+  background-image: url(../../resources/icons/silk/bullet-warn.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid .data-table .indicator-error {
+  background-image: url(../../resources/icons/silk/bullet-error.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid .cell {
+  padding-left: 2px;
+  padding-right: 2px;
+  /* do not modify, may cause problems in safari/chrome */
+
+  white-space: nowrap;
+}
+.d-grid .footer-table .footer {
+  white-space: nowrap;
+}
+.d-grid .preparing-area {
+  background-image: url(list/preparing-area-bg.png);
+}
+.d-grid .float-filter-panel {
+  position: absolute;
+  left: 20px;
+  width: 68px;
+  height: 26px;
+}
+.d-grid .float-filter-panel .d-icon-button {
+  position: absolute;
+  bottom: 5px;
+}
+.d-grid .float-filter-panel .filter-button {
+  left: 13px;
+}
+.d-grid .float-filter-panel .filter-button .d-icon {
+  background-image: url(../../resources/icons/silk/filter.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid .float-filter-panel .reset-button {
+  left: 35px;
+}
+.d-grid .float-filter-panel .reset-button .d-icon {
+  background-image: url(../../resources/icons/silk/rubber.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid-col-drag-top {
+  width: 9px;
+  height: 9px;
+  background: url(grid/col-drag-indicator.png) -9px no-repeat;
+}
+.d-grid-col-drag-bottom {
+  width: 9px;
+  height: 9px;
+  background: url(grid/col-drag-indicator.png) no-repeat;
+}
+.d-grid-col-drop-indicator {
+  background-color: #ff8040;
+}
+.d-grid-col-drag-helper {
+  background: #cee6f9 url(grid/header-hover-bg.png) repeat-x top;
+  border: 1px #e8e8e8 solid;
+}
+.d-grid-col-resize-handler {
+  background-color: #ffffff;
+  cursor: e-resize;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.d-grid-col-resize-helper {
+  border-left: 1px #a1a1a1 solid;
+  border-right: 1px #a1a1a1 solid;
+  background-color: grey;
+  opacity: 0.25;
+  filter: alpha(opacity=25);
+}
+.d-grid-col-drag-helper {
+  cursor: pointer;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.d-grid-menu-sort-asc {
+  background-image: url(../../resources/icons/silk/sort-asc.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid-menu-sort-desc {
+  background-image: url(../../resources/icons/silk/sort-desc.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid-menu-fix {
+  background-image: url(../../resources/icons/silk/application-side-list.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid-menu-group {
+  background-image: url(../../resources/icons/silk/text-padding-top.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid-menu-column {
+  background-image: url(../../resources/icons/silk/timeline-marker.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-grid {
+  border: 1px #a1a1a1 solid;
+  background-color: #ffffff;
+}
+.d-grid .header-table .header {
+  color: #000000;
+  background: #ededed url(grid/header-bg.png) repeat-x top;
+  border-top: 1px #ffffff solid;
+  border-left: 1px #ffffff solid;
+  border-right: 1px #d4d4d4 solid;
+  border-bottom: 1px #d4d4d4 solid;
+}
+.d-grid .header-table .hover-header,
+.d-grid .header-table .menu-open-header {
+  background: #cee6f9 url(grid/header-hover-bg.png) repeat-x top;
+}
+.d-grid .header-table .header-option-button {
+  border-left: 1px #d4d4d4 solid;
+  background: url(grid/header-option-indicator.png) no-repeat center center;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.d-grid .filter-bar .filter-bar-cell {
+  background: url(grid/filterbar-bg.png) repeat-x;
+  border-bottom: 1px #a8b8c2 solid;
+}
+.d-grid .data-table .row {
+  background: #ffffff;
+}
+.d-grid .data-table .row td {
+  border-left: 1px transparent solid;
+  border-right: 1px #fdfdfd solid;
+  border-bottom: 1px #e8e8e8 solid;
+}
+.d-grid .data-table .row .current-cell {
+  background: #c9f7d2 url(grid/current-cell.png) repeat-x top;
+}
+.d-grid .data-table .odd-row {
+  background: #ffffff;
+}
+.d-grid .data-table .hover-row {
+  background: #e8e8e8;
+}
+.d-grid .data-table .hover-row td {
+  border-top-color: #e8e8e8;
+}
+.d-grid .data-table .selected-row {
+  color: #000000;
+  background: #b7f4c4;
+}
+.d-grid .data-table .selected-row td {
+  border-top-color: #edfcf0;
+  border-bottom-color: #65d17b;
+}
+.d-grid .data-table .current-row {
+  color: #000000;
+  background: #94efa6 url(list/current-row.png) repeat-x top;
+}
+.d-grid .data-table .current-row td {
+  border-top-color: #d7f9dd;
+  border-bottom-color: #52cb6a;
+}
+.d-grid .data-table .drag-over-row {
+  background: #e8e8e8;
+}
+.d-grid .data-table .group-header-row td {
+  background: #ffffff;
+  border-bottom: 1px #ffffff solid;
+}
+.d-grid .data-table .group-header-row .cell {
+  border-bottom: 2px #fb8b0d solid;
+}
+.d-grid .data-table .group-footer-row td {
+  color: #15428b;
+  border-bottom: 1px #15428b solid;
+}
+.d-grid .footer-table .footer {
+  color: #000000;
+  background: #ededed url(grid/header-bg.png) repeat-x top;
+  border-top: 1px #e0e0e0 solid;
+  border-left: 1px #ffffff solid;
+  border-right: 1px #d4d4d4 solid;
+  border-bottom: 1px #d4d4d4 solid;
+}
+.d-grid .float-filter-panel {
+  background-image: url(grid/float-filter-panel.png);
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+.d-grid.d-grid-focused {
+  border: 1px #7b7b7b solid;
+}
+.d-criterion-panel {
+  width: 315px;
+  padding: 4px;
+}
+.d-criterion-panel .d-buttons-container {
+  text-align: right;
+  padding: 0 3px;
+}
+.d-criterion-panel .d-icon-add {
+  background-image: url(../../resources/icons/silk/add.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-criterion-panel-delete-icon {
+  background-image: url(../../resources/icons/silk/delete.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-criterion-panel .d-criterion .delete-button {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  background-image: url(../../resources/icons/silk/delete.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-criterion-panel .d-criterion .delete-button-hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>TabControl Test Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <script type="text/javascript">
+        var view = new dorado.widget.View({ layout: "Anchor" });
+
+        var count = 1;
+
+        var toolbar = new dorado.widget.ToolBar({
+            items: [{
+                caption: "Insert Tab",
+                listener: {
+                    onClick: function(self) {
+                        this.id("tabcontrol").addTab({
+                            caption: "我觉得我会超过100px" + ++count,
+                            closeable: true,
+                            $type: "IFrame",
+                            icon: "del.gif",
+                            path: "http://www.g.cn"
+                        }, 1, true);
+                    }
+                }
+            }, {
+                caption: "Add Tab",
+                listener: {
+                    onClick: function(self) {
+                        this.id("tabcontrol").addTab({
+                            caption: "我觉得我会超过100px" + ++count,
+                            closeable: true,
+                            $type: "Control",
+                            control: new dorado.widget.Panel({
+                                style: {
+                                    border: "2px blue dotted"
+                                }
+                            })
+                        }, null, true);
+                    }
+                }
+            }, {
+                caption: "Change TabPlacement",
+                listener: {
+                    onClick: function(self) {
+                        var tabcontrol = this.id("tabcontrol");
+                        tabcontrol.set("tabPlacement", tabcontrol._tabPlacement == "left" ? "right" : "left");
+                    }
+                }
+            }]
+        });
+
+        view.addChild(toolbar);
+
+        var panel = new dorado.widget.Panel({
+            id: "panel",
+            width: 400,
+            height: 200,
+            style: {
+                border: "2px red dotted"
+            }
+        });
+
+        panel.addChild(new dorado.widget.Button({
+            caption: "buttonSetStyle"
+        }));
+
+        var menu = new dorado.widget.Menu({
+            items: [{
+                name: "close",
+                caption: "Close",
+                listener: {
+                    onClick: function() {
+                        var tabbar = this.id("tabcontrol");
+                        if (tabbar) {
+                            var tab = tabbar.get("contextMenuTab");
+                            tabbar.closeTab(tab);
+                        }
+                    }
+                }
+            }, "-", {
+                name: "closeAll",
+                caption: "Close All",
+                listener: {
+                    onClick: function() {
+                        var tabbar = this.id("tabcontrol");
+                        if (tabbar) {
+                            tabbar.closeAllTabs();
+                        }
+                    }
+                }
+            }, {
+                name: "closeOthers",
+                caption: "Close Others",
+                listener: {
+                    onClick: function() {
+                        var tabbar = this.id("tabcontrol");
+                        if (tabbar) {
+                            var contextMenuTab = tabbar.get("contextMenuTab");
+                            tabbar.closeOtherTabs(contextMenuTab);
+                        }
+                    }
+                }
+            }]
+        });
+
+        view.addChild(menu);
+
+        var tabcontrol = new dorado.widget.VerticalTabControl("tabcontrol");
+        tabcontrol.set({
+            width: 600,
+            height: 400,
+            //tabPlacement: "right",
+            tabs: [
+                {
+                    $type: "Control",
+                    caption: "测试2",
+                    closeable: true,
+                    control: new dorado.widget.Panel({
+                        width: 400,
+                        height: 200,
+                        style: {
+                            border: "5px black dotted"
+                        }
+                    })
+                },
+                {
+                    $type: "Control",
+                    caption: "测试2",
+                    control: panel
+                },
+                {
+                    $type: "IFrame",
+                    caption: "测试1",
+                    icon: "del.gif",
+                    closeable: true,
+                    path: "http://www.g.cn"
+                },
+                {
+                    $type: "Control",
+                    caption: "测试3",
+                    closeable: true,
+                    disabled: true,
+                    control: new dorado.widget.Panel({
+                        id: "panel3",
+                        style: {
+                            border: "2px red dotted"
+                        }
+                    })
+                },
+                {
+                    $type: "IFrame",
+                    caption: "测试4",
+                    closeable: true,
+                    path: "http://www.bsdn.org"
+                }
+            ],
+            tabMinWidth: 100,
+            //verticalText: true,
+            listener: {
+                onTabContextMenu: function(self, arg) {
+                    var tab = arg.tab;
+                    menu.getItem("close").set("disabled", tab._disabled || !tab._closeable);
+                    menu.show({event: arg.event});
+                },
+                onTabChange: function(self, arg) {
+                    var tab = arg.newTab;
+                    console.log(tab.get("control"));
+                }
+            }
+        });
+
+        var tabcontrol2 = new dorado.widget.TabControl("tabcontrol2");
+        tabcontrol2.set({
+            width: 600,
+            height: 400,
+            tabs: [
+                {
+                    $type: "Control",
+                    name: "tab1",
+                    caption: "测试1",
+                    tip: "TEst",
+                    control: tabcontrol
+                }
+            ]
+        });
+
+        view.addChild(tabcontrol2);
+
+        $(document).ready(function() {
+            view.render(document.body);
+        });
+    </script>
+</head>
+<body style="margin: 0;padding: 10px;overflow: hidden;">
+</body>
+</html>

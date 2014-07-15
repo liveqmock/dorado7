@@ -1,0 +1,271 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-debugger-log-clear-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-log-clear-icon:before {
+  content: "\f12d";
+}
+.d-debugger-log-lock-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-log-lock-icon:before {
+  content: "\f023";
+}
+.d-debugger-log-debug-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #07c181;
+}
+.d-debugger-log-debug-icon:before {
+  content: "\f188";
+}
+.d-debugger-log-info-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #31b4e2;
+}
+.d-debugger-log-info-icon:before {
+  content: "\f129";
+}
+.d-debugger-log-warn-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #faa200;
+}
+.d-debugger-log-warn-icon:before {
+  content: "\f071";
+}
+.d-debugger-log-error-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ff4a4f;
+}
+.d-debugger-log-error-icon:before {
+  content: "\f00d";
+}
+.d-debugger-script-run-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-script-run-icon:before {
+  content: "\f04b";
+}
+.d-debugger-script-clear-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-script-clear-icon:before {
+  content: "\f12d";
+}
+.d-debugger-view-export-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-view-export-icon:before {
+  content: "\f0ad";
+}
+.d-debugger-view-refresh-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-view-refresh-icon:before {
+  content: "\f021";
+}
+.d-debugger-view-add-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-view-add-icon:before {
+  content: "\f067";
+}
+.d-debugger-view-delete-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-view-delete-icon:before {
+  content: "\f068";
+}
+.d-debugger-view-edit-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-view-edit-icon:before {
+  content: "\f040";
+}
+.d-debugger-hotkey-refresh-icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.d-debugger-hotkey-refresh-icon:before {
+  content: "\f021";
+}
+.d-debugger-logger {
+  overflow: auto;
+}
+.d-debugger-logger .log {
+  border-bottom: 1px solid transparent;
+  line-height: 20px;
+  position: relative;
+}
+.d-debugger-logger .log .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+}
+.d-debugger-logger .log .msg {
+  margin-left: 20px;
+}
+.d-debugger-logger .log-debug .icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #07c181;
+}
+.d-debugger-logger .log-debug .icon:before {
+  content: "\f188";
+}
+.d-debugger-logger .log-info .icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #31b4e2;
+}
+.d-debugger-logger .log-info .icon:before {
+  content: "\f129";
+}
+.d-debugger-logger .log-warn .icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #faa200;
+}
+.d-debugger-logger .log-warn .icon:before {
+  content: "\f071";
+}
+.d-debugger-logger .log-error .icon {
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ff4a4f;
+}
+.d-debugger-logger .log-error .icon:before {
+  content: "\f00d";
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Panel Test</title>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({ layout: "Anchor" });
+ 
+            var panel1 = new dorado.widget.Panel("panel1");
+            panel1.set({
+                visible: false,
+            	width: 300,
+            	height: 100,
+				caption: "无边框的Panel",
+                border: "none",
+				collapseable: true,
+				//maximizeable: true,
+            	style: {
+            		backgroundColor: "yellow"
+            	},
+                //collapsed: true,
+            	children: [new dorado.widget.Button({
+            		width: 150,
+            		caption: "测试子组件",
+            		listener: {
+            			onClick: function() {
+            				alert(123);
+            			}
+            		}
+            	})]
+            });
+
+            var button1 = new dorado.widget.Button({
+                caption: "show panel1",
+                onClick: function() {
+                    panel1.set("visible", true);
+                    var label = new dorado.widget.Label();
+                    label.set("text","123");
+                    var _label = new dorado.widget.Label();
+                    _label.set("text","456");
+
+                    panel2.addChild(label);
+                    panel2.addChild(_label);
+                }
+            });
+
+            var count1 = 1;
+
+            var panel2 = new dorado.widget.Panel({
+            	width: 300,
+            	height: 150,
+            	border: "normal",
+            	caption: "普通边框的Panel",
+            	icon: "del.gif",
+            	collapseable: true,
+                collapsed: true,
+                listener: {
+                    beforeCollapsedChange: function(self, arg) {
+                        //arg.processDefault = count1++ % 2 == 1 ? false : true;
+                    }
+                },
+				maximizeable: true,
+            	tools: [{
+                    $type: "SimpleIconButton",
+            		icon: "url(>skin>common/icons.gif) -20px -60px",
+            		listener: {
+            			onClick: function() {
+            			}
+            		}
+            	}, {
+                    $type: "SimpleIconButton",
+                    icon: "url(>skin>common/icons.gif) -20px -80px",
+                    listener: {
+                        onClick: function() {
+                            alert(123);
+                        }
+                    }
+                }],
+            	children: [new dorado.widget.Button({
+            		width: 150,
+            		caption: "测试子组件",
+            		listener: {
+            			onClick: function() {
+            				alert(123);
+            			}
+            		},
+            		style: {
+            			marginTop: 4
+            		}
+            	})],
+                buttons: [new dorado.widget.Button({
+					caption: "确定",
+					width: 80,
+					listener: {
+						onClick: function(){
+						}
+					}
+				}), new dorado.widget.Button({
+					caption: "取消",
+					width: 80,
+					listener: {
+						onClick: function(){
+						}
+					}
+				})]
+
+            });
+
+			var panel3 = new dorado.widget.Panel("panel3");
+            panel3.set({
+            	width: 500,
+            	height: 350,
+            	border: "curve",
+            	caption: "圆角边框的Panel",
+            	icon: "del.gif",
+            	collapseable: true,
+				//maximizeable: true,
+				buttonAlign: "right",
+            	tools: [],
+            	children: [new dorado.widget.IFrame({
+            		path: "menu-test.html",
+					height: 550,
+                    style: {
+                        margin1: 20
+                    }
+            	})],
+                buttons: [new dorado.widget.Button({
+					caption: "确定",
+					width: 80,
+					listener: {
+						onClick: function(){
+						}
+					}
+				}), new dorado.widget.Button({
+					caption: "取消",
+					width: 80,
+					listener: {
+						onClick: function(){
+						}
+					}
+				})]
+ 
+            });
+ 
+			var panel4 = new dorado.widget.Panel("panel4");
+            panel4.set({
+            	width: 300,
+            	height: 100,
+            	border: "curve",
+				//maximizeable: true,
+                children: [new dorado.widget.HtmlContainer({
+                    content: "<p>无标题栏圆角Panel</p>"
+                })]
+            });
+ 
+            var panel5 = new dorado.widget.Panel("panel5");
+			panel5.set({
+				width: 300,
+				height: 150,
+				caption: "Portlet",
+				collapseable: true,
+				//maximizeable: true,
+				children: [new dorado.widget.HtmlContainer({
+					content: "<p>上海锐道信息技术有限公司（Shanghai BSTEK Information Technology Co., Ltd. ）是自主创新型的本土软件基础平台原厂商，产品品牌为dorado、extra等，官方网站：www.bstek.com。</p>"
+				})]
+			});
+ 
+            view.addChild(panel1);
+            view.addChild(button1);
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<p></p>"
+            }));
+ 
+            view.addChild(panel2);
+ 
+			view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<p></p>"
+            }));
+ 
+            view.addChild(panel3);
+ 
+			view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<p></p>"
+            }));
+ 
+            view.addChild(panel4);
+ 
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<p></p>"
+            }));
+ 
+            view.addChild(panel5);
+ 
+            $(document).ready(function() {
+            	view.render(document.body);
+            });
+        </script>
+    </head>
+    <body style="background:lightgray;overflow:auto;height:3000px;">
+    </body>
+</html>
+

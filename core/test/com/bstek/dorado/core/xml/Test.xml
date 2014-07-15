@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+  <node1>value1</node1>
+  <node2>value2</node2>
+  <node3>value3</node3>
+  <parent>
+    <child>value</child>
+    <child>value</child>
+    <child>value</child>
+  </parent>
+  <parent>
+    <child>value</child>
+    <child>value</child>
+  </parent>
+</model>

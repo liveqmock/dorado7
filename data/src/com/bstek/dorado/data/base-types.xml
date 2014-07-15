@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<!-- PrimitiveDataTypes -->
+	<DataType name="boolean" matchType="boolean" impl="com.bstek.dorado.data.type.PrimitiveBooleanDataType" />
+	<DataType name="char" matchType="char" impl="com.bstek.dorado.data.type.PrimitiveCharDataType" />
+	<DataType name="byte" matchType="byte" impl="com.bstek.dorado.data.type.PrimitiveByteDataType" />
+	<DataType name="short" matchType="short" impl="com.bstek.dorado.data.type.PrimitiveShortDataType" />
+	<DataType name="int" matchType="int" impl="com.bstek.dorado.data.type.PrimitiveIntDataType" />
+	<DataType name="long" matchType="long" impl="com.bstek.dorado.data.type.PrimitiveLongDataType" />
+	<DataType name="float" matchType="float" impl="com.bstek.dorado.data.type.PrimitiveFloatDataType" />
+	<DataType name="double" matchType="double" impl="com.bstek.dorado.data.type.PrimitiveDoubleDataType" />
+
+	<!-- SimpleDataTypes -->
+	<DataType name="Boolean" matchType="java.lang.Boolean" impl="com.bstek.dorado.data.type.BooleanDataType" />
+	<DataType name="Character" matchType="java.lang.Character" impl="com.bstek.dorado.data.type.CharacterDataType" />
+	<DataType name="Byte" matchType="java.lang.Byte" impl="com.bstek.dorado.data.type.ByteDataType" />
+	<DataType name="Short" matchType="java.lang.Short" impl="com.bstek.dorado.data.type.ShortDataType" />
+	<DataType name="Integer" matchType="java.lang.Integer" impl="com.bstek.dorado.data.type.IntegerDataType" />
+	<DataType name="Long" matchType="java.lang.Long" impl="com.bstek.dorado.data.type.LongDataType" />
+	<DataType name="Float" matchType="java.lang.Float" impl="com.bstek.dorado.data.type.FloatDataType" />
+	<DataType name="Double" matchType="java.lang.Double" impl="com.bstek.dorado.data.type.DoubleDataType" />
+	<DataType name="String" matchType="java.lang.String" impl="com.bstek.dorado.data.type.StringDataType" />
+	<DataType name="BigDecimal" matchType="java.math.BigDecimal" impl="com.bstek.dorado.data.type.BigDecimalDataType" />
+	<DataType name="Date" matchType="java.util.Date" impl="com.bstek.dorado.data.type.DateDataType" />
+	<DataType name="Time" parent="Date" />
+	<DataType name="DateTime" parent="Date" />
+	<DataType name="Calendar" matchType="java.util.Calendar" impl="com.bstek.dorado.data.type.CalendarDataType" />
+
+	<!-- AggregationDataTypes -->
+	<DataType name="Aggregation" impl="com.bstek.dorado.data.type.AggregationDataType" />
+	<DataType name="Array" matchType="[Ljava.lang.String;" parent="Aggregation" />
+	<DataType name="Collection" matchType="java.util.Collection" creationType="java.util.ArrayList" parent="Aggregation" />
+	<DataType name="List" matchType="java.util.List" creationType="java.util.ArrayList" parent="Collection" />
+	<DataType name="Set" matchType="java.util.Set" creationType="java.util.HashSet" parent="Collection" />
+
+	<!-- EntityDataTypes -->
+	<DataType name="Entity" matchType="java.lang.Object" impl="com.bstek.dorado.data.type.DefaultEntityDataType" />
+	<DataType name="Bean" parent="Entity" />
+	<DataType name="Map" parent="Entity" matchType="java.util.Map" creationType="com.bstek.dorado.data.variant.Record"/>
+	<DataType name="Record" matchType="com.bstek.dorado.data.variant.Record" parent="Map" />
+	
+	<!-- Others -->
+	<DataType name="Criteria" impl="com.bstek.dorado.data.provider.CriteriaDataType" />
+</Model>

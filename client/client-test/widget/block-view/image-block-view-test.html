@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <script type="text/javascript">
+            
+            var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+            
+            var items = [];
+            for (var i = 0; i < 50; i++) {
+            	var item = {
+            		label: "Block " + i,
+            		image: (function() {
+            			var v = ["http://www.google.cn/intl/zh-CN/images/logo_cn.gif", "http://i3.sinaimg.cn/ty/up/2009-01-06/U574P6T64D56652F1322DT20090106173446.jpg", "http://www.google.com/images/mgyhp_sm.png", "http://i3.sinaimg.cn/ty/681/2010/0203/U574P6T681D1578F18053DT20100203221127.jpg"];
+            			return v[parseInt(Math.random() * v.length)];
+            		})()
+            	};
+            	items.push(item);
+            }
+            
+            var blockview1 = new dorado.widget.BlockView({
+				scrollMode: "viewport",
+            	width: "50%",
+            	height: 300,
+            	blockHeight: 120,
+            	lineSize: 4,
+            	fillLine: true,
+            	renderer: new dorado.widget.blockview.ImageBlockRenderer({
+            		captionProperty: "label"
+            	}),
+            	items: items
+            });
+            view.addChild(blockview1);
+            
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<br/>"
+            }));
+            
+            var blockview2 = new dorado.widget.BlockView({
+				scrollMode: "viewport",
+				blockLayout: "horizontal",
+            	width: "50%",
+            	height: 400,
+            	blockHeight: 120,
+            	lineSize: 3,
+            	fillLine: true,
+				horiSpacing: 8,
+				vertSpacing: 16,
+            	renderer: new dorado.widget.blockview.ImageBlockRenderer({
+            		captionProperty: "label",
+            		stretchImage: true
+            	}),
+            	items: items
+            });
+            view.addChild(blockview2);
+            
+            $(document).ready(function() {
+            	var s = new Date();
+            	view.render(document.body);
+            	document.title = new Date() - s;
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Card Test Page</title>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({ layout: "Anchor" });
+            
+            var count = 1;
+            
+            var button1 = new dorado.widget.Button({
+            	width: 150,
+            	caption: "ChangeCurrent",
+            	listener: {
+            		onClick: function(self) {
+            			this.id("card1").set("currentControl", count++ % 3);
+            		}
+            	}
+            });
+            view.addChild(button1);
+            
+            var panel2 = new dorado.widget.Panel({
+            	id: "panel2",
+            	width: 400,
+            	height: 200,
+            	style: {
+            		border: "2px black dotted"
+            	}
+            });
+            
+            panel2.addChild(new dorado.widget.Button({
+            	caption: "测试子组件"
+            }));
+            
+            var card1 = new dorado.widget.CardBook("card1");
+            card1.set({
+            	width: 600,
+            	height: 400,
+            	controls: [new dorado.widget.Panel({
+            		width: 200,
+            		height: 100,
+            		style: {
+            			backgroundColor: "yellow",
+            			border: "2px red dotted"
+            		}
+            	}), panel2, new dorado.widget.Panel({
+            		id: "panel3",
+            		width: 300,
+            		height: 400,
+            		style: {
+            			backgroundColor: "gray",
+            			border: "2px navy dotted"
+            		}
+            	})]
+            });
+            
+            view.addChild(card1);
+            
+            $(document).ready(function() {
+            	view.render(document.body);
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

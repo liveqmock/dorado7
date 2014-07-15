@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({ layout: "Anchor" });
+			
+			var rows1 = [];
+			for (var i = 0; i < 5; i++) {
+				var row = {};
+				for (var j = 0; j < 10; j++) {
+					row["prop" + j] = [i, j];
+				}
+				rows1.push(row);
+			}
+			
+			var grid1 = new dorado.widget.Grid({
+				scrollMode: "simple",
+				width: 300,
+				height: 200,
+				fixedColumnCount: 1,
+				columns: [{
+					name: "id",
+					property: "prop1"
+				}, {
+					name: "name",
+					property: "prop2",
+					onHeaderClick: function(self, arg) {
+						alert("Column " + self.get("caption") + " clicked (from Column).");
+					}
+				}, {
+					property: "prop3"
+				}, {
+					property: "prop4"
+				}],
+				items: rows1,
+				onHeaderClick: function(self, arg) {
+					alert("Column " + arg.column.get("caption") + " clicked.");
+				},
+				onRenderHeaderCell: function(self, arg) {
+					arg.processDefault = true;
+					arg.dom.style.color = "red";
+				},
+				onRenderRow: function(self, arg) {
+					arg.dom.style.color = ((arg.data["prop3"] + '') == "1,3") ? "red" : "";
+				}
+			});
+			view.addChild(grid1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<hr>"
+			}));
+			
+			var panel1 = new dorado.widget.Container({
+				layout: new dorado.widget.layout.DockLayout(),
+				height: 25
+			});
+			
+			panel1.addChild(new dorado.widget.Button({
+				caption: "Highlight",
+				listener: {
+					onClick: function() {
+						grid1.highlightItem(grid1.get("currentEntity"));
+					}
+				},
+				layoutConstraint: "left"
+			}));
+			
+			view.addChild(panel1);
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+				document.title = new Date() - s;
+			});
+		</script>
+	</head>
+	<body></body>
+</html>

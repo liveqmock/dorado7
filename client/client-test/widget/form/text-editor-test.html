@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+		
+		var view = new dorado.widget.View({
+			layout: new dorado.widget.layout.FormLayout({
+				cols: "*",
+				stretchWidth: true
+			})
+		});
+		
+		var panel = new dorado.widget.Panel({
+			layout: new dorado.widget.layout.DockLayout()
+		});
+		view.addChild(panel);
+		
+		panel.addChild(new dorado.widget.Button({
+			caption: "Set Text",
+            listener: function() {
+                var edt = this.id("editor1");
+                edt.set("text", "==Sample Text A==!");
+                alert(edt.get("text"));
+
+                edt.set("value", "==Sample Text B==!");
+                alert(edt.get("value"));
+            },
+			layoutConstraint: "left"
+		}));
+		
+		panel.addChild(new dorado.widget.Button({
+			caption: "Set Int",
+			listener: {
+				onClick: function() {
+					var edt = this.id("editor2");
+					edt.set("text", "12345.6789");
+					alert(edt.get("value"));
+					
+					edt.set("value", 9876.54321);
+					alert(edt.get("value"));
+				}
+			},
+			layoutConstraint: "left"
+		}));
+		
+		panel.addChild(new dorado.widget.Button({
+			caption: "Set Date",
+			listener: {
+				onClick: function() {
+					var edt = this.id("editor3");
+					edt.set("text", "1998-09-11");
+					alert(edt.get("value"));
+					
+					edt.set("value", new Date());
+					alert(edt.get("value"));
+				}
+			},
+			layoutConstraint: "left"
+		}));
+		
+		panel.addChild(new dorado.widget.Button({
+			caption: "Set ReadOnly",
+			listener: {
+				onClick: function() {
+					var edt = this.id("editor6");
+					edt.set("readOnly", !edt.get("readOnly"));
+				}
+			},
+			layoutConstraint: "left"
+		}));
+		
+		var dropdown1 = new dorado.widget.ListDropDown({
+			items: ["Key 1", "Key 2 ", "Key 3", "Key 4"]
+		});
+		
+		var dropdownItems = [];
+		for (var i = 0; i < 100; i++) 
+			dropdownItems.push("Item " + i);
+		var dropdown2 = new dorado.widget.ListDropDown({
+			items: dropdownItems
+		});
+		
+		var trigger = new dorado.widget.Trigger({
+			onExecute: function() {
+				alert("Trigger Clicked.")
+			}
+		});
+		
+		panel.addChild(new dorado.widget.Button({
+			caption: "Set DropDown",
+			listener: {
+				onClick: function() {
+					var edt = this.id("editor6");
+					edt.set("trigger", edt.get("trigger") ? null : dropdown1);
+				}
+			},
+			layoutConstraint: "left"
+		}));
+		
+		var editor1 = new dorado.widget.TextEditor({
+			id: "editor1",
+			blankText: "Blank Text 123"
+		});
+		editor1.set("width", 200);
+		view.addChild(editor1);
+		
+		var editor2 = new dorado.widget.TextEditor("editor2");
+		editor2.set({
+			width: "30%",
+			blankText: "Blank Text 123",
+			dataType: dorado.$Float,
+			displayFormat: "#,##0.00",
+			listener: {
+				beforePost: function(self) {
+					if (self.get("value") <= 0) throw new dorado.Exception("The input value should greater than zero.");
+				}
+			}
+		});
+		view.addChild(editor2);
+		
+		var editor3 = new dorado.widget.TextEditor("editor3");
+		editor3.set({
+			width: "30%",
+			dataType: dorado.$Date,
+			displayFormat: "Y年m月d日 H:i:s"
+		});
+		view.addChild(editor3);
+		
+		var entity4 = {
+			property1: "=initial value="
+		};
+		
+		var editor4 = new dorado.widget.TextEditor({
+			id: "editor4",
+			minLength: 1,
+			maxLength: 16,
+			width: "30%",
+			trigger: [dropdown2, trigger],
+			entity: entity4,
+			property: "property1",
+			listener: {
+				onPost: function(self) {
+					//dorado.MessageBox.alert(self.get("id") + " onPost:\n" + entity4.property1);
+				}
+			}
+		});
+		view.addChild(editor4);
+		
+		var editor5 = new dorado.widget.TextEditor({
+			id: "editor5",
+			readOnly: true,
+			width: 200
+		});
+		view.addChild(editor5);
+		
+		var editor6 = new dorado.widget.TextEditor({
+			id: "editor6",
+			width: 200
+		});
+		view.addChild(editor6);
+		
+		var editor7 = new dorado.widget.TextEditor("editor7");
+		editor7.set("width", "30%");
+		view.addChild(editor7);
+		
+		for (var i = 0; i < 0; i++) {
+			var editor = new dorado.widget.TextEditor("editorPerformance" + i);
+			editor.set("width", 200);
+			if (i % 2 == 0) editor.setDropDown({});
+			view.addChild(editor);
+		}
+		
+		$(document).ready(function() {
+			var s = new Date();
+			view.render(document.body);
+			//alert(new Date() - s);
+			
+			editor5.set("trigger", dropdown1);
+			editor6.set("trigger", [dropdown1, view.id("triggerClear")]);
+		});
+		</script>
+	</head>
+	<body></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Radar Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypeRadarData = new dorado.EntityDataType({
+			name: "RadarData",
+			propertyDefs: [
+				{ name: "color", label: "Color" },
+				{ name: "value", label: "Value" },
+				{ name: "label", label: "Label" },
+				{ name: "text", label: "Text" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeRadarData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [{
+				value: 8
+			}, {
+				value: 7
+			}, {
+				value: 9
+			}, {
+				value: 4
+			}, {
+				value: 4
+			}],
+			dataType: "RadarData"
+		});
+
+		var radarChart = new dorado.widget.ofc.OpenFlashChart({
+			backgroundColor: "#ffffff",
+			title: {
+				"text": "Risk Areas",
+				"style": "font-size: 12px; text-align: left;"
+			},
+			radarAxis: {
+				stroke: 2,
+				color: "#A1D4B5",
+				gridColor: "#C0DEBF",
+				max: 11,
+				labels: {
+					steps: 1
+				},
+				spokeLabels: {
+					labels: ["中文可以吗","Brand","Legal","Market","Service"]
+				}
+			},
+			elements: [{
+				$type: "ofc.Area",
+				dataSet: dataSet,
+				color: "#ff0000",
+				loop: true,
+				fillColor: "#ff0000",
+				fillAlpha: 0.30000001192092896,
+				dotStyle: {
+					type: "SolidDot",
+					dotSize: 5,
+					haloSize: 1
+				},
+				bindingConfig: {
+					valueProperty: "value"
+				}
+			}]
+		});
+        view.addChild(radarChart);
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>TabControl Test Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <script language="javascript" type="text/javascript">
+        jQuery(document).ready(function() {
+            try {
+                var v=new dorado.widget.View({
+                    "id":"viewMain",
+                    "name":"view1"
+                });
+                function f(v){v.set("children",[
+                    {
+                        "$type":"TabControl",
+                        "tabs":[
+                            {
+                                "$type":"Control",
+                                "control":{
+                                    "$type":"Container",
+                                    "children":[
+                                        {
+                                            "$type":"Button",
+                                            "caption":"弹出窗口",
+                                            "listener":{
+                                                "onClick":(function(self,arg){
+                                                    this.id("dialog1").show();
+                                                })
+                                            }
+                                        }
+                                    ]
+                                },
+                                "caption":"controlTab1",
+                                "name":"controlTab1"
+                            },
+                            {
+                                "$type":"Control",
+                                "control":{
+                                    "$type":"Container",
+                                    "children":[
+                                        {
+                                            "$type":"Button",
+                                            "caption":"弹出窗口",
+                                            "listener":{
+                                                "onClick":(function(self,arg){
+                                                    this.id("dialog1").show();
+                                                })
+                                            }
+                                        }
+                                    ]
+                                },
+                                "caption":"controlTab2",
+                                "name":"controlTab2"
+                            }
+                        ]
+                    },
+                    {
+                        "$type":"Dialog",
+                        "center":true,
+                        "height":"100",
+                        "width":"100",
+                        "id":"dialog1",
+                        "modal":true,
+                        "modalType":"dark"
+                    }
+                ]);}
+                f(v);
+
+                var doradoView = document.getElementById("doradoView");
+                if (doradoView) v.replace(doradoView);
+            }
+            catch(e) {
+                dorado.Exception.processException(e);
+            }
+        });
+    </script>
+</head>
+<body scroll="no" style="margin:0px; overflow:hidden">
+<label id="doradoView" style="display:none"/>
+</body>
+</html>

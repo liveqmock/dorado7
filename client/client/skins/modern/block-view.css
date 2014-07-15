@@ -1,0 +1,65 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-block-view .block {
+  z-index: 100;
+}
+.d-block-view .block-decorator {
+  position: absolute;
+}
+.d-block-view .block-decorator-hover {
+  z-index: 0;
+}
+.d-block-view .block-decorator-current {
+  z-index: 1;
+}
+.d-block-view .block-decorator {
+  display: none;
+}
+.d-block-view-dragging-item {
+  background: #f7f7f7;
+}
+.d-block-view-dragging-insert-indicator-v {
+  position: absolute;
+  width: 2px;
+  background: #ff8040;
+}
+.d-block-view-dragging-insert-indicator-h {
+  position: absolute;
+  height: 2px;
+  background: #ff8040;
+}
+.d-block-view .block {
+  background-color: #f7f7f7;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}
+.d-block-view .block-hover {
+  border: 0;
+  background-color: #c5e8fe;
+}
+.d-block-view .block-current {
+  border: 0;
+  color: #ffffff;
+  background-color: #15a4fa;
+}
+.d-block-view .block-drag-over {
+  border: 0;
+  background-color: #c5e8fe;
+}

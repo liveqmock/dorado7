@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+TestColumnModel = $extend(dorado.widget.grid.ColumnModel, {
+	constructor: function(){
+		this._columns = new dorado.util.KeyedArray(dorado._GET_NAME);
+	}
+});
+
+function getColumnModel1(){
+	var columnModel = new TestColumnModel();
+	columnModel.addColumns([{
+		name: "col1",
+		property: "prop1"
+	}, {
+		name: "col2",
+		property: "prop2"
+	}, {
+		name: "col3",
+		property: "prop3"
+	}, {
+		name: "col4",
+		columns: [{
+			name: "col41",
+			property: "prop41"
+		}, {
+			name: "col42",
+			property: "prop42"
+		}, {
+			name: "col43",
+			property: "prop43"
+		}]
+	}]);
+	return columnModel;
+}
+
+function getColumnModel2(){
+	var columnModel = new TestColumnModel();
+	columnModel.addColumns([{
+		name: "col1",
+		property: "prop1"
+	}, {
+		name: "col2",
+		property: "prop2"
+	}, {
+		name: "col3",
+		columns: [{
+			name: "col31",
+			columns: [{
+				name: "col311",
+				property: "prop311"
+			}, {
+				name: "col312",
+				columns: [{
+					name: "col3121",
+					property: "prop3121"
+				}, {
+					name: "col3122",
+					property: "prop3122"
+				}, {
+					name: "col3123",
+					property: "prop3123"
+				}]
+			}, {
+				name: "col313",
+				property: "prop313"
+			}]
+		}, {
+			name: "col32",
+			property: "prop32"
+		}, {
+			name: "col33",
+			property: "prop33"
+		}]
+	},{
+		name: "col4",
+		property: "prop4"
+	},{
+		name: "col5",
+		columns: [{
+			name: "col51",
+			property: "col51"
+		}, {
+			name: "col52",
+			property: "col52"
+		}, {
+			name: "col53",
+			property: "col53"
+		}]
+	}, {
+		name: "col6",
+		property: "prop3"
+	}]);
+	return columnModel;
+}
+
+function createTableByStructure(rows) {
+	var tbody = document.createElement("TBODY");
+	for (var i = 0; i < rows.length; i++) {
+		var cells = rows[i]; 
+		var tr = document.createElement("TR");
+		for (var j = 0; j < cells.length; j++) {
+			var cell = cells[j];
+			var td = document.createElement("TD");
+			td.colSpan = cell.colSpan;
+			td.rowSpan = cell.rowSpan || (rows.length - i);
+			td.innerHTML = cell.column.get("name");
+			td.style.textAlign  = "center";
+			tr.appendChild(td);
+		}
+		tbody.appendChild(tr);
+	}
+	var table = document.createElement("TABLE");
+	table.border = 1;
+	table.appendChild(tbody);
+	return table;
+}
+
+function testBaseFunction(){
+	var columnModel = getColumnModel1();
+	
+	var columns = columnModel._columns;
+	assertEquals(4, columns.size);
+	
+	var col2 = columnModel.getColumn("col2");
+	assertNotNull(col2);
+	assertEquals("col2", col2.get("name"));
+	assertEquals("prop2", col2.get("property"));
+	
+	var col4 = columnModel.getColumn("col4");
+	assertNotNull(col4);
+	assertEquals("col4", col4.get("name"));
+	assertEquals(3, col4.get("columns").size);
+	
+	var col42 = col4.getColumn("col42");
+	assertNotNull(col42);
+	assertEquals("col42", col42.get("name"));
+	assertEquals("prop42", col42.get("property"));
+}
+
+function testGetDataColumns1(){
+	var columnModel = getColumnModel1();
+	var dataColumns = columnModel.getColumnsInfo().main.dataColumns;
+	assertEquals(6, dataColumns.length);
+	
+	var col41 = dataColumns[3];
+	assertNotNull(col41);
+	assertEquals("col41", col41.get("name"));
+	
+	var columnsInfo = columnModel.getColumnsInfo(2);
+	dataColumns = columnsInfo.fixed.dataColumns;
+	assertEquals(2, dataColumns.length);
+	
+	dataColumns = columnsInfo.main.dataColumns;
+	assertEquals(4, dataColumns.length);
+}
+
+function testGetColumnStructure1(){
+	var columnModel = getColumnModel1();
+	var rows = columnModel.getColumnsInfo().main.structure;
+	
+	assertEquals(2, rows.length);
+	
+	var cells1 = rows[0];
+	var cells2 = rows[1];
+	assertEquals(4, cells1.length);	
+	assertEquals(3, cells1[3].colSpan);
+	
+	assertEquals(3, cells2.length);
+	
+	document.body.appendChild(createTableByStructure(rows));
+}
+
+function testGetColumnStructure2(){
+	var columnModel = getColumnModel2();
+	var rows = columnModel.getColumnsInfo().main.structure;
+	document.body.appendChild(createTableByStructure(rows));
+}
+
+$(document).ready(function(){
+	var s = new Date();
+	testGetColumnStructure1();
+	testGetColumnStructure2();
+	document.title = new Date() - s;
+});		
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

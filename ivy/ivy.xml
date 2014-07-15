@@ -1,0 +1,13 @@
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+	<info organisation="com.bstek.dorado" module="dorado-core" status="integration" />
+
+	<configurations>
+		<include file="ivy-configurations.xml" />
+	</configurations>
+
+	<dependencies>
+		<!-- COMPILE -->
+		<dependency org="javax.servlet" name="servlet-api" rev="2.5" conf="compile" />
+		<dependency org="javax.servlet.jsp" name="jsp-api" rev="2.0" conf="compile" />
+	</dependencies>
+</ivy-module>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View layout="anchor">
+    <Property name="title">Dorado Console</Property>
+    <HtmlContainer layoutConstraint="left:0;top:0">
+      <ClientEvent name="onCreate">var dom=$DomUtils.xCreate({&#xD;
+	tagName: &quot;img&quot;,&#xD;
+	src:$url(&quot;>dorado/console/images/background.png&quot;)&#xD;
+&#xD;
+});&#xD;
+self.set('content',dom);&#xD;
+</ClientEvent>
+      <Property name="contentOverflow">hidden</Property>
+      <Property name="height">270</Property>
+      <Property name="width">640</Property>
+    </HtmlContainer>
+    <HtmlContainer layoutConstraint="left:40;top:300">
+      <Property name="content">
+&lt;h1>产品简介&lt;/h1>
+&lt;p>
+  Dorado Management Console 是基于Dorado架构的管理控制台,为系统管理员和开发者提供管理与监视功能。
+&lt;/p>
+&lt;p>
+主要功能有运行环境监视、运行日志查看、Parser Tree、性能监控、Dorado日志强化、资源文件查看……等。
+&lt;/p>
+</Property>
+    </HtmlContainer>
+    <Tip layoutConstraint="left:40;anchorTop:previous;top:20">
+      <Property name="content">&lt;div class=&quot;console-tip&quot;>&lt;p>  当前应用尚未激活Dorado管理控制台。可在configure.properties添加配置项&lt;code>console.enabled=true&lt;/code>进行激活。
+&lt;/p>&lt;div>&lt;a href=&quot;http://wiki.bsdn.org/x/HIA8AQ&quot; target=&quot;_blank&quot;>使用文档……&lt;/a>&lt;/div>&lt;/div>
+
+</Property>
+      <Property name="animateType">none</Property>
+      <Property name="floating">false</Property>
+      <Property name="width">580</Property>
+      <Property name="icon">WARNING</Property>
+      <Property name="caption">系统提示</Property>
+    </Tip>
+  </View>
+</ViewConfig>

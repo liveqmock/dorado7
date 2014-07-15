@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../include-all.js">
+        </script>
+        <script type="text/javascript">
+            
+            $(document).ready(function() {
+            	var divStyle = {
+            		border: "1px black solid",
+            		width: 200,
+            		height: 200
+            	}
+            	
+            	var $body = $(document.body);
+            	$body.xCreate({
+            		tagName: "table",
+            		content: [{
+            			tagName: "TR",
+            			content: [{
+            				tagName: "TD",
+            				content: {
+            					tagName: "div",
+            					id: "div1",
+            					style: divStyle
+            				}
+            			}, {
+            				tagName: "TD",
+            				content: {
+            					tagName: "div",
+            					id: "div2",
+            					style: divStyle
+            				}
+            			}, {
+            				tagName: "TD",
+            				content: {
+            					tagName: "div",
+            					id: "div3",
+            					style: divStyle
+            				}
+            			}, {
+            				tagName: "TD",
+            				content: {
+            					tagName: "div",
+            					id: "div4",
+            					style: divStyle
+            				}
+            			}]
+            		}, {
+            			tagName: "TR",
+            			content: [{
+            				tagName: "TD",
+            				content: {
+            					tagName: "div",
+            					id: "div5",
+            					style: divStyle
+            				}
+            			}, {
+            				tagName: "TD",
+            				content: {
+            					tagName: "div",
+            					id: "div6",
+            					style: divStyle
+            				}
+            			}, {
+            				tagName: "TD",
+            				content: {
+            					tagName: "div",
+            					id: "div7",
+            					style: divStyle
+            				}
+            			}, {
+            				tagName: "TD",
+            				content: {
+            					tagName: "div",
+            					id: "div8",
+            					style: divStyle
+            				}
+            			}]
+            		}]
+            	});
+            	
+            	for (var i = 1; i <= 8; i++) {
+            		window["div" + i] = $element("div" + i);
+            	}
+            	
+            	$(div1).xCreate({
+            		tagName: "button",
+            		onclick: function() {
+            			alert("You clicked Button1.");
+            		},
+            		content: "Button1"
+            	});
+            	
+            	$fly(div2).xCreate([{
+            		tagName: "button",
+            		onclick: function() {
+            			alert("You clicked Button1.");
+            		},
+            		content: "Button1"
+            	}, {
+            		tagName: "button",
+            		onclick: function() {
+            			alert("You clicked Button2.");
+            		},
+            		content: "Button2"
+            	}]);
+            	
+            	$(div1).xCreate({
+            		tagName: "button",
+            		onclick: "alert(\"You clicked Button2.\")",
+            		content: "Button2"
+            	});
+            	
+            	$fly(div2).xCreate([{
+            		tagName: "button",
+            		onclick: function() {
+            			alert("You clicked Button3.");
+            		},
+            		content: "Button3"
+            	}], null, {
+            		insertBefore: true
+            	});
+            	
+            	$fly(div3).xCreate([{
+            		tagName: "div",
+            		style: {
+            			border: "1px red solid"
+            		},
+            		content: [{
+            			tagName: "button",
+            			onclick: function() {
+            				alert("You clicked Button1.");
+            			},
+            			content: "Button1"
+            		}, {
+            			tagName: "button",
+            			onclick: function() {
+            				alert("You clicked Button2.");
+            			},
+            			content: "Button2"
+            		}]
+            	}, {
+            		tagName: "div",
+            		id: "div100",
+            		style: {
+            			border: "1px green solid"
+            		},
+            		content: [{
+            			tagName: "button",
+            			onclick: function() {
+            				alert("You clicked Button1.");
+            			},
+            			content: "Button1"
+            		}, {
+            			tagName: "button",
+            			onclick: function() {
+            				alert("You clicked Button2.");
+            			},
+            			content: "Button2"
+            		}]
+            	}]);
+            	
+            	$fly(div3).xCreate([{
+            		tagName: "div",
+            		style: {
+            			border: "1px blue solid"
+            		},
+            		content: [{
+            			tagName: "button",
+            			onclick: function() {
+            				alert("You clicked Button1.");
+            			},
+            			content: "Button1"
+            		}, " ( ", {
+            			tagName: "button",
+            			onclick: function() {
+            				alert("You clicked Button2.");
+            			},
+            			content: "Button2"
+            		}]
+            	}], null, {
+            		insertBefore: true
+            	});
+            	
+            	$fly(div4).xCreate(function() {
+            		return [{
+            			tagName: "INPUT",
+            			type: "text",
+            			value: this.text1
+            		}, {
+            			tagName: "TEXTAREA",
+            			outerWidth: 190,
+            			outerHeight: "100px",
+            			content: this.text2
+            		}];
+            	}, {
+            		text1: "Input Text 1",
+            		text2: "jQuery Plugin\nxCreate"
+            	});
+            	
+            	$fly(div5).xCreate([{
+            		tagName: "div",
+            		content: "<button>OK</button><hr><input type=\"text\">"
+            	}]);
+            	
+            	$fly(div6).xCreate([{
+            		tagName: "table",
+            		border: 1,
+            		style: {
+            			width: "100%",
+            			height: "100%"
+            		},
+            		content: [{
+            			tagName: "TR",
+            			content: ["^TD", "^TD", "^TD", "^TD", "^TD"]
+            		}, {
+            			tagName: "TR",
+            			content: ["^TD", "^TD", "^TD", "^TD", "^TD"]
+            		}]
+            	}]);
+            });
+            
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

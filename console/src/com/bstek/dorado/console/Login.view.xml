@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View listener="spring:dorado.console.login#onViewInit">
+    <Property name="title">Dorado Management Console</Property>
+    <AjaxAction id="loginAction">
+      <Property name="service">dorado.console.login#login</Property>
+    </AjaxAction>
+    <Dialog id="loginDialog" layout="anchor">
+      <Property name="width">700</Property>
+      <Property name="center">true</Property>
+      <Property name="height">430</Property>
+      <Property name="caption">${res.loginCaption}</Property>
+      <Property name="icon">url(>dorado/console/images/dorado.gif) no-repeat</Property>
+      <Property name="maximizeable">true</Property>
+      <Property name="showCaptionBar">true</Property>
+      <Property name="contentOverflow">hidden</Property>
+      <Property name="border">curve</Property>
+      <Property name="modalType">transparent</Property>
+      <Buttons/>
+      <Children>
+        <HtmlContainer>
+          <ClientEvent name="onCreate">var dom=$DomUtils.xCreate({&#xD;
+	tagName: &quot;img&quot;,&#xD;
+	src:$url(&quot;>dorado/console/images/login.png&quot;)&#xD;
+&#xD;
+});&#xD;
+self.set('content',dom);&#xD;
+</ClientEvent>
+        </HtmlContainer>
+        <Container layout="anchor" layoutConstraint="left:420;top:140">
+          <HtmlContainer layoutConstraint="top:20">
+            <ClientEvent name="onCreate">var dom=$DomUtils.xCreate({&#xD;
+	tagName: &quot;img&quot;,&#xD;
+	src:$url(&quot;>dorado/console/images/user.png&quot;)&#xD;
+&#xD;
+});&#xD;
+&#xD;
+self.set('content',dom);&#xD;
+</ClientEvent>
+            <Property name="width">32</Property>
+            <Property name="height">32</Property>
+          </HtmlContainer>
+          <FormElement id="user_name" layoutConstraint="left:0;top:28">
+            <Property name="labelWidth">50</Property>
+            <Property name="width">240</Property>
+            <Editor>
+              <TextEditor>
+                <Property name="blankText">用户名</Property>
+              </TextEditor>
+            </Editor>
+          </FormElement>
+          <FormElement id="user_password" layoutConstraint="left:0;top:30;anchorTop:previous">
+            <Property name="editorType">PasswordEditor</Property>
+            <Property name="labelWidth">50</Property>
+            <Property name="width">240</Property>
+            <Editor>
+              <PasswordEditor>
+                <ClientEvent name="onKeyDown">if(arg.keyCode==13){&#xD;
+	var action = view.get('#loginAction');&#xD;
+    action.execute();&#xD;
+};&#xD;
+</ClientEvent>
+                <Property name="blankText">密码</Property>
+              </PasswordEditor>
+            </Editor>
+          </FormElement>
+          <HtmlContainer layoutConstraint="top:78;left:3">
+            <ClientEvent name="onCreate">var dom=$DomUtils.xCreate({&#xD;
+	tagName: &quot;img&quot;,&#xD;
+	src:$url(&quot;>dorado/console/images/password.png&quot;)&#xD;
+&#xD;
+});&#xD;
+&#xD;
+self.set('content',dom);&#xD;
+</ClientEvent>
+            <Property name="width">25</Property>
+            <Property name="height">23</Property>
+          </HtmlContainer>
+        </Container>
+        <Container layout="anchor" layoutConstraint="left:420;top:270">
+          <Property name="width">300</Property>
+          <Property name="height">40</Property>
+          <Control layoutConstraint="left:30;top:0">
+            <ClientEvent name="onCreate">var dom=self.getDom();&#xD;
+$(dom).append('&lt;div class=&quot;btn-close&quot;>&amp;nbsp;&amp;nbsp;登陆&amp;nbsp;&amp;nbsp;&lt;/div>');&#xD;
+</ClientEvent>
+            <ClientEvent name="onClick">var action = view.get('#loginAction');&#xD;
+action.execute();&#xD;
+&#xD;
+</ClientEvent>
+            <Property name="width">70</Property>
+            <Property name="height">30</Property>
+          </Control>
+          <Control layoutConstraint="left:50;anchorLeft:previous;top:0">
+            <ClientEvent name="onCreate">var dom=self.getDom();&#xD;
+$(dom).append('&lt;div class=&quot;btn-close&quot;>&amp;nbsp;&amp;nbsp;重置&amp;nbsp;&amp;nbsp;&lt;/div>');&#xD;
+</ClientEvent>
+            <ClientEvent name="onClick"> view.get('#user_password').set(&quot;value&quot;,null);&#xD;
+view.get('#user_name').set('value',null);</ClientEvent>
+            <Property name="width">70</Property>
+            <Property name="height">30</Property>
+          </Control>
+        </Container>
+      </Children>
+      <Tools/>
+    </Dialog>
+  </View>
+</ViewConfig>

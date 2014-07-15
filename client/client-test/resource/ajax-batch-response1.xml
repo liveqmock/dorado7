@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+	<request>
+		<response><![CDATA[%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Cresult%3E%0A%09%3Cnode%3EA%3C/node%3E%0A%09%3Cnode%3EB%3C/node%3E%0A%09%3Cnode%3EC%3C/node%3E%0A%09%3Cnode%3ED%3C/node%3E%0A%3C/result%3E]]></response>
+	</request>
+	<request>
+		<response><![CDATA[%7B%0D%0A%09%22id%22%3A%20%22D1%22%2C%0D%0A%09%22name%22%3A%20%22%u90E8%u95E81%22%2C%0D%0A%09%22departments%22%3A%20%5B%7B%0D%0A%09%09%22id%22%3A%20%22D11%22%2C%0D%0A%09%09%22name%22%3A%20%22%u90E8%u95E811%22%2C%0D%0A%09%09%22employees%22%3A%20%5B%7B%0D%0A%09%09%09%22id%22%3A%20%220001%22%2C%0D%0A%09%09%09%22name%22%3A%20%22John%22%2C%0D%0A%09%09%09%22sex%22%3A%20%22male%22%2C%0D%0A%09%09%09%22salary%22%3A%205000%0D%0A%09%09%7D%2C%20%7B%0D%0A%09%09%09%22id%22%3A%20%220002%22%2C%0D%0A%09%09%09%22name%22%3A%20%22Jerry%22%2C%0D%0A%09%09%09%22sex%22%3A%20%22female%22%2C%0D%0A%09%09%09%22salary%22%3A%205500%0D%0A%09%09%7D%2C%20%7B%0D%0A%09%09%09%22id%22%3A%20%220003%22%2C%0D%0A%09%09%09%22name%22%3A%20%22Marry%22%2C%0D%0A%09%09%09%22sex%22%3A%20%22female%22%2C%0D%0A%09%09%09%22salary%22%3A%204500%0D%0A%09%09%7D%5D%0D%0A%09%7D%5D%0D%0A%7D]]></response>
+	</request>
+	<request>
+		<response><![CDATA[%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Cresult%3E%3C%21%5BCDATA%5B%0AThis%20is%20the%20content%20in%20CDATA%21%0A%5D%5D%3E%3C/result%3E]]></response>
+	</request>
+</result>

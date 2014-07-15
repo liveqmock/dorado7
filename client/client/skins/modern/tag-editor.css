@@ -1,0 +1,144 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ *
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ *
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html)
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ *
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-tag-editor {
+  height: auto;
+  min-height: 22px;
+  background-repeat: repeat-x;
+  text-align: left;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.d-tag-editor .tag-container {
+  line-height: 22px;
+  padding: 0 1px 1px 0;
+  margin: 0;
+  position: relative;
+  overflow: visible;
+  white-space: normal;
+}
+.d-tag-editor .tag-container .tag {
+  cursor: pointer;
+  float: left;
+  display: block;
+  position: relative;
+  white-space: nowrap;
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+  margin: 1px 0 0 1px;
+  padding: 0 3px;
+}
+.d-tag-editor .tag-container .tag .tag-label {
+  zoom: 1;
+}
+.d-tag-editor .tag-container .tag .close {
+  float: right;
+  margin-top: 2px;
+  border-radius: 16px;
+  width: 16px;
+  height: 16px;
+}
+.d-tag-editor .tag-container .tag-readonly .close {
+  display: none;
+}
+.d-tag-editor .tag-container .editor {
+  float: left;
+  background: none;
+  white-space: nowrap;
+  border: 0;
+  margin: 1px;
+  height: 20px;
+  line-height: 20px;
+  color: #000000;
+}
+.d-tag-editor .tag-container .blank-text {
+  font-style: italic;
+  color: #919191;
+}
+.d-tag-editor .d-dirty-flag {
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+  border-bottom-color: #07c181;
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.d-tag-editor {
+  border: 1px #bfbfbf solid;
+  background-color: #ffffff;
+}
+.d-tag-editor .tag-container .tag {
+  background: #15a4fa;
+  color: #ffffff;
+}
+.d-tag-editor .tag-container .tag .close {
+  line-height: 16px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #c1f0e0;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}
+.d-tag-editor .tag-container .tag .close:before {
+  content: "\e605";
+}
+.d-tag-editor .tag-container .tag .close:hover {
+  color: #ffffff;
+}
+.d-tag-editor .tag-container .tag-error {
+  background-color: #ff4a4f;
+  color: #ffffff;
+  text-decoration: line-through;
+}
+.d-tag-editor .tag-container .tag-required {
+  background-color: #07c181;
+  color: #ffffff;
+}
+.d-tag-editor.d-tag-editor-hover {
+  border-color: #15a4fa;
+  background-color: #ffffff;
+}
+.d-tag-editor.d-tag-editor-focused {
+  border-color: #15a4fa;
+  background-color: #ffffff;
+}
+.d-tag-editor.d-tag-editor-warn {
+  border-color: #ecc463;
+  background-color: #faefd5;
+}
+.d-tag-editor.d-tag-editor-error {
+  border-color: #ff6267;
+  background-color: #ffe1e2;
+}
+.d-tag-editor.d-tag-editor-readonly {
+  border-color: #bfbfbf;
+  background: #efefef;
+}

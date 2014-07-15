@@ -1,0 +1,196 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ *
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ *
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html)
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ *
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-tree {
+  position: relative;
+}
+.d-tree .data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.d-tree .data-table td {
+  white-space: nowrap;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.d-tree .preparing-area {
+  background-color: #efefef;
+}
+.d-tree-expanding-placeholder {
+  background: #ffffff;
+}
+.d-tree-node .node-button {
+  position: relative;
+  top: 2px;
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  line-height: 14px;
+  text-align: center;
+  font-size: 14px;
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  visibility: hidden;
+}
+.d-tree-node .node-button:before {
+  content: "\e603";
+}
+.d-tree-node .node-button:hover {
+  border-color: rgba(0, 0, 0, 0.5);
+}
+.d-tree-node .node-button:active {
+  border-color: #000000;
+  background: rgba(0, 0, 0, 0.1);
+}
+.d-tree-node .node-button.expand-button {
+  visibility: visible;
+}
+.d-tree-node .node-button.collapse-button {
+  visibility: visible;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.d-tree-node .node-button.button-expanding {
+  border-color: transparent;
+  -webkit-transition-duration: 0;
+  -moz-transition-duration: 0;
+  -ms-transition-duration: 0;
+  -o-transition-duration: 0;
+  transition-duration: 0;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+}
+.d-tree-node .node-button.button-expanding > .spinner {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #15a4fa;
+  border-left-color: #15a4fa;
+  border-radius: 50%;
+  -webkit-animation: loading-icon 400ms linear infinite;
+  -moz-animation: loading-icon 400ms linear infinite;
+  -ms-animation: loading-icon 400ms linear infinite;
+  -o-animation: loading-icon 400ms linear infinite;
+}
+.d-tree-node .node-button.button-expanding:before {
+  display: none;
+}
+.d-tree-node .node-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 2px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-tree-node .d-checkbox-icononly {
+  position: relative;
+  top: 3px;
+  margin-right: 4px;
+}
+.d-tree {
+  background-color: #ffffff;
+}
+.d-tree .row {
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, border-color, color, -webkit-box-shadow, -webkit-transform;
+  -moz-transition-property: background-color, border-color, color, -moz-box-shadow, -moz-transform;
+  -ms-transition-property: background-color, border-color, color, -ms-box-shadow, -ms-transform;
+  -o-transition-property: background-color, border-color, color, -o-box-shadow, -o-transform;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  color: #000000;
+  background-color: #ffffff;
+}
+.d-tree .row .node-icon {
+  color: rgba(0, 0, 0, 0.7);
+}
+.d-tree .hover-row {
+  background: #c5e8fe;
+}
+.d-tree .selected-row {
+  color: #ffffff;
+  background-color: #2eaefb;
+}
+.d-tree .current-row {
+  color: #ffffff;
+  background-color: #15a4fa;
+}
+.d-tree .selected-row .node-icon,
+.d-tree .current-row .node-icon {
+  color: rgba(255, 255, 255, 0.7);
+}
+.d-tree .selected-row .node-button:hover,
+.d-tree .current-row .node-button:hover {
+  border-color: #ffffff;
+}
+.d-tree .selected-row .node-button:active,
+.d-tree .current-row .node-button:active {
+  border-color: #ffffff;
+  background: rgba(0, 0, 0, 0.1);
+}
+.d-tree .selected-row .node-button.button-expanding > .spinner,
+.d-tree .current-row .node-button.button-expanding > .spinner {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-radius: 50%;
+  -webkit-animation: loading-icon 400ms linear infinite;
+  -moz-animation: loading-icon 400ms linear infinite;
+  -ms-animation: loading-icon 400ms linear infinite;
+  -o-animation: loading-icon 400ms linear infinite;
+}
+.d-tree .drag-over-row {
+  background-color: #c5e8fe;
+}

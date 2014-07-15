@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Bar Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Dock" });
+
+		var dataTypeBarData = new dorado.EntityDataType({
+			name: "BarData",
+			propertyDefs: [
+				{ name: "color", label: "Color" },
+				{ name: "value", label: "Value" },
+				{ name: "label", label: "Label" },
+				{ name: "text", label: "Text" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeBarData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [{
+				value: 10273
+			}, {
+				value: 14285
+			}, {
+				value: 12352
+			}, {
+				value: 11588
+			}, {
+				value: 10260
+			}, {
+				value: 12940
+			}, {
+				value: 10456
+			}, {
+				value: 10493
+			}, {
+				value: 12039
+			}, {
+				value: 10995
+			}, {
+				value: 14073
+			}, {
+				value: 11738
+			}],
+			dataType: "BarData"
+		});
+
+		var barChart = new dorado.widget.ofc.OpenFlashChart({
+			backgroundColor: "-1",
+			title: {
+				"text": "Sales by Month 2006",
+				"style": "font-size: 16px; font-weight: bold; font-family: Verdana; color:#ff9900; text-align: center;"
+			},
+			xAxis: {
+				color: "#FF9900",
+				gridColor: "#aaaaff",
+				zDepth3D: 5,
+				labels: {
+					color: "#ffff00",
+					labels: ["J","F","M","A","M","J","J","A","S","O","N",{"text":"十二月", "colour":"#000000", "size":10, "rotate":-120}]
+				}
+				//,labelsShortcut: "J,F,M,A,M,J,J,A,S,O,N,D"
+			},
+			yAxis: {
+				color: "#FF9900",
+				gridColor: "#aaaaff",
+				steps: 1000,
+				min: 5000,
+				max: 20000
+			},
+			elements: [{
+				$type: "ofc.Column",
+				dataSet: dataSet,
+				toolTip: "$#val#",
+				bindingConfig: {
+					valueProperty: "value"
+				},
+                listener: {
+                    onClick: function() {
+                        alert(456789);
+                    }
+                }
+			}, {
+				$type: "ofc.Column",
+				dataSet: dataSet,
+				toolTip: "$#val#",
+				color: "#ff0000",
+				bindingConfig: {
+					valueProperty: "value"
+				}
+			}]
+		});
+
+		view.addChild(barChart);
+
+		var dropdown1 = new dorado.widget.ListDropDown({
+			items: ["Bar", "Bar3D", "Cylinder", "CylinderOutline", "Dome", "Glass", "Plastic", "PlasticFlat",
+				"Round", "Round3D", "RoundGlass"]
+		});
+		view.addChild(dropdown1);
+
+		var editor1 = new dorado.widget.TextEditor({
+			trigger: dropdown1,
+			width: 200,
+			onPost: function(self) {
+				var value = self.get("text");
+				barChart._elements[0].set("type", value);
+				barChart._elements[1].set("type", value);
+
+				barChart.reload();
+			}
+		});
+		//view.addChild(editor1);
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+	</body>
+</html>

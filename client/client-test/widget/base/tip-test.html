@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Tip Test Page</title>
+	<script type="text/javascript" src="../../include-all.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript">
+		var view = new dorado.widget.View({
+            layout: "Anchor",
+            children: [{
+               "$type":"Tip","visible":true,"center":true,"text":"测试一下！","arrowDirection":"top","caption":"Hello","modalType":"dark"
+            }]
+        });
+
+		var tip = new dorado.widget.Tip({
+			id: "tip1",
+			text: "测试测试测试测试<br />测试测试测试测试<br />测试测试测试测试<br />",
+            content: "",
+            /**
+			anchorTarget: "#tip-target6",
+			arrowDirection: "left",
+			align: "right",
+			vAlign: "center",
+            */
+			closeable: true,
+            offsetTop: 10,
+            offsetLeft: 50,
+            onCreate: function(self) {
+                $setInterval(this, function(){
+                    self.show();
+                },1000);
+            }
+		});
+
+		$(document).ready(function() {
+			view.render(document.body);
+			//tip.show();
+
+			dorado.TipManager.initTip(document.getElementById("tip-target1"), {
+				text: "外部的Tooltip"
+			});
+
+			dorado.TipManager.initTip(document.getElementById("inner-target"), {
+				text: "内部的ToolTip",
+				icon: "warning-icon"
+			});
+
+			dorado.TipManager.initTip(document.getElementById("tip-target2"), {
+				caption: "测试标题",
+				text: "测试内容<br />测试内容",
+				anchorToTarget: true,
+				anchorTarget: "#tip-target2",
+				align: "right"
+			});
+
+			dorado.TipManager.initTip(document.getElementById("tip-target3"), {
+				text: "测试一下1",
+				trackMouse: true
+			});
+
+			dorado.TipManager.initTip(document.getElementById("tip-target4"), {
+				text: "<b>测试一下2</b><br />测试一下2<br />测试一下2<br />测试一下2<br />测试一下2",
+				autoHide: false,
+				closeable: true,
+				anchorToTarget: true,
+				align: "right",
+				vAlign: "center",
+				arrowDirection: "left",
+				arrowAlign: "center"
+			});
+
+			dorado.TipManager.initTip(document.getElementById("tip-target5"), {
+				text: "你们都来了",
+				arrowDirection: "bottom",
+				anchorToTarget: true,
+				align: "center",
+				vAlign: "top",
+				autoHide: false,
+				closeable: true
+			});
+
+			dorado.TipManager.initTip(document.getElementById("tip-target6"), {
+				text: "测试一下2",
+				arrowDirection: "right",
+				trackMouse: true
+			});
+		});
+	</script>
+	<style type="text/css">
+		.tip-target {
+			background: #DFE8F6 none repeat scroll 0 0;
+			border: 1px dotted #99BBE8;
+			color: #15428B;
+			cursor: default;
+			float: left;
+			line-height: normal;
+			margin: 10px;
+			padding: 5px 0;
+			text-align: center;
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+<div id="tip-target1" class="tip-target">
+	Basic ToolTip
+	<div id="inner-target" class="tip-target">
+		Inner ToolTip
+	</div>
+</div>
+<div id="tip-target2" class="tip-target">autoHide <br/>disabled</div>
+<div id="tip-target3" class="tip-target">Mouse Track</div>
+
+<div style="clear:left;"></div>
+
+<div id="tip-target4" class="tip-target" style="height:300px;">Anchor right, rich content</div>
+<div id="tip-target5" class="tip-target">Anchor below</div>
+<div id="tip-target6" class="tip-target">Anchor with tracking</div>
+</body>
+</html>

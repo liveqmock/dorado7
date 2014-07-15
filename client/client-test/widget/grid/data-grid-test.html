@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <script type="text/javascript">
+            
+            var view = new dorado.widget.View({ layout: "Anchor" });
+            
+            var json = Test.getJSON(Test.ROOT + "resource/hr-data.js");
+            var departments = new dorado.EntityList(json, view.dataTypeRepository, getDepartmentsDataType());
+            var ds1 = new dorado.widget.DataSet({
+            	data: departments
+            });
+            view.addChild(ds1);
+            
+            var grid1 = new dorado.widget.DataGrid({
+            	id: "grid1",
+            	width: "25%",
+            	height: 80,
+            	dataSet: ds1,
+            	appendOnLastEnter: true
+            });
+            view.addChild(grid1);
+            
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<hr>"
+            }));
+            
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<hr>"
+            }));
+            
+            var grid2 = new dorado.widget.DataGrid({
+            	id: "grid2",
+            	scrollMode: "simple",
+            	width: "50%",
+            	dataSet: ds1,
+            	dataPath: "#departments(L).employees",
+				selectionMode: "multiRows",
+				highlightCurrentRow: false,
+				showFooter: true,
+				showGroupFooter: true,
+				stretchColumnsMode: "allColumns",
+            	columns: ["Indicator", "RowNum", "RowSelector", {
+            		name: "id",
+            		property: "id"
+            	}, {
+            		name: "name",
+            		property: "name"
+            	}, {
+            		name: "sex",
+            		property: "sex"
+            	}, {
+            		name: "salary",
+            		property: "salary",
+            		dataType: "float",
+            		displayFormat: "#,##.00",
+					summaryType: "average"
+            	}]
+            });
+            view.addChild(grid2);
+            
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<hr>"
+            }));
+            
+            var grid3 = new dorado.widget.DataGrid({
+            	id: "grid3",
+            	scrollMode: "viewport",
+            	width: "50%",
+            	height: 80,
+            	fixedColumnCount: 1,
+            	dataSet: ds1,
+            	appendOnLastEnter: true,
+				highlightCurrentRow: false,
+            	dataPath: "#departments(L).employees",
+            	columns: [new dorado.widget.grid.IndicatorColumn(), new dorado.widget.grid.RowNumColumn(), {
+            		name: "id",
+            		property: "id"
+            	}, {
+            		name: "name",
+            		property: "name"
+            	}, {
+            		name: "sex",
+            		property: "sex"
+            	}, {
+            		name: "salary",
+            		property: "salary",
+            		dataType: "float",
+            		displayFormat: "#,##.00"
+            	}]
+            });
+            view.addChild(grid3);
+            
+            view.addChild(new dorado.widget.HtmlContainer({
+            	content: "<hr>"
+            }));
+            
+            var rowData2 = [];
+            for (var i = 0; i < 100; i++) {
+            	rowData2.push({
+            		property1: "Row " + i
+            	});
+            }
+            var ds2 = new dorado.widget.DataSet({
+				id: "ds2",
+            	data: new dorado.EntityList(rowData2)
+            });
+            view.addChild(ds2);
+            
+            var grid4 = new dorado.widget.DataGrid({
+            	id: "grid4",
+            	width: "25%",
+            	height: 150,
+            	dataSet: ds2,
+            	appendOnLastEnter: true,
+            	columns: [{
+            		name: "property1",
+            		property: "property1",
+            		width: 180
+            	}]
+            });
+            view.addChild(grid4);
+            
+            $(document).ready(function() {
+            	var s = new Date();
+            	view.render(document.body);
+            	document.title = new Date() - s;
+            });
+            
+            function buttonPreviousDepartment_onclick() {
+            	ds1.getData().previous();
+            }
+            
+            function buttonNextDepartment_onclick() {
+            	ds1.getData().next();
+            }
+            
+            function buttonPreviousEmployee_onclick() {
+            	var employees = ds1.getData("#departments(L)").get("employees");
+            	employees.previous();
+            }
+            
+            function buttonNextEmployee_onclick() {
+            	var employees = ds1.getData("#departments(L)").get("employees");
+            	employees.next();
+            }
+            
+            function buttonChangeName_onclick() {
+            	var employee = ds1.getData("#departments(L).#employees");
+            	employee.set("name", "#changed#");
+            }
+            
+            function buttonDeleteEmployee_onclick() {
+            	var employees = ds1.getData("#departments(L)").get("employees");
+            	employees.remove(employees.current);
+            }
+            
+            function buttonInsertEmployee_onclick() {
+            	var employees = ds1.getData("#departments(L)").get("employees");
+            	var employee = new dorado.Entity({
+            		name: "#new employee#"
+            	}, null, employees.elementDataType);
+            	var current = employees.current;
+            	if (current) {
+            		employees.insert(employee, "before", current);
+            	} else {
+            		employees.insert(employee);
+            	}
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="buttonPreviousDepartment_onclick()">
+            Prev Dept.
+        </button>
+        <button onclick="buttonNextDepartment_onclick()">
+            Next Dept.
+        </button>
+        &nbsp;
+        <button onclick="buttonPreviousEmployee_onclick()">
+            Prev Emp.
+        </button>
+        <button onclick="buttonNextEmployee_onclick()">
+            Next Emp.
+        </button>
+        &nbsp;
+        <button onclick="buttonChangeName_onclick()">
+            Change Name
+        </button>
+        &nbsp;
+        <button onclick="buttonDeleteEmployee_onclick()">
+            Delete Emp.
+        </button>
+        <button onclick="buttonInsertEmployee_onclick()">
+            Insert Emp.
+        </button>
+        <hr>
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.bstek.com/dorado/schema"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.bstek.com/dorado/schema http://www.bstek.com/dorado/schema/spring-dorado-7.0.xsd">
+	<bean class="com.bstek.dorado.core.ConfigureProperiesConfigurer" />
+	<bean class="com.bstek.dorado.core.BaseEngineStartupListener">
+		<property name="order" value="0" />
+	</bean>
+
+	<bean class="com.bstek.dorado.core.io.LocationTranformerRegister">
+		<property name="protocal" value="store:" />
+		<property name="transformer">
+			<bean class="com.bstek.dorado.core.io.StoreLocationTransformer" />
+		</property>
+	</bean>
+
+	<bean id="dorado.xmlDocumentBuilder" class="com.bstek.dorado.core.xml.XercesXmlDocumentBuilder" />
+
+	<!-- Bean Implementation -->
+	<bean id="dorado.scopeManager" class="com.bstek.dorado.core.bean.ScopeManager" />
+	<bean id="dorado.beanFactoryRegistry" class="com.bstek.dorado.core.bean.DefaultBeanFactoryRegistry">
+		<property name="defaultPrefix" value="class" />
+		<property name="beanFactories">
+			<list>
+				<bean class="com.bstek.dorado.core.bean.ClassNameBeanFactory" />
+			</list>
+		</property>
+	</bean>
+	<bean id="dorado.beanFactoryRegister" abstract="true" class="com.bstek.dorado.core.bean.BeanFactoryRegister">
+		<property name="beanFactoryRegistry" ref="dorado.beanFactoryRegistry" />
+	</bean>
+	<bean class="com.bstek.dorado.core.bean.BeanFactoryUtilsInitializer">
+		<property name="beanFactoryRegistry" ref="dorado.beanFactoryRegistry" />
+		<property name="scopeManager" ref="dorado.scopeManager" />
+	</bean>
+
+	<!-- Expression -->
+	<bean id="dorado.expressionHandler" class="com.bstek.dorado.core.el.DefaultExpressionHandler">
+		<property name="contextInitializers">
+			<list>
+				<bean class="com.bstek.dorado.core.el.CoreContextVarsInitializer" />
+			</list>
+		</property>
+	</bean>
+	<bean id="dorado.expressionVarsInitializerRegister" class="com.bstek.dorado.core.el.ContextVarsInitializerRegister" abstract="true" />
+
+	<bean id="dorado.globalResourceCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheName" value="com.bstek.dorado.view.resource.GlobalResourceCache" />
+		<property name="overflowToDisk" value="false" />
+		<property name="timeToLive" value="${core.globalResource.cache.timeToLive}" />
+		<property name="timeToIdle" value="${core.globalResource.cache.timeToIdle}" />
+	</bean>
+	<bean id="dorado.privateResourceCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheName" value="com.bstek.dorado.view.resource.ModelResourceCache" />
+		<property name="overflowToDisk" value="false" />
+		<property name="timeToLive" value="${core.privateResource.cache.timeToLive}" />
+		<property name="timeToIdle" value="${core.privateResource.cache.timeToIdle}" />
+	</bean>
+
+	<bean id="dorado.defaultLocale" class="com.bstek.dorado.core.resource.LocaleFactory">
+		<property name="language" value="${core.defaultLanguage}" />
+		<property name="country" value="${core.defaultCountry}" />
+	</bean>
+	<bean id="dorado.localeResolver" class="com.bstek.dorado.core.resource.EmptyLocaleResolver" />
+	<bean id="dorado.globalResourceBundleManager" class="com.bstek.dorado.core.resource.DefaultGlobalResourceBundleManager">
+		<property name="cache" ref="dorado.globalResourceCache" />
+	</bean>
+	<bean id="dorado.globalResourceSearchPathRegister" abstract="true" class="com.bstek.dorado.core.resource.GlobalResourceSearchPathRegister">
+		<property name="globalResourceBundleManager" ref="dorado.globalResourceBundleManager" />
+	</bean>
+	<bean id="dorado.abstractResourceManager" abstract="true">
+		<property name="globalResourceBundleManager" ref="dorado.globalResourceBundleManager" />
+		<property name="defaultLocale" ref="dorado.defaultLocale" />
+		<property name="localeResolver" ref="dorado.localeResolver" />
+	</bean>
+	<bean id="dorado.resourceManager" scope="prototype" parent="dorado.abstractResourceManager" class="com.bstek.dorado.core.resource.DefaultResourceManager" />
+
+	<bean parent="dorado.globalResourceSearchPathRegister">
+		<property name="searchPath" value="com/bstek/dorado/core/resource/" />
+	</bean>
+
+	<bean id="dorado.sqlBaseStore" abstract="true" class="com.bstek.dorado.core.store.H2BaseStore">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="username" value="dorado" />
+		<property name="password" value="www.bstek.com" />
+	</bean>
+</beans>

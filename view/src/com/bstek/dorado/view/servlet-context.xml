@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.bstek.com/dorado/schema"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="dorado.abstractVelocityResolver" abstract="true"
+		class="com.bstek.dorado.view.registry.AbstractVelocityResolver">
+		<property name="velocityHelper" ref="dorado.velocityHelper" />
+	</bean>
+	<bean id="dorado.viewResolverListenerRegister" abstract="true"
+		class="com.bstek.dorado.view.resolver.ViewResolverListenerRegister">
+		<property name="viewResolver" ref="dorado.htmlViewResolver" />
+	</bean>
+
+	<bean id="dorado.libraryFileResolver" class="com.bstek.dorado.view.resolver.LibraryFileResolver">
+		<property name="clientI18NFileRegistry" ref="dorado.clientI18NFileRegistry" />
+		<property name="defaultLocale" ref="dorado.defaultLocale" />
+		<property name="localeResolver" ref="dorado.localeResolver" />
+		<property name="resourcePrefix" value="${view.libraryRoot}" />
+	</bean>
+	<bean parent="dorado.resolverRegister">
+		<property name="order" value="10" />
+		<property name="url" value="/dorado/client/**/*.dpkg" />
+		<property name="resolver" ref="dorado.libraryFileResolver" />
+	</bean>
+
+	<bean id="dorado.packageFileResolver" class="com.bstek.dorado.view.resolver.PackageFileResolver">
+		<property name="clientI18NFileRegistry" ref="dorado.clientI18NFileRegistry" />
+		<property name="defaultLocale" ref="dorado.defaultLocale" />
+		<property name="localeResolver" ref="dorado.localeResolver" />
+	</bean>
+	<bean parent="dorado.resolverRegister">
+		<property name="order" value="20" />
+		<property name="url" value="**/*.dpkg" />
+		<property name="resolver" ref="dorado.packageFileResolver" />
+	</bean>
+
+	<bean id="dorado.bootPackagesResolver" class="com.bstek.dorado.view.resolver.BootPackagesResolver">
+		<property name="localeResolver" ref="dorado.localeResolver" />
+		<property name="bootFile" value="scripts/dorado/boot" />
+		<property name="resourcePrefix" value="${view.libraryRoot}" />
+	</bean>
+	<bean parent="dorado.resolverRegister">
+		<property name="order" value="30" />
+		<property name="url" value="/dorado/client/boot.dpkg" />
+		<property name="resolver" ref="dorado.bootPackagesResolver" />
+	</bean>
+
+	<bean id="dorado.skinFileResolver" class="com.bstek.dorado.view.resolver.SkinFileResolver">
+		<property name="baseUri" value="/dorado/client" />
+		<property name="resourcePrefix" value="${view.libraryRoot}" />
+	</bean>
+	<bean parent="dorado.resolverRegister">
+		<property name="order" value="40" />
+		<property name="url" value="/dorado/client/skins/**" />
+		<property name="resolver" ref="dorado.skinFileResolver" />
+	</bean>
+
+	<bean id="dorado.sysResourceFileResolver" class="com.bstek.dorado.web.resolver.ResourceFileResolver">
+		<property name="baseUri" value="/dorado/client" />
+		<property name="resourcePrefix" value="${view.libraryRoot}" />
+	</bean>
+	<bean parent="dorado.resolverRegister">
+		<property name="order" value="50" />
+		<property name="url" value="/dorado/client/resources/**" />
+		<property name="resolver" ref="dorado.sysResourceFileResolver" />
+	</bean>
+
+	<bean id="dorado.userResourceFileResolver" class="com.bstek.dorado.web.resolver.ResourceFileResolver">
+		<property name="baseUri" value="/dorado/res" />
+		<property name="resourcePrefix" value="classpath:" />
+	</bean>
+	<bean id="dorado.resourcesResolverRegister" parent="dorado.resolverRegister">
+		<property name="order" value="60" />
+		<property name="url" value="/dorado/res/**" />
+		<property name="resolver" ref="dorado.userResourceFileResolver" />
+	</bean>
+
+	<!-- Services -->
+	<bean id="dorado.viewServiceResolver" class="com.bstek.dorado.view.resolver.ViewServiceResolver">
+		<property name="serviceProcessors">
+			<map>
+				<entry key="load-datatype" value-ref="dorado.loadDataTypeServiceProcessor" />
+				<entry key="load-data" value-ref="dorado.loadDataServiceProcessor" />
+				<entry key="resolve-data" value-ref="dorado.resolveDataServiceProcessor" />
+				<entry key="remote-service" value-ref="dorado.remoteServiceProcessor" />
+				<entry key="long-polling" value-ref="dorado.longPollingServiceProcessor" />
+			</map>
+		</property>
+	</bean>
+	<bean id="dorado.viewServiceResolverRegister" parent="dorado.resolverRegister">
+		<property name="order" value="70" />
+		<property name="url" value="/dorado/view-service" />
+		<property name="resolver" ref="dorado.viewServiceResolver" />
+	</bean>
+	<bean id="dorado.viewServiceInterceptorRegister"
+		class="com.bstek.dorado.view.resolver.ViewServiceInterceptorRegister"
+		abstract="true">
+		<property name="viewServiceResolver" ref="dorado.viewServiceResolver" />
+	</bean>
+
+	<bean id="dorado.dataServiceProcessorSupport" abstract="true">
+		<property name="dataTypeManager" ref="dorado.dataTypeManager" />
+		<property name="viewConfigManager" ref="dorado.viewConfigManager" />
+		<property name="dataOutputter" ref="dorado.dataOutputter" />
+		<property name="includeDataTypesOutputter">
+			<bean parent="dorado.objectOutputterDispatcher"
+				class="com.bstek.dorado.view.output.IncludeDataTypesOutputter" />
+		</property>
+	</bean>
+	<bean id="dorado.loadDataTypeServiceProcessor" parent="dorado.dataServiceProcessorSupport"
+		class="com.bstek.dorado.view.service.LoadDataTypeServiceProcessor" />
+	<bean id="dorado.loadDataServiceProcessor" parent="dorado.dataServiceProcessorSupport"
+		class="com.bstek.dorado.view.service.LoadDataServiceProcessor">
+		<property name="dataProviderManager" ref="dorado.dataProviderManager" />
+		<property name="filterCriterionParser" ref="dorado.filterCriterionParser" />
+	</bean>
+	<bean id="dorado.resolveDataServiceProcessor" parent="dorado.dataServiceProcessorSupport"
+		class="com.bstek.dorado.view.service.ResolveDataServiceProcessor">
+		<property name="dataResolverManager" ref="dorado.dataResolverManager" />
+		<property name="simplePropertyValueOnlyDataOutputter">
+			<bean parent="dorado.dataOutputter">
+				<property name="simplePropertyValueOnly" value="true" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="dorado.abstractRemoteServiceProcessor" abstract="true"
+		parent="dorado.dataServiceProcessorSupport" class="com.bstek.dorado.view.service.AbstractRemoteServiceProcessor">
+		<property name="exposedServiceManager" ref="dorado.exposedServiceManager" />
+	</bean>
+	<bean id="dorado.remoteServiceProcessor" parent="dorado.abstractRemoteServiceProcessor"
+		class="com.bstek.dorado.view.service.RemoteServiceProcessor" />
+	<bean id="dorado.longPollingServiceProcessor" parent="dorado.abstractRemoteServiceProcessor"
+		class="com.bstek.dorado.view.service.LongPollingServiceProcessor">
+		<property name="longPollingManager" ref="dorado.longPollingManager" />
+	</bean>
+
+	<bean id="dorado.htmlViewResolver" class="com.bstek.dorado.view.resolver.HtmlViewResolver">
+		<property name="touchUserAgents"
+			value="iPad,iPhone,Android,BlackBerry,Windows Phone,WebOS,Meego" />
+		<property name="templateFile"
+			value="home:w3c-html4-template.html,classpath:com/bstek/dorado/view/resolver/w3c-html4-template.html" />
+		<property name="dataConfigManager" ref="dorado.dataConfigManager" />
+		<property name="viewConfigManager" ref="dorado.viewConfigManager" />
+		<property name="velocityHelper" ref="dorado.velocityHelper" />
+		<property name="uriSuffix" value=".d" />
+	</bean>
+	<bean id="dorado.viewResolverRegister" parent="dorado.resolverRegister">
+		<property name="order" value="100" />
+		<property name="url" value="**/*.d" />
+		<property name="resolver" ref="dorado.htmlViewResolver" />
+	</bean>
+
+	<!-- Desprecated -->
+	<bean parent="dorado.resolverRegister">
+		<property name="order" value="30" />
+		<property name="url" value="/dorado/client/skins/*/common/icons.gif" />
+		<property name="resolver">
+			<bean class="com.bstek.dorado.view.resolver.OldIconsFileResolver" />
+		</property>
+	</bean>
+	<bean parent="dorado.resolverRegister">
+		<property name="order" value="30" />
+		<property name="url" value="/dorado/client/resources/icons/silk/*.png" />
+		<property name="resolver">
+			<bean class="com.bstek.dorado.view.resolver.IE6PngFileResolver">
+				<property name="baseUri" value="/dorado/client" />
+				<property name="resourcePrefix" value="${view.libraryRoot}" />
+			</bean>
+		</property>
+	</bean>
+	<bean parent="dorado.resolverRegister">
+		<property name="order" value="30" />
+		<property name="url" value="/dorado/client/resources/icons/font-awesome/*.png" />
+		<property name="resolver">
+			<bean class="com.bstek.dorado.view.resolver.FontAwesomePngFileResolver">
+				<property name="baseUri" value="/dorado/client" />
+				<property name="resourcePrefix" value="${view.libraryRoot}" />
+			</bean>
+		</property>
+	</bean>
+	<bean class="com.bstek.dorado.core.io.LocationTranformerRegister">
+		<property name="protocal" value="font-awesome:" />
+		<property name="transformer">
+			<bean class="com.bstek.dorado.view.resolver.FontAwesomeLocationTransformer" />
+		</property>
+	</bean>
+</beans>

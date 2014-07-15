@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View listener="spring:dorado.console.main#onViewInit">
+    <Property name="title">Dorado Management Console</Property>
+    <Container layout="anchor">
+      <Property name="height">42</Property>
+      <Property name="width">100%</Property>
+      <Property name="contentOverflow">hidden</Property>
+      <Property name="style">
+        <Property name="background-image">url(http://bsdn.org/projects/dorado7/deploy/sample-center/images/page-banner-bg.gif);</Property>
+        <Property name="overflow">auto;
+</Property>
+      </Property>
+      <Label layoutConstraint="left:20;top:10">
+        <Property name="text">${res.addonName}</Property>
+        <Property name="style">
+          <Property name="color">#345666
+</Property>
+          <Property name="font-size">13pt</Property>
+          <Property name="font-weight">bold</Property>
+        </Property>
+      </Label>
+      <Label id="startupTimeLabel" layoutConstraint="bottom:2;right:210">
+        <Property name="text">${res.startTimeLabel}</Property>
+        <Property name="style">
+          <Property name="color">gray</Property>
+        </Property>
+      </Label>
+      <Label id="startupTimeValue" layoutConstraint="bottom:2;right:100">
+        <Property name="style">
+          <Property name="color">gray</Property>
+        </Property>
+      </Label>
+      <Button id="buttonLogout" layoutConstraint="right:20;top:10">
+        <Property name="icon">url(>skin>common/icons.gif) -100px -20px</Property>
+        <Property name="caption">${res.logout}</Property>
+        <Property name="action">logoutAction</Property>
+        <Property name="hideMode">visibility</Property>
+      </Button>
+    </Container>
+    <SplitPanel>
+      <Property name="position">182</Property>
+      <MainControl>
+        <Panel id="framePanel">
+          <Buttons/>
+          <Children>
+            <IFrame id="detailInfoSubView">
+              <Property name="path">>com.bstek.dorado.console.HomePage.d</Property>
+            </IFrame>
+          </Children>
+          <Tools/>
+        </Panel>
+      </MainControl>
+      <SideControl>
+        <Accordion id="accordionMenu">
+          <Property name="width">180</Property>
+        </Accordion>
+      </SideControl>
+    </SplitPanel>
+    <AjaxAction id="logoutAction">
+      <Property name="service">dorado.console.login#logout</Property>
+      <Property name="confirmMessage">${res.logoutActionConfirmMessage}</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

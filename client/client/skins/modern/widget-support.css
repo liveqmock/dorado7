@@ -1,0 +1,62 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-view {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.d-container {
+  margin: 0;
+  overflow: hidden;
+}
+.d-floating {
+  position: absolute !important;
+  top: -99999px;
+  left: -99999px;
+}
+.d-relative {
+  position: relative;
+}
+.d-disabled {
+  cursor: default !important;
+}
+.d-fix-text-align {
+  text-align: left;
+}
+.d-exception-content {
+  height: 64px;
+  padding: 16px 32px 16px 112px;
+  position: relative;
+}
+.d-exception-icon {
+  position: absolute;
+  top: 16px;
+  left: 32px;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  font-size: 14px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 64px;
+  color: #ff4a4f;
+}
+.d-exception-icon:before {
+  content: "\f057";
+}
+.d-exception-text {
+  position: relative;
+}

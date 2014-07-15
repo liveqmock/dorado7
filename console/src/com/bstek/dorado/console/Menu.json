@@ -1,0 +1,126 @@
+[ {
+	"id" : "system",
+	"caption" : "${res.DRE}",
+	"icon" : "url(>skin>common/icons.gif) 0px -20px",
+	"items" : [ {
+		"label" : "${res.system}",
+		"path" : "runtime.SystemProperty.d",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/computer.png"
+	}, {
+		"label" : "${res.doradoConfig}",
+		"path" : "runtime.Configure.d",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	} ]
+}, {
+	"id" : "parserTree",
+	"caption" : "Parser Tree",
+	"icon" : ">dorado/console/images/xml.png",
+	"items" : [ {
+		"label" : "View Tree",
+		"path" : "parser.ViewTree.d",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	}, {
+		"label" : "Model Tree",
+		"path" : "parser.ModelTree.d",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	}, {
+		"label" : "Component Tree",
+		"path" : "parser.ComponentTree.d",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	} ]
+}, {
+	"id" : "log",
+	"caption" : "${res.systemLog}",
+	"icon" : ">dorado/console/images/log.png",
+	"items" : [ {
+		"label" : "${res.consoleLog}",
+		"path" : "system.log.console.SystemOutMonitor.d",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/console.png"
+	}, {
+		"label" : "${res.fileLog}",
+		"path" : "system.log.file.FileReaderMain.d",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/file.png"
+	} ]
+}, {
+	"id" : "doradoObejct",
+	"caption" : "${res.doradoObjects}",
+	"icon" : ">dorado/console/images/dorado.gif",
+	"items" : [ {
+		"label" : "${res.globalObject}",
+		"path" : "web.GlobalObject.d",
+		"owner" : 3 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	}, {
+		"label" : "Expose",
+		"path" : "web.Expos.d",
+		"owner" : 3 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	} ]
+}, {
+	"id" : "web",
+	"caption" : "Web",
+	"icon" : "url(>skin>common/icons.gif) -100px -100px",
+	"items" : [ {
+		"label" : "Packages",
+		"path" : "web.Package.d",
+		"owner" : 1 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	}, {
+		"label" : "Outputter",
+		"path" : "web.Outputter.d",
+		"owner" : 1 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	} ]
+}, {
+	"id" : "performance",
+	"caption" : "${res.performanceMonit}",
+	"icon" : "url(>skin>common/icons.gif) -280px -40px",
+	"items" : [ {
+		"label" : "View",
+		"path" : "performance.view.Performance.d?type=CreateDoradoView",
+		"owner" : 3 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	}, {
+		"label" : "Action",
+		"path" : "performance.view.Performance.d?type=RemoteService",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	}, {
+		"label" : "DataResolve",
+		"path" : "performance.view.Performance.d?type=DataResolve",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	}, {
+		"label" : "DataProvider",
+		"path" : "performance.view.Performance.d?type=DataProviderGetResult",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	} ]
+}, {
+	"id" : "addon",
+	"caption" : "Addon",
+	"icon" : "url(>skin>common/icons.gif) -180px -40px",
+	"items" : [ {
+		"label" : "Addons",
+		"path" : "addon.DoradoAddon.d",
+		"owner" : 2 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	} ]
+}, {
+	"id" : "others",
+	"caption" : "${res.others}",
+	"icon" : ">dorado/console/images/others.png",
+	"items" : [ {
+		"label" : "${res.version}",
+		"path" : "others.Version.d",
+		"owner" : 1 ,
+		"icon" : ">dorado/console/images/dorado7.jpg"
+	} ]
+} ]

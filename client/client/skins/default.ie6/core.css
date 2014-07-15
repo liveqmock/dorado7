@@ -1,0 +1,74 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+*:focus {
+  outline: none;
+}
+html,
+body {
+  height: 100%;
+}
+body,
+input,
+textarea,
+button {
+  font-size: 9pt;
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  color: #000000;
+  background-color: #ffffff;
+}
+.d-ie6 * {
+  position: relative;
+}
+.d-shadow-drop {
+  -webkit-box-shadow: 2px 2px 3px 0 #bababa;
+  -moz-box-shadow: 2px 2px 3px 0 #bababa;
+  box-shadow: 2px 2px 3px 0 #bababa;
+}
+.d-shadow-sides {
+  -webkit-box-shadow: 0 2px 4px 0 #bababa;
+  -moz-box-shadow: 0 2px 4px 0 #bababa;
+  box-shadow: 0 2px 4px 0 #bababa;
+}
+.d-shadow-frame {
+  -webkit-box-shadow: 0 0 5px 0 #bababa;
+  -moz-box-shadow: 0 0 5px 0 #bababa;
+  box-shadow: 0 0 5px 0 #bababa;
+}
+.d-modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  background: #ffffff url(common/model-cover-bg.png);
+}
+.d-modal-mask-transparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  background: #ffffff;
+}
+.d-animate-zoom-proxy {
+  position: absolute;
+  left: -99999px;
+  top: -99999px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  background-color: #dadada;
+  border: 1px solid #7b7b7b;
+}

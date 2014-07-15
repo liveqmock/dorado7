@@ -1,0 +1,425 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+/* label */
+.d-label {
+  height: 20px;
+  line-height: 20px;
+}
+/* text-box */
+.d-text-box {
+  position: relative;
+  text-align: left;
+  height: 20px;
+  background-repeat: repeat-x;
+}
+.d-text-box .editor-wrapper {
+  display: block;
+}
+.d-text-box .editor {
+  background: transparent;
+  white-space: nowrap;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  line-height: 20px;
+}
+.d-text-box .d-trigger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  overflow: hidden;
+  width: 18px;
+  height: 20px;
+  background-repeat: no-repeat;
+}
+.d-text-box .blank-text {
+  font-style: italic;
+}
+.d-text-box .d-dirty-flag {
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  right: -1px;
+  top: 0;
+  z-index: 1;
+  background: url(base/dirty-flag.png);
+}
+.d-text-box-hover .d-trigger {
+  background-position: -18px 0;
+}
+.d-text-box-focused .d-trigger {
+  background-position: -36px 0;
+}
+.d-text-box-focused .d-trigger-down {
+  background-position: -54px 0;
+}
+.d-text-box-warn .d-trigger {
+  background-position: -72px 0;
+}
+.d-text-box-error .d-trigger {
+  background-position: -90px 0;
+}
+.d-text-box-readonly .d-trigger {
+  background-position: -108px 0;
+}
+.d-text-box {
+  border: 1px #a1a1a1 solid;
+  background-color: #ffffff;
+  background-image: url(form/text-field-bg.png);
+}
+.d-text-box .editor {
+  color: #000000;
+}
+.d-text-box .blank-text {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+.d-text-box .d-trigger {
+  background-image: url(form/dropdown-trigger-bg.png);
+}
+.d-text-box.d-text-box-hover {
+  border: 1px #616161 solid;
+}
+.d-text-box.d-text-box-focused {
+  border: 1px #52cb6a solid;
+  background-color: #ffffff;
+  background-image: url(form/text-field-focus-bg.png);
+}
+.d-text-box.d-text-box-warn {
+  border: 1px #dbad42 solid;
+  background-color: #faefd5;
+  background-image: url(form/text-field-warn-bg.png);
+  background-position: left bottom;
+}
+.d-text-box.d-text-box-error {
+  border: 1px #fc3737 solid;
+  background-color: #fce0e0;
+  background-image: url(form/text-field-error-bg.png);
+  background-position: left bottom;
+}
+.d-text-box.d-text-box-readonly {
+  border: 1px #a1a1a1 solid;
+  background: #f8f8f8;
+}
+/* text-area */
+.d-text-area {
+  height: 20px;
+  background-repeat: repeat-x;
+}
+.d-text-area .textarea {
+  background: transparent;
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+  resize: none;
+}
+.d-text-area .d-trigger-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 23px;
+  height: 100%;
+  background-repeat: repeat-y;
+}
+.d-text-area .d-trigger-panel .d-trigger {
+  display: block;
+  left: 2px;
+  margin: 2px 0 0 2px;
+}
+.d-text-area .blank-text {
+  font-style: italic;
+  color: #a7a7a7;
+}
+.d-text-area .d-dirty-flag {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  right: -1px;
+  top: 0;
+  z-index: 1;
+  background: url(base/dirty-flag.png);
+}
+.d-text-area {
+  border: 1px #a1a1a1 solid;
+  background-color: #ffffff;
+  background-image: url(form/text-field-bg.png);
+}
+.d-text-area .text-area {
+  color: #000000;
+}
+.d-text-area .d-trigger-panel {
+  background-image: url(form/text-area-trigger-panel.png);
+}
+.d-text-area.d-text-area-hover {
+  border: 1px #616161 solid;
+}
+.d-text-area.d-text-area-focused {
+  border: 1px #52cb6a solid;
+  background-color: #ffffff;
+  background-image: url(form/text-field-focus-bg.png);
+}
+.d-text-area.d-text-area-warn {
+  border: 1px #dbad42 solid;
+  background-color: #faefd5;
+  background-image: url(form/text-field-warn-bg.png);
+  background-position: left bottom;
+}
+.d-text-area.d-text-area-error {
+  border: 1px #fc3737 solid;
+  background-color: #fce0e0;
+  background-image: url(form/text-field-error-bg.png);
+  background-position: left bottom;
+}
+.d-text-area.d-text-area-readonly {
+  border: 1px #a1a1a1 solid;
+  background: #f8f8f8;
+}
+/* trigger */
+.d-trigger-icon-drop {
+  background-image: url(form/triggers.png);
+  background-position: 0 0;
+}
+.d-trigger-icon-search {
+  background-image: url(form/triggers.png);
+  background-position: -18px 0;
+}
+.d-trigger-icon-date {
+  background-image: url(form/triggers.png);
+  background-position: -36px 0;
+}
+.d-trigger-icon-custom {
+  background-image: url(form/triggers.png);
+  background-position: -54px 0;
+}
+.d-trigger-icon-clear {
+  background-image: url(form/triggers.png);
+  background-position: -72px 0;
+}
+.d-trigger-icon-filter {
+  background-image: url(form/triggers.png);
+  background-position: -90px 0;
+}
+.d-trigger-icon-reset {
+  background-image: url(form/triggers.png);
+  background-position: -108px 0;
+}
+/* checkbox */
+.d-checkbox {
+  display: inline-block;
+  overflow: hidden;
+  cursor: default;
+  height: 20px;
+}
+.d-checkbox .icon {
+  float: left;
+  width: 20px;
+  height: 20px;
+}
+.d-checkbox .icon.halfchecked {
+  background-position: 0 0px;
+}
+.d-checkbox .icon.unchecked {
+  background-position: -40px 0px;
+}
+.d-checkbox .icon.checked {
+  background-position: -80px 0px;
+}
+.d-checkbox .caption {
+  white-space: nowrap;
+  word-wrap: break-word;
+  line-height: 20px;
+}
+.d-checkbox-hover .icon.halfchecked,
+.d-checkbox-focus .icon.halfchecked {
+  background-position: -20px 0px;
+}
+.d-checkbox-hover .icon.unchecked,
+.d-checkbox-focus .icon.unchecked {
+  background-position: -60px 0px;
+}
+.d-checkbox-hover .icon.checked,
+.d-checkbox-focus .icon.checked {
+  background-position: -100px 0px;
+}
+.d-checkbox-dirty {
+  background: url(base/dirty-flag-left.png) no-repeat left top;
+}
+.d-checkbox-center {
+  float: none;
+  position: relative;
+  left: 50%;
+  margin-left: -10px;
+  padding: 0;
+}
+.d-checkbox-icononly {
+  width: 16px;
+  height: 16px;
+}
+.d-checkbox-icononly .icon {
+  position: relative;
+  left: -2px;
+}
+.d-ie6 .d-checkbox .caption,
+.d-ie7 .d-checkbox .caption {
+  white-space: normal;
+}
+.d-checkbox .icon {
+  background-image: url(form/checkbox.png);
+}
+/* radio-group */
+.d-radiogroup {
+  overflow: visible;
+  *zoom: 1;
+  height: 20px;
+}
+.d-radiogroup:before {
+  content: "";
+  display: table;
+}
+.d-radiogroup:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.d-radiogroup .d-radio {
+  overflow: hidden;
+  cursor: default;
+  height: 20px;
+  white-space: nowrap;
+}
+.d-radiogroup .d-radio .icon {
+  float: left;
+  *float: none;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-position: 0 bottom;
+}
+.d-radiogroup .d-radio .icon.unchecked {
+  background-position: 0px top;
+}
+.d-radiogroup .d-radio .icon.checked {
+  background-position: -40px top;
+}
+.d-radiogroup .d-radio .text {
+  line-height: 20px;
+  margin-right: 10px;
+}
+.d-radiogroup .d-radio-hover .icon.unchecked,
+.d-radiogroup .d-radio-focus .icon.unchecked {
+  background-position: -20px top;
+}
+.d-radiogroup .d-radio-hover .icon.checked,
+.d-radiogroup .d-radio-focus .icon.checked {
+  background-position: -60px top;
+}
+.d-radiogroup-dirty {
+  background: url(base/dirty-flag-left.png) no-repeat left 2px;
+}
+.d-radiogroup-flow .d-radio {
+  float: left;
+}
+.d-radiogroup .icon {
+  background-image: url(form/radiobox.png);
+}
+/* data-message */
+.d-data-message .d-message {
+  height: 20px;
+  line-height: 20px;
+}
+.d-data-message .d-message .icon {
+  float: left;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-data-message .d-message .icon-info {
+  background-image: url(../../resources/icons/silk/information.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-data-message .d-message .icon-ok {
+  background-image: url(../../resources/icons/silk/accept.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-data-message .d-message .icon-warn {
+  background-image: url(../../resources/icons/silk/error.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-data-message .d-message .icon-error {
+  color: #FF0000;
+  background-image: url(../../resources/icons/silk/exclamation.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-data-message .d-message .icon-validating {
+  background: url(form/validating.gif) no-repeat;
+}
+/* form-element */
+.d-form-element {
+  position: relative;
+  overflow: hidden;
+}
+.d-form-element .form-label {
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  padding-right: 12px;
+}
+.d-form-element .form-label-left {
+  float: left;
+  height: 100%;
+}
+.d-form-element .form-label-align-left {
+  text-align: left;
+}
+.d-form-element .form-label-align-center {
+  text-align: center;
+}
+.d-form-element .form-label-align-right {
+  text-align: right;
+}
+.d-form-element .form-label-required {
+  background: url(base/field-required.png) right 6px no-repeat;
+}
+.d-form-element .form-content {
+  display: block;
+  zoom: 1;
+}
+.d-form-element .form-content-right {
+  height: 100%;
+}
+.d-form-element .form-content .form-editor {
+  height: 100%;
+  overflow: hidden;
+}
+.d-form-element .form-content .form-editor-left {
+  height: 100%;
+}
+.d-form-element .form-hint-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+.d-form-element .form-hint-bottom {
+  width: 100%;
+}
+/* auto-form */
+.d-ie6 .d-auto-form,
+.d-ie7 .d-auto-form {
+  width: 100%;
+}

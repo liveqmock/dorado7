@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Horizontal Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypeHBarData = new dorado.EntityDataType({
+			name: "HBarData",
+			propertyDefs: [
+				{ name: "value", label: "Value" },
+				{ name: "color", label: "Color" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeHBarData);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [
+				{"value": 129, "color": "#ffff00"},
+				{"value": 140, "color": "#0000ff"},
+				{"value": 112, "color": "#00ff00"},
+				{"value": 118, "color": "#ff0000"}
+			],
+			dataType: "HBarData"
+		});
+
+		var hbarChart = new dorado.widget.ofc.OpenFlashChart({
+			title: {
+				"text": "Top Car Speed",
+				"style": "font-size: 14px; font-family: Verdana; text-align: center;"
+			},
+			xAxis: {
+				steps: 20,
+				min: 0,
+				max: 200
+			},
+			yAxis: {
+				offset: 1,
+				labels: ["Ford", "Mazda", "BMW", "Porche"]
+			},
+			toolTip: {
+				mouse: 1
+			},
+			elements: [{
+				$type: "ofc.Bar",
+				dataSet: dataSet,
+				toolTip: "#val# mph",
+				color: "#00aa00",
+				bindingConfig: {
+					valueProperty: "value",
+					colorProperty: "color"
+				}
+			}]
+		});
+        view.addChild(hbarChart);
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+	</body>
+</html>

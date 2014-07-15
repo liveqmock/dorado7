@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({
+				layout: new dorado.widget.layout.FormLayout({
+					cols: "*",
+					stretchWidth: true
+				})
+			});
+			
+			var panel = new dorado.widget.Panel({
+				layout: new dorado.widget.layout.DockLayout()
+			});
+			view.addChild(panel);
+			
+			panel.addChild(new dorado.widget.Button({
+				caption: "Set ReadOnly",
+				listener: {
+					onClick: function() {
+						var edt = this.id("editor1"), readOnly = edt.get("readOnly");
+						edt.set("readOnly", !readOnly);
+					}
+				},
+				layoutConstraint: "left"
+			}));
+			
+			var editor1 = new dorado.widget.TextArea({
+				id: "editor1",
+				minLength: 1,
+				maxLength: 20,
+				blankText: "Blank Text 123",
+				width: 300
+			});
+			view.addChild(editor1);
+			
+			var trigger1 = new dorado.widget.Trigger();
+			var trigger2 = new dorado.widget.Trigger();
+			
+			var editor2 = new dorado.widget.TextArea({
+				id: "editor2",
+				blankText: "Blank Text 456",
+				trigger: [trigger1, trigger2],
+				width: "30%"
+			});
+			view.addChild(editor2);
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body></body>
+</html>

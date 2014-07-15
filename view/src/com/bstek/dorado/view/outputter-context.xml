@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.bstek.com/dorado/schema"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.bstek.com/dorado/schema http://www.bstek.com/dorado/schema/spring-dorado-7.0.xsd">
+	<bean id="dorado.clientOutputHelper" class="com.bstek.dorado.view.output.ClientOutputHelper" />
+
+	<bean id="dorado.propertyConfig" abstract="true"
+		class="com.bstek.dorado.view.output.PropertyConfig" />
+	<bean id="dorado.objectOutputter" scope="prototype"
+		class="com.bstek.dorado.view.output.ClientObjectOutputter" />
+
+	<bean id="dorado.dataOutputter" class="com.bstek.dorado.view.output.DataOutputter" />
+
+	<bean id="dorado.defaultPropertyOutputter" class="com.bstek.dorado.view.output.DefaultPropertyOutputter">
+		<property name="objectOutputter" ref="dorado.objectOutputter" />
+	</bean>
+	<bean id="dorado.objectOutputterDispatcher" class="com.bstek.dorado.view.output.ObjectOutputterDispatcher">
+		<property name="clientOutputHelper" ref="dorado.clientOutputHelper" />
+		<property name="defaultObjectOutputter" ref="dorado.objectOutputter" />
+	</bean>
+	<bean id="dorado.componentOutputterDispatcher" parent="dorado.objectOutputterDispatcher"
+		class="com.bstek.dorado.view.widget.ComponentOutputterDispatcher">
+		<property name="componentTypeRegistry" ref="dorado.componentTypeRegistry" />
+	</bean>
+
+	<bean id="dorado.stringAliasPropertyOutputter"
+		class="com.bstek.dorado.view.output.StringAliasPropertyOutputter" />
+	<bean id="dorado.doradoMapPropertyOutputter" parent="dorado.dataOutputter"
+		class="com.bstek.dorado.view.output.DoradoMapOutputter">
+		<property name="evaluateExpression" value="false" />
+	</bean>
+	<bean id="dorado.componentReferencePropertyOutputter"
+		class="com.bstek.dorado.view.widget.ComponentReferencePropertyOutputter" />
+	<bean id="dorado.clientEventListenersOutputter"
+		class="com.bstek.dorado.view.output.ClientEventListenersOutputter" />
+	<bean id="dorado.assembledComponentDefOutputter"
+		class="com.bstek.dorado.view.output.AssembledComponentDefOutputter" />
+
+	<bean id="dorado.dataTypePropertyOutputter" parent="dorado.objectOutputterDispatcher"
+		class="com.bstek.dorado.view.type.DataTypePropertyOutputter" />
+	<bean id="dorado.mappingPropertyOutputter" parent="dorado.dataOutputter"
+		class="com.bstek.dorado.view.type.property.MappingPropertyOutputter" />
+	<bean id="dorado.propertyDefsOutputter" parent="dorado.objectOutputterDispatcher"
+		class="com.bstek.dorado.view.type.PropertyDefsOutputter" />
+	<bean id="dorado.defaultValueOutputter" parent="dorado.dataOutputter"
+		class="com.bstek.dorado.view.type.DefaultValueOutputter" />
+
+	<bean id="dorado.dataProviderPropertyOutputter"
+		class="com.bstek.dorado.view.output.DataProviderPropertyOutputter" />
+	<bean id="dorado.dataResolverPropertyOutputter"
+		class="com.bstek.dorado.view.output.DataResolverPropertyOutputter" />
+
+	<bean id="dorado.stylePropertyOutputter" class="com.bstek.dorado.view.output.StylePropertyOutputter" />
+	<bean id="dorado.viewContextPropertyOutputter" class="com.bstek.dorado.view.ViewContextPropertyOutputter"
+		parent="dorado.dataOutputter" />
+
+	<bean id="dorado.componentOutputter" parent="dorado.objectOutputter"
+		class="com.bstek.dorado.view.widget.ComponentOutputter" />
+	<bean id="dorado.controlOutputter" parent="dorado.componentOutputter"
+		class="com.bstek.dorado.view.widget.ControlOutputter" />
+	<bean id="dorado.containerOutputter" parent="dorado.controlOutputter"
+		class="com.bstek.dorado.view.widget.ContainerOutputter" />
+
+	<bean id="dorado.viewOutputter" parent="dorado.containerOutputter"
+		class="com.bstek.dorado.view.ViewOutputter">
+		<property name="childrenComponentOutputter">
+			<bean parent="dorado.componentOutputterDispatcher">
+				<property name="escapeable" value="false" />
+			</bean>
+		</property>
+		<property name="viewDataTypesOutputter">
+			<bean parent="dorado.objectOutputterDispatcher"
+				class="com.bstek.dorado.view.output.ViewDataTypesOutputter" />
+		</property>
+		<property name="javaScriptResourceManager" ref="dorado.viewJavaScriptResourceManager" />
+		<property name="styleSheetResourceManager" ref="dorado.viewStyleSheetResourceManager" />
+	</bean>
+	<bean id="dorado.topViewOutputter" class="com.bstek.dorado.view.TopViewOutputter">
+		<property name="clientOutputHelper" ref="dorado.clientOutputHelper" />
+	</bean>
+
+	<bean id="dorado.layoutConstraintPropertyOutputter" parent="dorado.objectOutputterDispatcher"
+		class="com.bstek.dorado.view.widget.layout.LayoutConstraintPropertyOutputter" />
+	<bean id="dorado.dataSetDataPropertyOutputter" parent="dorado.dataOutputter"
+		class="com.bstek.dorado.view.widget.data.DataSetDataPropertyOutputter" />
+	<bean id="dorado.htmlContainerOutputter" parent="dorado.containerOutputter"
+		class="com.bstek.dorado.view.widget.HtmlContainerOutputter" />
+	<bean id="dorado.subViewPropertyOutputter" parent="dorado.objectOutputterDispatcher"
+		class="com.bstek.dorado.view.widget.SubViewPropertyOutputter">
+		<property name="viewConfigManager" ref="dorado.viewConfigManager" />
+	</bean>
+
+	<bean id="dorado.pageHeaderOutputter" class="com.bstek.dorado.view.resolver.PageHeaderOutputter">
+		<property name="topViewOutputter" ref="dorado.topViewOutputter" />
+		<property name="localeResolver" ref="dorado.localeResolver" />
+		<property name="javaScriptResourceManager" ref="dorado.viewJavaScriptResourceManager" />
+		<property name="styleSheetResourceManager" ref="dorado.viewStyleSheetResourceManager" />
+		<property name="skinSettingManager" ref="dorado.skinSettingManager" />
+		<property name="skinResolver" ref="dorado.skinResolver" />
+	</bean>
+	<bean id="dorado.pageFooterOutputter" class="com.bstek.dorado.view.resolver.PageFooterOutputter" />
+</beans>

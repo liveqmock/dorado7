@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Notify Tip Test Page</title>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        var view = new dorado.widget.View({
+            layout: "Anchor",
+            onReady: function() {
+                var title1 = "测试111111";
+                var msg1 = "我是来测试的，你好吗？真的吗？哈哈。测试。"+ "测试。测试。测试。测试。测试。测试。测试。测试。"+ "测试。测试。测试。测试。测试。测试。测试。测试。"+ "测试。测试。测试。测试。测试。测试。测试。测试。测试。";
+                for (var i = 0; i < 10; i++) {
+                    dorado.widget.NotifyTipManager.notify({ caption : title1, text : msg1, icon : "INFO", showDuration : 10000 });
+                }
+            }
+        });
+        var count = 0;
+        var toolbar = new dorado.widget.ToolBar({
+            items: [
+                {
+                    caption: "显示Tip",
+                    listener: {
+                        onClick: function(self) {
+                            dorado.widget.NotifyTipManager.notify("我闲着没事，出来转转" + count++, { iconClass: "error-icon", caption: "DDD" });
+                        }
+                    }
+                }
+            ]
+        });
+
+        view.addChild(toolbar);
+
+        $(document).ready(function() {
+
+            view.render(document.body);
+        });
+    </script>
+</head>
+<body style="margin:0;padding:0;">
+</body>
+</html>

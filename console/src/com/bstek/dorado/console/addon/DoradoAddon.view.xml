@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtAddon">
+      <Property name="creationType">com.bstek.dorado.console.addon.Addon</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="version">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="loadUnlicensed">
+        <Property name="dataType">boolean</Property>
+      </PropertyDef>
+      <PropertyDef name="homePage">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="description">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="propertiesLocations">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="contextLocations">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="servletContextLocations">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="loaded">
+        <Property name="dataType">boolean</Property>
+      </PropertyDef>
+      <PropertyDef name="license">
+        <Property name="dataType">[String]</Property>
+      </PropertyDef>
+      <PropertyDef name="depends">
+        <Property name="dataType">[dtDepend]</Property>
+      </PropertyDef>
+      <PropertyDef name="classifier">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="configurerClassName">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="listenerClassName">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtDepend">
+      <Property name="creationType">com.bstek.dorado.console.addon.Dependence</Property>
+      <PropertyDef name="packageName">
+        <Property name="dataType">String</Property>
+        <Property name="label">name</Property>
+      </PropertyDef>
+      <PropertyDef name="version">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsAddon">
+      <Property name="dataProvider">dorado.console.addonController#getAddonList</Property>
+      <Property name="dataType">[dtAddon]</Property>
+      <Property name="readOnly">true</Property>
+    </DataSet>
+    <SplitPanel>
+      <Property name="position">50%</Property>
+      <Property name="direction">top</Property>
+      <MainControl>
+        <Container>
+          <SplitPanel>
+            <Property name="position">75%</Property>
+            <Property name="direction">left</Property>
+            <MainControl>
+              <Panel>
+                <Property name="caption">${res.dependencies}</Property>
+                <Buttons/>
+                <Children>
+                  <DataGrid>
+                    <Property name="dataPath">#.depends</Property>
+                    <Property name="dataSet">dsAddon</Property>
+                  </DataGrid>
+                </Children>
+                <Tools/>
+              </Panel>
+            </MainControl>
+            <SideControl>
+              <Panel>
+                <Property name="caption">${res.detail}</Property>
+                <Buttons/>
+                <Children>
+                  <AutoForm>
+                    <Property name="dataSet">dsAddon</Property>
+                    <Property name="dataPath">#</Property>
+                    <Property name="labelWidth">140</Property>
+                    <AutoFormElement>
+                      <Property name="name">name</Property>
+                      <Property name="property">name</Property>
+                      <Editor/>
+                    </AutoFormElement>
+                    <AutoFormElement>
+                      <Property name="name">version</Property>
+                      <Property name="property">version</Property>
+                      <Editor/>
+                    </AutoFormElement>
+                    <AutoFormElement>
+                      <Property name="name">classifier</Property>
+                      <Property name="property">classifier</Property>
+                      <Editor/>
+                    </AutoFormElement>
+                    <AutoFormElement>
+                      <Property name="name">homePage</Property>
+                      <Property name="property">homePage</Property>
+                      <Editor/>
+                    </AutoFormElement>
+                    <AutoFormElement>
+                      <Property name="name">license</Property>
+                      <Property name="property">license</Property>
+                      <Editor/>
+                    </AutoFormElement>
+                    <Control/>
+                    <AutoFormElement>
+                      <Property name="name">configurerClassName</Property>
+                      <Property name="property">configurerClassName</Property>
+                      <Editor/>
+                    </AutoFormElement>
+                    <AutoFormElement>
+                      <Property name="name">listenerClassName</Property>
+                      <Property name="property">listenerClassName</Property>
+                      <Editor/>
+                    </AutoFormElement>
+                    <AutoFormElement layoutConstraint="colSpan:2">
+                      <Property name="name">contextLocations</Property>
+                      <Property name="property">contextLocations</Property>
+                      <Property name="editorType">TextArea</Property>
+                      <Property name="labelWidth">80</Property>
+                      <Editor>
+                        <TextArea>
+                          <Property name="height">32</Property>
+                        </TextArea>
+                      </Editor>
+                    </AutoFormElement>
+                    <AutoFormElement layoutConstraint="colSpan:2">
+                      <Property name="name">servletContextLocations</Property>
+                      <Property name="property">servletContextLocations</Property>
+                      <Property name="labelWidth">80</Property>
+                      <Editor>
+                        <TextArea>
+                          <Property name="height">32</Property>
+                        </TextArea>
+                      </Editor>
+                    </AutoFormElement>
+                    <AutoFormElement layoutConstraint="colSpan:2">
+                      <Property name="name">description</Property>
+                      <Property name="property">description</Property>
+                      <Property name="labelWidth">80</Property>
+                      <Editor>
+                        <TextArea>
+                          <Property name="height">40</Property>
+                        </TextArea>
+                      </Editor>
+                    </AutoFormElement>
+                  </AutoForm>
+                </Children>
+                <Tools/>
+              </Panel>
+            </SideControl>
+          </SplitPanel>
+        </Container>
+      </MainControl>
+      <SideControl>
+        <Container>
+          <DataGrid>
+            <Property name="dataSet">dsAddon</Property>
+            <Property name="headerRowHeight">30</Property>
+            <RowNumColumn/>
+            <DataColumn name="name">
+              <Property name="property">name</Property>
+              <Property name="width">160</Property>
+            </DataColumn>
+            <DataColumn name="version">
+              <Property name="property">version</Property>
+              <Property name="width">170</Property>
+            </DataColumn>
+            <DataColumn name="license">
+              <Property name="property">license</Property>
+              <Property name="width">*</Property>
+            </DataColumn>
+          </DataGrid>
+        </Container>
+      </SideControl>
+    </SplitPanel>
+  </View>
+</ViewConfig>

@@ -1,0 +1,34 @@
+.time_list {
+	margin-left: 20px;
+}
+
+.time_bar {
+	background-color: #EEE;
+	height: 10px;
+	width: 700px;
+	border: 1px solid #BBB;
+	color: #222;
+	margin-top: 3px;
+}
+
+.time_bar div {
+	background-color: #6CAF00;
+	height: 10px;
+}
+
+.process_info {
+	width: 100%
+}
+
+.process_info table {
+	width: 100%;
+	line-height: 30px;
+}
+
+.process_info td {
+	width: 33%
+}
+
+.process_info .label {
+	margin-left: 20px
+}

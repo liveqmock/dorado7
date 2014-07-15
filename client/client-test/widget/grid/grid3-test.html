@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <script type="text/javascript">
+            var ButtonCellRenderer = $extend(dorado.widget.grid.SubControlCellRenderer, {
+            	createSubControl: function(arg) {
+            		return new dorado.widget.Button({
+            			width: "100%",
+            			listener: {
+            				onClick: function(self) {
+            					alert(self.get("caption") + " clicked.");
+            				}
+            			}
+            		});
+            	},
+            	
+            	refreshSubControl: function(button, arg) {
+            		button.set("caption", arg.data[arg.column.get("property")] + '');
+            		button.refresh();
+            	}
+            });
+            
+            var RadioGroupCellRenderer = $extend(dorado.widget.grid.RadioGroupCellRenderer, {
+            	getRadioButtons: function() {
+            		return [{
+            			value: true,
+            			text: "Male"
+            		}, {
+            			value: false,
+            			text: "Female"
+            		}];
+            	}
+            });
+            
+            var view = new dorado.widget.View({ layout: "Anchor" });
+            
+            var rows1 = [];
+            for (var i = 0; i < 30; i++) {
+            	var row = {};
+            	for (var j = 0; j < 11; j++) {
+            		row["prop" + j] = (Math.random() < 0.1) ? "ABC\nDEF\nGHI" : [i, j];
+            	}
+            	row["prop6"] = (Math.random() < 0.5);
+            	row["prop7"] = (Math.random() < 0.5);
+            	rows1.push(row);
+            }
+            
+            var grid1 = new dorado.widget.Grid({
+				//scrollMode: "simple",
+				//scrollMode: "lazyRender",
+				//scrollMode: "viewport",
+            	showFooter: true,
+            	width: "70%",
+            	height: 400,
+            	fixedColumnCount: 2,
+            	dynaRowHeight: true,
+				selectionMode: "multiRows",
+				showFilterBar: true,
+            	columns: [{
+            		name: "id",
+            		property: "prop1",
+            		wrappable: true
+            	}, {
+            		property: "prop3",
+            		renderer: new ButtonCellRenderer()
+            	}, {
+            		name: "group1",
+            		columns: [{
+            			name: "group2",
+            			columns: [{
+            				property: "prop6",
+            				dataType: "boolean"
+            			}, {
+            				property: "prop7",
+            				renderer: new RadioGroupCellRenderer(),
+            				editor: null,
+            				width: 120
+            			}, {
+            				property: "prop8",
+            				listener: {
+            					onGetCellEditor: function(self, arg) {
+            						if (!arg.data["prop7"]) arg.cellEditor = null;
+            					}
+            				}
+            			}]
+            		}, {
+            			property: "prop9",
+            			align: "right"
+            		}]
+            	}, {
+            		name: "name",
+            		property: "prop2",
+            		width: 120,
+            		wrappable: true
+            	}, {
+            		name: "group3",
+            		columns: [{
+            			name: "group4",
+            			columns: [{
+            				property: "prop6",
+            				width: 120
+            			}, {
+            				property: "prop7",
+            				renderer: dorado.widget.CHECKBOX_CELL_RENDERER,
+							align: "center",
+            				editor: null,
+            				width: 120
+            			}, {
+            				property: "prop8",
+            				width: 120
+            			}]
+            		}]
+            	}],
+            	items: rows1
+            });
+            view.addChild(grid1);
+            
+            $(document).ready(function() {
+            	var s = new Date();
+            	view.render(document.body);
+            	document.title = new Date() - s;
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

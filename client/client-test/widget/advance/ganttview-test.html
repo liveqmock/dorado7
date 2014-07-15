@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Gantt View Test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <script type="text/javascript" src="common-types.js"></script>
+    <script type="text/javascript">
+        var view = new dorado.widget.View({ layout:"Dock" });
+
+        var ganttData = [
+            {
+                id:1, name:"Feature 1", series:[
+                { name:"Planned", start:new Date(2010, 00, 01), end:new Date(2010, 00, 03), percent:"50%" },
+                { name:"Actual", start:new Date(2010, 00, 02), end:new Date(2010, 00, 05) }
+            ]
+            },
+            {
+                id:2, name:"Feature 2", series:[
+                { name:"Planned", start:new Date(2010, 00, 05), end:new Date(2010, 00, 20) },
+                { name:"Actual", start:new Date(2010, 00, 06), end:new Date(2010, 00, 17), color:"#f0f0f0" },
+                { name:"Projected", start:new Date(2010, 00, 06), end:new Date(2010, 00, 17), color:"#e0e0e0" }
+            ]
+            },
+            {
+                id:3, name:"Feature 3", series:[
+                { name:"Planned", start:new Date(2010, 00, 11), end:new Date(2010, 01, 03) },
+                { name:"Actual", start:new Date(2010, 00, 15), end:new Date(2010, 01, 03), color:"#f0f0f0" }
+            ]
+            },
+            {
+                id:4, name:"Feature 4", series:[
+                { name:"Planned", start:new Date(2010, 01, 01), end:new Date(2010, 01, 03) },
+                { name:"Actual", start:new Date(2010, 01, 01), end:new Date(2010, 01, 05), color:"#f0f0f0" }
+            ]
+            },
+            {
+                id:5, name:"Feature 5", series:[
+                { name:"Planned", start:new Date(2010, 02, 01), end:new Date(2010, 03, 20) },
+                { name:"Actual", start:new Date(2010, 02, 01), end:new Date(2010, 03, 26), color:"#f0f0f0" }
+            ]
+            },
+            {
+                id:6, name:"Feature 6", series:[
+                { name:"Planned", start:new Date(2010, 00, 05), end:new Date(2010, 00, 20) },
+                { name:"Actual", start:new Date(2010, 00, 06), end:new Date(2010, 00, 17), color:"#f0f0f0" },
+                { name:"Projected", start:new Date(2010, 00, 06), end:new Date(2010, 00, 20), color:"#e0e0e0" }
+            ]
+            },
+            {
+                id:7, name:"Feature 7", series:[
+                { name:"Planned", start:new Date(2010, 00, 11), end:new Date(2010, 01, 03) }
+            ]
+            },
+            {
+                id:8, name:"Feature 8", series:[
+                { name:"Planned", start:new Date(2010, 01, 01), end:new Date(2010, 01, 03) },
+                { name:"Actual", start:new Date(2010, 01, 01), end:new Date(2010, 01, 05), color:"#f0f0f0" }
+            ]
+            }
+        ];
+
+        var sampleData = [
+            {"name":"研究方案制定", "series":[]},
+            {"name":"文献调研", "series":[]},
+            {"name":"方法优化", "series":[
+                {"name":"霉菌计数微生物学检验法优化及验证", "start":new Date(2012, 2, 17), "end":new Date(2012, 5, 29)}
+            ]},
+            {"name":"实验室间方法比对考察", "series":[]},
+            {"name":"数据比对", "series":[
+                {"name":"化学与感官数据比对", "start":new Date(2012, 8, 1), "end":new Date(2012, 8, 30)}
+            ]},
+            {"name":"项目验收", "series":[]},
+            {"name":"新建计划1", "series":[]}
+        ];
+
+        var sampleData2 = [
+            {"name":"（1）浓香型特色优质烟叶质量风格定位研究分项", "series":[]},
+            {"name":"（3）浓香型特色烟叶规模开发与工业利用研究分项", "series":[]},
+            {"name":"（1）浓香型特色优质烟叶质量风格定位研究分项", "series":[]},
+            {"name":"（2）浓香型特色优质烟叶烘烤技术研究分项", "series":[]},
+            {"name":"（3）浓香型特色烟叶规模开发与工业利用研究分项", "series":[]},
+            {"name":"（2）浓香型特色优质烟叶烘烤技术研究分项", "series":[]},
+            {"name":"（1）浓香型特色优质烟叶质量风格定位研究分项", "series":[]},
+            {"name":"（1）浓香型特色优质烟叶质量风格定位研究分项", "series":[]},
+            {"name":"（3）浓香型特色烟叶规模开发与工业利用研究分项", "series":[]},
+            {"name":"（2）浓香型特色优质烟叶烘烤技术研究分项", "series":[]},
+            {"name":"（3）浓香型特色烟叶规模开发与工业利用研究分项", "series":[]},
+            {"name":"（1）浓香型特色优质烟叶质量风格定位研究分项", "series":[]},
+            {"name":"（2）浓香型特色优质烟叶烘烤技术研究分项", "series":[]},
+            {"name":"（3）浓香型特色烟叶规模开发与工业利用研究分项", "series":[]},
+            {"name":"（2）浓香型特色优质烟叶烘烤技术研究分项", "series":[]},
+            {"name":"（1）浓香型特色优质烟叶质量风格定位研究分项", "series":[]},
+            {"name":"（2）浓香型特色优质烟叶烘烤技术研究分项", "series":[]},
+            {"name":"（3）浓香型特色烟叶规模开发与工业利用研究分项", "series":[]},
+            {"name":"本项目所有分项", "series":[]},
+            {"name":"本项目所有分项", "series":[]}
+        ];
+
+        var ganttView = new dorado.widget.GanttView({
+            data:ganttData,
+            scale:"day",
+            monthHeaderWidth:100
+        });
+
+        var tabControl = new dorado.widget.TabControl({
+            tabs:[
+                {
+                    $type:"Control",
+                    caption:"Test",
+                    control:ganttView
+                }
+            ]
+        });
+
+        view.addChild(tabControl);
+
+        $(document).ready(function () {
+            view.render(document.body);
+        });
+    </script>
+</head>
+<body style="margin: 0; padding: 0;"></body>
+</html>

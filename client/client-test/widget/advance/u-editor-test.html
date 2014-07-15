@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Rich Editor Page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="../../include-all.js"></script>
+	<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Dock" });
+
+		var richEditor = new dorado.widget.HtmlEditor({
+            height: 500,
+            //readOnly: true,
+            defaultFontSize: "14px",
+            defaultFontFamily: "楷体"
+            //,mode: "simple"
+		});
+
+		view.addChild(richEditor);
+
+        view.addChild(new dorado.widget.Button({
+            caption: "readOnly",
+            onClick: function() {
+                richEditor.set("readOnly", true);
+            }
+        }));
+
+        view.addChild(new dorado.widget.Button({
+            caption: "not readOnly",
+            onClick: function() {
+                richEditor.set("readOnly", false);
+            }
+        }));
+
+		$(document).ready(function() {
+			view.render(document.body);
+		});
+	</script>
+</head>
+<body style="margin: 0;padding: 0;">
+</body>
+</html>

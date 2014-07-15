@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../include-all.js"></script>
+		<script type="text/javascript">
+	jQuery(document).ready( function() {
+		try {
+			var v = new dorado.widget.View( {
+				"layout": new dorado.widget.layout.AnchorLayout(),
+				"id": "viewMain"
+			});
+			function f(v) {
+				v.set("children", [ new dorado.widget.Button( {
+					"caption": "Button in main view",
+					"id": "button1",
+					"listener": {
+						"onClick": ( function(self) {
+							var button1 = this.id("button1");
+							alert(this.get("id") + "\n" + button1.get("caption"));
+						})
+					}
+				}), new dorado.widget.SubViewHolder( {
+					"subView": ( function() {
+						var v = new dorado.widget.View( {
+							"layout": new dorado.widget.layout.AnchorLayout(),
+							"id": "subViewHolder1_view"
+						});
+						function f(v) {
+							v.set("children", [ new dorado.widget.Button( {
+								"caption": "Button in sub view",
+								"id": "button1",
+								"listener": {
+									"onClick": ( function(self) {
+										var button1 = this.id("button1");
+										alert(this.get("id") + "\n" + button1.get("caption"));
+									})
+								}
+							}) ]);
+						}
+						f(v);
+						return v;
+					})(),
+					"id": "subViewHolder1"
+				}) ]);
+			}
+			f(v);
+			v.render();
+		}
+		catch (e) {
+			dorado.Exception.processException(e);
+		}
+	});
+</script>
+	</head>
+	<body>
+	</body>
+</html>

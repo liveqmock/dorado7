@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>Slider Test Page</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+        var slider1 = new dorado.widget.Slider({
+            id: "slider1",
+            //step: 5,
+            minValue: 0,
+            maxValue: 10,
+            width: 500,
+            value: 1.19,
+            precision: 1,
+            listener: {
+                beforeValueChange: function(self, value){
+                    if(value > 50){
+                        alert("值不能大于50!");
+                        return false;
+                    }
+                },
+                onValueChange: function(self){
+                    alert(self._value);
+                }
+            },
+            style: {
+                "margin-top": 50,
+                "margin-bottom": 50
+            }
+        });
+
+        view.addChild(slider1);
+
+        var slider2 = new dorado.widget.Slider({
+            id: "slider2",
+            orientation: "vertical",
+            height: 400,
+            minValue: 2,
+            maxValue: 12,
+            step: .1,
+            precision: 1
+            //,step: 5
+        });
+
+        view.addChild(slider2);
+
+		$(document).ready(function(){
+            var doradoView = document.getElementById("doradoView");
+            if (doradoView) view.replace(doradoView);
+			//view.render(document.body);
+		});
+		</script>
+	</head>
+	<body>
+        <label id="doradoView" style="display:none" />
+	</body>
+</html>

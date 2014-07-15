@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Tip Test Page</title>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE8">
+    <script language="javascript" type="text/javascript">
+        jQuery(document).ready(function(){
+            AUTO_APPEND_TO_TOPVIEW=false;
+            var v=new dorado.widget.View({"id":"viewMain","name":"test"});
+            function f(v){v.set("children",[{"$type":"Tip","showAnimateType":"fade","visible":false,"closeable":true,"offsetTop":50,"width":"240","content":"系统每隔15分钟自动同步最新订单状态.<br>您也可以点击这里，手动实时同步订单.","arrowDirection":"top","arrowOffset":65,"id":"tips2","caption":"<font color=red>订单提醒：<\/font>","modalType":"dark","showDuration":10,"listener":{"onCreate":(function(self,arg){
+                self.show({
+                    offsetLeft: 500
+                });
+
+            })}},{"$type":"Tip","visible":false,"showAnimateType": "none", "closeable":true,"offsetTop":50,"width":"400","content":"<div id=\"tips_div\">为了系统可以准确地统计商品库存数量和成本，<br>强烈建议您先去<b>【库存】-【库存期初】<a id=\"tip_a\" href=\"#\" style=\"font-style: italic;color:red\">(点击进入) <\/a><\/b>期初库存数量和成本.<\/div>","arrowDirection":"top","arrowOffset":-135,"id":"tips1","caption":"<font color=red>新手上路：<\/font>","modalType":"dark","offsetLeft":20,"listener":{"onCreate":(function(self,arg){
+                self.show();
+            })}}]);}
+            f(v);
+            AUTO_APPEND_TO_TOPVIEW=true;
+            var doradoView = document.getElementById("doradoView");
+            if (doradoView) v.replace(doradoView);
+        });
+    </script>
+</head>
+<body scroll="no" style="margin:0px; overflow:hidden">
+<label id="doradoView" style="display:none" />
+</body>
+</html>

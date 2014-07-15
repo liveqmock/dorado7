@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View layout="anchor">
+    <Property name="style">
+      <Property name="background">url(&quot;./version/background.png&quot;) repeat transparent</Property>
+    </Property>
+    <Property name="title">Dorado7.3 新特性</Property>
+    <IFrame>
+      <Property name="path">./version</Property>
+      <Property name="width">900</Property>
+      <Property name="height">600</Property>
+      <Property name="style">
+        <Property name="border">0px solid #ddd</Property>
+      </Property>
+    </IFrame>
+    <CheckBox id="checkBox1" layoutConstraint="left:670;top:555">
+      <Property name="caption">不再显示</Property>
+    </CheckBox>
+    <Control id="closeBtn" layoutConstraint="left:20;anchorLeft:previous;top:550">
+      <ClientEvent name="onCreate">var dom=self.getDom();&#xD;
+$(dom).append('&lt;div class=&quot;btn-close&quot;>&amp;nbsp;&amp;nbsp;关闭&amp;nbsp;&amp;nbsp;&lt;/div>');&#xD;
+</ClientEvent>
+      <ClientEvent name="onClick">var action = view.get('#hideVersionInfoAction');&#xD;
+var checkBox1 = view.get('#checkBox1');&#xD;
+if (checkBox1.get('value')) {&#xD;
+    action.execute(function(){&#xD;
+        window.location = &quot;./main.Main.d&quot;;&#xD;
+    });&#xD;
+}else {&#xD;
+    window.location = &quot;./main.Main.d&quot;;&#xD;
+};&#xD;
+&#xD;
+&#xD;
+</ClientEvent>
+      <Property name="width">70</Property>
+      <Property name="height">30</Property>
+    </Control>
+    <AjaxAction id="hideVersionInfoAction">
+      <Property name="service">mainService#hideVersionInfo</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

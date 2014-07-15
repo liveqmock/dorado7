@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>listbox1 + array &nbsp; <button onclick=\"test1()\">setCurrentRowIndex</button></p>"
+			}));
+			
+			var items1 = [];
+			for (var i = 0; i < 30; i++) {
+				items1.push("Row " + i);
+			}
+			
+			var listbox1 = new dorado.widget.ListBox({
+				id: "listbox1",
+				width: 200,
+				height: 100,
+				items: items1,
+				draggable: true,
+				dragTags: "item",
+				//droppable: true,
+				//droppableTags: "item"
+			});
+			view.addChild(listbox1);
+			
+			// =====
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>listbox2 + array &nbsp; <button onclick=\"test2()\">Refresh</button></p>"
+			}));
+			
+			var items2 = [];
+			for (var i = 0; i < 30; i++) {
+				items2.push("Row " + i);
+			}
+			
+			var listbox2 = new dorado.widget.ListBox({
+				width: 200,
+				height: 100,
+				items: items2,
+				draggable: true,
+				dragTags: "item",
+				droppable: true,
+				droppableTags: "item"
+			});
+			view.addChild(listbox2);
+			
+			// =====
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>listbox3 + array &nbsp; <button onclick=\"test3()\">setCurrentRowIndex</button></p>"
+			}));
+			
+			var items3 = [];
+			items3.push("This is a long line to test scrollbars.");
+			for (var i = 0; i < 100; i++) {
+				items3.push("Row " + i);
+			}
+			
+			var listbox3 = new dorado.widget.ListBox({
+				width: 200,
+				height: 250,
+				scrollMode: "lazyRender",
+				items: items3,
+				selectionMode: "multiRows",
+				highlightCurrentRow: false,
+				draggable: true,
+				dragTags: "item",
+				dragMode: "item",
+				droppable: true,
+				droppableTags: "item"
+			});
+			view.addChild(listbox3);
+			
+			// =====
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>listbox4 + EntityList &nbsp; <button onclick=\"test4()\">setCurrentRowIndex</button></p>"
+			}));
+			
+			var items4 = [];
+			for (var i = 0; i < 1000; i++) {
+				items4.push({
+					property1: "Row " + i
+				});
+			}
+			items4 = new dorado.EntityList(items4);
+			
+			var listbox4 = new dorado.widget.ListBox({
+				scrollMode: "viewport",
+				id: "listbox4",
+				width: 200,
+				height: 260,
+				items: items4,
+				property: "property1",
+				draggable: true,
+				dragTags: "item",
+				dragMode: "item",
+				droppable: true,
+				droppableTags: "item"
+			});
+			view.addChild(listbox4);
+			
+			// =====
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<p>listbox5 + Array &nbsp; <button onclick=\"test5()\">toggleScrollMode</button></p>"
+			}));
+			
+			var items5 = [];
+			for (var i = 0; i < 100; i++) {
+				items5.push({
+					property1: "Row " + i
+				});
+			}
+			
+			var listbox5 = new dorado.widget.ListBox({
+				scrollMode: "viewport",
+				width: 200,
+				height: 260,
+				items: items5,
+				property: "property1",
+				draggable: true,
+				dragTags: "item",
+				dragMode: "item",
+				dropMode: "onOrInsertItems",
+				droppable: true,
+				droppableTags: "item"
+			});
+			view.addChild(listbox5);
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+				document.title = new Date() - s;
+			});
+			
+			function test1() {
+				listbox1.set("currentIndex", 20);
+			}
+			
+			function test2() {
+				var s = new Date();
+				listbox2.refresh();
+				alert(new Date() - s);
+			}
+			
+			function test3() {
+				listbox3.set("currentIndex", 50);
+			}
+			
+			function test4() {
+				listbox4.set("currentIndex", 50);
+			}
+			
+			function test5() {
+				listbox5.set("scrollMode", (listbox5.get("scrollMode") == "simple") ? "view-port" : "simple");
+			}
+			
+		</script>
+	</head>
+	<body style="margin:0"></body>
+</html>

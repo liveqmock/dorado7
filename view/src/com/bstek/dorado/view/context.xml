@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.bstek.com/dorado/schema"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.bstek.com/dorado/schema http://www.bstek.com/dorado/schema/spring-dorado-7.0.xsd">
+	<import resource="components-context.xml" />
+	<import resource="loader-parser-context.xml" />
+	<import resource="parser-context.xml" />
+	<import resource="outputter-context.xml" />
+
+	<bean parent="dorado.dataConfigLoader">
+		<property name="configLocation"
+			value="classpath:com/bstek/dorado/view/base-types.xml" />
+	</bean>
+
+	<bean id="dorado.viewConfigDefinitionCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheName"
+			value="com.bstek.dorado.view.config.definition.ViewConfigDefinition" />
+		<property name="maxElementsInMemory"
+			value="${view.viewDefinitionCache.maxElementsInMemory}" />
+		<property name="overflowToDisk" value="false" />
+		<property name="timeToLive" value="${view.viewDefinitionCache.timeToLive}" />
+		<property name="timeToIdle" value="${view.viewDefinitionCache.timeToIdle}" />
+	</bean>
+	<bean id="dorado.xmlViewConfigDefinitionFactory"
+		class="com.bstek.dorado.view.config.CacheableXmlViewConfigDefinitionFactory">
+		<property name="xmlDocumentBuilder" ref="dorado.xmlDocumentBuilder" />
+		<property name="xmlPreprocessor">
+			<bean class="com.bstek.dorado.view.config.XmlDocumentPreprocessor">
+				<property name="viewConfigManager" ref="dorado.viewConfigManager" />
+				<property name="componentTypeRegistry" ref="dorado.componentTypeRegistry" />
+				<property name="expressionHandler" ref="dorado.expressionHandler" />
+			</bean>
+		</property>
+		<property name="cache" ref="dorado.viewConfigDefinitionCache" />
+		<property name="xmlParser" ref="dorado.viewConfigParser" />
+		<property name="pathSubfix" value=".view.xml" />
+		<property name="dataTypeDefinitionManager" ref="dorado.dataTypeDefinitionManager" />
+		<property name="dataProviderDefinitionManager" ref="dorado.dataProviderDefinitionManager" />
+		<property name="dataResolverDefinitionManager" ref="dorado.dataResolverDefinitionManager" />
+	</bean>
+	<bean id="dorado.viewConfigManager"
+		class="com.bstek.dorado.view.manager.ConfigurableViewConfigManager">
+		<property name="viewConfigFactoryMap">
+			<map>
+				<entry key="**">
+					<bean parent="dorado.xmlViewConfigDefinitionFactory" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="dorado.viewConfigFactoryRegister" abstract="true"
+		class="com.bstek.dorado.view.manager.ViewConfigFactoryRegister">
+		<property name="viewConfigManager" ref="dorado.viewConfigManager" />
+	</bean>
+	<bean id="dorado.defaultViewConfigFactoryRegister" parent="dorado.viewConfigFactoryRegister">
+		<property name="viewNamePattern" value="**" />
+		<property name="viewConfigFactory">
+			<bean parent="dorado.xmlViewConfigDefinitionFactory">
+				<property name="pathPrefix" value="${view.root}" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="dorado.componentTypeRegistry"
+		class="com.bstek.dorado.view.registry.DefaultComponentTypeRegistry" />
+	<bean id="dorado.componentTypeRegister" abstract="true"
+		class="com.bstek.dorado.view.registry.ComponentTypeRegister">
+		<property name="componentTypeRegistry" ref="dorado.componentTypeRegistry" />
+	</bean>
+
+	<bean id="dorado.defaultComponentTypeRegister" abstract="true"
+		parent="dorado.componentTypeRegister" class="com.bstek.dorado.view.registry.DefaultComponentTypeRegister" />
+	<bean id="dorado.assembledComponentTypeRegister" abstract="true"
+		parent="dorado.defaultComponentTypeRegister" class="com.bstek.dorado.view.registry.AssembledComponentTypeRegister">
+		<property name="viewConfigManager" ref="dorado.viewConfigManager" />
+	</bean>
+
+	<bean id="dorado.layoutTypeRegistry"
+		class="com.bstek.dorado.view.registry.DefaultLayoutTypeRegistry">
+		<property name="defaultType" value="Dock" />
+	</bean>
+	<bean id="dorado.layoutTypeRegister" abstract="true"
+		class="com.bstek.dorado.view.registry.LayoutTypeRegister">
+		<property name="layoutTypeRegistry" ref="dorado.layoutTypeRegistry" />
+	</bean>
+
+	<!-- Expression -->
+	<bean id="dorado.expressionHandler" class="com.bstek.dorado.view.el.ViewExpressionHandler">
+		<property name="contextInitializers">
+			<list>
+				<bean class="com.bstek.dorado.core.el.CoreContextVarsInitializer" />
+				<bean class="com.bstek.dorado.view.el.ViewContextVarsInitializer" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dorado.systemOptionalParametersFactory"
+		class="com.bstek.dorado.view.DefaultSystemOptionalParametersFactory" />
+
+	<!-- Others -->
+	<bean id="dorado.packagesConfigManager" class="com.bstek.dorado.view.loader.PackagesConfigManager">
+		<property name="xmlDocumentBuilder" ref="dorado.xmlDocumentBuilder" />
+		<property name="xmlParser" ref="dorado.packagesConfigParser" />
+	</bean>
+	<bean id="dorado.packagesConfigLoader" abstract="true"
+		class="com.bstek.dorado.view.loader.PackagesConfigLoader">
+		<property name="packagesConfigManager" ref="dorado.packagesConfigManager" />
+	</bean>
+
+	<bean id="dorado.velocityHelper"
+		class="com.bstek.dorado.view.resolver.VelocityHelperFactoryBean">
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+				<prop key="resource.loader">view</prop>
+				<prop key="runtime.log.logsystem.class">org.apache.velocity.runtime.log.NullLogChute</prop>
+				<prop key="view.resource.loader.description">Dorado File Resource Loader</prop>
+				<prop key="view.resource.loader.class">
+					com.bstek.dorado.view.resolver.VelocityViewTemplateResourceLoader
+				</prop>
+				<prop key="view.resource.loader.cache">${view.templateCachingOn}</prop>
+				<prop key="view.resource.loader.modificationCheckIntervale">${view.templateModificationCheckInterval}</prop>
+				<prop key="userdirective">
+					com.bstek.dorado.view.resolver.VelocityPageHeaderDirective,
+					com.bstek.dorado.view.resolver.VelocityPageFooterDirective,
+					com.bstek.dorado.view.resolver.VelocityInterceptorDirective,
+					com.bstek.dorado.view.resolver.VelocityExceptionDirective
+				</prop>
+			</props>
+		</property>
+		<property name="velocityToolProperties">
+			<props>
+				<prop key="tools.application.date">
+					org.apache.velocity.tools.generic.DateTool
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="dorado.localeResolver"
+		class="com.bstek.dorado.view.resource.SpringLocaleResolverAdapter">
+		<property name="springLocaleResolver">
+			<bean
+				class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" />
+		</property>
+	</bean>
+
+	<bean id="dorado.skinSettingManager" class="com.bstek.dorado.view.resolver.SkinSettingManager" />
+	<bean id="dorado.skinResolver" class="com.bstek.dorado.view.resolver.DefaultSkinResolver">
+		<property name="skinSettingManager" ref="dorado.skinSettingManager" />
+	</bean>
+
+	<bean id="dorado.clientI18NFileRegistry" class="com.bstek.dorado.view.resolver.ClientI18NFileRegistry" />
+	<bean id="dorado.clientI18NFileRegister" class="com.bstek.dorado.view.resolver.ClientI18NFileRegister"
+		abstract="true">
+		<property name="clientI18NFileRegistry" ref="dorado.clientI18NFileRegistry" />
+	</bean>
+
+	<bean id="dorado.viewResourceBundleManager"
+		class="com.bstek.dorado.view.resource.DefaultViewResourceBundleManager">
+		<property name="cache" ref="dorado.privateResourceCache" />
+	</bean>
+	<bean id="dorado.viewResourceManager" parent="dorado.abstractResourceManager"
+		class="com.bstek.dorado.view.resource.ViewResourceManager">
+		<property name="viewResourceBundleManager" ref="dorado.viewResourceBundleManager" />
+	</bean>
+
+	<bean id="dorado.viewAttachmentCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheName"
+			value="com.bstek.dorado.view.config.attachment.AttachedResourceManager" />
+		<property name="maxElementsInMemory"
+			value="${view.viewDefinitionCache.maxElementsInMemory}" />
+		<property name="overflowToDisk" value="false" />
+		<property name="timeToLive" value="${view.viewAttachmentCache.timeToLive}" />
+		<property name="timeToIdle" value="${view.viewAttachmentCache.timeToIdle}" />
+	</bean>
+	<bean id="dorado.viewAttachmentResourceManager" abstract="true"
+		class="com.bstek.dorado.view.config.attachment.AttachedResourceManager">
+		<property name="expressionHandler" ref="dorado.expressionHandler" />
+		<property name="cache" ref="dorado.viewAttachmentCache" />
+	</bean>
+	<bean id="dorado.viewStyleSheetResourceManager" parent="dorado.viewAttachmentResourceManager">
+		<property name="charset" value="${view.styleSheet.charset}" />
+	</bean>
+	<bean id="dorado.viewJavaScriptResourceManager" parent="dorado.viewAttachmentResourceManager"
+		class="com.bstek.dorado.view.config.attachment.AttachedJavaScriptResourceManager">
+		<property name="charset" value="${view.javaScript.charset}" />
+		<property name="asControllerInDefault" value="${view.javaScript.asControllerInDefault}" />
+		<property name="javaScriptParser">
+			<bean class="com.bstek.dorado.view.config.attachment.JavaScriptParser" />
+		</property>
+	</bean>
+
+	<bean id="dorado.bootPackagesResolver" class="com.bstek.dorado.view.resolver.BootPackagesResolver">
+		<property name="localeResolver" ref="dorado.localeResolver" />
+		<property name="bootFile" value="scripts/dorado/boot" />
+		<property name="resourcePrefix" value="${view.libraryRoot}" />
+	</bean>
+	<bean id="dorado.clientSettingsOutputterRegister" abstract="true"
+		class="com.bstek.dorado.view.resolver.ClientSettingsOutputterRegister">
+		<property name="pageHeaderOutputter" ref="dorado.pageHeaderOutputter" />
+	</bean>
+
+	<!-- socket -->
+	<bean id="dorado.longPollingManager" class="com.bstek.dorado.view.longpolling.LongPollingManager" />
+
+	<!-- async-task -->
+	<bean id="dorado.longTaskSocketServer" class="com.bstek.dorado.view.task.LongTaskSocketServer">
+		<property name="exposedServiceManager" ref="dorado.exposedServiceManager" />
+		<property name="longPollingManager" ref="dorado.longPollingManager" />
+	</bean>
+	<bean class="com.bstek.dorado.view.task.LongTaskAnnotationBeanPostProcessor">
+		<property name="exposedServiceManager" ref="dorado.exposedServiceManager" />
+	</bean>
+	<bean parent="dorado.exposedServiceRegister">
+		<property name="services">
+			<map>
+				<entry key="dorado.connectLongTask"
+					value="spring:dorado.longTaskSocketServer#connectLongTask" />
+				<entry key="dorado.startLongTask" value="spring:dorado.longTaskSocketServer#startLongTask" />
+			</map>
+		</property>
+	</bean>
+</beans>

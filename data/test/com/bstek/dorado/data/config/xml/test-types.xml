@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<DataType name="map.Branch" parent="Map">
+		<PropertyDef name="id" dataType="String" />
+		<PropertyDef name="name" dataType="String" />
+		<PropertyDef name="departments" dataType="[map.Department]" />
+	</DataType>
+
+	<DataType name="map.Department" parent="Map">
+		<PropertyDef name="id" dataType="String" />
+		<PropertyDef name="name" dataType="String" />
+		<PropertyDef name="departments" dataType="[map.Department]" />
+		<PropertyDef name="employees" dataType="[map.Employee]" />
+	</DataType>
+
+	<DataType name="map.Employee" parent="Map">
+		<PropertyDef name="id" dataType="String" />
+		<PropertyDef name="name" dataType="String" label="姓名${2*3}" />
+		<PropertyDef name="birthday" dataType="Date" />
+		<PropertyDef name="salary" dataType="float" />
+		<PropertyDef name="comment" dataType="String">
+			<Property name="label" value="$${system.testProperty}" />
+		</PropertyDef>
+		<PropertyDef name="department" dataType="map.Department" />
+	</DataType>
+
+	<DataType name="test.Manager" parent="map.Employee">
+		<PropertyDef name="propertyOfManager" dataType="String" />
+	</DataType>
+
+	<DataType name="test.Managers" parent="List">
+		<ElementDataType parent="test.Manager">
+			<PropertyDef name="propertyOfManagers" dataType="String" />
+		</ElementDataType>
+	</DataType>
+
+	<DataType name="test.User" parent="Bean" scope="instant">
+		<PropertyDef name="id" dataType="String" />
+		<PropertyDef name="name" dataType="String" />
+		<PropertyDef name="address">
+			<!-- 类型的私有子类型 -->
+			<DataType parent="Bean">
+				<PropertyDef name="city" dataType="String" />
+				<PropertyDef name="street" dataType="String" />
+				<PropertyDef name="postCode" dataType="String" />
+			</DataType>
+		</PropertyDef>
+		<PropertyDef name="roles">
+			<DataType parent="[Bean]">
+				<PropertyDef name="id" dataType="String" />
+				<PropertyDef name="name" dataType="String" />
+			</DataType>
+		</PropertyDef>
+	</DataType>
+
+	<DataType name="test.Category" parent="Bean">
+		<PropertyDef name="id" dataType="String" />
+		<PropertyDef name="name" dataType="String" />
+		<PropertyDef name="categories" dataType="[test.Category]" />
+		<PropertyDef name="products" dataType="[test.Product]" />
+	</DataType>
+	<DataType name="test.Product" parent="Bean">
+		<PropertyDef name="id" dataType="String" />
+		<PropertyDef name="name" dataType="String" />
+		<PropertyDef name="type" dataType="test.Product" />
+	</DataType>
+
+	<DataType name="test.CategoryAndProduct" parent="test.Category,test.Product" />
+</Model>

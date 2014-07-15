@@ -1,0 +1,373 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+/* Spinner */
+.d-text-box .slots-container .text {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 18px;
+  height: 20px;
+}
+.d-text-box .slots-container .slot {
+  display: inline-block;
+  line-height: 18px;
+  height: 20px;
+  cursor: pointer;
+  padding: 0 1px;
+  background-repeat: repeat-x;
+}
+.d-text-box .slots-container .slot-selected {
+  background-repeat: repeat-x;
+}
+.d-text-box .d-spinner-trigger {
+  width: 18px;
+  height: 20px;
+}
+.d-text-box .up-button {
+  width: 18px;
+  height: 10px;
+  font-size: 1%;
+  cursor: pointer;
+  background-position: 0 top;
+}
+.d-text-box .up-button .icon {
+  width: 100%;
+  height: 100%;
+  background-position: 0 top;
+}
+.d-text-box .up-button.up-button-click {
+  background-position: -54px top;
+}
+.d-text-box .down-button {
+  width: 18px;
+  height: 10px;
+  font-size: 1%;
+  cursor: pointer;
+  background-position: 0 bottom;
+}
+.d-text-box .down-button .icon {
+  width: 100%;
+  height: 100%;
+  background-position: 0 bottom;
+}
+.d-text-box .down-button.down-button-click {
+  background-position: -54px bottom;
+}
+.d-text-box-hover .up-button {
+  background-position: -18px top;
+}
+.d-text-box-hover .down-button {
+  background-position: -18px bottom;
+}
+.d-text-box-focused .up-button {
+  background-position: -36px top;
+}
+.d-text-box-focused .down-button {
+  background-position: -36px bottom;
+}
+.d-text-box-warn .up-button {
+  background-position: -72px top;
+}
+.d-text-box-warn .down-button {
+  background-position: -72px bottom;
+}
+.d-text-box-invalid .up-button {
+  background-position: -90px top;
+}
+.d-text-box-invalid .down-button {
+  background-position: -90px bottom;
+}
+.d-text-box-readonly .up-button {
+  background-position: -108px top;
+}
+.d-text-box-readonly .down-button {
+  background-position: -108px bottom;
+}
+.d-text-box .slots-container .slot {
+  background-image: url(form/spinner-slot-bg.png);
+}
+.d-text-box .slots-container .slot-selected {
+  background-color: #15428b;
+  background-image: url(form/spinner-selected-slot-bg.gif);
+  color: #ffffff;
+}
+.d-text-box .d-spinner-trigger .up-button,
+.d-text-box .d-spinner-trigger .down-button {
+  background-image: url(form/dropdown-trigger-bg.png);
+}
+.d-text-box .d-spinner-trigger .up-button .icon,
+.d-text-box .d-spinner-trigger .down-button .icon {
+  background-image: url(form/spinner-trigger.png);
+}
+.d-ie .d-text-box .slots-container .text {
+  padding-top: 1px;
+}
+/* drop-down */
+.d-drop-down-box {
+  border: 1px #a1a1a1 solid;
+  background-color: #ffffff;
+}
+/* month-picker */
+.d-month-picker {
+  table-layout: fixed;
+  background: #ffffff url(form/date-picker-bg.png);
+}
+.d-month-picker .number-row td {
+  text-align: center;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 1px;
+}
+.d-month-picker .number-row td.hover {
+  background: url(form/ym-picker-hover-cell.png) no-repeat center center;
+}
+.d-month-picker .number-row td.selected {
+  background: url(form/ym-picker-current-cell.png) no-repeat center center;
+}
+/* year-picker */
+.d-year-picker {
+  table-layout: fixed;
+  background: #ffffff url(form/date-picker-bg.png);
+}
+.d-year-picker .btn-row {
+  height: 20px;
+}
+.d-year-picker .prev-year-button {
+  background: url(form/yearmonth-picker-buttons.png) no-repeat left 0;
+}
+.d-year-picker .next-year-button {
+  background: url(form/yearmonth-picker-buttons.png) no-repeat right 0;
+}
+.d-year-picker .number-row td {
+  text-align: center;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 1px;
+}
+.d-year-picker .number-row td.hover {
+  background: url(form/ym-picker-hover-cell.png) no-repeat center center;
+}
+.d-year-picker .number-row td.selected {
+  color: #000000;
+  background: url(form/ym-picker-current-cell.png) no-repeat center center;
+}
+/* year-month-picker */
+.d-year-month-picker {
+  border: 0;
+  background-repeat: repeat-x;
+}
+.d-year-month-picker td {
+  height: 20px;
+}
+.d-year-month-picker .month-table {
+  width: 49%;
+  table-layout: fixed;
+}
+.d-year-month-picker .month-table .number-row td {
+  text-align: center;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 1px;
+}
+.d-year-month-picker .year-table {
+  width: 49%;
+  float: right;
+  table-layout: fixed;
+}
+.d-year-month-picker .year-table .btn-row {
+  height: 20px;
+}
+.d-year-month-picker .year-table .number-row td {
+  text-align: center;
+  cursor: pointer;
+  line-height: 20px;
+  padding: 1px;
+}
+.d-year-month-picker .btns-pane {
+  float: left;
+  clear: left;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+.d-year-month-picker .btns-pane .d-button {
+  margin: 8px 5px 8px 0;
+}
+.d-year-month-picker {
+  background: #ffffff url(form/date-picker-bg.png);
+}
+.d-year-month-picker .month-table td.hover {
+  background: url(form/ym-picker-hover-cell.png) no-repeat center center;
+}
+.d-year-month-picker .month-table td.selected {
+  color: #000000;
+  background: url(form/ym-picker-current-cell.png) no-repeat center center;
+}
+.d-year-month-picker .year-table {
+  border-left: 1px dotted #a1a1a1;
+}
+.d-year-month-picker .year-table td.hover {
+  background: url(form/ym-picker-hover-cell.png) no-repeat center center;
+}
+.d-year-month-picker .year-table td.selected {
+  color: #000000;
+  background: url(form/ym-picker-current-cell.png) no-repeat center center;
+}
+.d-year-month-picker .year-table .prev-year-button {
+  background-image: url(form/yearmonth-picker-buttons.png);
+  background-repeat: no-repeat;
+  background-position: left 0;
+}
+.d-year-month-picker .year-table .next-year-button {
+  background-image: url(form/yearmonth-picker-buttons.png);
+  background-repeat: no-repeat;
+  background-position: right 0;
+}
+/* date-picker */
+.d-date-picker {
+  position: relative;
+  border-collapse: collapse;
+}
+.d-date-picker .year-month-block {
+  text-align: center;
+  width: 100%;
+  height: 26px;
+  padding-top: 3px;
+}
+.d-date-picker .year-month-block .pre-button-div {
+  float: left;
+  padding-left: 4px;
+  margin-right: -40px;
+  width: 40px;
+}
+.d-date-picker .year-month-block .next-button-div {
+  float: right;
+  padding-right: 4px;
+  margin-left: -40px;
+  width: 40px;
+}
+.d-date-picker .year-month-block .pre-year-button,
+.d-date-picker .year-month-block .pre-month-button,
+.d-date-picker .year-month-block .next-year-button,
+.d-date-picker .year-month-block .next-month-button {
+  background-repeat: no-repeat;
+}
+.d-date-picker .year-month-block .pre-year-button {
+  background-position: 0 0;
+}
+.d-date-picker .year-month-block .pre-month-button {
+  background-position: -20px 0;
+}
+.d-date-picker .year-month-block .next-month-button {
+  background-position: -40px 0;
+}
+.d-date-picker .year-month-block .next-year-button {
+  background-position: -60px 0;
+}
+.d-date-picker .year-month-block .year-month-label {
+  width: auto;
+  cursor: pointer;
+  text-align: center;
+  height: 22px;
+  line-height: 22px;
+  margin: 0 44px 0 44px;
+}
+.d-date-picker .date-header {
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  height: 18px;
+}
+.d-date-picker .date-header td {
+  height: 18px;
+  text-align: center;
+}
+.d-date-picker .date-block {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 108px;
+  border-width: 0;
+}
+.d-date-picker .date-block .date-table {
+  position: absolute;
+  left: 0;
+  top: 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  cursor: pointer;
+  width: 200%;
+}
+.d-date-picker .date-block .date-table td {
+  height: 18px;
+  text-align: center;
+}
+.d-date-picker .date-block .date-table td.unselectable {
+  cursor: default;
+}
+.d-date-picker .spinner-block {
+  position: absolute;
+  height: 30px;
+  left: 5px;
+  bottom: 0;
+}
+.d-date-picker .button-block {
+  float: right;
+  height: 30px;
+}
+.d-date-picker .button-block .d-button {
+  cursor: pointer;
+  margin-top: 4px;
+  margin-right: 5px;
+}
+.d-date-picker .d-year-month-picker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+}
+.d-date-picker .year-month-block {
+  color: #000000;
+  background: url(form/date-picker-header-bg.png);
+  font-weight: bold;
+}
+.d-date-picker .year-month-block .pre-year-button,
+.d-date-picker .year-month-block .pre-month-button,
+.d-date-picker .year-month-block .next-year-button,
+.d-date-picker .year-month-block .next-month-button {
+  background-image: url(form/date-picker-buttons.png);
+}
+.d-date-picker .date-header {
+  color: #000000;
+  background: url(form/date-picker-date-header-bg.png);
+}
+.d-date-picker .date-block .date-table {
+  border-color: #a1a1a1;
+  background: url(form/date-picker-bg.png);
+}
+.d-date-picker .date-block .date-table td.hover {
+  background: url(form/date-picker-hover-cell.png) no-repeat center center;
+}
+.d-date-picker .date-block .date-table td.selected-date {
+  color: #000000;
+  background: url(form/date-picker-current-cell.png) no-repeat center center;
+}
+.d-date-picker .date-block .date-table td.pre-month,
+.d-date-picker .date-block .date-table td.next-month {
+  color: #a7a7a7;
+  background-color: #ffffff;
+}
+.d-date-picker .date-block .date-table td.unselectable {
+  color: #a7a7a7;
+}

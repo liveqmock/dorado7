@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html style="height: 100%">
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			function getRandomChar() {
+				var i = parseInt(Math.random() * 5);
+				return String.fromCharCode(i + (parseInt(Math.random() * 2) ? 'A' : 'a').charCodeAt(0));
+			}
+			
+			function getRandomString(len) {
+				var s = '';
+				for (var i = 0; i < len; i++) 
+					s += getRandomChar();
+				return s;
+			}
+			
+			var view = new dorado.widget.View({ layout: "Anchor" });
+			
+			var dropdown1 = new dorado.widget.ListDropDown({
+				items: ["Key 1", "Key 2 ", "Key 3", "Key 4"]
+			});
+			view.addChild(dropdown1);
+			
+			var dropdownItems = [];
+			for (var i = 0; i < 1000; i++) {
+				dropdownItems.push(getRandomString(parseInt(Math.random() * 10) + 10));
+			}
+			var dropdown2 = new dorado.widget.ListDropDown({
+				items: dropdownItems,
+				autoOpen: true,
+				dynaFilter: true
+			});
+			view.addChild(dropdown2);
+			
+			var rowData1 = [];
+			for (var i = 0; i < 100; i++) {
+				rowData1.push({
+					property1: "Row " + i
+				});
+			}
+			var ds1 = new dorado.widget.DataSet({
+				data: new dorado.EntityList(rowData1)
+			});
+			view.addChild(ds1);
+			
+			var dropdown3 = new dorado.widget.DataSetDropDown({
+				id: "dropdown3",
+				dataSet: ds1,
+				property: "property1"
+			});
+			view.addChild(dropdown3);
+			
+			var editor1 = new dorado.widget.TextEditor({
+				trigger: dropdown1,
+				width: 200,
+				layoutConstraint: {
+					left: 30,
+					top: 20,
+					backgroundColor: "red"
+				}
+			});
+			view.addChild(editor1);
+			
+			var editor2 = new dorado.widget.TextEditor({
+				trigger: dropdown2,
+				width: 400,
+				layoutConstraint: {
+					left: 30,
+					top: 50
+				}
+			});
+			view.addChild(editor2);
+			
+			var editor3 = new dorado.widget.TextEditor({
+				id: "editor3",
+				trigger: view.getComponentReference("dropdown3"),
+				width: 300,
+				layoutConstraint: {
+					left: 30,
+					top: 480
+				}
+			});
+			view.addChild(editor3);
+			
+			var dropdown4 = new dorado.widget.YearMonthDropDown({
+				id: "dropdown4"
+			});
+			view.addChild(dropdown4);
+			
+			var editor4 = new dorado.widget.TextEditor({
+				trigger: view.getComponentReference("dropdown4"),
+				width: 300,
+				layoutConstraint: {
+					left: 30,
+					top: 510
+				}
+			});
+			view.addChild(editor4);
+			
+			var dropdown5 = new dorado.widget.DateDropDown({
+				id: "dropdown5",
+                onValueSelect: function(self, arg) {
+                    var value = arg.selectedValue;
+
+                    if (value) {
+                        arg.selectedValue = value.formatDate("Y-m-d");
+                    }
+                }
+			});
+			view.addChild(dropdown5);
+			
+			var editor5 = new dorado.widget.TextEditor({
+				trigger: view.getComponentReference("dropdown5"),
+				width: 100,
+				layoutConstraint: {
+					left: 300,
+					top: 540
+				}
+			});
+			
+			view.addChild(editor5);
+			
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body style="height: 100%"></body>
+</html>

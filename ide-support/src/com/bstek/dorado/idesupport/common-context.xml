@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.bstek.com/dorado/schema"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.bstek.com/dorado/schema http://www.bstek.com/dorado/schema/spring-dorado-7.0.xsd">
+	<bean id="dorado.idesupport.ruleTemplateParser" class="com.bstek.dorado.idesupport.parse.RuleTemplateParser">
+		<d:property-parser key="*" value-ref="dorado.staticPropertyParser" />
+		<d:property-parser key="name" value-ref="dorado.ignoreParser" />
+		<d:property-parser key="parents,robots" value-ref="dorado.stringArrayPropertyParser" />
+		<d:sub-parser key="Prop" value-ref="dorado.idesupport.propertyTemplateParser" />
+		<d:sub-parser key="ClientEvent" value-ref="dorado.idesupport.clientEventTemplateParser" />
+		<d:sub-parser key="Child" value-ref="dorado.idesupport.childTemplateParser" />
+	</bean>
+	<bean id="dorado.idesupport.globalRuleTemplateParser" parent="dorado.idesupport.ruleTemplateParser">
+		<property name="global" value="true" />
+	</bean>
+	<bean id="dorado.idesupport.propertyTemplateParser" class="com.bstek.dorado.idesupport.parse.PropertyParser">
+		<d:property-parser key="*" value-ref="dorado.staticPropertyParser" />
+		<d:property-parser key="enumValues" value-ref="dorado.stringArrayPropertyParser" />
+		<d:sub-parser key="Prop" value-ref="dorado.idesupport.propertyTemplateParser" />
+	</bean>
+	<bean id="dorado.idesupport.clientEventTemplateParser" class="com.bstek.dorado.idesupport.parse.ClientEventParser">
+		<d:property-parser key="*" value-ref="dorado.staticPropertyParser" />
+		<d:property-parser key="parameters" value-ref="dorado.stringArrayPropertyParser" />
+	</bean>
+	<bean id="dorado.idesupport.childTemplateParser" class="com.bstek.dorado.idesupport.parse.ChildTemplateParser">
+		<property name="ruleTemplateParser" ref="dorado.idesupport.ruleTemplateParser" />
+		<property name="globalRuleTemplateParser" ref="dorado.idesupport.globalRuleTemplateParser" />
+		<d:property-parser key="*" value-ref="dorado.staticPropertyParser" />
+	</bean>
+
+	<bean id="dorado.idesupport.ruleSetBuilder" class="com.bstek.dorado.idesupport.RuleSetBuilder">
+		<property name="xmlDocumentBuilder" ref="dorado.xmlDocumentBuilder" />
+		<property name="preloadParser">
+			<bean class="com.bstek.dorado.idesupport.parse.PreloadParser" />
+		</property>
+		<property name="ruleTemplateParser" ref="dorado.idesupport.globalRuleTemplateParser" />
+	</bean>
+</beans>

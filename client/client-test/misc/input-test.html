@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Test Page</title>
+		<script type="text/javascript" src="../include-all.js"></script>
+		<script>
+function test1() {
+	var s = new Date();
+	
+	var inputContainer = document.getElementById("inputContainer");
+	for (var i = 0; i < 1000; i++) {
+		var input = document.createElement("INPUT");
+		inputContainer.appendChild(input);
+	}
+	
+	alert(new Date() - s);
+}
+
+function test2() {
+	var s = new Date();
+	
+	var inputContainer = document.getElementById("inputContainer");
+	for (var i = 0; i < 1000; i++) {
+		var div = document.createElement("DIV");
+		div.style.display = "inline";
+		var input = document.createElement("INPUT");
+		div.appendChild(input);
+		inputContainer.appendChild(div);
+	}
+	
+	alert(new Date() - s);
+}
+
+function test3() {
+	var s = new Date();
+	
+	var template = document.createElement("DIV");
+	var input = document.createElement("INPUT");
+	template.appendChild(input);
+	
+	var inputContainer = document.getElementById("inputContainer");
+	for (var i = 0; i < 1000; i++) {
+		inputContainer.appendChild(template.cloneNode(true));
+	}
+	
+	alert(new Date() - s);
+}
+
+function test4() {
+	var s = new Date();
+	
+	var inputContainer = document.getElementById("inputContainer");
+	for (var i = 0; i < 1000; i++) {
+		var table = document.createElement("TABLE");
+		var tbody = document.createElement("TBODY");
+		var tr = document.createElement("TR");
+		var td = document.createElement("TD");
+		var input = document.createElement("INPUT");
+		td.appendChild(input);
+		tr.appendChild(td);
+		tbody.appendChild(tr);
+		table.appendChild(tbody);
+		inputContainer.appendChild(table);
+	}
+	
+	alert(new Date() - s);
+}
+
+function test5() {
+	var s = new Date();
+	
+	var template = document.createElement("TABLE");
+	var tbody = document.createElement("TBODY");
+	var tr = document.createElement("TR");
+	var td = document.createElement("TD");
+	var input = document.createElement("INPUT");
+	td.appendChild(input);
+	tr.appendChild(td);
+	tbody.appendChild(tr);
+	template.appendChild(tbody);
+	
+	var inputContainer = document.getElementById("inputContainer");
+	for (var i = 0; i < 1000; i++) {
+		inputContainer.appendChild(template.cloneNode(true));
+	}
+	alert(new Date() - s);
+}
+
+function test6() {
+	var s = new Date();
+	
+	var inputContainer = document.getElementById("inputContainer");
+	var inputs = [];
+	for (var i = 0; i < 1000; i++) {
+		var input = document.createElement("INPUT");
+		inputs.push(input);
+		inputContainer.appendChild(input);
+	}
+	
+	for (var i = 0; i < inputs.length; i++) {
+		var div = document.createElement("DIV");
+		var input = inputs[i];
+		input.parentNode.replaceChild(div, input); 
+		div.appendChild(input);
+	}
+	
+	alert(new Date() - s);
+}
+
+function test7() {
+	var s = new Date();
+	
+	var inputContainer = document.getElementById("inputContainer");
+	var inputs = [];
+	for (var i = 0; i < 1000; i++) {
+		var input = document.createElement("INPUT");
+		inputs.push(input);
+		inputContainer.appendChild(input);
+	}
+	
+	var swap = document.createElement("LABEL");
+	for (var i = 0; i < inputs.length; i++) {
+		var div = document.createElement("DIV");
+		var input = inputs[i];
+		input.parentNode.replaceChild(swap, input); 
+		div.appendChild(input);
+		swap.parentNode.replaceChild(div, swap); 
+	}
+	
+	alert(new Date() - s);
+}
+
+function test8() {
+	var s = new Date();
+	
+	var inputs = [];
+	for (var i = 0; i < 1000; i++) {
+		var input = document.createElement("INPUT");
+		inputs.push(input);
+	}	
+	$("inputContainer").append(inputs);
+	
+	alert(new Date() - s);
+}
+
+function test9() {alert(document.getElementById("input10").offsetHeight);return;
+	var s = new Date();
+	
+	var inputs = [];
+	for (var i = 0; i < 1000; i++) {
+		inputs.push("<input />");
+	}
+	var inputContainer = document.getElementById("inputContainer");
+	inputContainer.innerHTML = inputs.join('');
+	
+	alert(new Date() - s);
+}
+</script>
+	</head>
+	<body>
+		<button onclick="test1()">
+			Create INPUT
+		</button>
+		<button onclick="test2()">
+			Create DIV+INPUT
+		</button>
+		<button onclick="test3()">
+			Create DIV+INPUT (template)
+		</button>
+		<button onclick="test4()">
+			Create TABLE+INPUT
+		</button>
+		<button onclick="test5()">
+			Create TABLE+INPUT(template)
+		</button>
+		<button onclick="test6()">
+			Create DIV+INPUT (replace)
+		</button>
+		<button onclick="test7()">
+			Create DIV+INPUT (remove + insert)
+		</button>
+		<button onclick="test8()">
+			Create INPUT (jQuery)
+		</button>
+		<button onclick="test9()">
+			Create INPUT (innerHTML)
+		</button>
+		<hr>
+		<div id="div1"
+			style="width: 190px; height: 21px; border: 1px red solid; position: relative; white-space: nowrap;">
+			<input style="width: 130px; height: 100%; border: 1px green solid;">
+			<img
+				style="position: absolute; top: 0px; width: 20px; height: 100%; border: 1px blue solid">
+		</div>
+		<hr>
+		<div id="inputContainer"
+			style="border: 1px red solid; overflow: visible">
+		</div>
+		<hr>
+		<TABLE id="input10" class="d_TextEditor" style="WIDTH: 30%"
+			cellSpacing="0" cellPadding="0">
+			<TBODY>
+				<TR>
+					<TD style="WIDTH: 100%">
+						<INPUT class="d_TextField" style="WIDTH: 100%">
+					</TD>
+					<TD style="VERTICAL-ALIGN: top">
+						<IMG class="Trigger" style="WIDTH: 17px;"
+							src="/brich7/js/css/skins/nature/dropdown-trigger1.gif">
+					</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../include-all.js"></script>
+		<script type="text/javascript">
+		
+		var html1 = new dorado.widget.HtmlContainer("html1");
+		html1.set("content", "<hr>"); 
+		
+		var html2 = new dorado.widget.HtmlContainer("html2");
+		var div = $create("DIV");
+		div.innerHTML = "Hello";
+		html2.set("content", div);
+		
+		var html3 = new dorado.widget.HtmlContainer("html3");
+		html3.set("content", {
+			tagName: "LABEL",
+			content: "World"
+		});
+		
+		var html4 = new dorado.widget.HtmlContainer("html4");
+		var div = $create("DIV");
+		div.innerHTML = "Child 1";
+		html4.set("content", [
+			div,
+			{
+				tagName: "LABEL",
+				content: "Child 2"
+			},
+			"Child 3"
+		]);
+
+		function $element(id) {
+			return document.getElementById(id);
+		}
+
+		$(document).ready(function(){		
+			html1.render($element("div1"));	
+			html2.render($element("div2"));
+			html3.render($element("div3"));
+			html4.render($element("div4"));
+		});
+		
+		function testInnerHTML() {
+			var el = $element("div1").firstChild;
+			assertHTMLEquals("HR", el.nodeName);
+			assertHTMLEquals("", el.innerText);
+		}
+		
+		function testElement() {
+			var el = $element("div2").firstChild;
+			assertHTMLEquals("DIV", el.nodeName);
+			assertHTMLEquals("Hello", el.innerText);
+		}
+		
+		function testXCreateElement() {
+			var el = $element("div3").firstChild;
+			assertHTMLEquals("LABEL", el.nodeName);
+			assertHTMLEquals("World", el.innerText);
+		}
+		
+		function testCompositeArray() {
+			var div4 = $element("div4").firstChild;
+			assertEquals(3, div4.childNodes.length);
+			assertHTMLEquals("Child 1", div4.childNodes[0].innerHTML);
+			assertHTMLEquals("Child 2", div4.childNodes[1].innerHTML);
+			
+			var child3 = div4.childNodes[2];
+			assertHTMLEquals("Child 3", child3.innerHTML || child3.nodeValue);
+		}
+
+        function testSetContent() {
+            html1.set("content", "<div id='test'>test</div>");
+            console.log(document.getElementById("test"));
+        }
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+		<div id="div4"></div>
+        <button onclick="testSetContent()">SetContent</button>
+	</body>
+</html>

@@ -1,0 +1,112 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-list-scrolling-indicator {
+  position: absolute;
+  width: 100px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background: url(list/preparing-indicator-bg.png) no-repeat center center;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.d-list-dragging-item {
+  white-space: nowrap;
+  padding: 2px 4px;
+  border: 1px #a1a1a1 solid;
+  background: #ffffff;
+}
+.d-list-dragging-insert-indicator {
+  position: absolute;
+  height: 1px;
+  background: #ff8040;
+}
+.d-list-loading .mask {
+  background: #808080;
+  opacity: 0.05;
+  filter: alpha(opacity=5);
+}
+.d-list-loading .tip {
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  border: 1px #a1a1a1 solid;
+  border-radius: 5px;
+  background: rgba(237, 237, 237, 0.5);
+}
+.d-list-loading .icon {
+  float: left;
+  width: 36px;
+  height: 36px;
+  background: url(common/loading.gif) no-repeat center center;
+}
+.d-list-loading .label {
+  text-align: left;
+  margin-left: 42px;
+  height: 36px;
+}
+.d-list-box {
+  position: relative;
+}
+.d-list-box .data-table {
+  width: 100%;
+}
+.d-list-box .data-table .row td {
+  white-space: nowrap;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.d-list-box .data-table .highlighting-row td {
+  background: none;
+}
+.d-list-box .preparing-area {
+  background: url(list/preparing-area-bg.png);
+}
+.d-list-box {
+  border: 1px #a1a1a1 solid;
+  background-color: #ffffff;
+}
+.d-list-box .data-table .row {
+  background: #ffffff;
+}
+.d-list-box .data-table .hover-row {
+  background: #e8e8e8;
+}
+.d-list-box .data-table .hover-row td {
+  border-top-color: #e8e8e8;
+}
+.d-list-box .data-table .selected-row {
+  color: #000000;
+  background: #aff3bc;
+}
+.d-list-box .data-table .selected-row td {
+  border-top-color: #edfcf0;
+  border-bottom-color: #65d17b;
+}
+.d-list-box .data-table .current-row {
+  color: #000000;
+  background: #94efa6 url(list/current-row.png) repeat-x top;
+}
+.d-list-box .data-table .current-row td {
+  border-top-color: #d7f9dd;
+  border-bottom-color: #52cb6a;
+}
+.d-list-box .data-table .drag-over-row {
+  background: #e8e8e8;
+}
+.d-list-box .data-table .drag-over-row td {
+  border-top-color: #e8e8e8;
+  border-bottom-color: #e8e8e8;
+}
+.d-list-box.d-list-focused {
+  border: 1px #7b7b7b solid;
+}

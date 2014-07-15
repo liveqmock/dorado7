@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+        var dp = new dorado.widget.DatePicker({
+            showClearButton: false,
+            showConfirmButton: true,
+            showTimeSpinner: true,
+            //selectionMode: "multiDate",
+            onConfirm: function(self, arg) {
+                console.log(arg.date);
+            },
+            onRefreshDateCell: function(self, arg) {
+                var date = arg.date, cell = arg.cell;
+
+                if (date.getDate() == 3 || date.getDate() == 5) {
+                    //cell.style.color = "red";
+                } else {
+                    //cell.style.color = "";
+                }
+            },
+            onFilterDate: function(self, arg) {
+                var date = arg.date, cell = arg.cell;
+                if (date.getDate() == 3 || date.getDate() == 5) {
+                    arg.selectable = false;
+                }
+                if (date.getMonth() == 8) arg.selectable = false;
+            }
+        });
+        view.addChild(dp);
+
+        var numberGridPicker = new dorado.widget.NumberGridPicker({
+            rowCount: 6,
+            columnCount: 2,
+            min: 0,
+            max: 11
+        });
+
+        view.addChild(numberGridPicker);
+
+        var yearPicker = new dorado.widget.YearPicker({
+            value: 2012
+        });
+        view.addChild(yearPicker);
+
+        var ymPicker = new dorado.widget.YearMonthPicker({
+        });
+
+        view.addChild(ymPicker);
+
+        var editor4 = new dorado.widget.TextEditor({
+            width: "30%",
+            trigger: ["defaultYearDropDown"],
+            listener: {
+                onPost: function(self) {
+                    //dorado.MessageBox.alert(self.get("id") + " onPost:\n" + entity4.property1);
+                }
+            }
+        });
+        view.addChild(editor4);
+
+        var editor5 = new dorado.widget.TextEditor({
+            width: "30%",
+            trigger: ["defaultMonthDropDown"],
+            listener: {
+                onPost: function(self) {
+                    //dorado.MessageBox.alert(self.get("id") + " onPost:\n" + entity4.property1);
+                }
+            }
+        });
+        view.addChild(editor5);
+
+        var editor6 = new dorado.widget.TextEditor({
+            width: "30%",
+            trigger: ["defaultYearMonthDropDown"],
+            listener: {
+                onPost: function(self) {
+                    //dorado.MessageBox.alert(self.get("id") + " onPost:\n" + entity4.property1);
+                }
+            }
+        });
+        view.addChild(editor6);
+
+        var editor7 = new dorado.widget.TextEditor({
+            width: "30%",
+            trigger: ["defaultDateTimeDropDown"],
+            listener: {
+                onPost: function(self) {
+                    //dorado.MessageBox.alert(self.get("id") + " onPost:\n" + entity4.property1);
+                }
+            }
+        });
+        view.addChild(editor7);
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});		
+		</script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+	</body>
+</html>

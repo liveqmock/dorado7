@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>GroupBox Test Page</title>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        var v;
+        jQuery(document).ready(function () {
+            v = new dorado.widget.View({
+                "id":"viewMain",
+                layout: new dorado.widget.layout.NativeLayout
+            });
+
+            function f(v) {
+                v.set("children", [
+
+                    {
+                        "$type":"FieldSet",
+                        caption: "test",
+                        collapseable: false,
+                        layout: new dorado.widget.layout.VBoxLayout(),
+                        "children":[
+                            {
+                                "$type":"AutoForm",
+                                "elements":[
+                                    {
+                                        "property":"propertyDef1",
+                                        "name":"propertyDef1"
+                                    },
+                                    {
+                                        "property":"propertyDef2",
+                                        "name":"propertyDef2"
+                                    },
+                                    {
+                                        "property":"propertyDef3",
+                                        "name":"propertyDef3"
+                                    },
+                                    {
+                                        "property":"propertyDef4",
+                                        "name":"propertyDef4"
+                                    }
+                                ],
+                                "dataSet":v.getComponentReference("dataSet1")
+                            }
+                        ]
+                    },
+                    {
+                        "$type":"DataSet",
+                        "id":"dataSet1",
+                        "dataType":"v:K66ImbJPeF$[v:K66ImbJPeF$dataType1]"
+                    },
+                    {
+                        "$type":"DataGrid",
+                        "dataSet":v.getComponentReference("dataSet1")
+                    }
+                ]);
+            }
+
+            v.get("dataTypeRepository").parseJsonData([
+                {
+                    "propertyDefs":[
+                        {
+                            "name":"propertyDef1"
+                        },
+                        {
+                            "name":"propertyDef2"
+                        },
+                        {
+                            "name":"propertyDef3"
+                        },
+                        {
+                            "name":"propertyDef4"
+                        }
+                    ],
+                    "id":"v:K66ImbJPeF$dataType1",
+                    "name":"dataType1"
+                }
+            ]);
+            f(v);
+            var doradoView = document.getElementById("doradoView");
+            if (doradoView) v.replace(doradoView);
+        });
+    </script>
+</head>
+<body scroll="no" style="margin:0px; overflow:hidden">
+<label id="doradoView" style="display:none" />
+</body>
+</html>

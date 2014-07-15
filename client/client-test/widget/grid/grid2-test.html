@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({ layout: "Anchor" });
+			
+			view.addChild(new dorado.widget.Button({
+            	caption: "Set Current",
+            	listener: {
+            		onClick: function() {
+            			this.id("grid1").set("currentIndex", 25);
+            		}
+            	}
+            }));
+            
+            var rows1 = [], list = ["IE", "Opera", "FireFox", "Chrome", "Safari", "Mozilla", "NetScape"];
+            for (var i = 0; i < 50; i++) {
+            	var row = {};
+            	for (var j = 0; j < 10; j++) {
+            		row["prop" + j] = (Math.random() < 0.1) ? "ABC\nDEF\nGHI" : [i, j];
+            	}
+            	row["prop0"] = list[parseInt(Math.random() * 6)];
+            	row["prop5"] = parseInt(Math.random() * 100);
+            	rows1.push(row);
+            }
+            
+            var grid1 = new dorado.widget.Grid({
+				id: "grid1",
+            	scrollMode: "viewport",
+            	showFooter: true,
+            	width: 650,
+            	height: 400,
+            	fixedColumnCount: 2,
+            	dynaRowHeight: true,
+            	groupOnSort: true,
+            	showGroupFooter: true,
+				showFilterBar: true,
+            	columns: [{
+                }, {
+            		property: "prop0"
+            	}, {
+            		name: "id",
+            		property: "prop1",
+					displayFormat: "#",
+            		summaryType: "count"
+            	}, {
+            		name: "name",
+            		property: "prop2"
+            	}, {
+            		property: "prop3",
+					filterable: false
+            	}, {
+            		property: "prop4"
+            	}, {
+            		property: "prop5",
+					dataType: "float",
+					displayFormat: "#,##.00",
+            		summaryType: "average"
+            	}, {
+            		property: "prop6"
+            	}, {
+            		property: "prop7"
+            	}, {
+            		property: "prop8"
+            	}],
+            	items: rows1
+            });
+            view.addChild(grid1);
+            
+            $(document).ready(function() {
+            	var s = new Date();
+            	view.render(document.body);
+            	document.title = new Date() - s;
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

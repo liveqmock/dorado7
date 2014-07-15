@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			
+			var items1 = [];
+			for (var i = 0; i < 50; i++) {
+				items1.push("Block " + i);
+			}
+			
+			var blockview1 = new dorado.widget.BlockView({
+				scrollMode: "lazyRender",
+				width: 400,
+				height: 300,
+				lineSize: 4,
+				fillLine: true,
+				items: items1,
+				draggable: true,
+				dragTags: "block",
+				droppable: true,
+				droppableTags: "block",
+				dropMode: "onOrInsertItems"
+			});
+			view.addChild(blockview1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br/>"
+			}));
+			
+			var blockview2 = new dorado.widget.BlockView({
+				scrollMode: "lazyRender",
+				blockLayout: "horizontal",
+				lineSize: 3,
+				fillLine: true,
+				width: 400,
+				height: 300,
+				items: items1,
+				draggable: true,
+				dragTags: "block",
+				droppable: true,
+				droppableTags: "block",
+				dropMode: "onOrInsertItems"
+			});
+			view.addChild(blockview2);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br/>"
+			}));
+			
+			var blockview3 = new dorado.widget.BlockView({
+				scrollMode: "viewport",
+				width: 400,
+				height: 300,
+				items: items1,
+				draggable: true,
+				dragTags: "block",
+				droppable: true,
+				droppableTags: "block",
+				dropMode: "onOrInsertItems"
+			});
+			view.addChild(blockview3);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br/>"
+			}));
+			
+			var blockview4 = new dorado.widget.BlockView({
+				scrollMode: "viewport",
+				blockLayout: "horizontal",
+				width: 400,
+				height: 300,
+				items: items1,
+				draggable: true,
+				dragTags: "block",
+				droppable: true,
+				droppableTags: "block",
+				dropMode: "onOrInsertItems"
+			});
+			view.addChild(blockview4);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br/>"
+			}));
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+				document.title = new Date() - s;
+				
+				setTimeout(function() {
+					blockview1.highlightItem(2);
+				}, 1000);
+			});
+		</script>
+	</head>
+	<body></body>
+</html>

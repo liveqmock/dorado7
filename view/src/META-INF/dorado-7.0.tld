@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>7.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>dorado</shortname>
+	<uri>http://www.bstek.com/dorado/taglib-7.0</uri>
+	<info>dorado tag library 7.0</info>
+	<tag>
+		<name>PageHeader</name>
+		<tagclass>com.bstek.dorado.view.taglib.PageHeaderTag</tagclass>
+	</tag>
+	<tag>
+		<name>PageFooter</name>
+		<tagclass>com.bstek.dorado.view.taglib.PageFooterTag</tagclass>
+	</tag>
+</taglib>

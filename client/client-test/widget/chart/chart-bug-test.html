@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <script language="javascript" type="text/javascript">
+        var v;
+        jQuery(document).ready(function () {
+            AUTO_APPEND_TO_TOPVIEW = false;
+            v = new dorado.widget.View({"id": "viewMain", "name": "sample.Chart"});
+
+            function f(v) {
+                v.set("children", [
+                    {
+                        "$type": "DataSet",
+                        dataProvider: new dorado.AjaxDataProvider("chart.js"),
+                        "id": "dataSet1",
+                        //"dataType": "v:gY52BjoqAN$[v:gY52BjoqAN$GuideData]",
+                        "listener": {
+                            "onReady": (function (self, arg) {
+                                //self.getData("#");
+                            })
+                        }
+                    },
+                    {
+                        "$type": "DataSet",
+                        dataProvider: new dorado.AjaxDataProvider("chart.js"),
+                        "id": "dataSet2",
+                        //"dataType": "v:gY52BjoqAN$[v:gY52BjoqAN$GuideData]",
+                        "listener": {
+                            "onReady": (function (self, arg) {
+                                self.getData("#");
+                            })
+                        }
+                    },
+                    {
+                        "$type": "ofc.OpenFlashChart",
+                        "id": "chart1", "yAxis": {"$type": "YAxis", "max": 12.0, "steps": 1.0},
+                        "xAxis": {"$type": "XAxis", "labelsShortcut": "1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月"},
+                        "elements":
+                              [
+                                  {"$type": "ofc.Column", "text": "计信委", "bindingConfig": {"valueProperty": "value"}, "dataSet": v.getComponentReference("dataSet1"), "color": "#F6BD0F"},
+                                  {"$type": "ofc.Column", "text": "科委", "bindingConfig": {"valueProperty": "value"}, "dataSet": v.getComponentReference("dataSet2"), "color": "#8BBA00"}
+                              ]
+                    }
+                ]);
+            }
+
+            v.get("dataTypeRepository").parseJsonData([
+                {
+                    "propertyDefs": [
+                        {"name": "value"}
+                    ],
+                    "id": "v:gY52BjoqAN$GuideData",
+                    "name": "GuideData"
+                }
+            ]);
+            f(v);
+            AUTO_APPEND_TO_TOPVIEW = true;
+            var doradoView = document.getElementById("doradoView");
+            if (doradoView) v.replace(doradoView);
+        });
+    </script>
+</head>
+<body scroll="no" style="margin:0px; overflow:hidden">
+<label id="doradoView" style="display:none"/>
+</body>
+</html>

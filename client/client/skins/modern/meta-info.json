@@ -1,0 +1,5 @@
+{
+	"clientType": "desktop",
+	"userAgent": "-ie8",
+	"dependedPackages": "entypo-support,font-awesome-support,nprogress"
+}

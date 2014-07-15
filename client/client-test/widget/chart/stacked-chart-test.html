@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>StackedBar Chart Test</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+		var dataTypeStackElement = new dorado.EntityDataType({
+			name: "StackElement",
+			propertyDefs: [
+				{ name: "color", label: "Color" },
+				{ name: "value", label: "Value" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeStackElement);
+
+		var dataTypeStack = new dorado.EntityDataType({
+			name: "Stack",
+			propertyDefs: [
+				{ name: "values", dataType: "[StackElement]" },
+				{ name: "color" },
+				{ name: "fontSize" },
+				{ name: "text" }
+			]
+		});
+		$dataTypeRepository.register(dataTypeStack);
+
+		var dataSet = new dorado.widget.DataSet({
+			data: [{
+				values:  [{value: 2.5}, {"value":5}]
+			}, {
+				values: [{"value":2.5}, {"value":5}, {"value":2.5}]
+			}, {
+				values: [{"value":2.5}, {"value":5}, {"value":2.5}]
+			}, {
+				values: [{"value":2.5}, {"value":5}, {"value":2.5}]
+			}],
+			dataType: "Stack"
+		});
+
+		var stackedChart = new dorado.widget.ofc.OpenFlashChart({
+			backgroundColor: "#ffffff",
+			title: {
+				"text": "Sales by Region",
+				"style": "font-size: 14px; font-family: Verdana; text-align: center;"
+			},
+			xAxis: {
+				labels: {
+				  labels: ["January","February","March","April"]
+				},
+				stroke: 12,
+				tickLength: 6
+			},
+			yAxis: {
+				max: 20
+			},
+			xLegend: { text: "dddd" },
+			elements: [{
+				$type: "ofc.StackedColumn",
+				dataSet: dataSet,
+				keys: [
+					{"color":"#FFB900", "text": "Key 1", "fontSize": 10},
+					{"color":"#ff00ff", "text": "Key 2", "fontSize": 16},
+					{"color":"#FFB9F0", "text": "Key 3"},
+					{"color":"#FFB9F0", "fontSize": 16}
+				],
+				bindingConfig: {
+					stackValuesProperty: "values",
+					stackValueValueProperty: "value",
+					stackValueColorProperty: "color"
+				}
+			}]
+		});
+        view.addChild(stackedChart);
+
+		view.addChild(new dorado.widget.Button({
+			caption: "reloadData",
+			onClick: function() {
+				stackedChart.reload();
+			}
+		}));
+
+		function open_flash_chart_data() {
+			return JSON.stringify({"bg_colour": "#ffffff", elements: [{"type": "pie"}]});
+		}
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

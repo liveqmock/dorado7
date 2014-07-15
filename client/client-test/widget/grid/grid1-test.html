@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			
+			var rows1 = [];
+			for (var i = 0; i < 5; i++) {
+				var row = {};
+				for (var j = 0; j < 10; j++) {
+					row["prop" + j] = [i, j];
+				}
+				rows1.push(row);
+			}
+			
+			var grid1 = new dorado.widget.Grid({
+				width: 300,
+				columns: [{
+					name: "id",
+					property: "prop1"
+				}, {
+					name: "name",
+					property: "prop2"
+				}, {
+					property: "prop3"
+				}, {
+					property: "prop4"
+				}],
+				items: rows1,
+				onGetCellEditor: function(self, arg) {
+					return false;
+				},
+				draggable: true,
+				dragTags: "record",
+				droppable: true,
+				droppableTags: "record"
+			});
+			view.addChild(grid1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<hr>"
+			}));
+			
+			var rows2 = [];
+			for (var i = 0; i < 30; i++) {
+				var row = {};
+				for (var j = 0; j < 10; j++) {
+					row["prop" + j] = [i, j];
+				}
+				rows2.push(row);
+			}
+			
+			var grid2 = new dorado.widget.Grid({
+				readOnly: true,
+				showFooter: true,
+				width: 300,
+				height: 200,
+				columns: [{
+					name: "id",
+					property: "prop1"
+				}, {
+					name: "name",
+					property: "prop2"
+				}, {
+					property: "prop3"
+				}, {
+					property: "prop4"
+				}],
+				items: rows2,
+				draggable: true,
+				dragTags: "record",
+				droppable: true,
+				droppableTags: "record",
+				dropMode: "onOrInsertItems"
+			});
+			view.addChild(grid2);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<hr>"
+			}));
+			
+			var rows3 = [];
+			for (var i = 0; i < 30; i++) {
+				var row = {};
+				for (var j = 0; j < 10; j++) {
+					row["prop" + j] = [i, j];
+				}
+				rows3.push(row);
+			}
+			
+			var grid3 = new dorado.widget.Grid({
+				id: "grid3",
+				showFooter: true,
+				width: 500,
+				height: 200,
+				fixedColumnCount: 2,
+				columns: [{
+					name: "id",
+					property: "prop1"
+				}, {
+					name: "name",
+					property: "prop2"
+				}, {
+					property: "prop3"
+				}, {
+					property: "prop4"
+				}, {
+					property: "prop5"
+				}, {
+					property: "prop6"
+				}, {
+					property: "prop7"
+				}, {
+					property: "prop8"
+				}],
+				items: rows3
+			});
+			view.addChild(grid3);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<hr><p>"
+			}));
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: ["width:<input id='inputWidth' size='6'><button onclick='setWidth();'>setWidth</button>", "&nbsp;", "height:<input id='inputHeight' size='6'><button onclick='setHeight();'>setHeight</button>", "&nbsp;", "fixedCols:<input id='inputFixedCols' size='4'><button onclick='setFixedCols();'>setFixedCols</button>", "&nbsp;", "<button onclick='toggleScrollMode();'>toggleScrollMode</button>"]
+			}));
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "</p>"
+			}));
+			
+			var rows4 = [];
+			for (var i = 0; i < 30; i++) {
+				var row = {};
+				for (var j = 0; j < 11; j++) {
+					row["prop" + j] = [i, j];
+				}
+				rows4.push(row);
+			}
+			
+			var grid4 = new dorado.widget.Grid({
+				showFooter: true,
+				width: "70%",
+				height: 300,
+				fixedColumnCount: 2,
+				readOnly: true,
+				columns: [{
+					name: "id",
+					property: "prop1"
+				}, {
+					property: "prop3"
+				}, {
+					name: "group1",
+					columns: [{
+						name: "group2",
+						columns: [{
+							property: "prop6"
+						}, {
+							property: "prop7"
+						}, {
+							property: "prop8"
+						}]
+					}, {
+						property: "prop9",
+						align: "right"
+					}]
+				}, {
+					name: "name",
+					property: "prop2"
+				}, {
+					name: "group3",
+					columns: [{
+						name: "group4",
+						columns: [{
+							property: "prop6"
+						}, {
+							property: "prop7"
+						}, {
+							property: "prop8",
+							width: 200
+						}]
+					}]
+				}],
+				items: rows4,
+				draggable: true,
+				dragTags: "record",
+				droppable: true,
+				droppableTags: "record"
+			});
+			view.addChild(grid4);
+			
+			$(document).ready(function() {
+				var s = new Date();
+				view.render(document.body);
+				document.title = new Date() - s;
+			});
+			
+			function setWidth() {
+				grid4.set("width", $element("inputWidth").value);
+			}
+			
+			function setHeight() {
+				grid4.set("height", $element("inputHeight").value);
+			}
+			
+			function setFixedCols() {
+				grid4.set("fixedColumnCount", parseInt($element("inputFixedCols").value));
+			}
+			
+			function toggleScrollMode() {
+				grid4.set("scrollMode", (grid4.get("scrollMode") == "view-port") ? "simple" : "view-port");
+			}
+			
+		</script>
+	</head>
+	<body></body>
+</html>

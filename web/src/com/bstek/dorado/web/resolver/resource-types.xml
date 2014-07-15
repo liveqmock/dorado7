@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource-types>
+	<resource-type type=".html" content-type="text/html" compressible="true" />
+	<resource-type type=".htm" content-type="text/html" compressible="true" />
+	<resource-type type=".xml" content-type="text/xml" compressible="true" />
+	<resource-type type=".xsd" content-type="text/html" compressible="true" />
+	<resource-type type=".txt" content-type="application/text" compressible="true" />
+	<resource-type type=".log" content-type="application/text" compressible="true" />
+	<resource-type type=".dtd" content-type="application/text" compressible="true" />
+	<resource-type type=".js" content-type="text/javascript" compressible="true" />
+	<resource-type type=".css" content-type="text/css" compressible="true" />
+	<resource-type type=".less" content-type="text/less" compressible="true" />
+	<resource-type type=".gif" content-type="image/gif" compressible="false" />
+	<resource-type type=".png" content-type="image/png" compressible="false" />
+	<resource-type type=".jpg" content-type="image/jpeg" compressible="false" />
+	<resource-type type=".jpeg" content-type="image/jpeg" compressible="false" />
+	<resource-type type=".tif" content-type="image/tiff" compressible="false" />
+	<resource-type type=".tiff" content-type="image/tiff" compressible="false" />
+	<resource-type type=".swf" content-type="application/x-shockwave-flash" compressible="false" />
+	<resource-type type=".swz" content-type="application/x-shockwave-flash" compressible="false" />
+	<resource-type type=".wav" content-type="audio/x-wav" compressible="false" />
+	<resource-type type=".mp3" content-type="audio/mpeg" compressible="false" />
+	<resource-type type=".xap" content-type="application/x-silverlight-2" compressible="false" />
+	<resource-type type=".svg" content-type="image/svg+xml" compressible="true" />
+	<resource-type type=".ttf" content-type="application/x-font-ttf" compressible="false" />
+	<resource-type type=".eot" content-type="application/vnd.ms-fontobject" compressible="false" />
+	<resource-type type=".otf" content-type="application/x-font-opentype" compressible="false" />
+	<resource-type type=".woff" content-type="application/x-font-woff" compressible="false" />
+</resource-types>

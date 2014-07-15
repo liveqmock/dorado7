@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<style>
+			.d-form-element {
+			    background: #F5F5F5;
+			}
+		</style>
+		<script type="text/javascript">
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			
+			view.addChild(new dorado.widget.ListDropDown({
+				id: "dropdown1",
+				items: ["Key 1", "Key 2 ", "Key 3", "Key 4"]
+			}));
+			
+			var formElement1 = new dorado.widget.FormElement({
+				trigger: view.getComponentReference("dropdown1"),
+				label: "Label1",
+				hint: "H1"
+			});
+			view.addChild(formElement1);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement2 = new dorado.widget.FormElement({
+				type: "password",
+				label: "Label2",
+				labelPosition: "top",
+				hint: "H1",
+				hintPosition: "bottom"
+			});
+			view.addChild(formElement2);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement3 = new dorado.widget.FormElement({
+				label: "Label3",
+				labelAlign: "right",
+				hint: "H1",
+				hintPosition: "bottom",
+				editor: {
+					$type: "TextEditor",
+					required: true
+				}
+			});
+			view.addChild(formElement3);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement4 = new dorado.widget.FormElement({
+				label: "Label4",
+				labelPosition: "top",
+				hint: "H1"
+			});
+			view.addChild(formElement4);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement5 = new dorado.widget.FormElement({
+				label: "Label5",
+				hint: "H1",
+				width: "40%"
+			});
+			view.addChild(formElement5);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement6 = new dorado.widget.FormElement({
+				label: "Label6",
+				labelPosition: "top",
+				hint: "H1",
+				renderHintMessage: true,
+				hintPosition: "bottom",
+				width: "40%",
+				editor: {
+					$type: "TextEditor",
+					dataType: "Date"
+				}
+			});
+			view.addChild(formElement6);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement7 = new dorado.widget.FormElement({
+				label: "Label7",
+				hint: "H1",
+				hintPosition: "bottom",
+				renderHintMessage: true,
+				width: "40%",
+				editor: {
+					$type: "TextEditor",
+					required: true,
+					dataType: "Date"
+				}
+			});
+			view.addChild(formElement7);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement8 = new dorado.widget.FormElement({
+				label: "Label8",
+				labelPosition: "top",
+				hint: "H1",
+				width: "40%",
+				editor: {
+					$type: "TextEditor",
+					required: true,
+					dataType: "Date"
+				}
+			});
+			view.addChild(formElement8);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement9 = new dorado.widget.FormElement({
+				type: "textArea",
+				label: "Label9",
+				hint: "H1",
+				width: "40%",
+				layoutConstraint: {
+					height: "10%"
+				}
+			});
+			view.addChild(formElement9);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement10 = new dorado.widget.FormElement({
+				type: "textArea",
+				label: "Label10",
+				labelPosition: "top",
+				hint: "H1",
+				hintPosition: "bottom",
+				width: "40%",
+				layoutConstraint: {
+					height: "15%"
+				}
+			});
+			view.addChild(formElement10);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement11 = new dorado.widget.FormElement({
+				type: "textArea",
+				label: "Label11",
+				hint: "H1",
+				hintPosition: "bottom",
+				width: "40%",
+				layoutConstraint: {
+					height: "10%"
+				}
+			});
+			view.addChild(formElement11);
+			
+			view.addChild(new dorado.widget.HtmlContainer({
+				content: "<br>"
+			}));
+			
+			var formElement12 = new dorado.widget.FormElement({
+				type: "textArea",
+				label: "Label12",
+				labelPosition: "top",
+				renderHintMessage: true,
+				editorWidth: 200,
+				hint: "H1",
+				width: "40%",
+				editor: {
+					$type: "TextArea",
+					required: true,
+					dataType: "Date"
+				},
+				layoutConstraint: {
+					height: "10%"
+				}
+			});
+			view.addChild(formElement12);
+			
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body style="overflow: visible"></body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtPackage">
+      <Property name="creationType">com.bstek.dorado.console.web.PackageVO</Property>
+      <PropertyDef name="name">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="pattern">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="contentType">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="charset">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="baseUri">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="mergeRequests">
+        <Property name="dataType">boolean</Property>
+      </PropertyDef>
+      <PropertyDef name="dependedBy">
+        <Property name="dataType">Set</Property>
+      </PropertyDef>
+      <PropertyDef name="depends">
+        <Property name="dataType">Set</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsPackage">
+      <Property name="dataType">[dtPackage]</Property>
+      <Property name="dataProvider">dorado.console.packageController#getPackageList</Property>
+      <Property name="readOnly">true</Property>
+    </DataSet>
+    <DataGrid>
+      <Property name="dataSet">dsPackage</Property>
+      <Property name="showFilterBar">true</Property>
+      <RowNumColumn/>
+      <DataColumn name="name">
+        <Property name="property">name</Property>
+      </DataColumn>
+      <DataColumn name="pattern">
+        <Property name="property">pattern</Property>
+      </DataColumn>
+      <DataColumn name="depends">
+        <ClientEvent name="onRenderCell">var text;
+arg.data.get('depends').each(function(depend){
+    if (text) {
+        text = text + &quot;,&quot; + depend._data;
+    }    else {
+        text = depend._data;
+    }});
+jQuery(arg.dom).xCreate({
+    tagName: &quot;span&quot;,
+    content: text
+});
+</ClientEvent>
+        <Property name="property">depends</Property>
+        <Property name="width">200</Property>
+      </DataColumn>
+      <DataColumn name="contentType">
+        <Property name="property">contentType</Property>
+      </DataColumn>
+      <DataColumn name="charset">
+        <Property name="property">charset</Property>
+      </DataColumn>
+      <DataColumn name="baseUri">
+        <Property name="property">baseUri</Property>
+      </DataColumn>
+      <DataColumn name="mergeRequests">
+        <Property name="property">mergeRequests</Property>
+      </DataColumn>
+      <DataColumn name="dependedBy">
+        <ClientEvent name="onRenderCell">var text;
+arg.data.get('dependedBy').each(function(depend){
+    if (text) {
+        text = text + &quot;,&quot; + depend._data;
+    }    else {
+        text = depend._data;
+    }});
+jQuery(arg.dom).xCreate({
+    tagName: &quot;span&quot;,
+    content: text
+});
+</ClientEvent>
+        <Property name="property">dependedBy</Property>
+      </DataColumn>
+    </DataGrid>
+  </View>
+</ViewConfig>

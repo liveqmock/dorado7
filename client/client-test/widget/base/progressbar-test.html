@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <title>ProgressBar Test Page</title>
+		<script type="text/javascript" src="../../include-all.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Anchor" });
+
+        view.addChild(new dorado.widget.Button({
+            caption: "increase",
+            listener: {
+                onClick: function(){
+                    var bar = view.id("pbar");
+                    if(bar){
+                        var value = bar._value || 0;
+                        bar.set("value", value + 10 > 100 ? 100 : value + 10);
+                    }
+                }
+            }
+        }));
+
+        view.addChild(new dorado.widget.Button({
+            caption: "decrease",
+            listener: {
+                onClick: function(){
+                    var bar = view.id("pbar");
+                    if(bar){
+                        var value = bar._value || 0;
+                        bar.set("value", value - 10 > 0 ? value - 10 : 0);
+                    }
+                }
+            }
+        }));
+
+        var pb = new dorado.widget.ProgressBar({
+            id: "pbar",
+            width: 300,
+            onReady: function(self) {
+                self.set("value", 30);
+            }
+        });
+
+        view.addChild(pb);
+
+		$(document).ready(function(){
+			view.render(document.body);
+		});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

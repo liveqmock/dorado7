@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Menu Test</title>
+        <script type="text/javascript" src="../../include-all.js">
+        </script>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <script type="text/javascript">
+            var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+            
+            var action = new dorado.widget.Action({
+            	caption: "菜单项(Action)",
+            	icon: "del.gif",
+                listener: {
+                    onExecute: function() {
+                        alert("action onExecute fired.");
+                    }
+                }
+            });
+            
+            var panel = new dorado.widget.FloatPanel({
+            	id: "floatpanel",
+            	width: 300,
+            	height: 150,
+                animateType: "slide",
+            	buttons: [new dorado.widget.Button({
+            		caption: "确定",
+            		width: 80,
+            		listener: {
+            			onClick: function(self) {
+            				var opener = panel.opener;
+            				if (opener) {
+            					opener.onSelect();
+            				}
+                            panel.hide();
+            			}
+            		}
+            	})]
+            });
+
+            var menu  = new dorado.widget.Menu({
+                items: [{
+                    caption: "1",
+                    listener: {
+                        onClick: function(self, arg) {
+                            var menu = self._parent._focusParent;
+                            var focusItem = menu._focusItem;
+                            //console.log(focusItem._caption);
+                        }
+                    }
+                }, {
+                    caption: "2"
+                }, {
+                    caption: "3"
+                }],
+                width: 300
+            });
+
+            var listener = {
+                onContextMenu: function(self, arg) {
+                    console.log(this);
+                    if (!self.get("focusItem") || (self.get("focusItem") && self.get("focusItem").hasSubmenu())) {
+                        return;
+                    }
+                    self.freeze();
+                    menu._focusParent = self;
+                    menu.show({
+                        event: arg.event
+                    });
+                    menu.addListener("onHide", function() {
+                        self.unfreeze();
+                    }, { once: true });
+                }
+            };
+
+            var rows1 = [];
+            for (var i = 0; i < 5; i++) {
+                var row = {};
+                for (var j = 0; j < 10; j++) {
+                    row["prop" + j] = [i, j];
+                }
+                rows1.push(row);
+            }
+
+            var grid1 = new dorado.widget.Grid({
+                width: 300,
+                columns: [{
+                    name: "id",
+                    property: "prop1"
+                }, {
+                    name: "name",
+                    property: "prop2"
+                }, {
+                    property: "prop3"
+                }, {
+                    property: "prop4"
+                }],
+                items: rows1,
+                onGetCellEditor: function(self, arg) {
+                    return false;
+                },
+                draggable: true,
+                dragTags: "record",
+                droppable: true,
+                droppableTags: "record"
+            });
+
+            var testMenu = new dorado.widget.Menu({
+                onClick: function(self, arg) {
+                    if (arg.item)
+                        console.log("Menu Click:" + arg.item.get("caption"));
+                },
+                floating: false,
+                width: 200,
+                height: 200,
+				layoutConstraint: {
+					width: 200,
+					height: 200
+				},
+                listener: listener,
+                visible: true,
+            	items: [{
+            		action: action
+            	}, {
+            		caption: "菜单项2菜单项2",
+                    submenu: {
+                        items: [{
+                            submenu: {
+                                items: [{
+                                    caption: "菜单项121",
+                                    onClick: function() {
+                                        console.log(this);
+                                    }
+                                }, {
+                                    caption: "菜单项122"
+                                }, {
+                                    caption: "菜单项123"
+                                }]
+                            },
+                            caption: "菜单项12"
+                        }, {
+                            caption: "菜单项11"
+                        }, {
+                            caption: "菜单项13"
+                        }]
+                    }
+            	}, "-", {
+            		$type: "Control",
+            		caption: "Control Menu Item",
+                    onClick: function() {
+                        alert(123);
+                    },
+            		control: new dorado.widget.FloatContainer({ children: [grid1], height: 500 })
+            	}, {
+            		items: [{
+            			caption: "菜单项31",
+            			hideOnClick: false,
+            			checked: true,
+            			$type: "Checkable",
+            			group: "test"
+            		}, {
+            			caption: "菜单项32",
+            			hideOnClick: false,
+            			checked: true,
+            			$type: "Checkable",
+            			group: "test"
+            		}, {
+            			caption: "菜单项33",
+            			hideOnClick: false,
+            			checked: false,
+            			$type: "Checkable",
+            			group: "test"
+            		}],
+            		caption: "菜单项3"
+            	}, {
+            		caption: "菜单项4",
+                    onClick: function() {
+                        console.log(this);
+                    }
+            	}, {
+            		caption: "菜单项5"
+            	}]
+            });
+ 
+            var count = 1;
+            
+            var toolbar = new dorado.widget.ToolBar({
+            	items: [{
+            		id: "buttonAddItem",
+            		caption: "add Item at last",
+            		listener: {
+            			onClick: function() {
+            				testMenu.addItem(new dorado.widget.menu.MenuItem({
+            					caption: "新添加的MenuItem...."
+            				}));
+            			}
+            		}
+            	}, {
+            		id: "buttonAddItemAt",
+            		caption: "add Item at second",
+            		listener: {
+            			onClick: function() {
+            				testMenu.addItem(new dorado.widget.menu.MenuItem({
+            					caption: "新添加的MenuItem" + count++
+            				}), 1);
+            			}
+            		}
+            	}, {
+            		id: "buttonRemoveItemAt",
+            		caption: "remove Item at second",
+            		listener: {
+            			onClick: function() {
+            				testMenu.removeItem(1);
+            			}
+            		}
+            	}, {
+            		id: "buttonSetVisible",
+            		caption: "Set Disabled",
+            		listener: {
+            			onClick: function() {
+            				var item = testMenu.getItem(0);
+            				if (item) {
+            					item.set("disabled", !item._disabled);
+            				}
+            			}
+            		}
+            	}, {
+            		id: "buttonAction",
+            		caption: "Set Icon",
+            		listener: {
+            			onClick: function() {
+            				action.set("icon", action._icon ? null : "del.gif");
+            			}
+            		}
+            	}, {
+            		id: "setSubmenu",
+            		caption: "Set Submenu",
+            		listener: {
+            			onClick: function() {
+                            testMenu.getItem(0).set("submenu", {
+                                items: [{
+                                    caption: "菜单项4"
+                                }, {
+                                    caption: "菜单项5"
+                                }]
+                            });
+            			}
+            		}
+            	}]
+            });
+            
+            view.addChild(toolbar);
+            
+            view.addChild(testMenu);
+            
+            $(document).ready(function() {
+            	view.render(document.body);
+            });
+        </script>
+    </head>
+    <body style="margin: 0;padding: 0;">
+    </body>
+</html>
+

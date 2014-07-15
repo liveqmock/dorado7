@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			
+			var view = new dorado.widget.View({
+				layout: new dorado.widget.layout.FormLayout({
+					cols: "*",
+					stretchWidth: true
+				})
+			});
+			
+			var departmentsDataType = getDepartmentsDataType();
+			var departmentDataType = departmentsDataType.get("elementDataType");
+			
+			departmentDataType.getPropertyDef("name").set({
+				required: true
+			});
+			
+			var ds1 = new dorado.widget.DataSet("ds1");
+			var json = Test.getJSON(Test.ROOT + "resource/hr-data.js");
+			var departments = new dorado.EntityList(json, view.dataTypeRepository, departmentsDataType);
+			ds1.setData(departments);
+			view.addChild(ds1);
+			
+			var panel = new dorado.widget.Panel({
+				height: 30,
+				layout: new dorado.widget.layout.DockLayout()
+			});
+			view.addChild(panel);
+			
+			panel.addChild(new dorado.widget.Button({
+				caption: "Validate",
+				onClick: function() {
+					var e = ds1.getData("#");
+					alert(e.validate());
+				},
+				layoutConstraint: "left"
+			}));
+			panel.addChild(new dorado.widget.Button({
+				caption: "Reset",
+				onClick: function() {
+					ds1.getData("#").reset();
+				},
+				layoutConstraint: "left"
+			}));
+			panel.addChild(new dorado.widget.Button({
+				caption: "Cancel",
+				onClick: function() {
+					ds1.getData("#").cancel();
+				},
+				layoutConstraint: "left"
+			}));
+			
+			var editor1 = new dorado.widget.TextEditor({
+				dataSet: ds1,
+				property: "name"
+			});
+			view.addChild(editor1);
+			
+			var msg1 = new dorado.widget.DataMessage({
+				dataSet: ds1,
+				property: "name"
+			});
+			view.addChild(msg1);
+			
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body></body>
+</html>

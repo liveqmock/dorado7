@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <script type="text/javascript" src="../../include-all.js"></script>
+    <script language="javascript" type="text/javascript">
+        dorado.onInit(function () {
+            AUTO_APPEND_TO_TOPVIEW = false;
+            var view = new dorado.widget.View({"id":"viewMain", "layout":{"$type":"VBox", "padding":20}, "name":"com.bstek.dorado.sample.widget.base.Accordion"});
+
+            function f(view) {
+                view.set("children", [
+                    {"$type":"Accordion", "sections":[
+                        {"$type":"Section", "control":{"$type":"Container", "children":[
+                            {"$type":"Label", "height":"50", "text":"Accordion\u4E2D\u65E2\u53EF\u4EE5\u6DFB\u52A0\u5404\u79CD\u63A7\u4EF6\uFF0C\u4E5F\u53EF\u4EE5\u65B9\u4FBF\u7684\u6DFB\u52A0\u83DC\u5355\u3002", "width":"200", "layoutConstraint":{"left":"50%", "top":"50%"}}
+                        ], "style":"background:white", "layout":{"$type":"Anchor"}}, "icon":"url(skin>common\/icons.gif) -220px -60px", "caption":"\u8BF4\u660E"},
+                        {"$type":"Section", "control":{"$type":"Menu", "items":[
+                            {"icon":"url(skin>common\/icons.gif) -200px -60px", "caption":"\u6587\u4EF6", "items":[
+                                {"caption":"\u65B0\u5EFA"},
+                                {"caption":"\u6253\u5F00"},
+                                {"$type":"Separator"},
+                                {"caption":"\u4FDD\u5B58"},
+                                {"caption":"\u53E6\u5B58\u4E3A"},
+                                {"caption":"\u91CD\u547D\u540D"},
+                                {"$type":"Separator"},
+                                {"caption":"\u5173\u95ED"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -200px 0", "caption":"\u7F16\u8F91", "items":[
+                                {"caption":"\u590D\u5236"},
+                                {"caption":"\u526A\u5207"},
+                                {"caption":"\u7C98\u8D34"},
+                                {"$type":"Separator"},
+                                {"caption":"\u5220\u9664"},
+                                {"$type":"Separator"},
+                                {"caption":"\u5168\u9009"},
+                                {"caption":"\u53CD\u9009"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -40px -100px", "caption":"\u641C\u7D22", "items":[
+                                {"caption":"\u67E5\u627E"},
+                                {"caption":"\u5728\u6587\u4EF6\u4E2D\u67E5\u627E"},
+                                {"caption":"\u67E5\u627E\u4E0B\u4E00\u4E2A"},
+                                {"caption":"\u67E5\u627E\u4E0A\u4E00\u4E2A"},
+                                {"$type":"Separator"},
+                                {"caption":"\u66FF\u6362"},
+                                {"caption":"\u5728\u6587\u4EF6\u4E2D\u66FF\u6362"},
+                                {"caption":"\u66FF\u6362\u5E76\u67E5\u627E\u4E0B\u4E00\u4E2A"},
+                                {"caption":"\u66FF\u6362\u5E76\u67E5\u627E\u4E0A\u4E00\u4E2A"},
+                                {"$type":"Separator"},
+                                {"caption":"\u884C\u5B9A\u4F4D"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -260px -20px", "caption":"\u683C\u5F0F", "items":[
+                                {"caption":"\u4EE5ANSI\u683C\u5F0F\u7F16\u7801"},
+                                {"caption":"\u4EE5UTF-8\u683C\u5F0F\u7F16\u7801"},
+                                {"caption":"\u4EE5UTF-8\u65E0BOM\u683C\u5F0F\u7F16\u7801"},
+                                {"caption":"\u4EE5\u5176\u5B83\u683C\u5F0F\u7F16\u7801"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -100px -100px", "caption":"\u8BED\u8A00", "items":[
+                                {"caption":"Java"},
+                                {"caption":"JavaScript"},
+                                {"caption":"C"},
+                                {"caption":"C++"},
+                                {"caption":"C#"},
+                                {"caption":"XML"},
+                                {"caption":"HTML"},
+                                {"caption":"CSS"},
+                                {"caption":"SQL"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -60px -20px", "caption":"\u8BBE\u7F6E", "items":[
+                                {"caption":"\u9996\u9009\u9879"},
+                                {"caption":"\u8BED\u8A00\u683C\u5F0F\u8BBE\u7F6E"},
+                                {"caption":"\u7BA1\u7406\u5FEB\u6377\u952E"},
+                                {"caption":"\u7F16\u8F91\u5DE5\u5177\u680F"},
+                                {"caption":"\u7F16\u8F91\u5F39\u51FA\u83DC\u5355"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -20px -100px", "caption":"\u5B8F", "items":[
+                                {"caption":"\u5F00\u59CB\u5F55\u5236\u5B8F"},
+                                {"caption":"\u505C\u6B62\u5F55\u5236\u5B8F"},
+                                {"$type":"Separator"},
+                                {"caption":"\u56DE\u653E"},
+                                {"caption":"\u4FDD\u5B58\u5F55\u5236\u7684\u5B8F"},
+                                {"caption":"\u91CD\u590D\u8FD0\u884C\u5B8F"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -60px -220px", "caption":"\u8FD0\u884C", "items":[
+                                {"icon":"url(skin>common\/icons.gif) -60px -220px", "caption":"\u8FD0\u884C"},
+                                {"$type":"Separator"},
+                                {"icon":"url(skin>common\/icons.gif) -60px -220px", "caption":"Launch in IE"},
+                                {"icon":"url(skin>common\/icons.gif) -60px -220px", "caption":"Launch in Firefox"},
+                                {"icon":"url(skin>common\/icons.gif) -60px -220px", "caption":"Launch in Chrome"},
+                                {"icon":"url(skin>common\/icons.gif) -60px -220px", "caption":"Launch in Safari"},
+                                {"icon":"url(skin>common\/icons.gif) -60px -220px", "caption":"Launch in Opera"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -60px -40px", "caption":"\u63D2\u4EF6", "items":[
+                                {"icon":"url(skin>common\/icons.gif) -60px -40px", "caption":"Converter"},
+                                {"icon":"url(skin>common\/icons.gif) -60px -40px", "caption":"Spell Checker"},
+                                {"$type":"Separator"},
+                                {"icon":"url(skin>common\/icons.gif) -60px -40px", "caption":"\u7BA1\u7406\u63D2\u4EF6"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -260px -100px", "caption":"\u7A97\u53E3", "items":[
+                                {"icon":"url(skin>common\/icons.gif) -260px -100px", "caption":"\u5168\u90E8\u6700\u5927\u5316"},
+                                {"icon":"url(skin>common\/icons.gif) -260px -100px", "caption":"\u5168\u90E8\u6700\u5C0F\u5316"},
+                                {"icon":"url(skin>common\/icons.gif) -260px -100px", "caption":"\u5E73\u94FA\u6240\u6709\u7A97\u53E3"},
+                                {"icon":"url(skin>common\/icons.gif) -260px -100px", "caption":"\u5168\u90E8\u8FD8\u539F"}
+                            ]},
+                            {"icon":"url(skin>common\/icons.gif) -180px 0", "caption":"\u5E2E\u52A9", "items":[
+                                {"icon":"url(skin>common\/icons.gif) -180px 0", "caption":"\u8054\u673A\u5E2E\u52A9"},
+                                {"icon":"url(skin>common\/icons.gif) -180px 0", "caption":"\u5173\u4E8E"}
+                            ]}
+                        ], "modalType":"dark"}, "icon":"url(skin>common\/icons.gif) 0 -180px", "caption":"\u83DC\u5355"},
+                        {"$type":"Section", "control":{"$type":"BlockView", "droppable":true, "lineSize":4, "height":"430", "dragTags":"block", "blockHeight":100, "width":"400", "droppableTags":"block", "items":[
+                            {"name":"CYCLINER", "image":"images\/blocks\/1.gif"},
+                            {"name":"banana moon", "image":"images\/blocks\/2.gif"},
+                            {"name":"BlueBuck", "image":"images\/blocks\/3.gif"},
+                            {"name":"SOSO", "image":"images\/blocks\/4.gif"},
+                            {"name":"buzzsprout", "image":"images\/blocks\/5.gif"},
+                            {"name":"Sweetcakes", "image":"images\/blocks\/6.gif"},
+                            {"name":"paperbox", "image":"images\/blocks\/7.gif"},
+                            {"name":"ALESSANDRO", "image":"images\/blocks\/8.gif"},
+                            {"name":"TRENTO MEDIA", "image":"images\/blocks\/9.gif"},
+                            {"name":"Global Templates", "image":"images\/blocks\/10.gif"},
+                            {"name":"DreamTemplate", "image":"images\/blocks\/11.gif"},
+                            {"name":"DESIGN to XHTML", "image":"images\/blocks\/12.gif"},
+                            {"name":"Custom Banners", "image":"images\/blocks\/13.gif"},
+                            {"name":"HTML EMail", "image":"images\/blocks\/14.gif"},
+                            {"name":"deposit photos", "image":"images\/blocks\/15.gif"},
+                            {"name":"MONEY MODLER", "image":"images\/blocks\/16.gif"},
+                            {"name":"elegant", "image":"images\/blocks\/17.gif"}
+                        ], "layoutConstraint":{"left":"10", "top":"10"}, "fillLine":true, "draggable":true, "listener":{"onCreate":function (self, arg) {
+                            self.set("renderer", new dorado.widget.blockview.ImageBlockRenderer({ captionProperty:"name" }));
+
+                        }}}, "icon":"url(skin>common\/icons.gif) -40px -40px", "caption":"\u63A7\u4EF6"},
+                        {"$type":"Section", "control":{"$type":"SubViewHolder", "subView":(function () {
+                            var view = new dorado.widget.View({"name":"com.bstek.dorado.sample.data.SimpleCRUD"});
+
+                            function f(view) {
+                                view.set("children", [
+                                    {"$type":"DataSet", "pageSize":10, "id":"dsProducts", "listener":{"onLoadData":function (self, arg) {
+
+
+                                    }}},
+                                    {"$type":"UpdateAction", "id":"actionSave", "icon":"url(skin>common\/icons.gif) -140px -20px", "updateItems":[
+                                        {"$type":"UpdateItem", "dataSet":view.getComponentReference("dsProducts")}
+                                    ], "executingMessage":null, "caption":"Save", "dataResolver":dorado.DataResolver.create("simpleCRUD#saveAll"), "successMessage":"\u4FDD\u5B58\u6210\u529F\uFF01"},
+                                    {"$type":"ToolBar", "items":[
+                                        {"$type":"DataPilot", "itemCodes":"pages,|,pageSize,|,+,-,x", "dataSet":view.getComponentReference("dsProducts")},
+                                        {"$type":"Separator"},
+                                        {"$type":"ToolBarButton", "action":view.getComponentReference("actionSave")}
+                                    ], "layoutConstraint":{"type":"top"}},
+                                    {"$type":"DataGrid", "columns":[
+                                        {"$type":"*"}
+                                    ], "dataSet":view.getComponentReference("dsProducts")}
+                                ]);
+                            }
+
+                            view.get("dataTypeRepository").parseJsonData([
+                                {"propertyDefs":[
+                                    {"dataType":"long", "readOnly":true, "name":"id"},
+                                    {"dataType":"String", "name":"productName", "required":true},
+                                    {"dataType":"Long", "name":"categoryId"},
+                                    {"dataType":"boolean", "name":"discontinued"},
+                                    {"dataType":"String", "name":"quantityPerUnit"},
+                                    {"dataType":"int", "name":"reorderLevel"},
+                                    {"dataType":"float", "name":"unitPrice"},
+                                    {"dataType":"int", "name":"unitsInStock"},
+                                    {"dataType":"int", "name":"unitsOnOrder"}
+                                ], "id":"v:com.bstek.dorado.sample.data.SimpleCRUD$ProductType", "name":"ProductType"}
+                            ]);
+                            f(view);
+                            return view;
+                        })()}, "icon":"url(skin>common\/icons.gif) -200px -120px", "caption":"\u5B50\u89C6\u56FE"}
+                    ], "height":"400", "width1":"600"}
+                ]);
+            }
+
+            view.get("dataTypeRepository").parseJsonData([
+                {"propertyDefs":[
+                    {"dataType":"long", "readOnly":true, "name":"id"},
+                    {"dataType":"String", "name":"productName", "required":true},
+                    {"dataType":"Long", "name":"categoryId"},
+                    {"dataType":"boolean", "name":"discontinued"},
+                    {"dataType":"String", "name":"quantityPerUnit"},
+                    {"dataType":"int", "name":"reorderLevel"},
+                    {"dataType":"float", "name":"unitPrice"},
+                    {"dataType":"int", "name":"unitsInStock"},
+                    {"dataType":"int", "name":"unitsOnOrder"}
+                ], "id":"v:com.bstek.dorado.sample.data.SimpleCRUD$ProductType", "name":"ProductType"}
+            ]);
+            f(view);
+            view.addChild(new dorado.widget.Button({
+                caption: "change width",
+                onClick: function(self, arg) {
+                }
+            }));
+            AUTO_APPEND_TO_TOPVIEW = true;
+            var doradoView = document.getElementById("doradoView");
+            if (doradoView) view.replace(doradoView);
+        });
+    </script>
+</head>
+<body scroll="no" style="margin:0px; overflow:hidden">
+<label id="doradoView" style="display:none"/>
+</body>
+</html>

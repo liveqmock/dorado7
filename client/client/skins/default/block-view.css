@@ -1,0 +1,69 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-block-view .block {
+  z-index: 100;
+}
+.d-block-view .block-decorator {
+  position: absolute;
+}
+.d-block-view .block-decorator-hover {
+  z-index: 0;
+}
+.d-block-view .block-decorator-current {
+  z-index: 1;
+}
+.d-block-view-dragging-insert-indicator-v {
+  position: absolute;
+  width: 2px;
+  background: #ff8040;
+}
+.d-block-view-dragging-insert-indicator-h {
+  position: absolute;
+  height: 2px;
+  background: #ff8040;
+}
+.d-block-view {
+  border: 1px #a1a1a1 solid;
+  background-color: #ffffff;
+}
+.d-block-view .block {
+  border: 1px #e8e8e8 solid;
+}
+.d-block-view .block-hover {
+  border: 0;
+  margin: 1px;
+}
+.d-block-view .block-current {
+  border: 0;
+  margin: 1px;
+  color: #000000;
+}
+.d-block-view .block-drag-over {
+  background-color: #ededed;
+}
+.d-block-view .block-decorator-hover {
+  border: 1px #b5b5b5 solid;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  background: #e8e8e8 url(block-view/decorator-bg.png) repeat-x;
+}
+.d-block-view .block-decorator-current {
+  border: 1px #52cb6a solid;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  background: #94efa6 url(block-view/decorator-current-bg.png) repeat-x;
+}
+.d-block-view.d-block-view-focused {
+  border: 1px #7b7b7b solid;
+}

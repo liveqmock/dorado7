@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Rich Editor Page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="../../include-all.js"></script>
+	<script type="text/javascript" src="common-types.js"></script>
+	<script type="text/javascript">
+		var view = new dorado.widget.View({ layout: "Dock" });
+
+		var dataSet = new dorado.widget.DataSet({
+			dataProvider: new dorado.AjaxDataProvider("phones.js"),
+			dataType: "Phone"	// Phone的声明实际位于data/common-types.js中，通过上面的$import("grid,common-types")引入。
+		});
+
+		var updateAction = new dorado.widget.UpdateAction({
+			caption: "保存", icon: "url(>skin>common/icons.gif) -141px -20px",
+			updateItems: [{ alias: "phones", dataSet: dataSet }],
+			beforeUpdate: function(self, arg) {
+				dorado.MessageBox.alert("以下数据将被提交至服务端:\n" + dorado.JSON.stringify(arg.dataItems));
+			}
+		});
+
+		var toolbar = new dorado.widget.ToolBar({
+			style: "margin-bottom:12px",
+			items: [
+				{
+					caption: "添加", icon: "url(>skin>common/icons.gif) -121px 0",
+					onClick: function() {
+						var newEntity = dataSet.getData().createChild();
+						dataGrid.highlightRow(newEntity);
+					}
+				},
+				{
+					caption: "删除", icon: "url(>skin>common/icons.gif) -141px 0",
+					onClick: function() {
+						dorado.MessageBox.confirm("确定要删除当前记录吗?", function(){
+							dataSet.getData().remove();
+						});
+					}
+				},
+				"|",
+				{ action: updateAction }
+			]
+		});
+
+		var autoForm = new dorado.widget.AutoForm({
+			dataSet: dataSet,
+			layoutConstraint: {
+				width: "100%"
+			},
+			autoCreateElements: true, style: "margin-bottom:12px",
+			elements: [
+				{ property: "type", type: "radioGroup", colSpan: 2 },
+				{ property: "comment", type: "textArea", colSpan: 2 }
+			]
+		});
+
+		var dataGrid = new dorado.widget.DataGrid({
+			dataSet: dataSet,
+			layoutConstraint: {
+				width: "100%",
+				height: 280
+			},
+			fixedColumnCount: 3, autoCreateColumns: true, showFooter: true,
+			columns: [
+				"*",
+				"#",
+				{ property: "product", summaryType: "count" },
+				{ property: "type", width: 50, trigger: "autoMapValuesDropDown1" },
+				{ property: "price", summaryType: "average" },
+				{ property: "screen", width: 50 },
+				{ property: "comment", width: 300 }
+			]
+		});
+
+
+		view.addChild(toolbar);
+		view.addChild(autoForm);
+		view.addChild(dataGrid);
+
+		$(document).ready(function() {
+			view.render(document.body);
+		});
+	</script>
+</head>
+<body style="margin: 0;padding: 0;">
+</body>
+</html>

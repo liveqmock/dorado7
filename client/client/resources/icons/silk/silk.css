@@ -1,0 +1,881 @@
+.silk {}
+
+.silk-big-exclamation {
+	background-image: url(big-exclamation.png)
+}
+
+.silk-big-error {
+	background-image: url(big-error.png)
+}
+
+.silk-big-information {
+	background-image: url(big-information.png)
+}
+
+.silk-big-help {
+	background-image: url(big-help.png)
+}
+
+.silk-tick {
+	background-image: url(tick.png)
+}
+
+.silk-cancel {
+	background-image: url(cancel.png)
+}
+
+.silk-accept {
+	background-image: url(accept.png)
+}
+
+.silk-denied {
+	background-image: url(denied.png)
+}
+
+.silk-exclamation {
+	background-image: url(exclamation.png)
+}
+
+.silk-error {
+	background-image: url(error.png)
+}
+
+.silk-add {
+	background-image: url(add.png)
+}
+
+.silk-delete {
+	background-image: url(delete.png)
+}
+
+.silk-information {
+	background-image: url(information.png)
+}
+
+.silk-help {
+	background-image: url(help.png)
+}
+
+.silk-pencil {
+	background-image: url(pencil.png)
+}
+
+.silk-comment {
+	background-image: url(comment.png)
+}
+
+.silk-comments {
+	background-image: url(comments.png)
+}
+
+.silk-compress {
+	background-image: url(compress.png)
+}
+
+.silk-cursor {
+	background-image: url(cursor.png)
+}
+
+.silk-database {
+	background-image: url(database.png)
+}
+
+.silk-house {
+	background-image: url(house.png)
+}
+
+.silk-anchor {
+	background-image: url(anchor.png)
+}
+
+.silk-star {
+	background-image: url(star.png)
+}
+
+.silk-wrench {
+	background-image: url(wrench.png)
+}
+
+.silk-attach {
+	background-image: url(attach.png)
+}
+
+.silk-cog {
+	background-image: url(cog.png)
+}
+
+.silk-printer {
+	background-image: url(printer.png)
+}
+
+.silk-disk {
+	background-image: url(disk.png)
+}
+
+.silk-disk-multiple {
+	background-image: url(disk-multiple.png)
+}
+
+.silk-lock {
+	background-image: url(lock.png)
+}
+
+.silk-lock-delete {
+	background-image: url(lock-delete.png)
+}
+
+.silk-lock-open {
+	background-image: url(lock-open.png)
+}
+
+.silk-stop {
+	background-image: url(stop.png)
+}
+
+.silk-color-swatch {
+	background-image: url(color-swatch.png)
+}
+
+.silk-color-wheel {
+	background-image: url(color-wheel.png)
+}
+
+.silk-map {
+	background-image: url(map.png)
+}
+
+.silk-filter {
+	background-image: url(filter.png)
+}
+
+.silk-search {
+	background-image: url(search.png)
+}
+
+.silk-brick {
+	background-image: url(brick.png)
+}
+
+.silk-bricks {
+	background-image: url(bricks.png)
+}
+
+.silk-calendar {
+	background-image: url(calendar.png)
+}
+
+.silk-date {
+	background-image: url(date.png)
+}
+
+.silk-clock {
+	background-image: url(clock.png)
+}
+
+.silk-time {
+	background-image: url(time.png)
+}
+
+.silk-report {
+	background-image: url(report.png)
+}
+
+.silk-plugin {
+	background-image: url(plugin.png)
+}
+
+.silk-camera {
+	background-image: url(camera.png)
+}
+
+.silk-cart {
+	background-image: url(cart.png)
+}
+
+.silk-chart-bar {
+	background-image: url(chart-bar.png)
+}
+
+.silk-chart-organisation {
+	background-image: url(chart-organisation.png)
+}
+
+.silk-chart-curve {
+	background-image: url(chart-curve.png)
+}
+
+.silk-chart-pie {
+	background-image: url(chart-pie.png)
+}
+
+.silk-pilcrow {
+	background-image: url(pilcrow.png)
+}
+
+.silk-pictures {
+	background-image: url(pictures.png)
+}
+
+.silk-picture {
+	background-image: url(picture.png)
+}
+
+.silk-cut {
+	background-image: url(cut.png)
+}
+
+.silk-paste {
+	background-image: url(paste.png)
+}
+
+.silk-copy {
+	background-image: url(copy.png)
+}
+
+.silk-palette {
+	background-image: url(palette.png)
+}
+
+.silk-paintcan {
+	background-image: url(paintcan.png)
+}
+
+.silk-paintbrush {
+	background-image: url(paintbrush.png)
+}
+
+.silk-page-white {
+	background-image: url(page-white.png)
+}
+
+.silk-page {
+	background-image: url(page.png)
+}
+
+.silk-note {
+	background-image: url(note.png)
+}
+
+.silk-monitor {
+	background-image: url(monitor.png)
+}
+
+.silk-table {
+	background-image: url(table.png)
+}
+
+.silk-table-edit {
+	background-image: url(table-edit.png)
+}
+
+.silk-money-dollar {
+	background-image: url(money-dollar.png)
+}
+
+.silk-money-yen {
+	background-image: url(money-yen.png)
+}
+
+.silk-money-pound {
+	background-image: url(money-pound.png)
+}
+
+.silk-money-euro {
+	background-image: url(money-euro.png)
+}
+
+.silk-sheild {
+	background-image: url(shield.png)
+}
+
+.silk-ruby {
+	background-image: url(ruby.png)
+}
+
+.silk-package {
+	background-image: url(package.png)
+}
+
+.silk-email {
+	background-image: url(email.png)
+}
+
+.silk-folder {
+	background-image: url(folder.png)
+}
+
+.silk-folder-explore {
+	background-image: url(folder-explore.png)
+}
+
+.silk-layers {
+	background-image: url(layers.png)
+}
+
+.silk-eye {
+	background-image: url(eye.png)
+}
+
+.silk-connect {
+	background-image: url(connect.png)
+}
+
+.silk-disconnect {
+	background-image: url(disconnect.png)
+}
+
+.silk-male {
+	background-image: url(male.png)
+}
+
+.silk-female {
+	background-image: url(female.png)
+}
+
+.silk-award-star {
+	background-image: url(award-star.png)
+}
+
+.silk-asterisk {
+	background-image: url(asterisk.png)
+}
+
+.silk-zoom {
+	background-image: url(zoom.png)
+}
+
+.silk-zoom-in {
+	background-image: url(zoom-in.png)
+}
+
+.silk-zoom-out {
+	background-image: url(zoom-out.png)
+}
+
+.silk-world {
+	background-image: url(world.png)
+}
+
+.silk-wand {
+	background-image: url(wand.png)
+}
+
+.silk-user {
+	background-image: url(user.png)
+}
+
+.silk-user-comment {
+	background-image: url(user-comment.png)
+}
+
+.silk-tag {
+	background-image: url(tag.png)
+}
+
+.silk-tag-add {
+	background-image: url(tag-add.png)
+}
+
+.silk-tag-delete {
+	background-image: url(tag-delete.png)
+}
+
+.silk-flag {
+	background-image: url(flag.png)
+}
+
+.silk-application {
+	background-image: url(application.png)
+}
+
+.silk-application-add {
+	background-image: url(application-add.png)
+}
+
+.silk-application-delete {
+	background-image: url(application-delete.png)
+}
+
+.silk-application-edit {
+	background-image: url(application-edit.png)
+}
+
+.silk-application-error {
+	background-image: url(application-error.png)
+}
+
+.silk-application-form {
+	background-image: url(application-form.png)
+}
+
+.silk-application-form-add {
+	background-image: url(application-form-add.png)
+}
+
+.silk-application-form-delete {
+	background-image: url(application-form-delete.png)
+}
+
+.silk-application-form-edit {
+	background-image: url(application-form-edit.png)
+}
+
+.silk-application-form-magnify {
+	background-image: url(application-form-magnify.png)
+}
+
+.silk-application-get {
+	background-image: url(application-get.png)
+}
+
+.silk-application-put {
+	background-image: url(application-put.png)
+}
+
+.silk-application-go {
+	background-image: url(application-go.png)
+}
+
+.silk-application-home {
+	background-image: url(application-home.png)
+}
+
+.silk-application-key {
+	background-image: url(application-key.png)
+}
+
+.silk-application-lightning {
+	background-image: url(application-lightning.png)
+}
+
+.silk-application-link {
+	background-image: url(application-link.png)
+}
+
+.silk-application-double {
+	background-image: url(application-double.png)
+}
+
+.silk-application-cascade {
+	background-image: url(application-cascade.png)
+}
+
+.silk-application-side-boxes {
+	background-image: url(application-side-boxes.png)
+}
+
+.silk-application-side-contract {
+	background-image: url(application-side-contract.png)
+}
+
+.silk-application-side-expand {
+	background-image: url(application-side-expand.png)
+}
+
+.silk-application-side-list {
+	background-image: url(application-side-list.png)
+}
+
+.silk-application-side-tree {
+	background-image: url(application-side-tree.png)
+}
+
+.silk-application-split {
+	background-image: url(application-split.png)
+}
+
+.silk-application-tile-horizontal {
+	background-image: url(application-tile-horizontal.png)
+}
+
+.silk-application-tile-vertical {
+	background-image: url(application-tile-vertical.png)
+}
+
+.silk-application-view-columns {
+	background-image: url(application-view-columns.png)
+}
+
+.silk-application-view-detail {
+	background-image: url(application-view-detail.png)
+}
+
+.silk-application-view-gallery {
+	background-image: url(application-view-gallery.png)
+}
+
+.silk-application-view-icons {
+	background-image: url(application-view-icons.png)
+}
+
+.silk-application-view-list {
+	background-image: url(application-view-list.png)
+}
+
+.silk-application-view-tile {
+	background-image: url(application-view-tile.png)
+}
+
+.silk-music {
+	background-image: url(music.png)
+}
+
+.silk-film {
+	background-image: url(film.png)
+}
+
+.silk-feed {
+	background-image: url(feed.png)
+}
+
+.silk-rss {
+	background-image: url(rss.png)
+}
+
+.silk-css {
+	background-image: url(css.png)
+}
+
+.silk-script {
+	background-image: url(script.png)
+}
+
+.silk-xml-tag {
+	background-image: url(xml-tag.png)
+}
+
+.silk-html {
+	background-image: url(html.png)
+}
+
+.silk-shape-flip-horizontal {
+	background-image: url(shape-flip-horizontal.png)
+}
+
+.silk-shape-flip-vertical {
+	background-image: url(shape-flip-vertical.png)
+}
+
+.silk-shape-rotate-clockwise {
+	background-image: url(shape-rotate-clockwise.png)
+}
+
+.silk-shape-rotate-anticlockwise {
+	background-image: url(shape-rotate-anticlockwise.png)
+}
+
+.silk-sitemap {
+	background-image: url(sitemap.png)
+}
+
+.silk-sum {
+	background-image: url(sum.png)
+}
+
+.silk-table-relationship {
+	background-image: url(table-relationship.png)
+}
+
+.silk-text-align-center {
+	background-image: url(text-align-center.png)
+}
+
+.silk-text-align-right {
+	background-image: url(text-align-right.png)
+}
+
+.silk-text-align-left {
+	background-image: url(text-align-left.png)
+}
+
+.silk-text-align-justify {
+	background-image: url(text-align-justify.png)
+}
+
+.silk-text-columns {
+	background-image: url(text-columns.png)
+}
+
+.silk-text-list-numbers {
+	background-image: url(text-list-numbers.png)
+}
+
+.silk-text-list-bullets {
+	background-image: url(text-list-bullets.png)
+}
+
+.silk-text-padding-top {
+	background-image: url(text-padding-top.png)
+}
+
+.silk-text-padding-bottom {
+	background-image: url(text-padding-bottom.png)
+}
+
+.silk-timeline-marker {
+	background-image: url(timeline-marker.png)
+}
+
+.silk-vcard {
+	background-image: url(vcard.png)
+}
+
+.silk-pill {
+	background-image: url(pill.png)
+}
+
+.silk-key {
+	background-image: url(key.png)
+}
+
+.silk-lightbulb {
+	background-image: url(lightbulb.png)
+}
+
+.silk-link {
+	background-image: url(link.png)
+}
+
+.silk-link-break {
+	background-image: url(link-break.png)
+}
+
+.silk-hourglass {
+	background-image: url(hourglass.png)
+}
+
+.silk-sort-asc {
+	background-image: url(sort-asc.png)
+}
+
+.silk-sort-desc {
+	background-image: url(sort-desc.png)
+}
+
+.silk-bug {
+	background-image: url(bug.png)
+}
+
+.silk-rubber {
+	background-image: url(rubber.png)
+}
+
+.silk-resultset-first {
+	background-image: url(resultset-first.png)
+}
+
+.silk-resultset-previous-page {
+	background-image: url(resultset-previous-page.png)
+}
+
+.silk-resultset-previous {
+	background-image: url(resultset-previous.png)
+}
+
+.silk-resultset-next {
+	background-image: url(resultset-next.png)
+}
+
+.silk-resultset-next-page {
+	background-image: url(resultset-next-page.png)
+}
+
+.silk-resultset-last {
+	background-image: url(resultset-last.png)
+}
+
+.silk-control-start {
+	background-image: url(control-start.png)
+}
+
+.silk-control-rewind {
+	background-image: url(control-rewind.png)
+}
+
+.silk-control-reverse {
+	background-image: url(control-play-reverse.png)
+}
+
+.silk-control-play {
+	background-image: url(control-play.png)
+}
+
+.silk-control-fastforward {
+	background-image: url(control-fastforward.png)
+}
+
+.silk-control-end {
+	background-image: url(control-end.png)
+}
+
+.silk-control-stop {
+	background-image: url(control-stop.png)
+}
+
+.silk-control-pause {
+	background-image: url(control-pause.png)
+}
+
+.silk-arrow-rotate-clockwise {
+	background-image: url(arrow-rotate-clockwise.png)
+}
+
+.silk-arrow-rotate-anticlockwise {
+	background-image: url(arrow-rotate-anticlockwise.png)
+}
+
+.silk-arrow-left {
+	background-image: url(arrow-left.png)
+}
+
+.silk-arrow-right {
+	background-image: url(arrow-right.png)
+}
+
+.silk-arrow-up {
+	background-image: url(arrow-up.png)
+}
+
+.silk-arrow-down {
+	background-image: url(arrow-down.png)
+}
+
+.silk-arrow-in {
+	background-image: url(arrow-in.png)
+}
+
+.silk-arrow-inout {
+	background-image: url(arrow-inout.png)
+}
+
+.silk-arrow-out {
+	background-image: url(arrow-out.png)
+}
+
+.silk-arrow-turn-left {
+	background-image: url(arrow-turn-left.png)
+}
+
+.silk-arrow-turn-right {
+	background-image: url(arrow-turn-right.png)
+}
+
+.silk-arrow-branch {
+	background-image: url(arrow-branch.png)
+}
+
+.silk-arrow-merge {
+	background-image: url(arrow-merge.png)
+}
+
+.silk-arrow-undo {
+	background-image: url(arrow-undo.png)
+}
+
+.silk-arrow-redo {
+	background-image: url(arrow-redo.png)
+}
+
+.silk-arrow-divide {
+	background-image: url(arrow-divide.png)
+}
+
+.silk-arrow-join {
+	background-image: url(arrow-join.png)
+}
+
+.silk-arrow-refresh {
+	background-image: url(arrow-refresh.png)
+}
+
+.silk-arrow-switch {
+	background-image: url(arrow-switch.png)
+}
+
+.silk-bullet {
+	background-image: url(bullet.png)
+}
+
+.silk-bullet-go {
+	background-image: url(bullet-go.png)
+}
+
+.silk-bullet-add {
+	background-image: url(bullet-add.png)
+}
+
+.silk-bullet-delete {
+	background-image: url(bullet-delete.png)
+}
+
+.silk-bullet-error {
+	background-image: url(bullet-error.png)
+}
+
+.silk-bullet-warn {
+	background-image: url(bullet-warn.png)
+}
+
+.silk-bullet-disk {
+	background-image: url(bullet-disk.png)
+}
+
+.silk-bullet-picture {
+	background-image: url(bullet-picture.png)
+}
+
+.silk-bullet-key {
+	background-image: url(bullet-key.png)
+}
+
+.silk-bullet-feed {
+	background-image: url(bullet-feed.png)
+}
+
+.silk-bullet-toggle-plus {
+	background-image: url(bullet-toggle-plus.png)
+}
+
+.silk-bullet-toggle-minus {
+	background-image: url(bullet-toggle-minus.png)
+}
+
+.silk-bullet-wrench {
+	background-image: url(bullet-wrench.png)
+}
+
+.silk-bullet-start {
+	background-image: url(bullet-star.png)
+}
+
+.silk-bullet-arrow-top {
+	background-image: url(bullet-arrow-top.png)
+}
+
+.silk-bullet-arrow-up {
+	background-image: url(bullet-arrow-up.png)
+}
+
+.silk-bullet-arrow-down {
+	background-image: url(bullet-arrow-down.png)
+}
+
+.silk-bullet-arrow-bottom {
+	background-image: url(bullet-arrow-bottom.png)
+}
+
+.silk-blue-up {
+	background-image: url(blue-up.png)
+}
+
+.silk-blue-down {
+	background-image: url(blue-down.png)
+}
+
+.silk-blue-left {
+	background-image: url(blue-left.png)
+}
+
+.silk-blue-right {
+	background-image: url(blue-right.png)
+}

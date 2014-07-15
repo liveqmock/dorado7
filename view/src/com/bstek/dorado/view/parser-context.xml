@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.bstek.com/dorado/schema"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.bstek.com/dorado/schema http://www.bstek.com/dorado/schema/spring-dorado-7.0.xsd">
+	<bean id="dorado.xmlParserHelper" class="com.bstek.dorado.view.config.xml.ViewXmlParserHelper">
+		<property name="textParserHelper" ref="dorado.textParserHelper" />
+	</bean>
+
+	<!-- View Parser -->
+	<bean id="dorado.viewConfigParser" parent="dorado.genericObjectParser"
+		class="com.bstek.dorado.view.config.xml.ViewConfigParser">
+		<property name="impl" value="com.bstek.dorado.view.manager.ViewConfig" />
+	</bean>
+	<bean id="dorado.viewArgumentsParser" parent="dorado.dispatchableXmlParser"
+		class="com.bstek.dorado.view.config.xml.ViewArgumentsParser">
+		<d:property-parser key="name" value-ref="dorado.ignoreParser" />
+		<d:property-parser key="value" value-ref="dorado.staticPropertyParser" />
+	</bean>
+	<bean id="dorado.viewContextParser" parent="dorado.dispatchableXmlParser"
+		class="com.bstek.dorado.view.config.xml.ContextParser">
+		<d:property-parser key="name" value-ref="dorado.ignoreParser" />
+		<d:property-parser key="value" value-ref="dorado.propertyParser" />
+	</bean>
+	<bean id="dorado.viewModelParser" class="com.bstek.dorado.view.config.xml.ModelParser">
+		<property name="dataObjectPreloadParser" ref="dorado.preloadDataDocumentElementParser" />
+		<property name="dataObjectParserDispatcher" ref="dorado.dataObjectParserDispatcher" />
+	</bean>
+
+	<bean id="dorado.layoutTextParser" class="com.bstek.dorado.view.widget.layout.LayoutParser"
+		parent="dorado.dispatchableTextParser" />
+	<bean id="dorado.layoutParser"
+		class="com.bstek.dorado.view.config.text.DefaultMapTextParserDispatcher"
+		parent="dorado.textPropertyParser">
+		<property name="textParser">
+			<bean
+				class="com.bstek.dorado.view.widget.layout.LayoutTextParserDispatcher">
+				<property name="layoutTypeRegistry" ref="dorado.layoutTypeRegistry" />
+				<property name="textParserHelper" ref="dorado.textParserHelper" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="dorado.layoutConstraintParser"
+		class="com.bstek.dorado.view.widget.layout.LayoutConstraintParserDispatcher"
+		parent="dorado.textPropertyParser">
+		<property name="textParser">
+			<bean class="com.bstek.dorado.view.widget.layout.LayoutConstraintParser"
+				parent="dorado.dispatchableTextParser" />
+		</property>
+	</bean>
+
+	<bean id="dorado.styleTextParser" parent="dorado.dispatchableTextParser" />
+	<bean id="dorado.styleParser" class="com.bstek.dorado.view.config.xml.StylePropertyParser"
+		parent="dorado.compositePropertyParser">
+		<property name="impl" value="java.util.HashMap" />
+		<property name="textParser" ref="dorado.styleTextParser" />
+	</bean>
+
+	<bean id="dorado.itemsParser" class="com.bstek.dorado.view.config.xml.ItemsParser"
+		parent="dorado.dataParser" />
+
+	<bean id="dorado.componentParser" scope="prototype"
+		parent="dorado.genericObjectParser" class="com.bstek.dorado.view.widget.ComponentParser" />
+	<bean id="dorado.controlParser" parent="dorado.componentParser"
+		class="com.bstek.dorado.view.widget.ControlParser" />
+	<bean id="dorado.containerParser" parent="dorado.controlParser"
+		class="com.bstek.dorado.view.widget.ContainerParser">
+		<property name="layoutTypeRegistry" ref="dorado.layoutTypeRegistry" />
+		<property name="layoutParser" ref="dorado.layoutParser" />
+		<d:property-parser key="layout" value-ref="dorado.ignoreParser" />
+	</bean>
+	<bean id="dorado.viewParser" parent="dorado.containerParser"
+		class="com.bstek.dorado.view.ViewParser" />
+
+	<bean id="dorado.componentParserDispatcher"
+		class="com.bstek.dorado.view.config.xml.ComponentParserDispatcher">
+		<property name="componentTypeRegistry" ref="dorado.componentTypeRegistry" />
+		<property name="xmlParserHelper" ref="dorado.xmlParserHelper" />
+	</bean>
+	<bean id="dorado.childComponentParser" class="com.bstek.dorado.view.widget.ChildComponentParser">
+		<property name="componentParser" ref="dorado.componentParserDispatcher" />
+	</bean>
+
+	<bean id="dorado.dataSetParser" class="com.bstek.dorado.view.widget.data.DataSetParser"
+		parent="dorado.componentParser">
+		<d:property-parser key="dataProvider,dataType"
+			value-ref="dorado.ignoreParser" />
+	</bean>
+	<bean id="dorado.ajaxActionParser" class="com.bstek.dorado.view.widget.action.AjaxActionParser"
+		parent="dorado.componentParser" />
+	<bean id="dorado.ajaxValidatorParser"
+		class="com.bstek.dorado.view.type.property.validator.AjaxValidatorParser"
+		parent="dorado.componentParser" />
+	<bean id="dorado.updateActionParser" class="com.bstek.dorado.view.widget.action.UpdateActionParser"
+		parent="dorado.componentParser" />
+	<bean id="dorado.longTaskParser" class="com.bstek.dorado.view.widget.action.LongTaskParser"
+		parent="dorado.componentParser" />
+</beans>

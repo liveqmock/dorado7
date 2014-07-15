@@ -1,0 +1,121 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-debugger-log-clear-icon {
+  background-image: url(../../resources/icons/silk/rubber.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-log-lock-icon {
+  background-image: url(../../resources/icons/silk/lock.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-log-debug-icon {
+  background-image: url(../../resources/icons/silk/bug.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-log-info-icon {
+  background-image: url(../../resources/icons/silk/information.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-log-warn-icon {
+  background-image: url(../../resources/icons/silk/error.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-log-error-icon {
+  background-image: url(../../resources/icons/silk/exclamation.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-script-run-icon {
+  background-image: url(../../resources/icons/silk/control-play.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-script-clear-icon {
+  background-image: url(../../resources/icons/silk/rubber.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-view-export-icon {
+  background-image: url(../../resources/icons/silk/wrench.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-view-refresh-icon {
+  background-image: url(../../resources/icons/silk/arrow-refresh.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-view-add-icon {
+  background-image: url(../../resources/icons/silk/add.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-view-delete-icon {
+  background-image: url(../../resources/icons/silk/delete.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-view-edit-icon {
+  background-image: url(../../resources/icons/silk/pencil.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-hotkey-refresh-icon {
+  background-image: url(../../resources/icons/silk/arrow-refresh.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-logger {
+  overflow: auto;
+  border: 1px #B0B0B0 solid;
+  background: url(form/text-field-bg.png) repeat-x;
+}
+.d-debugger-logger .log {
+  border-bottom: 1px solid white;
+  line-height: 18px;
+  position: relative;
+}
+.d-debugger-logger .log .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+}
+.d-debugger-logger .log .msg {
+  margin-left: 20px;
+}
+.d-debugger-logger .log-debug .icon {
+  background-image: url(../../resources/icons/silk/bug.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-logger .log-info .icon {
+  background-image: url(../../resources/icons/silk/information.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-logger .log-warn .icon {
+  background-image: url(../../resources/icons/silk/error.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-debugger-logger .log-error .icon {
+  background-image: url(../../resources/icons/silk/exclamation.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}

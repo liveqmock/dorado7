@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<style>
+			.d-form-element {
+			    background: #F5F5F5;
+			}
+		</style>
+		<script type="text/javascript">
+			var view = new dorado.widget.View({
+				layout: "Anchor"
+			});
+			
+			var formProfile = new dorado.widget.FormProfile({
+				id: "defaultFormProfile",
+				labelAlign: "right"
+			});
+			
+			var autoform = new dorado.widget.AutoForm({
+				cols: "450,*",
+				layoutConstraint: {
+					width: 700
+				},
+				elements: [{
+					property: "id"
+				}, null, {
+					property: "name",
+					readOnly: true,
+					label: "姓名"
+				}, {
+					$type: "Button",
+					caption: "Test Button",
+					layoutConstraint: {
+						align: "right"
+					}
+				}, {
+					property: "salary",
+					colSpan: 2
+				}, {
+					property: "sex",
+					type: "checkBox"
+				}, {
+					property: "degree"
+				}, {
+					property: "comment",
+					type: "textArea",
+					readOnly: true,
+					height: 200,
+					colSpan: 2,
+					rowSpan: 2
+				}]
+			});
+			
+			view.addChild(autoform);
+			
+			view.addChild(new dorado.widget.Button({
+				caption: "Test FormElement ReadOnly",
+				onClick: function() {
+					var formElement = autoform.get("elements").get(0);
+					var readOnly = !formElement.get("readOnly");
+					formElement.set("readOnly", readOnly);
+				}
+			}));
+			
+			view.addChild(new dorado.widget.Button({
+				caption: "Test AutoForm ReadOnly",
+				onClick: function() {
+					var readOnly = !autoform.get("readOnly");
+					autoform.set("readOnly", readOnly);
+				}
+			}));
+			
+			view.addChild(new dorado.widget.Button({
+				caption: "Test AutoForm Visible",
+				onClick: function() {
+					var visible = !autoform.get("visible");
+					autoform.set("visible", visible);
+				}
+			}));
+			
+			view.addChild(new dorado.widget.Button({
+				caption: "Get Entity",
+				onClick: function() {
+					var entity = autoform.get("entity");
+					alert(entity.id);
+				}
+			}));
+			
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body style="overflow: visible"></body>
+</html>

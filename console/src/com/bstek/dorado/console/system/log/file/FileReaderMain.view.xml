@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View>
+    <TabControl id="fileReaderTab">
+      <IFrameTab>
+        <Property name="path">com.bstek.dorado.console.system.log.file.FileReader.d</Property>
+        <Property name="name">文件1</Property>
+        <Property name="caption">${res.file1}</Property>
+      </IFrameTab>
+      <IFrameTab>
+        <Property name="path">com.bstek.dorado.console.system.log.file.FileReader.d</Property>
+        <Property name="name">文件2</Property>
+        <Property name="caption">${res.file2}</Property>
+        <Property name="closeable">true</Property>
+      </IFrameTab>
+    </TabControl>
+    <Menu id="readerTabContextMenu">
+      <MenuItem>
+        <ClientEvent name="onClick">var fileReaderTab=view.get('#fileReaderTab'),index=fileReaderTab.get('tabs').length+1;
+fileReaderTab.addTab(new dorado.widget.tab.IFrameTab({
+    name: &quot;NewTab&quot;,
+    caption: &quot;NewTab&quot;,
+	path:&quot;com.bstek.dorado.console.system.log.file.FileReader.d&quot;,
+	closeable:true
+}),index,true);
+</ClientEvent>
+        <Property name="caption">${res.newTab}</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -60px -120px</Property>
+      </MenuItem>
+      <MenuItem>
+        <ClientEvent name="onClick">dorado.MessageBox.confirm(&quot;${res.closeConfirmMessage}&quot;,function(){
+    var fileReaderTab = view.get('#fileReaderTab');
+    fileReaderTab.removeTab(fileReaderTab.get('currentTab'));
+});
+</ClientEvent>
+        <Property name="icon">url(>skin>common/icons.gif) -80px -120px
+</Property>
+        <Property name="action">action1</Property>
+        <Property name="caption">${res.closeTab}</Property>
+      </MenuItem>
+    </Menu>
+  </View>
+</ViewConfig>

@@ -1,0 +1,120 @@
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ * 
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ * 
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html) 
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ * 
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+/*
+ * This file is part of Dorado 7.x (http://dorado7.bsdn.org).
+ *
+ * Copyright (c) 2002-2012 BSTEK Corp. All rights reserved.
+ *
+ * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html)
+ * and BSDN commercial (http://www.bsdn.org/licenses) licenses.
+ *
+ * If you are unsure which license is appropriate for your use, please contact the sales department
+ * at http://www.bstek.com/contact.
+ */
+.d-tree {
+  position: relative;
+}
+.d-tree .data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.d-tree .data-table td {
+  white-space: nowrap;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.d-tree .preparing-area {
+  background: url(list/preparing-area-bg.png);
+}
+.d-tree-expanding-placeholder {
+  background: #ffffff;
+}
+.d-tree-node .node-button {
+  position: relative;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background-image: url(tree/tree-buttons.png);
+  background-repeat: no-repeat;
+}
+.d-tree-node .node-button.expand-button {
+  background-position: 0 -16px;
+}
+.d-tree-node .node-button.expand-button-hover {
+  background-position: -16px -16px;
+}
+.d-tree-node .node-button.collapse-button {
+  background-position: 0 -32px;
+}
+.d-tree-node .node-button.collapse-button-hover {
+  background-position: -16px -32px;
+}
+.d-tree-node .node-button.button-expanding {
+  background-image: url(tree/expanding.gif) !important;
+  background-position: center center !important;
+}
+.d-tree-node .node-icon {
+  position: relative;
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.d-tree-node .d-checkbox-icononly {
+  position: relative;
+  top: 2px;
+  margin-right: 4px;
+}
+.d-tree {
+  border: 1px #a1a1a1 solid;
+  background-color: #ffffff;
+}
+.d-tree .row td {
+  border-bottom: 1px #ffffff solid;
+}
+.d-tree .row .node-icon {
+  color: rgba(0, 0, 0, 0.7);
+}
+.d-tree .hover-row {
+  background: #e8e8e8;
+}
+.d-tree .selected-row {
+  color: #000000;
+}
+.d-tree .selected-row td {
+  border-top-color: #edfcf0;
+  border-bottom-color: #65d17b;
+  background: #aaf2b8;
+}
+.d-tree .selected-row .node-icon {
+  color: rgba(0, 0, 0, 0.7);
+}
+.d-tree .current-row {
+  color: #000000;
+}
+.d-tree .current-row td {
+  border-bottom-color: #52cb6a;
+  background: #94efa6 url(list/current-row.png) repeat-x top;
+}
+.d-tree .current-row .node-icon {
+  color: rgba(0, 0, 0, 0.7);
+}
+.d-tree .drag-over-row td {
+  border-top-color: #e8e8e8;
+  border-bottom-color: #e8e8e8;
+  background: #e8e8e8;
+}
+.d-tree.d-tree-focused {
+  border: 1px #7b7b7b solid;
+}

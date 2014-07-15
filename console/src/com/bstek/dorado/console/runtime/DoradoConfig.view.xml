@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View listener="spring:dorado.console.doradoConfigController#onViewInit">
+    <Panel id="configsPanel">
+      <Property name="width">100%</Property>
+      <Property name="contentOverflowY">scroll</Property>
+      <Buttons/>
+      <Children>
+        <FieldSet>
+          <Property name="caption">${res.caption}</Property>
+          <Property name="collapseable">false</Property>
+          <Property name="width">858</Property>
+          <Property name="style">
+            <Property name="margin-left">17px</Property>
+            <Property name="margin-bottom">5px</Property>
+          </Property>
+          <Buttons/>
+          <Children>
+            <Label id="description">
+              <Property name="style">
+                <Property name="margin-left">40px</Property>
+              </Property>
+            </Label>
+          </Children>
+        </FieldSet>
+        <Container>
+          <AutoForm id="propertiesConfigAutoForm">
+            <Property name="cols">*</Property>
+            <Property name="dataType">Map</Property>
+            <Property name="width">900</Property>
+            <Property name="style">
+              <Property name="margin-left">5px</Property>
+            </Property>
+          </AutoForm>
+          <Container id="buttonsContainer" layout="anchor">
+            <Property name="hideMode">display</Property>
+            <Property name="visible">false</Property>
+            <Property name="style">
+              <Property name="border-top">1px dashed #CCC
+</Property>
+              <Property name="margin-top">20px</Property>
+            </Property>
+            <Property name="width">950</Property>
+            <Button id="buttonSave" layoutConstraint="left:350;top:20">
+              <Property name="icon">url(>skin>common/icons.gif) -160px -20px</Property>
+            </Button>
+            <Button id="buttonReset" layoutConstraint="left:470;top:20">
+              <Property name="icon">url(>skin>common/icons.gif) -240px -239px</Property>
+              <Property name="action">resetAction</Property>
+            </Button>
+          </Container>
+        </Container>
+      </Children>
+      <Tools/>
+    </Panel>
+    <DataSet id="dsConfig">
+      <Property name="dataType">Map</Property>
+    </DataSet>
+    <UpdateAction id="saveAction">
+      <Property name="dataResolver">dorado.console.doradoConfigController#saveWebConfig</Property>
+      <Property name="confirmMessage">${res.saveConfirmMessage}</Property>
+      <Property name="successMessage">${res.saveSuccessMessage}</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsConfig</Property>
+        <Property name="dataPath">[#all]</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <AjaxAction id="resetAction">
+      <Property name="service">dorado.console.doradoConfigController#reset</Property>
+      <Property name="successMessage">还原成功！</Property>
+      <Property name="confirmMessage">确定还原吗？</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

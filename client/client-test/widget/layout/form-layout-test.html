@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html style="height:100%">
+	<head>
+		<style>
+			.label-region {
+			    text-align: right;
+			    background: gray;
+			}
+			
+			.input-region {
+			    background: lightgrey;
+			}
+		</style>
+		<script type="text/javascript" src="../../include-all.js"></script>
+		<script type="text/javascript">
+			var num = 0;
+			function getControl(config) {
+				config = config || {};
+				config.content = "<div>" + (++num + '') + "</div>";
+				return new dorado.widget.HtmlContainer(config);
+			}
+			
+			var view = new dorado.widget.View({ layout: "Anchor" });
+			var layout = new dorado.widget.layout.FormLayout({
+				cols: "80[label-region],*[input-region],80[label-region],*[input-region]",
+				margin: 12,
+				marginTop: 24
+			});
+			view.set("layout", layout);
+			
+			for (var i = 0; i < 12; i++) {
+				view.addChild(getControl());
+			}
+			
+			view.addChild(getControl()); // 13
+			view.addChild(getControl({
+				layoutConstraint: {
+					background: "red",
+					rowSpan: 2
+				}
+			}));
+			
+			view.addChild(getControl()); // 15
+			view.addChild(getControl());
+			view.addChild(getControl({
+				layoutConstraint: {
+					background: "yellow",
+					colSpan: 2
+				}
+			}));
+			
+			view.addChild(getControl({
+				layoutConstraint: {
+					vAlign: "top"
+				}
+			})); // 18
+			view.addChild(new dorado.widget.Control({
+				height: 20,
+				style: {
+					background: "navy"
+				}
+			}));
+			view.addChild(getControl());
+			view.addChild(getControl({
+				height: 50,
+				onClick: function(self) {
+					self.set("height", self.get("height") + 25);
+				},
+				style: {
+					background: "purple"
+				}
+			}));
+			view.addChild(getControl({
+				layoutConstraint: {
+					background: "blue",
+					colSpan: 2,
+					rowSpan: 3
+				}
+			}));
+			view.addChild(getControl({
+				layoutConstraint: {
+					background: "green",
+					colSpan: 2,
+					rowSpan: 2
+				}
+			}));
+			
+			view.addChild(getControl()); // 24
+			view.addChild(getControl());
+			view.addChild(getControl());
+			view.addChild(getControl());
+			
+			view.addChild(getControl({
+				layoutConstraint: {
+					background: "brown",
+					colSpan: 4,
+					rowSpan: 2,
+					textAlign: "center"
+				}
+			})); // 28
+			view.addChild(getControl());
+			view.addChild(getControl());
+			
+			$(document).ready(function() {
+				view.render(document.body);
+			});
+		</script>
+	</head>
+	<body scroll="no" style="height: 100%; margin: 0px; overflow: hidden"></body>
+</html>
